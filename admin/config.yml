@@ -1,0 +1,55 @@
+# Configuración del panel (Decap CMS) — El Gran Sueño
+# El login se activa con Netlify Identity + Git Gateway (paso de cuenta de Adrián).
+backend:
+  name: git-gateway
+  branch: main
+
+# Guardar cada cambio como borrador antes de publicar (opcional, recomendado)
+publish_mode: editorial_workflow
+
+# Dónde se suben las imágenes que cargues desde el panel
+media_folder: "assets/fotos"
+public_folder: "assets/fotos"
+
+locale: es
+site_url: https://elgransueno.org
+display_url: https://elgransueno.org
+
+collections:
+  - name: blog
+    label: "Escritos del blog"
+    description: "Publicá y editá los escritos que aparecen en la sección Escritos."
+    files:
+      - name: posts
+        label: "Publicaciones"
+        file: "content/blog.json"
+        format: json
+        fields:
+          - name: posts
+            label: "Publicaciones"
+            label_singular: "Publicación"
+            widget: list
+            summary: "{{fields.titulo}}"
+            fields:
+              - { name: titulo, label: "Título", widget: string }
+              - { name: slug, label: "Dirección (URL) — sin espacios ni acentos", widget: string, hint: "Ej: descanso-verdadero" }
+              - name: pilar
+                label: "Pilar"
+                widget: select
+                default: identidad
+                options:
+                  - { label: "Identidad", value: "identidad" }
+                  - { label: "Propósito", value: "proposito" }
+                  - { label: "Reino", value: "reino" }
+                  - { label: "Carácter", value: "caracter" }
+                  - { label: "Comunidad", value: "comunidad" }
+                  - { label: "Dones", value: "dones" }
+                  - { label: "Gran Comisión", value: "gran-comision" }
+                  - { label: "Santificación", value: "santificacion" }
+                  - { label: "Servicio", value: "servicio" }
+              - { name: fecha, label: "Fecha", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { name: lectura, label: "Tiempo de lectura", widget: string, default: "3 min de lectura", required: false }
+              - { name: pregunta, label: "Pregunta (opcional, aparece bajo el título)", widget: string, required: false }
+              - { name: resumen, label: "Resumen / bajada", widget: text }
+              - { name: cuerpo, label: "Texto del escrito", widget: markdown }
+              - { name: destacado, label: "Destacar", widget: boolean, default: false, required: false }

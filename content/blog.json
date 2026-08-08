@@ -1,0 +1,15 @@
+{
+  "posts": [
+    {
+      "slug": "bienvenida",
+      "titulo": "Un lugar para pensar despacio.",
+      "pilar": "identidad",
+      "pilarLabel": "Identidad",
+      "fecha": "2026-08-01",
+      "lectura": "2 min de lectura",
+      "pregunta": "¿Y si no hay nada que alcanzar?",
+      "resumen": "El primer escrito del blog: una nota breve sobre por qué este espacio existe y desde dónde queremos escribir.",
+      "cuerpo": "Este es el primer escrito publicado desde el panel.\n\nNo escribimos para llenar espacio ni para retener tu atención un rato más.\n\nEscribimos para que puedas **detenerte**, y mirar tu propia historia con un poco más de luz.\n\n> La vida nueva no es intentar alcanzar. Es vivir desde lo que Él ya nos dio.\n\nSi estás leyendo esto, es una buena señal: algo en vos busca un lugar donde respirar.\n\nBienvenido.\n\n*(Este texto es solo un ejemplo. Podés editarlo o borrarlo desde el panel de administración.)*"
+    }
+  ]
+}
