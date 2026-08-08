@@ -64,6 +64,7 @@
   function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function inline(s) {
     return esc(s)
+      .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img class="blog-img" src="$2" alt="$1" loading="lazy">')
       .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
       .replace(/\*([^*]+)\*/g, '<em>$1</em>')
       .replace(/\n/g, '<br>');
@@ -119,6 +120,7 @@
         '<h1>' + esc(post.titulo) + '</h1>' +
         (post.pregunta ? '<p class="art-pregunta">' + esc(post.pregunta) + '</p>' : '') +
       '</header>' +
+      (post.imagen ? '<figure class="art-portada"><img src="' + esc(post.imagen) + '" alt="" loading="lazy"></figure>' : '') +
       '<article class="long-prose">' +
         (post.resumen ? '<p class="lead">' + esc(post.resumen) + '</p>' : '') +
         md(post.cuerpo) +

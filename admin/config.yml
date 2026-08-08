@@ -9,7 +9,7 @@ publish_mode: editorial_workflow
 
 # Dónde se suben las imágenes que cargues desde el panel
 media_folder: "assets/fotos"
-public_folder: "assets/fotos"
+public_folder: "/assets/fotos"
 
 locale: es
 site_url: https://elgransueno.org
@@ -51,5 +51,6 @@ collections:
               - { name: lectura, label: "Tiempo de lectura", widget: string, default: "3 min de lectura", required: false }
               - { name: pregunta, label: "Pregunta (opcional, aparece bajo el título)", widget: string, required: false }
               - { name: resumen, label: "Resumen / bajada", widget: text }
+              - { name: imagen, label: "Foto de portada (opcional)", widget: image, required: false, hint: "Se muestra arriba del texto. También podés insertar fotos dentro del texto con el botón de imagen." }
               - { name: cuerpo, label: "Texto del escrito", widget: markdown }
               - { name: destacado, label: "Destacar", widget: boolean, default: false, required: false }

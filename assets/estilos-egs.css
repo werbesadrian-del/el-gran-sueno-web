@@ -3006,6 +3006,15 @@ html.lenis, html.lenis body { height: auto; }
 .modo-limpio .art-cta-eyebrow { color: var(--ember); }
 .modo-limpio .art-cta-pregunta p { color: var(--luz); }
 
+/* Imágenes del blog (cuerpo + portada) */
+.modo-limpio .art-portada { margin: 0; }
+.modo-limpio .art-portada img { width: 100%; height: auto; display: block; }
+.modo-limpio .long-prose .blog-img,
+.modo-limpio .long-prose img {
+  max-width: 100%; height: auto; display: block;
+  margin: 2.5rem auto; border-radius: 3px;
+}
+
 /* ============================================================
    CONSISTENCIA — TODA página entra por "la noche".
    Cada cabecera se vuelve el mismo umbral oscuro y atmosférico
