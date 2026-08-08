@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escritos · El Gran Sueño</title>
+<meta name="description" content="Reflexiones sobre identidad, propósito, Reino de Dios, formación, servicio y comunidad. Textos para leer despacio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Escritos · El Gran Sueño">
+<meta property="og:locale" content="es_ES">
+<meta name="theme-color" content="#6B1A2B">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos-egs.css">
+<style>
+  .blog-filtros { padding: 3rem 2rem; background: white; border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark); }
+  .blog-filtros-inner { max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+  .blog-filtros-label { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-light); font-weight:500; margin-right:0.75rem; }
+  .blog-chip { padding: 0.4rem 0.95rem; background: transparent; border: 1px solid var(--cream-dark); color: var(--ink-mid); font-family:'Cormorant Garamond',serif; font-size:0.92rem; cursor:pointer; transition: all 0.25s; border-radius:30px; }
+  .blog-chip:hover { border-color: var(--bordo-light); color:var(--bordo); }
+  .blog-chip.active { background:var(--bordo); color:white; border-color:var(--bordo); }
+  .blog-listado { padding: 5rem 2rem 7rem; background: var(--cream-dark); }
+  .blog-listado-inner { max-width: 1080px; margin: 0 auto; }
+  .blog-empty { text-align:center; padding: 4rem 1rem; color:var(--ink-light); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; }
+  /* Ordenar por fecha / vistas */
+  .blog-orden { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(107,26,43,0.08); }
+  .blog-orden-titulo { font-family:'Playfair Display',serif; font-style:italic; font-size:1.15rem; color:var(--ink); font-weight:400; }
+  .blog-orden-titulo em { color: var(--bordo); }
+  .blog-orden-switch { display: inline-flex; background: white; padding: 0.25rem; border: 1px solid var(--cream-dark); border-radius: 30px; }
+  .blog-orden-btn { padding: 0.4rem 1rem; background: transparent; border: none; font-family:'Cormorant Garamond',serif; font-size:0.9rem; color: var(--ink-mid); cursor: pointer; border-radius: 30px; transition: all 0.25s; letter-spacing: 0.02em; }
+  .blog-orden-btn.active { background: var(--bordo); color: white; }
+  .blog-card { position: relative; }
+  .blog-card.destacado::after { content: 'Destacado'; position: absolute; top: 1rem; right: 1rem; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: var(--gold-soft); padding: 0.25rem 0.6rem; border-radius: 20px; }
+  .blog-vistas { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--ink-light); margin-left: auto; }
+  .blog-vistas svg { width: 12px; height: 12px; opacity: 0.65; }
+  .blog-meta { justify-content: space-between; }
+</style>
+  <link rel="canonical" href="https://elgransueno.org/blog.html">
+  <meta property="og:site_name" content="El Gran Sueño">
+  <meta property="og:url" content="https://elgransueno.org/blog.html">
+  <meta property="og:description" content="Reflexiones sobre identidad, propósito, Reino de Dios, formación, servicio y comunidad. Textos para leer despacio.">
+</head>
+<body class="modo-limpio">
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+<nav class="egs-nav" id="navbar">
+  <div class="nav-left">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
+  </div>
+  <a href="huellas-de-fe.html" class="nav-cta">Huellas de Fe</a>
+</nav>
+
+<div id="egs-nav-mount"></div>
+
+<main>
+
+<section class="dir-hero">
+  <div class="dir-hero-line" aria-hidden="true"></div>
+  <span class="dir-eyebrow">Escritos</span>
+  <h1 class="dir-title">Textos para leer <em>despacio.</em></h1>
+  <p class="dir-sub">Reflexiones sobre identidad, propósito, Reino de Dios, santificación, comunidad y misión. No consumo rápido. Alimento para el camino.</p>
+  <div class="dir-hero-line" aria-hidden="true"></div>
+</section>
+
+<section class="blog-filtros">
+  <div class="blog-filtros-inner">
+    <span class="blog-filtros-label">Pilar</span>
+    <button class="blog-chip active" data-pilar="todos" onclick="blogFiltrar('todos',this)">Todos</button>
+    <button class="blog-chip" data-pilar="identidad" onclick="blogFiltrar('identidad',this)">Identidad</button>
+    <button class="blog-chip" data-pilar="proposito" onclick="blogFiltrar('proposito',this)">Propósito</button>
+    <button class="blog-chip" data-pilar="reino" onclick="blogFiltrar('reino',this)">Reino de Dios</button>
+    <button class="blog-chip" data-pilar="comision" onclick="blogFiltrar('comision',this)">Gran Comisión</button>
+    <button class="blog-chip" data-pilar="santificacion" onclick="blogFiltrar('santificacion',this)">Santificación</button>
+    <button class="blog-chip" data-pilar="caracter" onclick="blogFiltrar('caracter',this)">Carácter</button>
+    <button class="blog-chip" data-pilar="dones" onclick="blogFiltrar('dones',this)">Dones</button>
+    <button class="blog-chip" data-pilar="servicio" onclick="blogFiltrar('servicio',this)">Servicio</button>
+    <button class="blog-chip" data-pilar="comunidad" onclick="blogFiltrar('comunidad',this)">Comunidad</button>
+    <button class="blog-chip" data-pilar="liderazgo" onclick="blogFiltrar('liderazgo',this)">Liderazgo</button>
+    <button class="blog-chip" data-pilar="mision" onclick="blogFiltrar('mision',this)">Misión</button>
+  </div>
+</section>
+
+<section class="blog-listado">
+  <div class="blog-listado-inner">
+    <div class="blog-orden">
+      <p class="blog-orden-titulo" id="blog-orden-titulo">Textos <em>disponibles</em></p>
+      <div class="blog-orden-switch" role="tablist" aria-label="Ordenar por">
+        <button class="blog-orden-btn active" data-orden="fecha" onclick="blogOrdenar('fecha', this)" role="tab">Últimos</button>
+        <button class="blog-orden-btn" data-orden="vistas" onclick="blogOrdenar('vistas', this)" role="tab">Más leídos</button>
+      </div>
+    </div>
+    <div class="blog-grid" id="blog-grid"></div>
+    <div class="blog-empty" id="blog-empty" style="display:none;">Todavía no hay escritos sobre este pilar.<br>Pronto habrá.</div>
+  </div>
+</section>
+
+</main>
+
+<script src="assets/entradas.js"></script>
+<script src="assets/vistas.js"></script>
+<script>
+  const blogEstado = { pilar: 'todos', orden: 'fecha', vistas: {} };
+
+  function blogFmtFecha(iso) {
+    const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    const [y, m] = iso.split('-');
+    return `${meses[parseInt(m,10)-1]} ${y}`;
+  }
+
+  function blogRender() {
+    const grid = document.getElementById('blog-grid');
+    const empty = document.getElementById('blog-empty');
+    let items = (window.EGS_ESCRITOS || []).slice();
+
+    // Filtrar por pilar
+    if (blogEstado.pilar !== 'todos') {
+      items = items.filter(e => e.pilar === blogEstado.pilar);
+    }
+
+    // Ordenar
+    if (blogEstado.orden === 'fecha') {
+      items.sort((a, b) => {
+        if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
+        return b.fecha.localeCompare(a.fecha);
+      });
+    } else {
+      items.sort((a, b) => {
+        const va = blogEstado.vistas[a.slug] || 0;
+        const vb = blogEstado.vistas[b.slug] || 0;
+        if (vb !== va) return vb - va;
+        return b.fecha.localeCompare(a.fecha);
+      });
+    }
+
+    if (!items.length) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    grid.innerHTML = items.map(e => {
+      const v = blogEstado.vistas[e.slug];
+      const vistasHtml = (v && v > 0)
+        ? `<span class="blog-vistas" aria-label="${v} lecturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${v}</span>`
+        : '';
+      return `
+        <a href="${e.link || (e.slug + '.html')}" class="blog-card${e.destacado ? ' destacado' : ''}" data-pilar="${e.pilar}">
+          <span class="blog-pilar">${e.pilarLabel}</span>
+          <h3>${e.titulo}</h3>
+          ${e.pregunta ? '<p class="blog-pregunta">' + e.pregunta + '</p>' : ''}
+          <p class="blog-excerpt">${e.excerpt}</p>
+          <div class="blog-meta">
+            <span class="blog-meta-lectura">${e.lectura}</span>
+            <span class="blog-meta-fecha">${blogFmtFecha(e.fecha)}</span>
+            ${vistasHtml}
+          </div>
+        </a>
+      `;
+    }).join('');
+  }
+
+  function blogFiltrar(pilar, btn) {
+    blogEstado.pilar = pilar;
+    document.querySelectorAll('.blog-chip').forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+    blogRender();
+  }
+
+  async function blogOrdenar(orden, btn) {
+    blogEstado.orden = orden;
+    document.querySelectorAll('.blog-orden-btn').forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('blog-orden-titulo').innerHTML = orden === 'fecha'
+      ? 'Textos <em>por fecha</em>'
+      : 'Textos <em>más leídos</em>';
+    // Si vamos a ordenar por vistas y aún no las cargamos, esperamos
+    if (orden === 'vistas' && !Object.keys(blogEstado.vistas).length) {
+      const slugs = (window.EGS_ESCRITOS || []).map(e => e.slug);
+      blogEstado.vistas = await egsGetVistas(slugs);
+    }
+    blogRender();
+  }
+
+  // Render inicial + carga de vistas en background para tenerlas listas
+  blogRender();
+  (async () => {
+    const slugs = (window.EGS_ESCRITOS || []).map(e => e.slug);
+    blogEstado.vistas = await egsGetVistas(slugs);
+    // Re-render solo si el usuario ya cambió a "vistas" o si queremos mostrar el número siempre
+    blogRender();
+  })();
+</script>
+
+<footer class="egs-footer">
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+  <p class="footer-line">Nadie fue creado para caminar solo.</p>
+  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+  <form class="footer-form" id="footerForm" onsubmit="return false;">
+    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+    <button type="submit">Quiero recibir novedades</button>
+  </form>
+  <div class="footer-social" aria-label="Redes sociales">
+    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+  </div>
+  <p class="footer-social-nota">Más redes · próximamente</p>
+  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
+</footer>
+<script src="assets/egs.js"></script>
+</body>
+</html>

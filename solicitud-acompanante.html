@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ser acompañante · El Gran Sueño</title>
+<meta name="description" content="No hace falta que tengas todo resuelto para estar aquí. Es una conversación con personas que quieren conocerte.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ser acompañante · El Gran Sueño">
+<meta property="og:description" content="No hace falta que tengas todo resuelto para estar aquí.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ser acompañante · El Gran Sueño">
+<meta name="theme-color" content="#6B1A2B">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos-egs.css">
+
+<style>
+  /* Pantalla contemplativa (P5) — revelación */
+  .revelacion {
+    max-width: 720px;
+  }
+  .rev-inner {
+    display: flex; flex-direction: column;
+    gap: 3rem;
+    padding: 2rem 0;
+  }
+  .rev-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    text-align: center;
+    font-weight: 500;
+  }
+  .rev-beat { opacity: 0.9; }
+  .rev-text {
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink-mid);
+    text-align: center;
+    line-height: 1.75;
+    font-style: italic;
+  }
+  .rev-text.sm { font-size: 1.05rem; }
+  .rev-text.md { font-size: 1.15rem; }
+  .rev-text.lg {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .rev-text em { color: var(--bordo); font-style: italic; }
+  .rev-sep {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0.5;
+    margin: 0 auto;
+  }
+  .btn-umbral {
+    align-self: center;
+    padding: 1.2rem 2.8rem;
+    background: var(--bordo);
+    color: white;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+    border-radius: 2px;
+  }
+  .btn-umbral:hover { background: var(--bordo-dark); transform: translateY(-2px); }
+</style>
+  <link rel="canonical" href="https://elgransueno.org/solicitud-acompanante.html">
+  <meta property="og:site_name" content="El Gran Sueño">
+  <meta property="og:url" content="https://elgransueno.org/solicitud-acompanante.html">
+</head>
+<body class="modo-limpio">
+
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+<nav class="egs-nav" id="navbar">
+  <div class="nav-left">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
+  </div>
+  <a href="quiero-acompanar.html" class="nav-cta">← Volver</a>
+</nav>
+
+<div id="egs-nav-mount"></div>
+
+<div class="conversacion">
+
+  <!-- P0: UMBRAL -->
+  <div class="pantalla activa" id="p0">
+    <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2.25rem;align-items:center;">
+      <div class="linea-oro"></div>
+      <h1 class="t-grande" style="text-align:center;">
+        No hace falta que tengas<br>todo resuelto para estar <em>aquí.</em>
+      </h1>
+      <p class="t-medio" style="text-align:center;">
+        Esta no es una postulación.<br>
+        No es un examen.<br><br>
+        Es una conversación con personas<br>
+        que quieren conocerte.
+      </p>
+      <div class="linea-oro"></div>
+      <button class="btn-inicio" onclick="ir('p1')">Empezar</button>
+      <p class="t-nota" style="text-align:center;">Tómate el tiempo que necesites.</p>
+    </div>
+  </div>
+
+  <!-- P1: MEMORIA -->
+  <div class="pantalla" id="p1">
+    <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2.5rem;align-items:center;">
+      <div class="punto-oro"></div>
+      <p class="t-grande" style="text-align:center;">
+        Antes de empezar,<br>una sola pregunta.
+      </p>
+      <p class="t-medio" style="text-align:center;">
+        ¿Hubo alguien que caminó contigo cuando más lo necesitabas?
+      </p>
+      <p class="t-medio" style="text-align:center;font-size:1rem;">
+        Alguien que no tenía todas las respuestas.<br>
+        Pero que estuvo.<br>
+        Y eso cambió algo.
+      </p>
+      <div class="punto-oro"></div>
+      <button class="btn-inicio" onclick="ir('p2')">Continuar</button>
+    </div>
+  </div>
+
+  <!-- P2: LO QUE DIOS FORMÓ -->
+  <div class="pantalla" id="p2">
+    <div class="pantalla-inner">
+      <div class="progreso"></div>
+      <label for="q1" class="t-grande">
+        ¿Qué viene formando Dios en tu vida — algo que todavía duele, algo que está encontrando sentido — desde lo cual hoy podrías <em>caminar junto a alguien</em> que está en un lugar parecido?
+      </label>
+      <p class="t-pequeño">No hace falta que sea una historia terminada. Puede ser algo que todavía está en proceso. Escribe lo que aparezca.</p>
+      <textarea id="q1" class="campo" placeholder="Escribe aquí…" oninput="habBtn('b-q1')"></textarea>
+      <div class="acciones">
+        <button class="btn-ant" onclick="ir('p1')">← Volver</button>
+        <button id="b-q1" class="btn-sig" onclick="ir('p3')" disabled>Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- P3: LO QUE DIOS PUSO BAJO TU CUIDADO -->
+  <div class="pantalla" id="p3">
+    <div class="pantalla-inner">
+      <div class="progreso"></div>
+      <label for="q2" class="t-grande">
+        ¿Hay algo que Dios puso bajo tu cuidado — una profesión, una red, un tiempo, una experiencia, un recurso o una puerta que puedes abrir — que quizás nunca habías visto como parte de <em>algo más grande que ti?</em>
+      </label>
+      <p class="t-pequeño">Puede ser algo concreto o algo que todavía no sabes cómo nombrar. Lo pequeño también cuenta.</p>
+      <textarea id="q2" class="campo" placeholder="Escribe aquí…" oninput="habBtn('b-q2')"></textarea>
+      <div class="acciones">
+        <button class="btn-ant" onclick="ir('p2')">← Volver</button>
+        <button id="b-q2" class="btn-sig" onclick="ir('p4')" disabled>Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- P4: LA PARTE QUE TE CORRESPONDE -->
+  <div class="pantalla" id="p4">
+    <div class="pantalla-inner">
+      <div class="progreso"></div>
+      <label for="q3" class="t-grande">
+        Si juntaras todo eso — lo que Dios viene formando en ti y lo que puso bajo tu cuidado — ¿qué parte sientes que podría ser <em>la parte que le falta a alguien</em> para seguir avanzando?
+      </label>
+      <p class="t-pequeño">Puede ser una conversación, una formación, una puerta que abrir, un contacto, una oportunidad, una presencia. No tienes que tener toda la respuesta. Quizás hoy todavía no sabes cuál será esa parte. También está bien.</p>
+      <textarea id="q3" class="campo" placeholder="Escribe aquí…" oninput="habBtn('b-q3')"></textarea>
+      <div class="acciones">
+        <button class="btn-ant" onclick="ir('p3')">← Volver</button>
+        <button id="b-q3" class="btn-sig" onclick="ir('p5')" disabled>Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- P5: REVELACIÓN (contemplativa) -->
+  <div class="pantalla revelacion" id="p5">
+    <div class="rev-inner">
+      <p class="rev-eyebrow">Una pausa</p>
+      <div class="rev-beat"><p class="rev-text sm">Nadie llega a ser todo aquello para lo que Dios lo está formando solo.</p></div>
+      <div class="rev-beat"><p class="rev-text sm">Siempre hubo personas que sostuvieron una parte del camino.<br>Una conversación. Una puerta abierta. Una presencia en el momento exacto.</p></div>
+      <div class="rev-beat"><p class="rev-text sm">Esas personas tampoco tenían todas las respuestas.<br>Solo tenían una parte.<br>Y esa parte fue suficiente para que pudieras seguir.</p></div>
+      <div class="rev-sep"></div>
+      <div class="rev-beat"><p class="rev-text md">Hubo años de formación.<br>Hubo dolores que no entendías.<br>Hubo cosas que aprendiste de la única manera que se aprenden: viviéndolas.</p></div>
+      <div class="rev-beat"><p class="rev-text md">Y al mismo tiempo, Dios fue poniendo cosas bajo tu cuidado.<br>Una profesión. Una red. Un tiempo. Una puerta.<br><em>Ninguna de las dos existe por casualidad.</em></p></div>
+      <div class="rev-sep"></div>
+      <div class="rev-beat"><p class="rev-text md">El Gran Sueño no existe para producir mentores.<br>Existe para que ninguna persona tenga que recorrer sola<br>el proceso de convertirse en aquello para lo que Dios la está formando.</p></div>
+      <div class="rev-beat"><p class="rev-text md">Somos una familia donde todos seguimos siendo formados.<br>Todos seguimos necesitando de otros.<br>Y todos podemos sostener una parte del camino de alguien más.</p></div>
+      <div class="rev-beat"><p class="rev-text md">A veces eso significará una conversación.<br>Otras veces, abrir una puerta, conectar personas<br>o acercar algo que otro necesita para seguir creciendo.</p></div>
+      <div class="rev-sep"></div>
+      <div class="rev-beat"><p class="rev-text lg">Cuando muchas personas ponen lo que Dios formó en ellas y lo que puso bajo su cuidado al servicio del proceso de alguien más —</p></div>
+      <div class="rev-beat"><p class="rev-text lg" style="color:var(--bordo);">empieza a aparecer aquello que ese proceso necesitaba para seguir avanzando.</p></div>
+      <div class="rev-sep"></div>
+      <div class="rev-beat"><p class="rev-text sm">Tu parte — exactamente tu parte —<br>alguien la está esperando hoy.</p></div>
+      <button class="btn-umbral" onclick="ir('p6')">Quiero ser parte de esto</button>
+    </div>
+  </div>
+
+  <!-- P6: DISPONIBILIDAD -->
+  <div class="pantalla" id="p6">
+    <div class="pantalla-inner">
+      <div class="progreso"></div>
+      <p class="t-grande">Una pregunta práctica<br>antes de continuar.</p>
+      <p class="t-medio">¿Cuánto tiempo <em>genuinamente</em> puedes dedicar al mes?</p>
+      <p class="t-pequeño">Ser honesto aquí es un acto de cuidado — para ti y para el proceso de la persona a quien Dios te lleve a sostener.</p>
+      <div class="radio-grupo" id="radio-tiempo">
+        <div class="radio-op" onclick="selRadio(this,'radio-tiempo','b-tiempo')"><div class="radio-dot"></div><span class="radio-txt">Una o dos conversaciones al mes</span></div>
+        <div class="radio-op" onclick="selRadio(this,'radio-tiempo','b-tiempo')"><div class="radio-dot"></div><span class="radio-txt">Una vez por semana</span></div>
+        <div class="radio-op" onclick="selRadio(this,'radio-tiempo','b-tiempo')"><div class="radio-dot"></div><span class="radio-txt">Con flexibilidad según el momento</span></div>
+        <div class="radio-op" onclick="selRadio(this,'radio-tiempo','b-tiempo')"><div class="radio-dot"></div><span class="radio-txt">Todavía no estoy seguro</span></div>
+      </div>
+      <div class="acciones">
+        <button class="btn-ant" onclick="ir('p5')">← Volver</button>
+        <button id="b-tiempo" class="btn-sig" onclick="ir('p7')" disabled>Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- P7: CONTACTO -->
+  <div class="pantalla" id="p7">
+    <div class="pantalla-inner">
+      <div class="progreso"></div>
+      <p class="t-grande">Ya casi terminamos.<br><em>Una última cosa.</em></p>
+      <p class="t-pequeño">Alguien del equipo va a leer lo que escribiste y se va a comunicar contigo para seguir hablando. Solo necesitamos saber cómo encontrarte.</p>
+      <div class="campo-grupo">
+        <label class="campo-etiq" for="nombre">¿Cómo te llamas?</label>
+        <input id="nombre" type="text" class="campo-linea" placeholder="Tu nombre…" oninput="habBtn('b-contacto')">
+      </div>
+      <div class="campo-grupo" style="margin-top:0.25rem;">
+        <label class="campo-etiq" for="pais">País donde vives</label>
+        <input id="pais" type="text" class="campo-linea" placeholder="País…">
+      </div>
+      <div class="campo-grupo" style="margin-top:0.25rem;">
+        <label class="campo-etiq" for="correo">Correo electrónico</label>
+        <input id="correo" type="email" class="campo-linea" placeholder="tu@correo.com">
+      </div>
+      <p class="t-nota" style="margin-top:0.4rem;">No te vamos a agregar a ninguna lista. Solo vamos a escribirte para continuar esta conversación.</p>
+      <div class="acciones">
+        <button class="btn-ant" onclick="ir('p6')">← Volver</button>
+        <button id="b-contacto" class="btn-sig" onclick="recopilarRespuestas()" disabled>Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- P8: CIERRE -->
+  <div class="pantalla" id="p8">
+    <div class="cierre-wrap">
+      <div class="cierre-icono">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M2 12h20M4.5 4.5l15 15M4.5 19.5l15-15"/>
+        </svg>
+      </div>
+      <p class="t-grande" style="text-align:center;">
+        Respondiste con <em>honestidad.</em>
+      </p>
+      <div class="div-oro"></div>
+      <p class="t-medio" style="text-align:center;">
+        No tuviste que demostrar nada.<br>
+        No tuviste que llegar con todo resuelto.<br><br>
+        Solo respondiste a algo que Dios<br>
+        ya venía haciendo en tu vida.
+      </p>
+      <div class="destello" style="width:100%;">
+        <p>
+          No tienes que cambiarle la vida a nadie.<br><br>
+          Solo puedes ofrecer con fidelidad<br>
+          lo que Dios formó en ti<br>
+          y lo que puso bajo tu cuidado.<br><br>
+          Eso ya es suficiente.<br>
+          Y para alguien, va a ser exactamente lo que necesitaba.
+        </p>
+      </div>
+      <div class="carta" style="width:100%;">
+        <p class="carta-etiq">¿Qué pasa ahora?</p>
+        <p class="t-medio" style="font-size:1rem;font-style:normal;color:var(--ink-mid);">
+          Alguien del equipo va a leer lo que escribiste y va a ponerse en contacto contigo para seguir hablando. No es una entrevista. Es simplemente continuar esta conversación.
+        </p>
+      </div>
+      <p class="t-medio" style="text-align:center;font-size:1.05rem;">
+        Encontraste un lugar donde nadie camina solo.<br>
+        Donde todos seguimos siendo formados.<br>
+        Donde cada parte importa.<br><br>
+        <em>Seguimos caminando juntos.</em>
+      </p>
+      <div class="cierre-links">
+        <a href="quiero-ser-parte.html" class="cierre-link">
+          <span class="cierre-link-arrow">→</span>
+          <div class="cierre-link-txt"><strong>Conocer el ecosistema</strong>Descubre cómo funciona El Gran Sueño por dentro.</div>
+        </a>
+        <a href="index.html" class="cierre-link">
+          <span class="cierre-link-arrow">→</span>
+          <div class="cierre-link-txt"><strong>Volver al inicio</strong>Sigue explorando la visión del proyecto.</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="assets/egs.js"></script>
+</body>
+</html>

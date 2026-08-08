@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofía · Una historia · El Gran Sueño</title>
+<meta name="description" content="Las palabras que siguen pertenecen al momento en que alguien decidió dejar de caminar en silencio.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sofía · Una historia · El Gran Sueño">
+<meta property="og:description" content="Las palabras que siguen pertenecen al momento en que alguien decidió dejar de caminar en silencio.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sofía · Una historia · El Gran Sueño">
+<meta name="theme-color" content="#6B1A2B">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos-egs.css">
+
+<style>
+  /* Estilos propios de esta página */
+  .historia-wrap { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+
+  /* Cabecera */
+  .cabecera { text-align: center; padding: 4rem 0 3rem; }
+  .estado {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    background: rgba(201,168,76,0.12);
+    color: #8a6a1a;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 2rem;
+  }
+  .estado-punto {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.7;
+  }
+  .cabecera-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .cabecera-meta {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 2rem;
+  }
+  .cabecera-divisor {
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+    margin: 0 auto 2rem;
+  }
+  .cabecera-epigrafe {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-mid);
+    max-width: 520px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.75;
+  }
+  .cabecera-fechas {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .cabecera-fecha { display: flex; flex-direction: column; gap: 0.25rem; }
+  .fecha-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .fecha-valor {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    font-style: italic;
+  }
+
+  /* Voz */
+  .voz { padding: 3rem 0; }
+  .voz-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bordo);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  .voz-texto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
+    color: var(--ink);
+    line-height: 1.85;
+    font-style: italic;
+  }
+  .voz-texto p { margin-bottom: 1.5rem; }
+  .voz-texto p.pausa {
+    padding: 1.5rem 0 0.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--cream-dark);
+    color: var(--bordo);
+  }
+
+  /* Secciones internas */
+  .seccion { padding: 3rem 0; border-top: 1px solid var(--cream-dark); }
+  .seccion-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bordo);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+  .seccion-texto {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .seccion-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--bordo);
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .nota-cuidado {
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    line-height: 1.65;
+    padding: 1rem 1.25rem;
+    background: rgba(201,168,76,0.06);
+    border-left: 2px solid var(--gold);
+    margin-top: 1.5rem;
+    font-style: italic;
+  }
+
+  /* Lista de necesidades */
+  .necesidades { list-style: none; margin-top: 1.5rem; }
+  .necesidad-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--cream-dark);
+    align-items: baseline;
+  }
+  .necesidad-item:last-child { border-bottom: none; }
+  .necesidad-tipo {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--bordo);
+    font-weight: 500;
+  }
+  .necesidad-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    font-style: italic;
+  }
+  @media (max-width: 640px) {
+    .necesidad-item { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
+
+  /* Red de acompañamiento */
+  .red-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  @media (max-width: 640px) { .red-grid { grid-template-columns: 1fr; } }
+  .red-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--cream-dark);
+  }
+  .red-punto {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+  .red-rol {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    font-style: italic;
+  }
+
+  /* Cómo puedes participar */
+  .participar { padding: 4rem 0; border-top: 1px solid var(--cream-dark); }
+  .participar-lista {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .accion-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: white;
+    border: 1px solid var(--cream-dark);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+  }
+  .accion-btn:hover {
+    border-color: var(--bordo);
+    transform: translateX(3px);
+    box-shadow: 0 8px 20px rgba(107,26,43,0.06);
+  }
+  .accion-contenido { flex: 1; }
+  .accion-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .accion-desc {
+    font-size: 0.88rem;
+    color: var(--ink-light);
+    line-height: 1.6;
+  }
+  .accion-flecha {
+    color: var(--bordo);
+    font-size: 1rem;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .accion-btn:hover .accion-flecha { transform: translateX(4px); }
+
+  /* Continuar el recorrido */
+  .continuar { padding: 4rem 0 2rem; border-top: 1px solid var(--cream-dark); }
+  .tarjeta-sugerida {
+    display: block;
+    text-decoration: none;
+    background: var(--ink);
+    color: white;
+    padding: 2rem;
+    margin: 2rem 0 3rem;
+    transition: all 0.3s;
+    border: 1px solid var(--ink);
+  }
+  .tarjeta-sugerida:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .sugerida-estado { margin-bottom: 1.25rem; }
+  .sugerida-estado .estado { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .sugerida-fragmento {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: white;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .sugerida-identidad {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .sugerida-cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+    padding-bottom: 2px;
+  }
+  .despedida {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--bordo);
+    text-align: center;
+    margin: 3rem 0 2rem;
+    line-height: 1.65;
+  }
+  .caminos-finales {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .camino-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: white;
+    border: 1px solid var(--cream-dark);
+    text-decoration: none;
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: all 0.3s;
+  }
+  .camino-final:hover { border-color: var(--bordo); transform: translateX(3px); }
+  .camino-final--destacado {
+    background: var(--bordo);
+    color: white;
+    border-color: var(--bordo);
+    font-style: normal;
+    letter-spacing: 0.02em;
+  }
+  .camino-final--destacado:hover { background: var(--bordo-dark); }
+  .camino-final-flecha {
+    color: var(--bordo);
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+  .camino-final--destacado .camino-final-flecha { color: white; }
+</style>
+  <link rel="canonical" href="https://elgransueno.org/historia-individual.html">
+  <meta property="og:site_name" content="El Gran Sueño">
+  <meta property="og:url" content="https://elgransueno.org/historia-individual.html">
+</head>
+<body class="modo-limpio">
+
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+<nav class="egs-nav" id="navbar">
+  <div class="nav-left">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
+  </div>
+  <a href="historias.html" class="nav-cta">← Historias</a>
+</nav>
+
+<div id="egs-nav-mount"></div>
+
+<main>
+<div class="historia-wrap">
+
+  <div class="ilustrativo-band">
+    <p><strong>Ejemplo</strong>Esta es una historia ilustrativa. El nombre, los datos y las fechas son ficticios, y sirven de plantilla para mostrar cómo se verá una historia real compartida por una persona.</p>
+  </div>
+
+  <!-- 1. CABECERA -->
+  <header class="cabecera">
+    <div class="estado">
+      <span class="estado-punto"></span>
+      <span>En camino</span>
+    </div>
+    <h1 class="cabecera-nombre">Sofía</h1>
+    <p class="cabecera-meta">España · Educación · Arte</p>
+    <div class="cabecera-divisor"></div>
+    <p class="cabecera-epigrafe">
+      Las palabras que siguen pertenecen al momento en que alguien decidió dejar de caminar en silencio.
+    </p>
+    <div class="cabecera-fechas">
+      <div class="cabecera-fecha">
+        <span class="fecha-label">Historia compartida</span>
+        <span class="fecha-valor">Marzo 2025</span>
+      </div>
+      <div class="cabecera-fecha">
+        <span class="fecha-label">Última actualización</span>
+        <span class="fecha-valor">Enero 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. VOZ -->
+  <section class="voz" aria-labelledby="voz-titulo">
+    <p class="voz-eyebrow" id="voz-titulo">En sus propias palabras</p>
+    <div class="voz-texto" role="blockquote">
+      <p>Siempre supe que había algo más para mi vida. Lo sentía con mucha claridad cuando escuchaba música, cuando enseñaba algo a alguien, cuando veía a una persona entender algo que antes no entendía. Era como si en esos momentos yo estuviera haciendo exactamente lo que vine a hacer. Pero nunca supe cómo nombrarlo.</p>
+      <p>Durante años trabajé en lo que se esperaba de mí. No era una vida mala. Pero había algo que no encajaba. No una insatisfacción gritada, sino una pregunta que seguía apareciendo en los momentos de silencio: ¿es esto? ¿Solo esto?</p>
+      <p class="pausa">Llegué aquí sin saber muy bien qué buscar. Solo sabía que necesitaba contárselo a alguien. Y que quería que esa persona me escuchara antes de intentar responderme.</p>
+    </div>
+  </section>
+
+  <!-- 3. TIMELINE -->
+  <section class="seccion" aria-labelledby="momentos-titulo">
+    <p class="seccion-eyebrow" id="momentos-titulo">Momentos del camino</p>
+    <ol class="timeline" aria-label="Línea de tiempo del proceso">
+      <li class="timeline-item">
+        <div class="timeline-eje" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-linea"></span>
+        </div>
+        <div>
+          <p class="timeline-tipo">Entrada</p>
+          <p class="timeline-texto">Compartió su historia con el equipo.</p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-eje" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-linea"></span>
+        </div>
+        <div>
+          <p class="timeline-tipo">Discernimiento</p>
+          <p class="timeline-texto">Fue escuchada. El equipo comenzó un proceso de discernimiento sobre qué necesitaba este proceso.</p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-eje" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-linea"></span>
+        </div>
+        <div>
+          <p class="timeline-tipo">Conexión</p>
+          <p class="timeline-texto">Se conectó con una educadora que atravesó algo similar. No llegó con respuestas; llegó con una historia parecida.</p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-eje" aria-hidden="true">
+          <span class="timeline-dot"></span>
+          <span class="timeline-linea"></span>
+        </div>
+        <div>
+          <p class="timeline-tipo">Avance</p>
+          <p class="timeline-texto">Comenzó a explorar el área de formación artística en comunidades locales. Algo que antes veía como afición empezó a parecer un camino.</p>
+        </div>
+      </li>
+      <li class="timeline-item">
+        <div class="timeline-eje" aria-hidden="true">
+          <span class="timeline-dot actual"></span>
+        </div>
+        <div>
+          <p class="timeline-tipo">Hoy</p>
+          <p class="timeline-texto actual">Está dando sus primeros pasos en formación. El proceso sigue abierto.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 4. HOY -->
+  <section class="seccion" aria-labelledby="hoy-titulo">
+    <p class="seccion-eyebrow" id="hoy-titulo">Dónde está hoy en su camino</p>
+    <p class="seccion-texto">
+      El proceso avanza. Hay claridad que antes no existía, pero también preguntas que todavía no tienen respuesta. Lo que más necesita en este momento es acompañamiento para discernir el siguiente paso concreto.
+    </p>
+    <ul class="necesidades" aria-label="Necesidades actuales">
+      <li class="necesidad-item">
+        <span class="necesidad-tipo">Acompañamiento</span>
+        <span class="necesidad-desc">Alguien que haya integrado vocación artística y servicio comunitario.</span>
+      </li>
+      <li class="necesidad-item">
+        <span class="necesidad-tipo">Formación</span>
+        <span class="necesidad-desc">Información sobre programas o espacios de formación en educación a través del arte.</span>
+      </li>
+      <li class="necesidad-item">
+        <span class="necesidad-tipo">Oración</span>
+        <span class="necesidad-desc">Para discernir el siguiente paso con claridad y paz.</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 5. RED -->
+  <section class="seccion" aria-labelledby="red-titulo">
+    <p class="seccion-eyebrow" id="red-titulo">Quién camina junto a este proceso</p>
+    <p class="seccion-intro">Ningún camino crece completamente solo.</p>
+    <p class="nota-cuidado">
+      Las personas que acompañan este proceso participan voluntariamente. Solo se muestran sus roles — nunca datos personales.
+    </p>
+    <ul class="red-grid" aria-label="Red de acompañamiento">
+      <li class="red-item"><span class="red-punto" aria-hidden="true"></span><span class="red-rol">Equipo El Gran Sueño</span></li>
+      <li class="red-item"><span class="red-punto" aria-hidden="true"></span><span class="red-rol">Mentora en educación</span></li>
+      <li class="red-item"><span class="red-punto" aria-hidden="true"></span><span class="red-rol">Comunidad local</span></li>
+    </ul>
+  </section>
+
+  <!-- 6. PARTICIPAR -->
+  <section class="participar" aria-labelledby="participar-titulo">
+    <p class="seccion-eyebrow" id="participar-titulo">Cómo puedes participar</p>
+    <p class="nota-cuidado">
+      Ninguna acción llega directamente a Sofía. Siempre existe un proceso de discernimiento y cuidado. La persona está protegida — y tú también.
+    </p>
+    <ul class="participar-lista" role="list">
+      <li>
+        <button class="accion-btn" type="button" aria-label="Quiero orar por este proceso">
+          <div class="accion-contenido">
+            <p class="accion-titulo">Quiero orar por este proceso</p>
+            <p class="accion-desc">Tu nombre y tu intención de oración llegan al equipo. Si la persona lo desea, también a ella.</p>
+          </div>
+          <span class="accion-flecha" aria-hidden="true">→</span>
+        </button>
+      </li>
+      <li>
+        <button class="accion-btn" type="button" aria-label="Tengo algo que podría ayudar">
+          <div class="accion-contenido">
+            <p class="accion-titulo">Tengo algo que podría ayudar</p>
+            <p class="accion-desc">Un recurso, una conexión, un espacio o una oportunidad. Cuéntanoslo y lo evaluamos juntos.</p>
+          </div>
+          <span class="accion-flecha" aria-hidden="true">→</span>
+        </button>
+      </li>
+      <li>
+        <button class="accion-btn" type="button" aria-label="Conozco a alguien que podría ayudar">
+          <div class="accion-contenido">
+            <p class="accion-titulo">Conozco a alguien que podría ayudar</p>
+            <p class="accion-desc">Puedes indicarnos el perfil. El equipo hará el discernimiento y la conexión si corresponde.</p>
+          </div>
+          <span class="accion-flecha" aria-hidden="true">→</span>
+        </button>
+      </li>
+      <li>
+        <button class="accion-btn" type="button" aria-label="Creo que puedo caminar junto a esta persona">
+          <div class="accion-contenido">
+            <p class="accion-titulo">Creo que puedo caminar junto a esta persona</p>
+            <p class="accion-desc">Si sientes que tu historia o tu experiencia puede ser parte de este proceso, queremos saberlo.</p>
+          </div>
+          <span class="accion-flecha" aria-hidden="true">→</span>
+        </button>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 7. CONTINUAR -->
+  <section class="continuar" aria-labelledby="continuar-titulo">
+    <p class="seccion-eyebrow" id="continuar-titulo">Continuar el recorrido</p>
+
+    <a href="historia-individual.html" class="tarjeta-sugerida" aria-label="Leer el proceso de Marcos">
+      <div class="sugerida-estado">
+        <div class="estado">
+          <span class="estado-punto"></span>
+          <span>Acompañada</span>
+        </div>
+      </div>
+      <p class="sugerida-fragmento">"Nunca pensé que lo que viví en esos años oscuros podía servir para algo."</p>
+      <p class="sugerida-identidad">Marcos · Argentina · Acción social</p>
+      <span class="sugerida-cta">Leer este proceso →</span>
+    </a>
+
+    <p class="despedida">Toda historia que se comparte puede convertirse en el comienzo de otra.</p>
+
+    <div class="caminos-finales" role="navigation" aria-label="Próximos pasos">
+      <a href="compartir-historia.html" class="camino-final camino-final--destacado">
+        <span>Quiero comenzar mi propio camino</span>
+        <span class="camino-final-flecha" aria-hidden="true">→</span>
+      </a>
+      <a href="historias.html" class="camino-final">
+        <span>Volver a Historias</span>
+        <span class="camino-final-flecha" aria-hidden="true">→</span>
+      </a>
+      <a href="compartir-historia.html" class="camino-final">
+        <span>¿Hay algo en tu propio camino que todavía no has podido compartir?</span>
+        <span class="camino-final-flecha" aria-hidden="true">→</span>
+      </a>
+      <a href="quiero-acompanar.html" class="camino-final">
+        <span>¿Mientras leías pensaste en alguien?</span>
+        <span class="camino-final-flecha" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer class="egs-footer">
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+  <p class="footer-line">Nadie fue creado para caminar solo.</p>
+  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+  <form class="footer-form" id="footerForm" onsubmit="return false;">
+    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+    <button type="submit">Quiero recibir novedades</button>
+  </form>
+  <div class="footer-social" aria-label="Redes sociales">
+    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+  </div>
+  <p class="footer-social-nota">Más redes · próximamente</p>
+  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
+</footer>
+
+<script src="assets/egs.js"></script>
+</body>
+</html>

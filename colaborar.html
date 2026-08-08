@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sostener el sueño · El Gran Sueño</title>
+<meta name="description" content="Hay personas caminando hoy porque otras eligieron sostener este espacio. Podés ser parte de que puedan seguir.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sostener el sueño · El Gran Sueño">
+<meta property="og:description" content="Hay personas caminando hoy porque otras eligieron sostener este espacio.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sostener el sueño · El Gran Sueño">
+<meta name="theme-color" content="#6B1A2B">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos-egs.css">
+
+<style>
+  /* HERO propio de colaborar */
+  .col-hero {
+    background: var(--cream);
+    padding: 10rem 2rem 8rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 85vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1.75rem;
+  }
+  .col-hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bordo);
+    font-weight: 500;
+  }
+  .col-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    max-width: 780px;
+  }
+  .col-hero-title em { font-style: italic; color: var(--bordo); }
+  .col-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-style: italic;
+    color: var(--ink-mid);
+    max-width: 580px;
+    line-height: 1.7;
+  }
+  .col-hero-linea {
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+
+  /* Honestidad */
+  .col-honestidad { padding: 7rem 2rem; background: white; }
+  .col-honestidad-inner { max-width: 640px; margin: 0 auto; }
+  .col-honestidad p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 1.8vw, 1.25rem);
+    color: var(--ink-mid);
+    line-height: 1.85;
+    margin-bottom: 1.5rem;
+  }
+  .col-honestidad p em { color: var(--bordo); font-style: italic; }
+  .col-honestidad .destacado {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+    color: var(--ink);
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    border-left: 2px solid var(--gold);
+    margin: 2.5rem 0;
+    line-height: 1.55;
+  }
+
+  /* Las cuatro formas */
+  .col-formas { padding: 7rem 2rem; background: var(--cream-dark); }
+  .col-formas-inner { max-width: 1080px; margin: 0 auto; }
+  .col-formas-intro {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 4rem;
+  }
+  .col-formas-eyebrow {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bordo);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .col-formas-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3.8vw, 2.5rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+  .col-formas-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-mid);
+    line-height: 1.75;
+  }
+  .col-formas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 780px) { .col-formas-grid { grid-template-columns: 1fr; } }
+  .col-forma {
+    background: white;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--cream-dark);
+    display: flex; flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .col-forma::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--forma-color, var(--bordo));
+    opacity: 0.7;
+    transform: scaleY(0.4);
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .col-forma:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.06); }
+  .col-forma:hover::before { transform: scaleY(1); }
+  .col-forma.presencia  { --forma-color: var(--gold); }
+  .col-forma.tiempo     { --forma-color: var(--bordo); }
+  .col-forma.red        { --forma-color: var(--bordo-light); }
+  .col-forma.aporte     { --forma-color: var(--ink); }
+
+  .col-forma-etiq {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--forma-color, var(--bordo));
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+  .col-forma-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .col-forma-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.75;
+  }
+  .col-forma-lista {
+    list-style: none;
+    display: flex; flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .col-forma-lista li {
+    font-size: 0.87rem;
+    color: var(--ink-mid);
+    line-height: 1.6;
+    padding-left: 1rem;
+    position: relative;
+  }
+  .col-forma-lista li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-light);
+  }
+  .col-forma-elegir {
+    margin-top: auto;
+    padding-top: 1.25rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--forma-color, var(--bordo));
+    font-weight: 500;
+    display: flex; align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.3s;
+  }
+  .col-forma:hover .col-forma-elegir { transform: translateX(4px); }
+
+  /* Transparencia */
+  .col-transp { padding: 7rem 2rem; background: var(--ink); color: rgba(255,255,255,0.85); }
+  .col-transp-inner { max-width: 900px; margin: 0 auto; }
+  .col-transp-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: block;
+  }
+  .col-transp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3.8vw, 2.5rem);
+    font-weight: 400;
+    color: white;
+    line-height: 1.3;
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 1rem;
+  }
+  .col-transp-title em { font-style: italic; color: var(--gold-light); }
+  .col-transp-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    max-width: 560px;
+    margin: 0 auto 3.5rem;
+    line-height: 1.75;
+    font-size: 1.1rem;
+  }
+  .col-destinos { display: flex; flex-direction: column; gap: 0; }
+  .col-destino {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: grid;
+    grid-template-columns: 200px 1fr 90px;
+    gap: 1.5rem;
+    align-items: baseline;
+  }
+  .col-destino:last-child { border-bottom: none; }
+  .col-destino-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .col-destino-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.02rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+  }
+  .col-destino-share {
+    text-align: right;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.55);
+  }
+  @media (max-width: 720px) {
+    .col-destino { grid-template-columns: 1fr; gap: 0.3rem; }
+    .col-destino-share { text-align: left; font-size: 0.9rem; color: var(--gold-light); }
+  }
+  .col-transp-nota {
+    margin-top: 2.5rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(201,168,76,0.08);
+    border-left: 2px solid var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* Lo que NUNCA */
+  .col-nunca { padding: 7rem 2rem; background: var(--bordo-dark); color: white; }
+  .col-nunca-inner { max-width: 720px; margin: 0 auto; }
+  .col-nunca-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .col-nunca-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: 400;
+    color: white;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .col-nunca-title em { font-style: italic; color: var(--gold-light); }
+  .col-nunca-lista {
+    list-style: none;
+    display: flex; flex-direction: column;
+    gap: 1.25rem;
+  }
+  .col-nunca-item {
+    display: flex; align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(255,255,255,0.04);
+    border-left: 2px solid var(--gold);
+  }
+  .col-nunca-cross {
+    width: 18px; height: 18px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  .col-nunca-item p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.65;
+  }
+
+  /* Wizard/formulario */
+  .col-form { padding: 7rem 2rem; background: var(--cream); }
+  .col-form-inner {
+    max-width: 620px;
+    margin: 0 auto;
+    background: white;
+    padding: 3rem 2.5rem;
+    border: 1px solid var(--cream-dark);
+  }
+  .col-form-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bordo);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: block;
+  }
+  .col-form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 2.5rem;
+  }
+  .col-form-title em { font-style: italic; color: var(--bordo); }
+  .col-form-grupo { margin-bottom: 1.75rem; }
+  .col-form-etiq {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+  .col-form-opts {
+    display: flex; flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .col-form-chip {
+    padding: 0.6rem 1.1rem;
+    background: white;
+    border: 1px solid var(--cream-dark);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.98rem;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.25s;
+    border-radius: 40px;
+  }
+  .col-form-chip:hover { border-color: var(--bordo-light); }
+  .col-form-chip.selected {
+    background: var(--bordo);
+    color: white;
+    border-color: var(--bordo);
+  }
+  .col-form-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    color: var(--ink);
+    resize: vertical;
+    line-height: 1.6;
+    transition: border-color 0.3s;
+  }
+  .col-form-textarea:focus { outline: none; border-color: var(--bordo); }
+  .col-form-textarea::placeholder { color: var(--ink-light); font-style: italic; }
+  .col-form-input {
+    width: 100%;
+    padding: 0.75rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--cream-dark);
+    color: var(--ink);
+    transition: border-color 0.3s;
+  }
+  .col-form-input:focus { outline: none; border-bottom-color: var(--bordo); }
+  .col-form-input::placeholder { color: var(--ink-light); font-style: italic; }
+  .col-form-nota {
+    font-size: 0.8rem;
+    color: var(--ink-light);
+    font-style: italic;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+  }
+  .col-form-submit {
+    width: 100%;
+    padding: 1.1rem;
+    background: var(--bordo);
+    color: white;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+  }
+  .col-form-submit:hover:not(:disabled) { background: var(--bordo-dark); }
+  .col-form-submit:disabled { background: var(--cream-dark); color: var(--ink-light); cursor: not-allowed; }
+
+  .col-form-gracias {
+    display: none;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .col-form-gracias.visible { display: block; }
+  .col-form-gracias-icon {
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .col-form-gracias-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .col-form-gracias-txt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--ink-mid);
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  /* Cierre */
+  .col-cierre {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: white;
+  }
+  .col-cierre-div {
+    width: 40px; height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+    margin: 0 auto 2.5rem;
+  }
+  .col-cierre-txt {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .col-cierre-txt em { color: var(--bordo); font-style: italic; }
+</style>
+  <link rel="canonical" href="https://elgransueno.org/colaborar.html">
+  <meta property="og:site_name" content="El Gran Sueño">
+  <meta property="og:url" content="https://elgransueno.org/colaborar.html">
+</head>
+<body class="modo-limpio">
+
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+<nav class="egs-nav" id="navbar">
+  <div class="nav-left">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
+  </div>
+  <a href="index.html" class="nav-cta">← Volver al inicio</a>
+</nav>
+
+<div id="egs-nav-mount"></div>
+
+<main>
+
+<!-- HERO -->
+<section class="col-hero">
+  <div class="col-hero-linea" aria-hidden="true"></div>
+  <span class="col-hero-eyebrow">Sostener el sueño</span>
+  <h1 class="col-hero-title">Hay personas caminando hoy porque otras eligieron <em>sostener este espacio.</em></h1>
+  <p class="col-hero-sub">
+    Este ecosistema no vive de publicidad, patrocinios ni fondos externos con condiciones.
+    Vive del cuidado real de personas que creen en lo que aquí se está construyendo.
+  </p>
+  <div class="col-hero-linea" aria-hidden="true"></div>
+</section>
+
+<!-- HONESTIDAD -->
+<section class="col-honestidad">
+  <div class="col-honestidad-inner">
+    <p>Podríamos escribir esta página como una campaña. Podríamos ponerle metas visibles, contadores de urgencia, testimonios diseñados para conmover. No lo vamos a hacer.</p>
+    <p>Porque este proyecto <em>no crece cuando alguien da desde la presión.</em> Crece cuando alguien reconoce que ya es parte, y decide sostenerlo desde ahí.</p>
+    <div class="destacado">
+      Sostener El Gran Sueño no es dar dinero.<br>
+      Es reconocer que este espacio también es tuyo.
+    </div>
+    <p>Existen personas y familias que dedican tiempo, mentores que ofrecen horas sin cobrar, un equipo que trabaja para que cada historia sea escuchada. Todo eso, sumado, se sostiene con aportes libres — no con fórmulas de marketing.</p>
+    <p>Si estás acá, es porque algo de esto tocó algo dentro tuyo. Lo que sigue no es una lista de cosas para comprar. Es una lista de <em>maneras</em> de estar cerca.</p>
+  </div>
+</section>
+
+<!-- LAS CUATRO FORMAS -->
+<section class="col-formas">
+  <div class="col-formas-inner">
+    <div class="col-formas-intro">
+      <span class="col-formas-eyebrow">Cuatro formas de sostener</span>
+      <h2 class="col-formas-title">Ninguna vale más que otra.</h2>
+      <p class="col-formas-sub">Cada persona sostiene con lo que tiene. La oración, el tiempo, la red, el dinero — todas construyen el mismo ecosistema.</p>
+    </div>
+    <div class="col-formas-grid">
+
+      <div class="col-forma presencia" data-forma="presencia">
+        <span class="col-forma-etiq">Con presencia</span>
+        <h3 class="col-forma-titulo">Orar por procesos concretos</h3>
+        <p class="col-forma-desc">La forma más antigua y más sostenida de acompañar a alguien. Nombres reales, historias reales, oración real.</p>
+        <ul class="col-forma-lista">
+          <li>Recibís, con reserva, procesos que necesitan oración</li>
+          <li>Podés orar por una historia por el tiempo que sientas</li>
+          <li>Sin plazos, sin publicaciones, sin exposición</li>
+        </ul>
+        <span class="col-forma-elegir">Sumarme a orar →</span>
+      </div>
+
+      <div class="col-forma tiempo" data-forma="tiempo">
+        <span class="col-forma-etiq">Con tiempo</span>
+        <h3 class="col-forma-titulo">Poner horas al servicio</h3>
+        <p class="col-forma-desc">Escribir, escuchar, conectar, editar, traducir, cuidar procesos. Todo lo que sucede acá sucede porque alguien decidió regalar su tiempo.</p>
+        <ul class="col-forma-lista">
+          <li>Contás con qué talento o disponibilidad tenés</li>
+          <li>Alguien del equipo se contacta para conversar</li>
+          <li>No es voluntariado obligatorio ni con cupos — es acompañamiento mutuo</li>
+        </ul>
+        <span class="col-forma-elegir">Ofrecer mi tiempo →</span>
+      </div>
+
+      <div class="col-forma red" data-forma="red">
+        <span class="col-forma-etiq">Con red y recursos</span>
+        <h3 class="col-forma-titulo">Conectar personas y abrir puertas</h3>
+        <p class="col-forma-desc">A veces la mayor forma de sostener no es dar algo tuyo, sino abrir el acceso a algo que necesita otra persona. Un contacto. Un espacio. Una oportunidad.</p>
+        <ul class="col-forma-lista">
+          <li>Compartís qué red, espacios o recursos tenés</li>
+          <li>El equipo discierne cuándo y cómo activarlos</li>
+          <li>Nada se comercializa. Todo se cuida</li>
+        </ul>
+        <span class="col-forma-elegir">Compartir lo que tengo →</span>
+      </div>
+
+      <div class="col-forma aporte" data-forma="aporte">
+        <span class="col-forma-etiq">Con aportes económicos</span>
+        <h3 class="col-forma-titulo">Sostener lo que hace falta pagar</h3>
+        <p class="col-forma-desc">Hay cosas que no se pueden regalar. Un servidor. Una herramienta. Un viaje. Un tiempo que alguien necesita dedicarle por completo al equipo.</p>
+        <ul class="col-forma-lista">
+          <li>Aporte único o mensual, sin comprometerte para siempre</li>
+          <li>Sin metas visibles, sin urgencia inventada</li>
+          <li>Recibís, si lo pedís, un resumen honesto de a dónde fue</li>
+        </ul>
+        <span class="col-forma-elegir">Aportar económicamente →</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPARENCIA -->
+<section class="col-transp">
+  <div class="col-transp-inner">
+    <span class="col-transp-eyebrow">Transparencia</span>
+    <h2 class="col-transp-title">A dónde va, honestamente, <em>cada aporte.</em></h2>
+    <p class="col-transp-sub">
+      No queremos "cajas negras". Estos son los cuatro destinos donde se aplica cada aporte económico. Los porcentajes son aproximados y se revisan trimestralmente con el equipo.
+    </p>
+    <div class="col-destinos">
+      <div class="col-destino">
+        <span class="col-destino-label">Acompañamiento</span>
+        <p class="col-destino-desc">Sostiene al equipo humano que lee las historias, cuida las conexiones y acompaña personalmente cada proceso activo.</p>
+        <span class="col-destino-share">40%</span>
+      </div>
+      <div class="col-destino">
+        <span class="col-destino-label">Formación</span>
+        <p class="col-destino-desc">Producción de escritos, entrevistas, recursos y espacios de formación abiertos y sin costo para quien los necesite.</p>
+        <span class="col-destino-share">25%</span>
+      </div>
+      <div class="col-destino">
+        <span class="col-destino-label">Encuentros</span>
+        <p class="col-destino-desc">Encuentros presenciales, viajes de acompañamiento en países donde caminan procesos reales, retiros breves.</p>
+        <span class="col-destino-share">20%</span>
+      </div>
+      <div class="col-destino">
+        <span class="col-destino-label">Infraestructura</span>
+        <p class="col-destino-desc">Servidores, dominios, herramientas, protección de datos. Lo mínimo indispensable para que esto pueda existir.</p>
+        <span class="col-destino-share">15%</span>
+      </div>
+    </div>
+    <div class="col-transp-nota">
+      Si aportás económicamente y pedís conocer con detalle a qué se aplicó tu contribución en particular, alguien del equipo puede escribirte con la respuesta honesta. Sin métricas infladas, sin lenguaje de marketing.
+    </div>
+  </div>
+</section>
+
+<!-- LO QUE NUNCA -->
+<section class="col-nunca">
+  <div class="col-nunca-inner">
+    <span class="col-nunca-eyebrow">Compromiso</span>
+    <h2 class="col-nunca-title">Lo que <em>nunca</em> vamos a hacer con lo que sostenés.</h2>
+    <ul class="col-nunca-lista">
+      <li class="col-nunca-item">
+        <svg class="col-nunca-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <p>Nunca vamos a cobrarle a una persona por recibir acompañamiento. Quien camina acá camina gratis, siempre.</p>
+      </li>
+      <li class="col-nunca-item">
+        <svg class="col-nunca-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <p>Nunca vamos a mostrar rankings de personas, historias más "vistas" ni mentores más "populares".</p>
+      </li>
+      <li class="col-nunca-item">
+        <svg class="col-nunca-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <p>Nunca vamos a vender, alquilar ni compartir con terceros los datos, historias u oraciones que recibimos.</p>
+      </li>
+      <li class="col-nunca-item">
+        <svg class="col-nunca-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <p>Nunca vamos a exponer una historia o un rostro para conseguir aportes. Las personas no son campañas.</p>
+      </li>
+      <li class="col-nunca-item">
+        <svg class="col-nunca-cross" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <p>Nunca vamos a recibir aportes que vengan con condiciones sobre lo que enseñamos, mostramos o dejamos de decir.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FORMULARIO -->
+<section class="col-form" id="empezar">
+  <div class="col-form-inner">
+    <div id="form-vivo">
+      <span class="col-form-eyebrow">Empezar a sostener</span>
+      <h2 class="col-form-title">Contanos <em>desde dónde</em> te gustaría estar cerca.</h2>
+
+      <div class="col-form-grupo">
+        <label class="col-form-etiq">Quiero sostener con…</label>
+        <div class="col-form-opts" id="chips-formas" role="group" aria-label="Formas de sostener">
+          <button type="button" class="col-form-chip" data-val="presencia">Presencia y oración</button>
+          <button type="button" class="col-form-chip" data-val="tiempo">Tiempo y talentos</button>
+          <button type="button" class="col-form-chip" data-val="red">Red y recursos</button>
+          <button type="button" class="col-form-chip" data-val="aporte">Aporte económico</button>
+        </div>
+        <p class="col-form-nota">Podés elegir más de una. También podés no elegir ninguna todavía y solo escribirnos.</p>
+      </div>
+
+      <div class="col-form-grupo">
+        <label class="col-form-etiq" for="col-mensaje">Si querés, contanos algo sobre vos</label>
+        <textarea id="col-mensaje" class="col-form-textarea" placeholder="Quién sos, desde dónde escribís, qué te movió a llegar hasta acá. Todo es opcional."></textarea>
+      </div>
+
+      <div class="col-form-grupo">
+        <label class="col-form-etiq" for="col-nombre">Nombre</label>
+        <input id="col-nombre" type="text" class="col-form-input" placeholder="Tu nombre" oninput="colValidar()">
+      </div>
+
+      <div class="col-form-grupo">
+        <label class="col-form-etiq" for="col-email">Correo electrónico</label>
+        <input id="col-email" type="email" class="col-form-input" placeholder="tu@correo.com" oninput="colValidar()">
+        <p class="col-form-nota">Solo lo usamos para responderte. No sumamos a nadie a listas automáticas.</p>
+      </div>
+
+      <button id="col-submit" class="col-form-submit" onclick="colEnviar()" disabled>Enviar</button>
+    </div>
+
+    <div id="form-gracias" class="col-form-gracias" aria-live="polite">
+      <div class="col-form-gracias-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2v20M2 12h20M4.5 4.5l15 15M4.5 19.5l15-15"/>
+        </svg>
+      </div>
+      <p class="col-form-gracias-title">Gracias por confiar esto.</p>
+      <p class="col-form-gracias-txt">Alguien del equipo va a leer lo que escribiste y te va a escribir personalmente. No es una respuesta automática. Es una conversación que empieza.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CIERRE -->
+<section class="col-cierre">
+  <div class="col-cierre-div"></div>
+  <p class="col-cierre-txt">
+    Este espacio no crece por la cantidad de personas que lo sostienen.<br>
+    Crece por la <em>profundidad</em> con la que lo hacen.
+  </p>
+</section>
+
+</main>
+
+<footer class="egs-footer">
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+  <p class="footer-line">Nadie fue creado para caminar solo.</p>
+  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+  <form class="footer-form" id="footerForm" onsubmit="return false;">
+    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+    <button type="submit">Quiero recibir novedades</button>
+  </form>
+  <div class="footer-social" aria-label="Redes sociales">
+    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+  </div>
+  <p class="footer-social-nota">Más redes · próximamente</p>
+  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
+</footer>
+
+<script>
+  // Chips de formas (multi-selección)
+  document.querySelectorAll('#chips-formas .col-form-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      chip.classList.toggle('selected');
+    });
+  });
+
+  // Click en las tarjetas de forma → scroll al formulario y auto-selección
+  document.querySelectorAll('.col-forma[data-forma]').forEach(card => {
+    card.addEventListener('click', () => {
+      const val = card.dataset.forma;
+      const chip = document.querySelector(`#chips-formas .col-form-chip[data-val="${val}"]`);
+      if (chip && !chip.classList.contains('selected')) chip.classList.add('selected');
+      const target = document.getElementById('empezar');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Validación del formulario
+  function colValidar() {
+    const n = (document.getElementById('col-nombre').value || '').trim();
+    const e = (document.getElementById('col-email').value || '').trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+    document.getElementById('col-submit').disabled = !(n.length > 1 && emailOk);
+  }
+
+  // Envío del formulario (localStorage por ahora; después se enchufa a un backend real)
+  function colEnviar() {
+    const nombre = document.getElementById('col-nombre').value.trim();
+    const email = document.getElementById('col-email').value.trim();
+    const mensaje = document.getElementById('col-mensaje').value.trim();
+    const formas = Array.from(document.querySelectorAll('#chips-formas .col-form-chip.selected')).map(c => c.dataset.val);
+    const payload = { nombre, email, mensaje, formas, ts: new Date().toISOString() };
+    try {
+      const list = JSON.parse(localStorage.getItem('egs_colaborar') || '[]');
+      list.push(payload);
+      localStorage.setItem('egs_colaborar', JSON.stringify(list));
+    } catch (_) {}
+    window.egsGuardar('colaborar', payload);
+    document.getElementById('form-vivo').style.display = 'none';
+    document.getElementById('form-gracias').classList.add('visible');
+    document.getElementById('form-gracias').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+<script src="assets/egs.js"></script>
+</body>
+</html>

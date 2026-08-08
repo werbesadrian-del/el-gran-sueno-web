@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Historias · El Gran Sueño</title>
+<meta name="description" content="Personas reales caminando procesos reales. Ninguna historia está diseñada para conmover. Todas están vivas.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Historias · El Gran Sueño">
+<meta property="og:description" content="Personas reales caminando procesos reales.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Historias · El Gran Sueño">
+<meta name="theme-color" content="#6B1A2B">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos-egs.css">
+
+<style>
+  /* Hero */
+  .h-hero {
+    background: var(--cream);
+    padding: 10rem 2rem 6rem;
+    text-align: center;
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 1.5rem;
+  }
+  .h-hero-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bordo);
+    font-weight: 500;
+  }
+  .h-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5.2vw, 3.6rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.2;
+    max-width: 780px;
+  }
+  .h-hero-title em { font-style: italic; color: var(--bordo); }
+  .h-hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    font-style: italic;
+    color: var(--ink-mid);
+    max-width: 580px;
+    line-height: 1.75;
+  }
+  .h-hero-linea { width: 32px; height: 1px; background: var(--gold); opacity: 0.6; }
+
+  /* Filtros (muy sutiles) */
+  .h-filtros {
+    padding: 3rem 2rem;
+    background: white;
+    border-top: 1px solid var(--cream-dark);
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .h-filtros-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .h-filtros-row {
+    display: flex; flex-wrap: wrap;
+    align-items: center; gap: 1rem;
+  }
+  .h-filtros-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 500;
+    margin-right: 0.5rem;
+  }
+  .h-chip {
+    padding: 0.4rem 0.9rem;
+    background: transparent;
+    border: 1px solid var(--cream-dark);
+    color: var(--ink-mid);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    border-radius: 30px;
+  }
+  .h-chip:hover { border-color: var(--bordo-light); color: var(--bordo); }
+  .h-chip.active { background: var(--bordo); color: white; border-color: var(--bordo); }
+
+  /* Grid de historias */
+  .h-listado {
+    padding: 5rem 2rem 7rem;
+    background: var(--cream-dark);
+  }
+  .h-listado-inner { max-width: 1080px; margin: 0 auto; }
+  .h-listado-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(107, 26, 43, 0.08);
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .h-listado-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    font-weight: 400;
+    font-style: italic;
+  }
+  .h-listado-nota {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+  .h-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 780px) { .h-grid { grid-template-columns: 1fr; } }
+
+  .h-card {
+    display: flex; flex-direction: column;
+    background: white;
+    border: 1px solid var(--cream-dark);
+    padding: 2.25rem;
+    text-decoration: none;
+    color: var(--ink);
+    gap: 1.25rem;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+  .h-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--h-accent, var(--bordo));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.7;
+  }
+  .h-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.06);
+    border-color: var(--h-accent, var(--bordo));
+  }
+  .h-card:hover::before { transform: scaleX(1); }
+  .h-card.encamino    { --h-accent: var(--bordo); }
+  .h-card.acompanada  { --h-accent: var(--gold); }
+  .h-card.reciente    { --h-accent: var(--bordo-light); }
+
+  .h-card-head {
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .h-card-persona { display: flex; align-items: center; gap: 0.85rem; }
+  .h-avatar {
+    width: 2.75rem; height: 2.75rem;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--bordo);
+    flex-shrink: 0;
+  }
+  .h-persona-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+  .h-nombre {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .h-pais {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+  .h-estado {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    font-weight: 500;
+  }
+  .h-estado::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.7; }
+  .h-estado.encamino { color: var(--bordo); background: rgba(107,26,43,0.06); }
+  .h-estado.acompanada { color: #8a6a1a; background: rgba(201,168,76,0.12); }
+  .h-estado.reciente { color: var(--bordo-light); background: rgba(138,51,71,0.08); }
+
+  .h-fragmento {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    flex: 1;
+  }
+  .h-fragmento::before { content: '\201C'; color: var(--h-accent, var(--bordo)); font-size: 1.4em; margin-right: 0.15em; opacity: 0.7; }
+  .h-fragmento::after { content: '\201D'; color: var(--h-accent, var(--bordo)); font-size: 1.4em; margin-left: 0.15em; opacity: 0.7; }
+
+  .h-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--cream-dark);
+  }
+  .h-tag {
+    font-size: 0.7rem; letter-spacing: 0.06em;
+    padding: 0.25rem 0.7rem;
+    background: var(--cream);
+    color: var(--ink-mid);
+  }
+  .h-card-goto {
+    align-self: flex-start;
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--h-accent, var(--bordo));
+    font-weight: 500;
+    padding-top: 0.5rem;
+    transition: transform 0.3s;
+  }
+  .h-card:hover .h-card-goto { transform: translateX(4px); }
+
+  /* Sin resultados */
+  .h-vacio {
+    text-align: center;
+    padding: 4rem 1rem;
+    color: var(--ink-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  /* Invitación */
+  .h-invitacion {
+    padding: 6rem 2rem;
+    background: white;
+    text-align: center;
+  }
+  .h-inv-linea { width: 32px; height: 1px; background: var(--gold); opacity: 0.6; margin: 0 auto 2rem; }
+  .h-inv-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    color: var(--ink);
+    line-height: 1.35;
+    max-width: 620px;
+    margin: 0 auto 1rem;
+    font-weight: 400;
+  }
+  .h-inv-titulo em { font-style: italic; color: var(--bordo); }
+  .h-inv-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--ink-mid);
+    font-style: italic;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.75;
+  }
+  .h-inv-cta {
+    display: inline-block;
+    padding: 1rem 2.4rem;
+    background: var(--bordo);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .h-inv-cta:hover { background: var(--bordo-dark); transform: translateY(-2px); }
+</style>
+  <link rel="canonical" href="https://elgransueno.org/historias.html">
+  <meta property="og:site_name" content="El Gran Sueño">
+  <meta property="og:url" content="https://elgransueno.org/historias.html">
+</head>
+<body class="modo-limpio">
+
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+<nav class="egs-nav" id="navbar">
+  <div class="nav-left">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
+  </div>
+  <a href="compartir-historia.html" class="nav-cta">Compartir la mía</a>
+</nav>
+
+<div id="egs-nav-mount"></div>
+
+<main>
+
+<!-- HERO -->
+<section class="h-hero">
+  <div class="h-hero-linea" aria-hidden="true"></div>
+  <span class="h-hero-eyebrow">Historias</span>
+  <h1 class="h-hero-title">Personas reales caminando <em>procesos reales.</em></h1>
+  <p class="h-hero-sub">
+    Ninguna historia está diseñada para conmover.<br>
+    Todas están vivas — en distintos momentos, en distintos lugares del mundo.
+  </p>
+  <div class="h-hero-linea" aria-hidden="true"></div>
+</section>
+
+<!-- HISTORIAS REALES (se llenan desde la base; ocultas si no hay ninguna) -->
+<section class="h-reales" id="h-reales" hidden aria-label="Historias compartidas">
+  <div class="h-reales-inner">
+    <div class="h-reales-head">
+      <span class="h-reales-eyebrow">Compartidas por personas reales</span>
+      <p class="h-reales-titulo">Historias <em>vivas</em></p>
+    </div>
+    <div class="h-grid" id="h-reales-grid"></div>
+  </div>
+</section>
+
+<!-- FILTROS -->
+<section class="h-filtros" aria-label="Filtros de historias">
+  <div class="h-filtros-inner">
+    <div class="h-filtros-row" role="group" aria-label="Filtrar por momento">
+      <span class="h-filtros-label">Momento</span>
+      <button class="h-chip active" data-filtro-momento="todos" onclick="hFiltrar('momento','todos', this)">Todas</button>
+      <button class="h-chip" data-filtro-momento="encamino" onclick="hFiltrar('momento','encamino', this)">En camino</button>
+      <button class="h-chip" data-filtro-momento="acompanada" onclick="hFiltrar('momento','acompanada', this)">Acompañadas</button>
+      <button class="h-chip" data-filtro-momento="reciente" onclick="hFiltrar('momento','reciente', this)">Recientes</button>
+    </div>
+    <div class="h-filtros-row" role="group" aria-label="Filtrar por esfera">
+      <span class="h-filtros-label">Esfera</span>
+      <button class="h-chip active" data-filtro-esfera="todos" onclick="hFiltrar('esfera','todos', this)">Todas</button>
+      <button class="h-chip" data-filtro-esfera="educacion" onclick="hFiltrar('esfera','educacion', this)">Educación</button>
+      <button class="h-chip" data-filtro-esfera="salud" onclick="hFiltrar('esfera','salud', this)">Salud</button>
+      <button class="h-chip" data-filtro-esfera="social" onclick="hFiltrar('esfera','social', this)">Acción social</button>
+      <button class="h-chip" data-filtro-esfera="arte" onclick="hFiltrar('esfera','arte', this)">Arte y cultura</button>
+      <button class="h-chip" data-filtro-esfera="iglesia" onclick="hFiltrar('esfera','iglesia', this)">Iglesia</button>
+      <button class="h-chip" data-filtro-esfera="misiones" onclick="hFiltrar('esfera','misiones', this)">Misiones</button>
+      <button class="h-chip" data-filtro-esfera="empresa" onclick="hFiltrar('esfera','empresa', this)">Empresa</button>
+    </div>
+  </div>
+</section>
+
+<!-- GRID -->
+<section class="h-listado">
+  <div class="h-listado-inner">
+    <div class="h-listado-header">
+      <p class="h-listado-titulo">Historias en <span id="h-count-txt">este momento</span></p>
+      <p class="h-listado-nota">No mostramos rankings ni las más "leídas". Cada una vale igual.</p>
+    </div>
+
+    <div class="ilustrativo-band">
+      <p><strong>Ejemplos</strong>Las historias que siguen son ilustrativas — muestran cómo se verá esta sección. Las historias reales aparecen arriba, apenas alguien las comparte.</p>
+    </div>
+
+    <div class="h-grid" id="h-grid">
+
+      <a href="historia-individual.html" class="h-card acompanada" data-momento="acompanada" data-esfera="educacion,arte">
+        <div class="h-card-head">
+          <div class="h-card-persona">
+            <div class="h-avatar">S</div>
+            <div class="h-persona-meta">
+              <span class="h-nombre">Sofía</span>
+              <span class="h-pais">España</span>
+            </div>
+          </div>
+          <span class="h-estado acompanada">En camino</span>
+        </div>
+        <p class="h-fragmento">Siempre supe que había algo más para mi vida. Solo nunca supe cómo nombrarlo.</p>
+        <div class="h-tags"><span class="h-tag">Educación</span><span class="h-tag">Arte</span></div>
+        <span class="h-card-goto">Leer este proceso →</span>
+      </a>
+
+      <a href="historia-individual.html" class="h-card acompanada" data-momento="acompanada" data-esfera="social">
+        <div class="h-card-head">
+          <div class="h-card-persona">
+            <div class="h-avatar">M</div>
+            <div class="h-persona-meta">
+              <span class="h-nombre">Marcos</span>
+              <span class="h-pais">Argentina</span>
+            </div>
+          </div>
+          <span class="h-estado acompanada">Acompañado</span>
+        </div>
+        <p class="h-fragmento">Nunca pensé que lo que viví en esos años oscuros podía servir para algo.</p>
+        <div class="h-tags"><span class="h-tag">Acción social</span><span class="h-tag">Restauración</span></div>
+        <span class="h-card-goto">Leer este proceso →</span>
+      </a>
+
+      <a href="historia-individual.html" class="h-card encamino" data-momento="encamino" data-esfera="salud">
+        <div class="h-card-head">
+          <div class="h-card-persona">
+            <div class="h-avatar">A</div>
+            <div class="h-persona-meta">
+              <span class="h-nombre">Ana</span>
+              <span class="h-pais">México</span>
+            </div>
+          </div>
+          <span class="h-estado encamino">En camino</span>
+        </div>
+        <p class="h-fragmento">Trabajo en un hospital hace ocho años. Y hace poco entendí que estoy exactamente donde tengo que estar.</p>
+        <div class="h-tags"><span class="h-tag">Salud</span><span class="h-tag">Vocación</span></div>
+        <span class="h-card-goto">Leer este proceso →</span>
+      </a>
+
+      <a href="historia-individual.html" class="h-card reciente" data-momento="reciente" data-esfera="misiones">
+        <div class="h-card-head">
+          <div class="h-card-persona">
+            <div class="h-avatar">D</div>
+            <div class="h-persona-meta">
+              <span class="h-nombre">David</span>
+              <span class="h-pais">Colombia</span>
+            </div>
+          </div>
+          <span class="h-estado reciente">Recién llegó</span>
+        </div>
+        <p class="h-fragmento">Sentí el llamado a las misiones hace años. Ahora estoy tratando de entender qué significa concretamente en mi vida.</p>
+        <div class="h-tags"><span class="h-tag">Misiones</span><span class="h-tag">Discernimiento</span></div>
+        <span class="h-card-goto">Leer este proceso →</span>
+      </a>
+
+      <a href="historia-individual.html" class="h-card encamino" data-momento="encamino" data-esfera="empresa">
+        <div class="h-card-head">
+          <div class="h-card-persona">
+            <div class="h-avatar">L</div>
+            <div class="h-persona-meta">
+              <span class="h-nombre">Lucía</span>
+              <span class="h-pais">Chile</span>
+            </div>
+          </div>
+          <span class="h-estado encamino">En camino</span>
+        </div>
+        <p class="h-fragmento">Fundé una empresa hace seis años. Estoy aprendiendo qué significa liderar como creyente cuando nadie a mi alrededor lo es.</p>
+        <div class="h-tags"><span class="h-tag">Empresa</span><span class="h-tag">Liderazgo</span></div>
+        <span class="h-card-goto">Leer este proceso →</span>
+      </a>
+
+      <a href="historia-individual.html" class="h-card encamino" data-momento="encamino" data-esfera="iglesia">
+        <div class="h-card-head">
+          <div class="h-card-persona">
+            <div class="h-avatar">J</div>
+            <div class="h-persona-meta">
+              <span class="h-nombre">Javier</span>
+              <span class="h-pais">Perú</span>
+            </div>
+          </div>
+          <span class="h-estado encamino">En camino</span>
+        </div>
+        <p class="h-fragmento">Sirvo en mi iglesia hace muchos años. Hoy me estoy preguntando si Dios me está llamando a algo distinto.</p>
+        <div class="h-tags"><span class="h-tag">Iglesia</span><span class="h-tag">Transición</span></div>
+        <span class="h-card-goto">Leer este proceso →</span>
+      </a>
+
+    </div>
+
+    <div class="h-vacio" id="h-vacio" style="display:none;">
+      Ninguna historia coincide con esta combinación todavía.<br>
+      Podés cambiar los filtros — o compartir la tuya.
+    </div>
+  </div>
+</section>
+
+<!-- INVITACIÓN -->
+<section class="h-invitacion">
+  <div class="h-inv-linea" aria-hidden="true"></div>
+  <h2 class="h-inv-titulo">Cada una de estas historias empezó cuando <em>alguien decidió compartirla.</em></h2>
+  <p class="h-inv-sub">Si mientras leías apareció algo tuyo — un pensamiento, un anhelo, una pregunta que nunca dijiste en voz alta — tal vez sea el momento.</p>
+  <a href="compartir-historia.html" class="h-inv-cta">Compartir mi historia</a>
+</section>
+
+</main>
+
+<footer class="egs-footer">
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+  <p class="footer-line">Nadie fue creado para caminar solo.</p>
+  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+  <form class="footer-form" id="footerForm" onsubmit="return false;">
+    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+    <button type="submit">Quiero recibir novedades</button>
+  </form>
+  <div class="footer-social" aria-label="Redes sociales">
+    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+  </div>
+  <p class="footer-social-nota">Más redes · próximamente</p>
+  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
+</footer>
+
+<script>
+  const hEstado = { momento: 'todos', esfera: 'todos' };
+
+  function hFiltrar(tipo, valor, btn) {
+    hEstado[tipo] = valor;
+    // Toggle visual chip
+    document.querySelectorAll(`[data-filtro-${tipo}]`).forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+    // Aplicar
+    const cards = document.querySelectorAll('#h-grid .h-card');
+    let visibles = 0;
+    cards.forEach(card => {
+      const m = card.dataset.momento || '';
+      const e = (card.dataset.esfera || '').split(',');
+      const okM = hEstado.momento === 'todos' || m === hEstado.momento;
+      const okE = hEstado.esfera === 'todos' || e.includes(hEstado.esfera);
+      const visible = okM && okE;
+      card.style.display = visible ? '' : 'none';
+      if (visible) visibles++;
+    });
+    document.getElementById('h-vacio').style.display = visibles === 0 ? 'block' : 'none';
+    // Actualizar texto
+    const txt = document.getElementById('h-count-txt');
+    if (txt) {
+      if (hEstado.momento === 'todos' && hEstado.esfera === 'todos') txt.textContent = 'este momento';
+      else txt.textContent = 'este recorte';
+    }
+  }
+</script>
+<!-- Ventana para leer una historia real completa -->
+<div class="hist-modal" id="hist-modal" hidden>
+  <div class="hist-modal-backdrop" onclick="egsCerrarHistoria()"></div>
+  <div class="hist-modal-panel" role="dialog" aria-modal="true" aria-labelledby="hm-nombre">
+    <button class="hist-modal-close" onclick="egsCerrarHistoria()" aria-label="Cerrar">&times;</button>
+    <span class="hist-modal-eyebrow">Una historia compartida</span>
+    <h2 class="hist-modal-nombre" id="hm-nombre"></h2>
+    <div class="hist-modal-cuerpo" id="hm-cuerpo"></div>
+  </div>
+</div>
+
+<script src="assets/egs.js"></script>
+
+<!-- Cargar historias reales desde la base (vista pública segura, sin correos) -->
+<script>
+(function () {
+  var cfg = window.EGS_SUPABASE || {};
+  if (!cfg.url || !cfg.anon) return;
+  var HISTORIAS = [];
+
+  function esc(s) {
+    return (s == null ? '' : String(s)).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function tarjeta(row, i) {
+    var nombre = (row.nombre || 'Anónimo').trim();
+    var inicial = nombre.charAt(0).toUpperCase() || '·';
+    var frag = (row.anhelo || row.donde_estoy || row.paso || row.freno || '').trim();
+    if (frag.length > 190) frag = frag.slice(0, 187) + '…';
+    return '<article class="h-card reciente h-card--real" role="button" tabindex="0" '
+      + 'data-idx="' + i + '" onclick="egsAbrirHistoria(' + i + ')" '
+      + 'onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();egsAbrirHistoria(' + i + ');}">'
+      + '<div class="h-card-head"><div class="h-card-persona">'
+      + '<div class="h-avatar">' + esc(inicial) + '</div>'
+      + '<div class="h-persona-meta"><span class="h-nombre">' + esc(nombre) + '</span>'
+      + '<span class="h-pais">Recién compartida</span></div></div>'
+      + '<span class="h-estado reciente">Nueva</span></div>'
+      + (frag ? '<p class="h-fragmento">' + esc(frag) + '</p>' : '')
+      + '<span class="h-card-goto">Leer esta historia →</span>'
+      + '</article>';
+  }
+
+  window.egsAbrirHistoria = function (i) {
+    var row = HISTORIAS[i];
+    if (!row) return;
+    var preguntas = [
+      ['donde_estoy', '¿Dónde siento que estoy hoy?'],
+      ['anhelo',      '¿Qué es lo que más anhelo en este momento?'],
+      ['freno',       '¿Qué siento que me impide avanzar?'],
+      ['paso',        '¿Qué creo que podría ayudarme a dar un paso?']
+    ];
+    var cuerpo = preguntas.map(function (p) {
+      var val = (row[p[0]] || '').trim();
+      if (!val) return '';
+      return '<div class="hm-bloque"><p class="hm-pregunta">' + esc(p[1]) + '</p>'
+           + '<p class="hm-respuesta">' + esc(val) + '</p></div>';
+    }).join('');
+    document.getElementById('hm-nombre').textContent = row.nombre || 'Anónimo';
+    document.getElementById('hm-cuerpo').innerHTML = cuerpo
+      || '<p class="hm-respuesta">Esta persona compartió su historia en silencio.</p>';
+    document.getElementById('hist-modal').hidden = false;
+    document.body.classList.add('menu-open');
+  };
+  window.egsCerrarHistoria = function () {
+    document.getElementById('hist-modal').hidden = true;
+    document.body.classList.remove('menu-open');
+  };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') window.egsCerrarHistoria();
+  });
+
+  fetch(cfg.url + '/rest/v1/historias_publicas?select=*&order=created_at.desc&limit=60', {
+    headers: { apikey: cfg.anon, Authorization: 'Bearer ' + cfg.anon }
+  })
+    .then(function (r) { return r.ok ? r.json() : []; })
+    .then(function (rows) {
+      if (!rows || !rows.length) return;
+      HISTORIAS = rows;
+      var grid = document.getElementById('h-reales-grid');
+      var sec = document.getElementById('h-reales');
+      if (!grid || !sec) return;
+      grid.innerHTML = rows.map(tarjeta).join('');
+      sec.hidden = false;
+    })
+    .catch(function () { /* si la vista aún no existe, no pasa nada */ });
+})();
+</script>
+</body>
+</html>

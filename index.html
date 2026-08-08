@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Gran Sueño | Propósito de vida, identidad y sentido desde la Nueva Vida</title>
+<meta name="description" content="Antes de que nacieras, ya existía una historia. Un lugar para descubrir tu propósito, sentido e identidad, y aprender a vivir desde la nueva vida que ya recibiste en Cristo.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="El Gran Sueño | Propósito de vida, identidad y sentido desde la Nueva Vida">
+<meta property="og:description" content="Antes de que nacieras, ya existía una historia. Un lugar para descubrir tu propósito, sentido e identidad, y aprender a vivir desde la nueva vida que ya recibiste en Cristo.">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="El Gran Sueño">
+<meta name="twitter:description" content="Antes de que nacieras, ya existía una historia. Un lugar para descubrir tu propósito, sentido e identidad, y aprender a vivir desde la nueva vida que ya recibiste en Cristo.">
+<meta name="theme-color" content="#6B1A2B">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/estilos-egs.css">
+
+<style>
+  /* Estilos propios de la home — invitación + caminos */
+  .beat-invite {
+    min-height: auto;
+    padding-top: 10vh;
+    padding-bottom: 12vh;
+  }
+  .paths {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+    max-width: 1080px;
+    width: 100%;
+  }
+  @media (max-width: 980px) {
+    .paths { grid-template-columns: 1fr; max-width: 480px; }
+  }
+  .path-card {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: 4px;
+    padding: 2.6rem 2.2rem;
+    text-align: left;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.35s, transform 0.35s, box-shadow 0.35s;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+  .path-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent, var(--bordo));
+    transform: scaleX(0.3);
+    transform-origin: left;
+    opacity: 0.85;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .path-card:hover {
+    border-color: var(--bordo);
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(107, 26, 43, 0.1);
+  }
+  .path-card:hover::before { transform: scaleX(1); }
+  .path-card.accent-bordo { --accent: var(--bordo); }
+  .path-card.accent-gold  { --accent: var(--gold); }
+  .path-card.accent-light { --accent: var(--bordo-light); }
+  .path-label {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent, var(--gold));
+    margin-bottom: 1rem;
+  }
+  .path-said {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-bottom: 0.9rem;
+  }
+  .path-said::before { content: "\201C"; }
+  .path-said::after { content: "\201D"; }
+  .path-detail {
+    font-size: 0.92rem;
+    color: var(--ink-mid);
+    line-height: 1.55;
+  }
+  .path-goto {
+    display: inline-block;
+    margin-top: 1.4rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    color: var(--bordo);
+    border-bottom: 1px solid var(--bordo-light);
+    transition: transform 0.3s ease;
+  }
+  .path-card:hover .path-goto { transform: translateX(4px); }
+  .also-econ-wrap {
+    margin-top: 3.6rem;
+    display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
+  }
+  .also-econ-wrap .divider-mark { margin: 0; }
+  .also-econ {
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    text-align: center;
+    max-width: 520px;
+  }
+  .also-econ a { color: var(--bordo); text-decoration: none; border-bottom: 1px solid var(--bordo-light); padding-bottom: 1px; transition: color 0.3s; }
+  .also-econ a:hover { color: var(--bordo-dark); }
+</style>
+  <link rel="canonical" href="https://elgransueno.org/">
+  <meta property="og:site_name" content="El Gran Sueño">
+  <meta property="og:url" content="https://elgransueno.org/">
+</head>
+<body class="modo-limpio">
+
+<div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+<!-- Mapa de fondo -->
+<div class="world-map" aria-hidden="true">
+  <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+    <defs><filter id="soft-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter></defs>
+    <g filter="url(#soft-blur)">
+      <path class="landmass" d="M120,90 L200,75 L255,95 L245,140 L270,175 L230,205 L215,255 L185,240 L165,190 L135,160 L110,130 Z"/>
+      <path class="landmass" d="M250,270 L295,265 L310,300 L300,355 L275,420 L255,455 L235,420 L245,350 L235,300 Z"/>
+      <path class="landmass" d="M455,80 L520,70 L560,90 L545,120 L500,130 L470,115 Z"/>
+      <path class="landmass" d="M470,150 L545,145 L580,185 L575,255 L540,340 L505,385 L480,340 L465,250 Z"/>
+      <path class="landmass" d="M560,70 L660,50 L790,60 L890,95 L910,150 L850,195 L760,215 L670,195 L600,150 L565,110 Z"/>
+      <path class="landmass" d="M780,340 L850,330 L885,355 L870,390 L815,395 L785,370 Z"/>
+    </g>
+    <g><!-- markers -->
+      <circle class="marker-dot" cx="120" cy="130" r="3.2"/><circle class="marker-ring" cx="120" cy="130" r="8.5"/>
+      <circle class="marker-dot" cx="220" cy="110" r="3.2"/><circle class="marker-ring" cx="220" cy="110" r="8.5"/>
+      <circle class="marker-dot" cx="190" cy="210" r="3.2"/><circle class="marker-ring" cx="190" cy="210" r="8.5"/>
+      <circle class="marker-dot" cx="240" cy="260" r="3.2"/><circle class="marker-ring" cx="240" cy="260" r="8.5"/>
+      <circle class="marker-dot" cx="270" cy="380" r="3.2"/><circle class="marker-ring" cx="270" cy="380" r="8.5"/>
+      <circle class="marker-dot" cx="470" cy="90" r="3.2"/><circle class="marker-ring" cx="470" cy="90" r="8.5"/>
+      <circle class="marker-dot" cx="540" cy="95" r="3.2"/><circle class="marker-ring" cx="540" cy="95" r="8.5"/>
+      <circle class="marker-dot" cx="460" cy="220" r="3.2"/><circle class="marker-ring" cx="460" cy="220" r="8.5"/>
+      <circle class="marker-dot" cx="520" cy="320" r="3.2"/><circle class="marker-ring" cx="520" cy="320" r="8.5"/>
+      <circle class="marker-dot" cx="585" cy="155" r="3.2"/><circle class="marker-ring" cx="585" cy="155" r="8.5"/>
+      <circle class="marker-dot" cx="650" cy="205" r="3.2"/><circle class="marker-ring" cx="650" cy="205" r="8.5"/>
+      <circle class="marker-dot" cx="620" cy="120" r="3.2"/><circle class="marker-ring" cx="620" cy="120" r="8.5"/>
+      <circle class="marker-dot" cx="760" cy="120" r="3.2"/><circle class="marker-ring" cx="760" cy="120" r="8.5"/>
+      <circle class="marker-dot" cx="735" cy="235" r="3.2"/><circle class="marker-ring" cx="735" cy="235" r="8.5"/>
+      <circle class="marker-dot" cx="820" cy="110" r="3.2"/><circle class="marker-ring" cx="820" cy="110" r="8.5"/>
+      <circle class="marker-dot" cx="830" cy="345" r="3.2"/><circle class="marker-ring" cx="830" cy="345" r="8.5"/>
+    </g>
+    <path class="arc-line" d="M120,130 Q284.6,19.0 470,90"/><circle class="arc-traveler" r="2.3"><animateMotion dur="8.0s" repeatCount="indefinite" path="M120,130 Q284.6,19.0 470,90"/></circle>
+    <path class="arc-line" d="M220,110 Q376.1,19.3 540,95"/>
+    <path class="arc-line" d="M240,260 Q339.6,182.8 460,220"/><circle class="arc-traveler" r="2.3"><animateMotion dur="13.2s" repeatCount="indefinite" path="M240,260 Q339.6,182.8 460,220"/></circle>
+    <path class="arc-line" d="M470,90 Q544.4,92.6 585,155"/>
+    <path class="arc-line" d="M585,155 Q630.5,163.1 650,205"/><circle class="arc-traveler" r="2.3"><animateMotion dur="18.4s" repeatCount="indefinite" path="M585,155 Q630.5,163.1 650,205"/></circle>
+    <path class="arc-line" d="M650,205 Q700.3,197.9 735,235"/><circle class="arc-traveler" r="2.3"><animateMotion dur="8.0s" repeatCount="indefinite" path="M650,205 Q700.3,197.9 735,235"/></circle>
+    <path class="arc-line" d="M760,120 Q787.4,99.4 820,110"/>
+    <path class="arc-line" d="M735,235 Q811.1,265.3 830,345"/><circle class="arc-traveler" r="2.3"><animateMotion dur="13.2s" repeatCount="indefinite" path="M735,235 Q811.1,265.3 830,345"/></circle>
+    <path class="arc-line" d="M540,95 Q586.5,86.7 620,120"/>
+    <path class="arc-line" d="M520,320 Q681.5,251.9 830,345"/><circle class="arc-traveler" r="2.3"><animateMotion dur="18.4s" repeatCount="indefinite" path="M520,320 Q681.5,251.9 830,345"/></circle>
+  </svg>
+</div>
+
+<nav class="egs-nav" id="navbar">
+  <div class="nav-left">
+    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
+  </div>
+  <span class="nav-masthead" id="navMasthead" aria-hidden="true">El Gran <span>Sueño</span></span>
+  <a href="quiero-ser-parte.html" class="nav-cta">Encontrar mi lugar</a>
+</nav>
+
+<div id="egs-nav-mount"></div>
+
+<!-- 1. HERO ARRIBA (montañas) -->
+<section class="st st-img st-hero-top mv-zoom-slow">
+  <img class="foto-img" src="assets/fotos/r1.webp" alt="Montañas al amanecer" fetchpriority="high" decoding="async">
+  <div class="hero-marca-velo" aria-hidden="true"></div>
+  <div class="hero-marca">
+    <h1 class="sr-only">El Gran Sueño · Propósito de vida, sentido e identidad — desde la Nueva Vida</h1>
+    <p class="hero-eyebrow" aria-hidden="true">El Gran Sueño</p>
+    <p class="hero-frase">Viviendo desde la Nueva Vida.</p>
+  </div>
+  <div class="scroll-hint" id="scrollHint" aria-hidden="true"><span class="chevron"></span></div>
+</section>
+
+<!-- Léxico vivo: los conceptos desfilan; al pasar el mouse o tocar, aparece su definición -->
+<div class="temas-marquee" id="temasMarquee" aria-label="Conceptos de El Gran Sueño">
+  <div class="temas-track" id="temasTrack"><!-- se arma solo desde assets/conceptos.js --></div>
+</div>
+<div class="tema-globito" id="temaGlobito" role="tooltip" hidden>
+  <span class="tema-globito-palabra"></span>
+  <p class="tema-globito-def"></p>
+</div>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="st-small">Antes de que nacieras,<br>ya existía una historia.</p>
+</div></section>
+
+<!-- 2. HERO ABAJO (el hombre, misma imagen continúa) -->
+<section class="st st-img st-mirador mv-zoom-in">
+  <img class="foto-img" src="assets/fotos/r2.webp" loading="lazy" decoding="async" alt="" aria-hidden="true">
+  <div class="st-in" data-reveal><h2 class="st-big">Y en esa historia,<br>tu vida ya tenía un lugar.</h2></div>
+</section>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="st-small">El Gran Sueño de Dios nunca cambió.</p>
+</div></section>
+
+<!-- 4. IMAGEN (árbol, recortada tipo banda) -->
+<section class="st st-img st-tree mv-zoom-in">
+  <img class="foto-img" src="assets/fotos/dondehoy.webp" loading="lazy" decoding="async" alt="" aria-hidden="true">
+  <div class="st-in" data-reveal><h2 class="st-big">No es un proyecto que debamos construir.<br>Es una realidad que estamos invitados a descubrir.</h2></div>
+</section>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="st-small">No comenzamos haciendo. Comenzamos viendo.</p>
+  <p class="st-small st-sub">Viendo lo que Él ya hizo, quiénes somos en Él y el lugar que siempre tuvimos en su historia.</p>
+</div></section>
+
+<!-- 5. IMAGEN -->
+<section class="st st-img st-horizonte mv-zoom-slow">
+  <img class="foto-img" src="assets/fotos/r5.webp" loading="lazy" decoding="async" alt="" aria-hidden="true">
+  <div class="st-in" data-reveal><h2 class="st-big">Desde esa realidad vivimos,<br>nos movemos y existimos.</h2></div>
+</section>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="st-small">Quizás no lo estás haciendo tan mal como pensás.</p>
+  <p class="st-small st-sub">Quizás solo necesitás verlo con mayor claridad.</p>
+</div></section>
+
+<!-- 6. IMAGEN (con la afirmación que sacamos del blanco) -->
+<section class="st st-img st-duo mv-pan">
+  <img class="foto-img" src="assets/fotos/comunidad.webp" loading="lazy" decoding="async" alt="Personas acompañándose en el camino">
+  <div class="st-in" data-reveal><h2 class="st-big">No fuiste diseñado<br>para recorrerlo solo.</h2></div>
+</section>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="st-small">Hay cargas que el Padre nunca pensó que llevaras solo.</p>
+  <p class="st-small">Hay muchas otras personas respondiendo al mismo llamado.</p>
+  <p class="st-small st-sub">Y ese lugar tiene un nombre.</p>
+</div></section>
+
+<!-- CLÍMAX -->
+<section class="st st-img st-climax mv-zoom-out">
+  <img class="foto-img" src="assets/fotos/gransueno.webp" loading="lazy" decoding="async" alt="Mapa del mundo, el sueño que alcanza a todos los pueblos">
+  <div class="st-in" data-reveal>
+    <span class="name-flourish" aria-hidden="true"></span>
+    <h2 class="name-reveal">El Gran <span>Sueño</span></h2>
+  </div>
+</section>
+
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="seo-eyebrow">Viví desde quien ya sos en Cristo</p>
+  <h2 class="seo-claim">Propósito de vida · Sentido · Identidad</h2>
+  <p class="seo-parrafo">Un espacio para despertar, afirmar y caminar juntos; aprendiendo a vivir desde quienes ya somos en Cristo, como participantes de Su Gran Sueño.</p>
+</div></section>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="st-small st-stagger"><span>Formación</span><span> · Mentores</span><span> · Recursos</span><span> · Conexiones.</span></p>
+  <p class="st-small st-sub">O simplemente alguien que te ayude a dar unos pasos más.</p>
+</div></section>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+  <p class="st-small st-whisper">Todos respondemos desde un lugar distinto.</p>
+</div></section>
+
+<section class="beat beat-invite" data-map-tell-end>
+  <div class="beat-inner" style="max-width: 620px;">
+    <span class="ask">¿Dónde estás hoy?</span>
+  </div>
+  <div class="paths beat-inner">
+    <!-- Coherencia: la tarjeta YA es la respuesta a "¿dónde estás hoy?".
+         Va directo al destino final, sin re-preguntar en una página intermedia.
+         (quiero-ser-parte.html queda para quien llega desde "Encontrar mi lugar"
+         en el menú, que todavía no eligió.) -->
+    <a href="compartir-historia.html" class="path-card accent-bordo">
+      <span class="path-label">Estoy empezando</span>
+      <p class="path-said">Fui llamado. Quiero descubrir hacia dónde.</p>
+      <p class="path-detail">Quizás ya tenés claridad. Quizás todavía estás buscando dirección. En cualquier caso, este es tu lugar.</p>
+      <span class="path-goto">Empezar a caminar →</span>
+    </a>
+    <a href="quiero-acompanar.html" class="path-card accent-gold">
+      <span class="path-label">Quiero servir</span>
+      <p class="path-said">Quiero poner al servicio lo que Dios formó en mí.</p>
+      <p class="path-detail">Todo lo que Dios fue formando en vos puede convertirse en una bendición para otros.</p>
+      <span class="path-goto">Explorar cómo →</span>
+    </a>
+    <a href="compartir-historia.html" class="path-card accent-light">
+      <span class="path-label">Ya estoy en camino</span>
+      <p class="path-said">Quiero seguir creciendo y dando más fruto.</p>
+      <p class="path-detail">Servís donde Dios te puso. Y sabés que todavía hay más por descubrir, más por aprender y más fruto por dar.</p>
+      <span class="path-goto">Seguir creciendo →</span>
+    </a>
+  </div>
+  <div class="also-econ-wrap beat-inner">
+    <div class="divider-mark" aria-hidden="true"></div>
+    <p class="also-econ">¿Querés impulsar este camino de otra forma? <a href="colaborar.html">También podés colaborar</a>.</p>
+  </div>
+</section>
+
+<!-- Invitación a la mentoría personal — panel oscuro que llama la atención -->
+<section class="invita-mentoria">
+  <div class="invita-inner" data-reveal>
+    <p class="invita-eyebrow">Una conversación a solas</p>
+    <p class="invita-frase">A veces el primer paso no es elegir un camino.<br>Es <em>ser escuchado</em>.</p>
+    <p class="invita-texto">Si querés empezar por un encuentro personal conmigo, reservá tu espacio. El primero es un regalo.</p>
+    <a href="mentoria.html" class="invita-cta">Reservar un espacio</a>
+  </div>
+</section>
+
+<!-- ==================== ÚLTIMAS PUBLICACIONES ==================== -->
+<section class="beat idx-ultimos">
+  <style>
+    .idx-ultimos { background: var(--cream-dark); padding: 6rem 2rem; }
+    .idx-ultimos-inner { max-width: 1200px; margin: 0 auto; }
+    .idx-ultimos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+    @media (max-width: 900px) { .idx-ultimos-grid { grid-template-columns: 1fr; gap: 4rem; } }
+    .idx-col-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bordo); font-weight: 500; margin-bottom: 0.75rem; }
+    .idx-col-titulo { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 0.5rem; }
+    .idx-col-titulo em { font-style: italic; color: var(--bordo); }
+    .idx-col-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--ink-mid); margin-bottom: 2rem; }
+    .idx-col-list { display: flex; flex-direction: column; gap: 1rem; }
+    .idx-item { display: block; background: var(--cream); padding: 1.4rem 1.5rem; border: 1px solid transparent; transition: all 0.35s; text-decoration: none; color: inherit; }
+    .idx-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+    .idx-item-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; }
+    .idx-item-pilar { color: var(--bordo); font-weight: 500; }
+    .idx-item-fecha { color: var(--ink-light); font-family: 'Cormorant Garamond', serif; text-transform: none; letter-spacing: 0; font-style: italic; font-size: 0.8rem; }
+    .idx-item-titulo { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--ink); font-weight: 400; line-height: 1.35; }
+    .idx-item-titulo em { font-style: italic; color: var(--bordo); }
+    .idx-col-mas { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.75rem; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--bordo); text-decoration: none; border-bottom: 1px solid transparent; transition: border 0.3s; }
+    .idx-col-mas:hover { border-bottom-color: var(--bordo); }
+  </style>
+
+  <div class="idx-ultimos-inner">
+    <div class="idx-ultimos-grid">
+
+      <!-- Últimos Escritos -->
+      <div>
+        <p class="idx-col-eyebrow">Escritos</p>
+        <h2 class="idx-col-titulo">Últimos <em>textos publicados</em></h2>
+        <p class="idx-col-sub">Reflexiones para leer despacio.</p>
+        <div class="idx-col-list" id="idx-ultimos-escritos"></div>
+        <a href="blog.html" class="idx-col-mas">Ver todos los escritos →</a>
+      </div>
+
+      <!-- Últimas Huellas -->
+      <div>
+        <p class="idx-col-eyebrow">Huellas de Fe</p>
+        <h2 class="idx-col-titulo">Últimas <em>vidas compartidas</em></h2>
+        <p class="idx-col-sub">Hermanos mayores en el camino.</p>
+        <div class="idx-col-list" id="idx-ultimos-huellas"></div>
+        <a href="huellas-de-fe.html" class="idx-col-mas">Ver todas las Huellas →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="egs-footer">
+  <div class="footer-divider" aria-hidden="true"></div>
+  <p class="footer-manifest">Personas de distintos lugares, historias y llamados,<br>descubriendo juntas el Gran Sueño de Dios.</p>
+  <p class="footer-line">Nadie fue creado para caminar solo.</p>
+  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+  <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
+    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+    <button type="submit">Quiero recibir novedades</button>
+  </form>
+  <div class="footer-social" aria-label="Redes sociales">
+    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+  </div>
+  <p class="footer-social-nota">Más redes · próximamente</p>
+  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || typeof Lenis === 'undefined') return;
+  var lenis = new Lenis({ duration: 1.5, smoothWheel: true, wheelMultiplier: 0.9 });
+  function raf(t){ lenis.raf(t); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+})();
+</script>
+<script src="assets/entradas.js"></script>
+<script>
+  // Renderizar "Últimos escritos" y "Últimas huellas" en la home
+  (function () {
+    function fmtFecha(iso) {
+      var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+      var parts = iso.split('-');
+      return meses[parseInt(parts[1], 10) - 1] + ' ' + parts[0];
+    }
+
+    var escritos = (window.EGS_ESCRITOS || [])
+      .slice()
+      .sort(function (a, b) {
+        if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
+        return b.fecha.localeCompare(a.fecha);
+      })
+      .slice(0, 3);
+
+    var huellas = (window.EGS_HUELLAS || [])
+      .slice()
+      .sort(function (a, b) {
+        if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
+        return b.fecha.localeCompare(a.fecha);
+      })
+      .slice(0, 3);
+
+    var elE = document.getElementById('idx-ultimos-escritos');
+    if (elE) {
+      elE.innerHTML = escritos.map(function (e) {
+        return '<a href="' + (e.link || (e.slug + '.html')) + '" class="idx-item">' +
+          '<div class="idx-item-top"><span class="idx-item-pilar">' + e.pilarLabel + '</span><span class="idx-item-fecha">' + fmtFecha(e.fecha) + '</span></div>' +
+          '<p class="idx-item-titulo">' + e.titulo + '</p>' +
+          '</a>';
+      }).join('');
+    }
+
+    var elH = document.getElementById('idx-ultimos-huellas');
+    if (elH) {
+      elH.innerHTML = huellas.map(function (h) {
+        return '<a href="' + (h.link || (h.slug + '.html')) + '" class="idx-item">' +
+          '<div class="idx-item-top"><span class="idx-item-pilar">' + h.nombre + '</span><span class="idx-item-fecha">' + fmtFecha(h.fecha) + '</span></div>' +
+          '<p class="idx-item-titulo"><em>"' + h.frase + '"</em></p>' +
+          '</a>';
+      }).join('');
+    }
+  })();
+</script>
+<script src="assets/egs.js"></script>
+<script>
+// Solo en la home: al entrar, "El Gran Sueño" grande y centrado en la barra;
+// al scrollear, se desvanece y aparece el logo normal del menú.
+(function () {
+  var logo = document.querySelector('.nav-logo');
+  var masthead = document.getElementById('navMasthead');
+  if (!logo || !masthead) return;
+  logo.style.transition = 'opacity 0.6s ease';
+  function ajustar() {
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var pasoHero = y > (window.innerHeight * 0.4);
+    logo.style.opacity = pasoHero ? '1' : '0';
+    logo.style.pointerEvents = pasoHero ? 'auto' : 'none';
+    masthead.style.opacity = pasoHero ? '0' : '1';
+  }
+  window.addEventListener('scroll', ajustar, { passive: true });
+  ajustar();
+})();
+</script>
+<script src="assets/conceptos.js"></script>
+<script>
+// LÉXICO: arma la marquesina desde assets/conceptos.js y muestra el "globito"
+// con la definición al pasar el mouse (desktop) o al tocar (celular).
+(function () {
+  var track = document.getElementById('temasTrack');
+  var marquee = document.getElementById('temasMarquee');
+  var globito = document.getElementById('temaGlobito');
+  var lista = window.EGS_CONCEPTOS || [];
+  if (!track || !globito || !lista.length) return;
+
+  // Construir la pista (duplicada = bucle continuo)
+  var frag = '';
+  for (var pasada = 0; pasada < 2; pasada++) {
+    for (var i = 0; i < lista.length; i++) {
+      frag += '<button type="button" class="tema-palabra" data-i="' + i + '">' + lista[i].p + '</button><i aria-hidden="true">◆</i>';
+    }
+  }
+  track.innerHTML = frag;
+  track.style.animationDuration = Math.max(80, lista.length * 3.4) + 's';
+
+  var activa = null, fijado = false;
+  var elP = globito.querySelector('.tema-globito-palabra');
+  var elD = globito.querySelector('.tema-globito-def');
+
+  function mostrar(btn) {
+    var c = lista[+btn.getAttribute('data-i')]; if (!c) return;
+    elP.textContent = c.p; elD.textContent = c.d;
+    globito.hidden = false;
+    var r = btn.getBoundingClientRect();
+    var gw = globito.offsetWidth;
+    var left = Math.max(12, Math.min(r.left + r.width / 2 - gw / 2, window.innerWidth - gw - 12));
+    globito.style.left = left + 'px';
+    globito.style.top = (window.scrollY + r.bottom + 14) + 'px';
+    globito.style.setProperty('--flecha-x', (r.left + r.width / 2 - left) + 'px');
+    globito.classList.add('visible');
+    marquee.classList.add('pausado');
+    activa = btn;
+  }
+  function ocultar() {
+    globito.classList.remove('visible');
+    globito.hidden = true;
+    marquee.classList.remove('pausado');
+    activa = null; fijado = false;
+  }
+
+  track.addEventListener('mouseover', function (e) {
+    var btn = e.target.closest('.tema-palabra'); if (!btn || fijado) return; mostrar(btn);
+  });
+  track.addEventListener('mouseout', function (e) {
+    if (fijado) return;
+    var to = e.relatedTarget;
+    if (to && (to.closest('#temaGlobito') || to.closest('.tema-palabra'))) return;
+    ocultar();
+  });
+  track.addEventListener('click', function (e) {
+    var btn = e.target.closest('.tema-palabra'); if (!btn) return;
+    e.preventDefault();
+    if (fijado && activa === btn) { ocultar(); return; }
+    fijado = true; mostrar(btn);
+  });
+  document.addEventListener('click', function (e) {
+    if (!fijado) return;
+    if (e.target.closest('.tema-palabra') || e.target.closest('#temaGlobito')) return;
+    ocultar();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') ocultar(); });
+  window.addEventListener('scroll', function () { if (globito.classList.contains('visible') && !fijado) ocultar(); }, { passive: true });
+})();
+</script>
+</body>
+</html>
