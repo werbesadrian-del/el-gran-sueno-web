@@ -1,15 +1,3 @@
 {
-  "posts": [
-    {
-      "slug": "ejemplo-huella",
-      "nombre": "Una huella de ejemplo",
-      "meta": "Época · Lugar · Tema",
-      "frase": "Aquí va la frase que resume la vida de esta persona.",
-      "fecha": "2026-08-01",
-      "resumen": "Esta es una huella de ejemplo, creada desde el panel. Podés editarla o borrarla.",
-      "cuerpo": "Escribí acá la historia de esta persona.\n\nUsá párrafos cortos, con aire.\n\n## Lo que esta huella revela sobre Cristo\n\nAcá corré el foco de la persona a Cristo obrando en y a través de ella.",
-      "pregunta": "¿Qué te muestra esta vida sobre cómo Dios trabaja en la tuya?",
-      "destacado": false
-    }
-  ]
+  "posts": []
 }
