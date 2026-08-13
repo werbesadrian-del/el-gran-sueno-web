@@ -54,3 +54,29 @@ collections:
               - { name: imagen, label: "Foto de portada (opcional)", widget: image, required: false, hint: "Se muestra arriba del texto. También podés insertar fotos dentro del texto con el botón de imagen." }
               - { name: cuerpo, label: "Texto del escrito", widget: markdown }
               - { name: destacado, label: "Destacar", widget: boolean, default: false, required: false }
+
+  - name: huellas
+    label: "Huellas de Fe"
+    description: "Publicá y editá las Huellas de Fe (vidas que revelan a Cristo)."
+    files:
+      - name: posts
+        label: "Huellas"
+        file: "content/huellas.json"
+        format: json
+        fields:
+          - name: posts
+            label: "Huellas"
+            label_singular: "Huella"
+            widget: list
+            summary: "{{fields.nombre}}"
+            fields:
+              - { name: nombre, label: "Nombre", widget: string }
+              - { name: slug, label: "Dirección (URL) — sin espacios ni acentos", widget: string, hint: "Ej: jim-elliot" }
+              - { name: meta, label: "Época · Lugar · Tema", widget: string, hint: "Ej: 1927 — 1956 · Ecuador · Misiones" }
+              - { name: frase, label: "Frase que la resume", widget: text }
+              - { name: fecha, label: "Fecha", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { name: resumen, label: "Resumen / bajada", widget: text }
+              - { name: imagen, label: "Foto de portada (opcional)", widget: image, required: false }
+              - { name: cuerpo, label: "Su historia (texto)", widget: markdown, hint: "Incluí una sección '## Lo que esta huella revela sobre Cristo'." }
+              - { name: pregunta, label: "Pregunta final (opcional)", widget: string, required: false }
+              - { name: destacado, label: "Destacar", widget: boolean, default: false, required: false }

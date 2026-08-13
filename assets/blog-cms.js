@@ -1,39 +1,50 @@
 /* ============================================================================
-   EL GRAN SUEÑO — Blogs desde el panel (CMS)
+   EL GRAN SUEÑO — Contenido desde el panel (CMS)
    ----------------------------------------------------------------------------
-   Lee los posts escritos en el panel (content/blog.json) y los suma al listado
-   del blog y a la home, junto con los escritos ya existentes. Cada post nuevo
-   se abre en articulo.html?slug=... (no hace falta crear un HTML a mano).
-   Si el archivo no existe o falla, no rompe nada: el sitio sigue igual.
+   Lee lo que escribís en el panel y lo suma a las dos secciones:
+     · content/blog.json    → Escritos  (se abren en articulo.html?slug=...)
+     · content/huellas.json → Huellas   (se abren en huella.html?slug=...)
+   Se combinan con los escritos y huellas ya existentes. No hay que crear HTML
+   a mano. Si un archivo no existe o falla, no rompe nada: el sitio sigue igual.
    ============================================================================ */
 window.EGS_PILAR_LABELS = {
   identidad: 'Identidad', proposito: 'Propósito', reino: 'Reino', caracter: 'Carácter',
   comunidad: 'Comunidad', dones: 'Dones', 'gran-comision': 'Gran Comisión',
   santificacion: 'Santificación', servicio: 'Servicio'
 };
-window.EGS_BLOG_READY = fetch('content/blog.json', { cache: 'no-store' })
-  .then(function (r) { return r.ok ? r.json() : { posts: [] }; })
-  .then(function (data) {
-    var posts = (data && data.posts ? data.posts : []).map(function (p) {
-      return {
-        slug: p.slug,
-        titulo: p.titulo,
-        pilar: p.pilar || 'identidad',
-        pilarLabel: p.pilarLabel || window.EGS_PILAR_LABELS[p.pilar] || p.pilar || '',
-        fecha: p.fecha,
-        lectura: p.lectura || '',
-        pregunta: p.pregunta || '',
-        excerpt: p.resumen || '',
-        destacado: !!p.destacado,
-        esBlog: true,
-        link: 'articulo.html?slug=' + encodeURIComponent(p.slug)
-      };
-    });
-    // Sumar al índice global que usan blog.html y la home
-    window.EGS_ESCRITOS = (window.EGS_ESCRITOS || []).concat(posts);
-    // Re-renderizar si la página ya se dibujó
-    if (typeof window.blogRender === 'function') { try { window.blogRender(); } catch (e) {} }
-    if (typeof window.egsRenderHomeIndex === 'function') { try { window.egsRenderHomeIndex(); } catch (e) {} }
-    return posts;
-  })
-  .catch(function () { return []; });
+
+function egsCargarColeccion(archivo, mapear, destino, renderFns) {
+  return fetch(archivo, { cache: 'no-store' })
+    .then(function (r) { return r.ok ? r.json() : { posts: [] }; })
+    .then(function (data) {
+      var items = (data && data.posts ? data.posts : []).map(mapear);
+      window[destino] = (window[destino] || []).concat(items);
+      renderFns.forEach(function (fn) {
+        if (typeof window[fn] === 'function') { try { window[fn](); } catch (e) {} }
+      });
+      return items;
+    })
+    .catch(function () { return []; });
+}
+
+/* --- ESCRITOS --- */
+window.EGS_BLOG_READY = egsCargarColeccion('content/blog.json', function (p) {
+  return {
+    slug: p.slug, titulo: p.titulo,
+    pilar: p.pilar || 'identidad',
+    pilarLabel: p.pilarLabel || window.EGS_PILAR_LABELS[p.pilar] || p.pilar || '',
+    fecha: p.fecha, lectura: p.lectura || '', pregunta: p.pregunta || '',
+    excerpt: p.resumen || '', destacado: !!p.destacado, esBlog: true,
+    link: 'articulo.html?slug=' + encodeURIComponent(p.slug)
+  };
+}, 'EGS_ESCRITOS', ['blogRender', 'egsRenderHomeIndex']);
+
+/* --- HUELLAS --- */
+window.EGS_HUELLAS_READY = egsCargarColeccion('content/huellas.json', function (p) {
+  return {
+    slug: p.slug, nombre: p.nombre,
+    meta: p.meta || '', frase: p.frase || '',
+    fecha: p.fecha, destacado: !!p.destacado, esHuella: true,
+    link: 'huella.html?slug=' + encodeURIComponent(p.slug)
+  };
+}, 'EGS_HUELLAS', ['huellasRender', 'egsRenderHomeIndex']);
