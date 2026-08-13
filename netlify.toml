@@ -1,8 +1,9 @@
-# El Gran Sueño — sitio estático, SIN build (para no gastar crédito de Netlify).
-# Netlify solo sube los archivos que cambiaron. Publica esta carpeta tal cual.
+# El Gran Sueño — build MÍNIMO (node build.js, sin dependencias → ~1-2 s, casi cero crédito).
+# build.js convierte los posts del panel (content/*.json) en páginas estáticas fuertes
+# para Google (/blog/<slug>, /huella/<slug>) y regenera el sitemap. El resto se publica igual.
 [build]
   publish = "."
-  command = ""
+  command = "node build.js"
 
 [[redirects]]
   from = "/blog-articulo.html"

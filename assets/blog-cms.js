@@ -35,7 +35,7 @@ window.EGS_BLOG_READY = egsCargarColeccion('content/blog.json', function (p) {
     pilarLabel: p.pilarLabel || window.EGS_PILAR_LABELS[p.pilar] || p.pilar || '',
     fecha: p.fecha, lectura: p.lectura || '', pregunta: p.pregunta || '',
     excerpt: p.resumen || '', destacado: !!p.destacado, esBlog: true,
-    link: 'articulo.html?slug=' + encodeURIComponent(p.slug)
+    link: 'blog/' + p.slug + '.html'
   };
 }, 'EGS_ESCRITOS', ['blogRender', 'egsRenderHomeIndex']);
 
@@ -45,6 +45,6 @@ window.EGS_HUELLAS_READY = egsCargarColeccion('content/huellas.json', function (
     slug: p.slug, nombre: p.nombre,
     meta: p.meta || '', frase: p.frase || '',
     fecha: p.fecha, destacado: !!p.destacado, esHuella: true,
-    link: 'huella.html?slug=' + encodeURIComponent(p.slug)
+    link: 'huella/' + p.slug + '.html'
   };
 }, 'EGS_HUELLAS', ['huellasRender', 'egsRenderHomeIndex']);

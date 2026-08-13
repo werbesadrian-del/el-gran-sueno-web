@@ -4,3 +4,6 @@ Thumbs.db
 node_modules/
 *.log
 _LEEME-version-nueva.txt
+# Generadas por build.js (Netlify las regenera en cada deploy)
+/blog/
+/huella/
