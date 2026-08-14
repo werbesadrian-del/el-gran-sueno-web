@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gracias · El Gran Sueño</title>
-<meta name="description" content="Alguien va a leer lo que confiaste. No es una respuesta automática — es una conversación que empieza.">
+<meta name="description" content="Alguien va a leer lo que confiaste. No es una respuesta automática, es una conversación que empieza.">
 <meta name="robots" content="noindex, follow">
 
 <meta property="og:type" content="website">
@@ -13,9 +13,9 @@
 <meta property="og:locale" content="es_ES">
 <meta name="theme-color" content="#6B1A2B">
 
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,252 +23,229 @@
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
-  body { background: var(--cream); }
+ body { background: var(--cream); }
 
-  .gr-wrap {
-    min-height: 100vh;
-    padding: 8rem 2rem 4rem;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-  }
-  .gr-inner {
-    max-width: 620px;
-    display: flex; flex-direction: column;
-    align-items: center; gap: 2rem;
-  }
-  .gr-glyph {
-    color: var(--gold);
-    opacity: 0.85;
-    animation: grBreath 4s ease-in-out infinite;
-  }
-  @keyframes grBreath {
-    0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.05); }
-  }
-  .gr-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.6; }
-  .gr-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 400;
-    color: var(--ink);
-    line-height: 1.25;
-  }
-  .gr-title em { font-style: italic; color: var(--bordo); }
-  .gr-body {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 2vw, 1.3rem);
-    font-style: italic;
-    color: var(--ink-mid);
-    line-height: 1.85;
-  }
-  .gr-caja {
-    width: 100%;
-    padding: 1.75rem 1.75rem;
-    background: white;
-    border-left: 2px solid var(--bordo);
-    text-align: left;
-    display: flex; flex-direction: column; gap: 1rem;
-  }
-  .gr-caja-etiq {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bordo);
-    font-weight: 500;
-  }
-  .gr-caja p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    color: var(--ink-mid);
-    line-height: 1.75;
-  }
-  .gr-destello {
-    width: 100%;
-    padding: 1.75rem;
-    background: rgba(201,168,76,0.08);
-    border-left: 2px solid var(--gold);
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    color: var(--ink-mid);
-    line-height: 1.8;
-    font-size: 1.05rem;
-    text-align: left;
-  }
-  .gr-links {
-    display: flex; flex-direction: column;
-    gap: 0.75rem;
-    width: 100%;
-    margin-top: 1rem;
-  }
-  .gr-link {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.1rem 1.4rem;
-    background: white;
-    border: 1px solid var(--cream-dark);
-    text-decoration: none;
-    color: var(--ink);
-    transition: all 0.3s;
-    text-align: left;
-  }
-  .gr-link:hover { border-color: var(--bordo); transform: translateX(3px); box-shadow: 0 6px 16px rgba(107,26,43,0.06); }
-  .gr-link-texto {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    color: var(--ink);
-    line-height: 1.5;
-    padding-right: 1rem;
-  }
-  .gr-link-texto strong {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    font-size: 1.05rem;
-    display: block;
-    margin-bottom: 0.2rem;
-  }
-  .gr-link-arrow { color: var(--bordo); flex-shrink: 0; }
-</style>
-  <link rel="canonical" href="https://elgransueno.org/gracias.html">
-  <meta property="og:site_name" content="El Gran Sueño">
-  <meta property="og:url" content="https://elgransueno.org/gracias.html">
-</head>
+ .gr-wrap {
+ min-height: 100vh;
+ padding: 8rem 2rem 4rem;
+ display: flex; flex-direction: column;
+ align-items: center; justify-content: center;
+ text-align: center;
+ }
+ .gr-inner {
+ max-width: 620px;
+ display: flex; flex-direction: column;
+ align-items: center; gap: 2rem;
+ }
+ .gr-glyph {
+ color: var(--gold);
+ opacity: 0.85;
+ animation: grBreath 4s ease-in-out infinite;
+ }
+ @keyframes grBreath {
+ 0%, 100% { opacity: 0.5; transform: scale(1); }
+ 50% { opacity: 1; transform: scale(1.05); }
+ }
+ .gr-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.6; }
+ .gr-title {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(2rem, 5vw, 3rem);
+ font-weight: 400;
+ color: var(--ink);
+ line-height: 1.25;
+ }
+ .gr-title em { font-style: italic; color: var(--bordo); }
+ .gr-body {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: clamp(1.1rem, 2vw, 1.3rem);
+ font-style: italic;
+ color: var(--ink-mid);
+ line-height: 1.85;
+ }
+ .gr-caja {
+ width: 100%;
+ padding: 1.75rem 1.75rem;
+ background: white;
+ border-left: 2px solid var(--bordo);
+ text-align: left;
+ display: flex; flex-direction: column; gap: 1rem;
+ }
+ .gr-caja-etiq {
+ font-size: 0.68rem;
+ letter-spacing: 0.2em;
+ text-transform: uppercase;
+ color: var(--bordo);
+ font-weight: 500;
+ }
+ .gr-caja p {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1rem;
+ color: var(--ink-mid);
+ line-height: 1.75;
+ }
+ .gr-destello {
+ width: 100%;
+ padding: 1.75rem;
+ background: rgba(201,168,76,0.08);
+ border-left: 2px solid var(--gold);
+ font-family: 'Cormorant Garamond', serif;
+ font-style: italic;
+ color: var(--ink-mid);
+ line-height: 1.8;
+ font-size: 1.05rem;
+ text-align: left;
+ }
+ .gr-links {
+ display: flex; flex-direction: column;
+ gap: 0.75rem;
+ width: 100%;
+ margin-top: 1rem;
+ }
+ .gr-link {
+ display: flex; justify-content: space-between; align-items: center;
+ padding: 1.1rem 1.4rem;
+ background: white;
+ border: 1px solid var(--cream-dark);
+ text-decoration: none;
+ color: var(--ink);
+ transition: all 0.3s;
+ text-align: left;
+ }
+ .gr-link:hover { border-color: var(--bordo); transform: translateX(3px); box-shadow: 0 6px 16px rgba(107,26,43,0.06); }
+ .gr-link-texto {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1rem;
+ color: var(--ink);
+ line-height: 1.5;
+ padding-right: 1rem;
+ }
+ .gr-link-texto strong {
+ font-family: 'Playfair Display', serif;
+ font-weight: 400;
+ font-size: 1.05rem;
+ display: block;
+ margin-bottom: 0.2rem;
+ }
+ .gr-link-arrow { color: var(--bordo); flex-shrink: 0; }</style>
+ <link rel="canonical" href="https://elgransueno.org/gracias.html">
+ <meta property="og:site_name" content="El Gran Sueño">
+ <meta property="og:url" content="https://elgransueno.org/gracias.html"></head>
 <body class="modo-limpio">
 
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="index.html" class="nav-cta">Volver al inicio</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="index.html" class="nav-cta">Volver al inicio</a></nav>
 
 <div id="egs-nav-mount"></div>
 
 <div class="gr-wrap">
-  <div class="gr-inner">
+ <div class="gr-inner">
 
-    <div class="gr-glyph" aria-hidden="true">
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 2v20M2 12h20M4.5 4.5l15 15M4.5 19.5l15-15"/>
-      </svg>
-    </div>
+ <div class="gr-glyph" aria-hidden="true">
+ <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M12 2v20M2 12h20M4.5 4.5l15 15M4.5 19.5l15-15"/></svg></div>
 
-    <h1 class="gr-title" id="gr-title">Gracias por <em>confiar esto.</em></h1>
+ <h1 class="gr-title" id="gr-title">Gracias por <em>confiar esto.</em></h1>
 
-    <p class="gr-body" id="gr-body">
-      Alguien del equipo va a leer lo que compartiste.<br>
-      No es una respuesta automática — es una conversación que empieza.
-    </p>
+ <p class="gr-body" id="gr-body">
+ Alguien del equipo va a leer lo que compartiste.<br>
+ No es una respuesta automática, es una conversación que empieza.</p>
 
-    <div class="gr-line" aria-hidden="true"></div>
+ <div class="gr-line" aria-hidden="true"></div>
 
-    <div class="gr-caja">
-      <span class="gr-caja-etiq" id="gr-caja-etiq">¿Qué pasa ahora?</span>
-      <p id="gr-caja-txt">Lo que escribiste va a ser leído con respeto. Comenzará un proceso de discernimiento para descubrir cómo dar el siguiente paso — juntos. No prometemos soluciones inmediatas. Prometemos que lo que compartiste será recibido, escuchado y considerado con seriedad.</p>
-    </div>
+ <div class="gr-caja">
+ <span class="gr-caja-etiq" id="gr-caja-etiq">¿Qué pasa ahora?</span>
+ <p id="gr-caja-txt">Lo que escribiste va a ser leído con respeto. Comenzará un proceso de discernimiento para descubrir cómo dar el siguiente paso, juntos. No prometemos soluciones inmediatas. Prometemos que lo que compartiste será recibido, escuchado y considerado con seriedad.</p></div>
 
-    <div class="gr-destello" id="gr-destello">
-      Mientras esperás, no dejes de caminar.<br>
-      Seguí buscando. Seguí aprendiendo. Seguí acercándote a Dios.<br>
-      Seguí cultivando aquello que Él ya empezó en vos.
-    </div>
+ <div class="gr-destello" id="gr-destello">
+ Mientras esperás, no dejes de caminar.<br>
+ Seguí buscando. Seguí aprendiendo. Seguí acercándote a Dios.<br>
+ Seguí cultivando aquello que Él ya empezó en vos.</div>
 
-    <div class="gr-links" aria-label="Continuar el recorrido">
-      <a href="historias.html" class="gr-link">
-        <span class="gr-link-texto"><strong>Leer historias</strong>Conoce otros procesos y camina con la comunidad.</span>
-        <span class="gr-link-arrow" aria-hidden="true">→</span>
-      </a>
-      <a href="quiero-ser-parte.html" class="gr-link">
-        <span class="gr-link-texto"><strong>Conocer el ecosistema</strong>Descubre cómo funciona El Gran Sueño por dentro.</span>
-        <span class="gr-link-arrow" aria-hidden="true">→</span>
-      </a>
-      <a href="index.html" class="gr-link">
-        <span class="gr-link-texto"><strong>Volver al inicio</strong>Sigue explorando la visión del proyecto.</span>
-        <span class="gr-link-arrow" aria-hidden="true">→</span>
-      </a>
-    </div>
-
-  </div>
-</div>
+ <div class="gr-links" aria-label="Continuar el recorrido">
+ <a href="historias.html" class="gr-link">
+ <span class="gr-link-texto"><strong>Leer historias</strong>Conoce otros procesos y camina con la comunidad.</span>
+ <span class="gr-link-arrow" aria-hidden="true"></span></a>
+ <a href="quiero-ser-parte.html" class="gr-link">
+ <span class="gr-link-texto"><strong>Conocer el ecosistema</strong>Descubre cómo funciona El Gran Sueño por dentro.</span>
+ <span class="gr-link-arrow" aria-hidden="true"></span></a>
+ <a href="index.html" class="gr-link">
+ <span class="gr-link-texto"><strong>Volver al inicio</strong>Sigue explorando la visión del proyecto.</span>
+ <span class="gr-link-arrow" aria-hidden="true"></span></a></div></div></div>
 
 <footer class="egs-footer">
-  <div class="footer-divider" aria-hidden="true"></div>
-  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
-  <p class="footer-line">Nadie fue creado para caminar solo.</p>
-  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
-  <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
-    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-    <button type="submit">Quiero recibir novedades</button>
-  </form>
-  <div class="footer-social" aria-label="Redes sociales">
-    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
-    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
-    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-  </div>
-  <p class="footer-social-nota">Más redes · próximamente</p>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
-</footer>
+ <div class="footer-divider" aria-hidden="true"></div>
+ <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+ <p class="footer-line">Nadie fue creado para caminar solo.</p>
+ <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+ <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
+ <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+ <button type="submit">Quiero recibir novedades</button></form>
+ <div class="footer-social" aria-label="Redes sociales">
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+ <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+ <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+ <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+ <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+ <p class="footer-social-nota">Más redes · próximamente</p>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p></footer>
 
 <script>
-  // Personaliza el mensaje según de dónde viene la persona:
-  //   ?de=historia         → alguien que compartió su historia
-  //   ?de=acompanante      → alguien que envió solicitud para acompañar
-  //   ?de=colaborar        → alguien que quiere sostener
-  //   ?de=oracion          → alguien que se suma a orar por procesos
-  //   (por defecto)        → mensaje genérico
-  (function () {
-    const params = new URLSearchParams(location.search);
-    const de = (params.get('de') || '').toLowerCase();
+ // Personaliza el mensaje según de dónde viene la persona:
+ // ?de=historia alguien que compartió su historia
+ // ?de=acompanante alguien que envió solicitud para acompañar
+ // ?de=colaborar alguien que quiere sostener
+ // ?de=oracion alguien que se suma a orar por procesos
+ // (por defecto) mensaje genérico
+ (function () {
+ const params = new URLSearchParams(location.search);
+ const de = (params.get('de') || '').toLowerCase();
 
-    const cfg = {
-      historia: {
-        title: 'Gracias por <em>confiar</em> este momento de tu historia.',
-        body:  'Hoy diste un paso.<br>Ya no estás escondiendo lo que estás viviendo.<br>Tu camino ya comenzó porque decidiste compartirlo.',
-        cajaEtiq: '¿Qué pasa ahora con tu historia?',
-        cajaTxt: 'Tu historia va a ser leída con respeto y responsabilidad. Comenzará un proceso de discernimiento para descubrir si existen personas, recursos u oportunidades que puedan ayudarte a dar el siguiente paso. No prometemos soluciones inmediatas — prometemos que lo que compartiste será recibido y considerado con seriedad.',
-        destello: 'Mientras leemos tu historia, no dejes de caminar.<br>Seguí buscando. Seguí aprendiendo.<br>Seguí acercándote a Dios.<br>Seguí cultivando aquello que Él ya empezó en vos.'
-      },
-      acompanante: {
-        title: 'Respondiste con <em>honestidad.</em>',
-        body:  'No tuviste que demostrar nada.<br>No tuviste que llegar con todo resuelto.<br>Solo respondiste a algo que Dios ya venía haciendo en tu vida.',
-        cajaEtiq: '¿Qué pasa ahora?',
-        cajaTxt: 'Alguien del equipo va a leer lo que compartiste y va a ponerse en contacto para seguir hablando. No es una entrevista — es simplemente continuar esta conversación. Vamos a tomarnos el tiempo necesario para conocerte, y para descubrir juntos cómo tu historia puede sostener la de otro.',
-        destello: 'No tenés que cambiarle la vida a nadie.<br><br>Solo podés ofrecer, con fidelidad,<br>lo que Dios formó en vos<br>y lo que puso bajo tu cuidado.<br><br>Eso ya es suficiente.<br>Y para alguien, va a ser exactamente lo que necesitaba.'
-      },
-      colaborar: {
-        title: 'Gracias por <em>hacerte cerca.</em>',
-        body:  'Sostener este espacio no es una transacción.<br>Es una forma de decir: "esto también es mío".<br>Y hoy elegiste decirlo.',
-        cajaEtiq: '¿Qué pasa ahora?',
-        cajaTxt: 'Alguien del equipo va a leer lo que compartiste y va a escribirte personalmente para seguir la conversación. No hay respuestas automáticas ni pasos genéricos — la forma de estar cerca la vamos a descubrir juntos, según lo que vos puedas ofrecer y lo que este espacio necesite.',
-        destello: 'Este espacio no crece por la cantidad de personas que lo sostienen.<br>Crece por la profundidad con la que lo hacen.'
-      },
-      oracion: {
-        title: 'Gracias por <em>orar.</em>',
-        body:  'La oración no es la parte pequeña del proyecto.<br>Es la parte más antigua, más fiel<br>y más sostenida del acompañamiento.',
-        cajaEtiq: '¿Cómo continúa?',
-        cajaTxt: 'Vamos a compartirte, con reserva y cuidado, procesos concretos que necesitan oración. No listas masivas. No noticias públicas. Nombres reales, historias reales, oración real. Podés orar por el tiempo que sientas — sin plazos, sin publicaciones, sin exposición.',
-        destello: 'Nadie sabrá jamás la cantidad exacta de cosas<br>que sucedieron en el mundo<br>porque una persona, en silencio, decidió orar.'
-      }
-    };
+ const cfg = {
+ historia: {
+ title: 'Gracias por <em>confiar</em> este momento de tu historia.',
+ body: 'Hoy diste un paso.<br>Ya no estás escondiendo lo que estás viviendo.<br>Tu camino ya comenzó porque decidiste compartirlo.',
+ cajaEtiq: '¿Qué pasa ahora con tu historia?',
+ cajaTxt: 'Tu historia va a ser leída con respeto y responsabilidad. Comenzará un proceso de discernimiento para descubrir si existen personas, recursos u oportunidades que puedan ayudarte a dar el siguiente paso. No prometemos soluciones inmediatas, prometemos que lo que compartiste será recibido y considerado con seriedad.',
+ destello: 'Mientras leemos tu historia, no dejes de caminar.<br>Seguí buscando. Seguí aprendiendo.<br>Seguí acercándote a Dios.<br>Seguí cultivando aquello que Él ya empezó en vos.'
+ },
+ acompanante: {
+ title: 'Respondiste con <em>honestidad.</em>',
+ body: 'No tuviste que demostrar nada.<br>No tuviste que llegar con todo resuelto.<br>Solo respondiste a algo que Dios ya venía haciendo en tu vida.',
+ cajaEtiq: '¿Qué pasa ahora?',
+ cajaTxt: 'Alguien del equipo va a leer lo que compartiste y va a ponerse en contacto para seguir hablando. No es una entrevista, es simplemente continuar esta conversación. Vamos a tomarnos el tiempo necesario para conocerte, y para descubrir juntos cómo tu historia puede sostener la de otro.',
+ destello: 'No tenés que cambiarle la vida a nadie.<br><br>Solo podés ofrecer, con fidelidad,<br>lo que Dios formó en vos<br>y lo que puso bajo tu cuidado.<br><br>Eso ya es suficiente.<br>Y para alguien, va a ser exactamente lo que necesitaba.'
+ },
+ colaborar: {
+ title: 'Gracias por <em>hacerte cerca.</em>',
+ body: 'Sostener este espacio no es una transacción.<br>Es una forma de decir: "esto también es mío".<br>Y hoy elegiste decirlo.',
+ cajaEtiq: '¿Qué pasa ahora?',
+ cajaTxt: 'Alguien del equipo va a leer lo que compartiste y va a escribirte personalmente para seguir la conversación. No hay respuestas automáticas ni pasos genéricos, la forma de estar cerca la vamos a descubrir juntos, según lo que vos puedas ofrecer y lo que este espacio necesite.',
+ destello: 'Este espacio no crece por la cantidad de personas que lo sostienen.<br>Crece por la profundidad con la que lo hacen.'
+ },
+ oracion: {
+ title: 'Gracias por <em>orar.</em>',
+ body: 'La oración no es la parte pequeña del proyecto.<br>Es la parte más antigua, más fiel<br>y más sostenida del acompañamiento.',
+ cajaEtiq: '¿Cómo continúa?',
+ cajaTxt: 'Vamos a compartirte, con reserva y cuidado, procesos concretos que necesitan oración. No listas masivas. No noticias públicas. Nombres reales, historias reales, oración real. Podés orar por el tiempo que sientas, sin plazos, sin publicaciones, sin exposición.',
+ destello: 'Nadie sabrá jamás la cantidad exacta de cosas<br>que sucedieron en el mundo<br>porque una persona, en silencio, decidió orar.'
+ }
+ };
 
-    const c = cfg[de];
-    if (!c) return;
+ const c = cfg[de];
+ if (!c) return;
 
-    document.getElementById('gr-title').innerHTML = c.title;
-    document.getElementById('gr-body').innerHTML = c.body;
-    document.getElementById('gr-caja-etiq').textContent = c.cajaEtiq;
-    document.getElementById('gr-caja-txt').innerHTML = c.cajaTxt;
-    document.getElementById('gr-destello').innerHTML = c.destello;
+ document.getElementById('gr-title').innerHTML = c.title;
+ document.getElementById('gr-body').innerHTML = c.body;
+ document.getElementById('gr-caja-etiq').textContent = c.cajaEtiq;
+ document.getElementById('gr-caja-txt').innerHTML = c.cajaTxt;
+ document.getElementById('gr-destello').innerHTML = c.destello;
 
-    // Título de la pestaña
-    const map = { historia: 'Gracias por compartir', acompanante: 'Gracias por responder', colaborar: 'Gracias por sostener', oracion: 'Gracias por orar' };
-    if (map[de]) document.title = map[de] + ' · El Gran Sueño';
-  })();
-</script>
-<script src="assets/egs.js"></script>
-</body>
-</html>
+ // Título de la pestaña
+ const map = { historia: 'Gracias por compartir', acompanante: 'Gracias por responder', colaborar: 'Gracias por sostener', oracion: 'Gracias por orar' };
+ if (map[de]) document.title = map[de] + ' · El Gran Sueño';
+ })();</script>
+<script src="assets/egs.js"></script></body></html>

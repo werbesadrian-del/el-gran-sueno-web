@@ -14,9 +14,9 @@
 <meta name="twitter:title" content="Compartir mi historia · El Gran Sueño">
 <meta name="theme-color" content="#6B1A2B">
 
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,273 +24,208 @@
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
-  .valor-card {
-    padding: 2rem 1.5rem;
-    background: rgba(201,168,76,0.05);
-    display: flex; flex-direction: column;
-    gap: 1.25rem;
-    align-items: center;
-    border-radius: 2px;
-  }
-  .valor-linea { width: 24px; height: 1px; background: var(--gold); opacity: 0.7; }
-</style>
-  <link rel="canonical" href="https://elgransueno.org/compartir-historia.html">
-  <meta property="og:site_name" content="El Gran Sueño">
-  <meta property="og:url" content="https://elgransueno.org/compartir-historia.html">
-</head>
+ .valor-card {
+ padding: 2rem 1.5rem;
+ background: rgba(201,168,76,0.05);
+ display: flex; flex-direction: column;
+ gap: 1.25rem;
+ align-items: center;
+ border-radius: 2px;
+ }
+ .valor-linea { width: 24px; height: 1px; background: var(--gold); opacity: 0.7; }</style>
+ <link rel="canonical" href="https://elgransueno.org/compartir-historia.html">
+ <meta property="og:site_name" content="El Gran Sueño">
+ <meta property="og:url" content="https://elgransueno.org/compartir-historia.html"></head>
 <body class="modo-limpio">
 
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="quiero-ser-parte.html" class="nav-cta">← Volver</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="quiero-ser-parte.html" class="nav-cta">Volver</a></nav>
 
 <div id="egs-nav-mount"></div>
 
 <div class="conversacion">
 
-  <!-- P0: BIENVENIDA -->
-  <div class="pantalla activa" id="p0">
-    <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;align-items:center;">
-      <div class="linea-oro"></div>
-      <h1 class="t-grande" style="text-align:center;">
-        Este es un lugar seguro.<br>
-        Puedes llegar <em>exactamente</em><br>como estás hoy.
-      </h1>
-      <p class="t-medio" style="text-align:center;">
-        No hace falta tener todo ordenado.<br>
-        No hace falta tener respuestas.<br>
-        Solo trae lo que tienes.
-      </p>
-      <div class="linea-oro"></div>
-      <button class="btn-inicio" onclick="ir('p1')">Quiero dar un paso</button>
-      <p class="t-nota" style="text-align:center;">No es un formulario. Es una conversación.</p>
-    </div>
-  </div>
+ <!-- P0: BIENVENIDA -->
+ <div class="pantalla activa" id="p0">
+ <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;align-items:center;">
+ <div class="linea-oro"></div>
+ <h1 class="t-grande" style="text-align:center;">
+ Este es un lugar seguro.<br>
+ Puedes llegar <em>exactamente</em><br>como estás hoy.</h1>
+ <p class="t-medio" style="text-align:center;">
+ No hace falta tener todo ordenado.<br>
+ No hace falta tener respuestas.<br>
+ Solo trae lo que tienes.</p>
+ <div class="linea-oro"></div>
+ <button class="btn-inicio" onclick="ir('p1')">Quiero dar un paso</button>
+ <p class="t-nota" style="text-align:center;">No es un formulario. Es una conversación.</p></div></div>
 
-  <!-- P1: ANTES DE EMPEZAR + VALOR -->
-  <div class="pantalla" id="p1">
-    <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2.25rem;align-items:center;">
-      <div class="punto-oro"></div>
-      <p class="t-grande" style="text-align:center;">Antes de empezar…</p>
-      <p class="t-medio" style="text-align:center;">
-        No hace falta escribir mucho.<br>
-        No hace falta haber llegado a ninguna conclusión.<br><br>
-        Empieza simplemente desde donde estás.
-      </p>
-      <div class="valor-card" style="width:100%;">
-        <div class="valor-linea"></div>
-        <p class="t-medio" style="text-align:center;">
-          Creemos que tu valor no depende de lo que lograste, de lo que perdiste ni del lugar donde te encuentras hoy.<br><br>
-          Por eso queremos escucharte.
-        </p>
-        <div class="valor-linea"></div>
-      </div>
-      <div class="punto-oro"></div>
-      <button class="btn-inicio" onclick="ir('p3')">Continuar</button>
-    </div>
-  </div>
+ <!-- P1: ANTES DE EMPEZAR + VALOR -->
+ <div class="pantalla" id="p1">
+ <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2.25rem;align-items:center;">
+ <div class="punto-oro"></div>
+ <p class="t-grande" style="text-align:center;">Antes de empezar…</p>
+ <p class="t-medio" style="text-align:center;">
+ No hace falta escribir mucho.<br>
+ No hace falta haber llegado a ninguna conclusión.<br><br>
+ Empieza simplemente desde donde estás.</p>
+ <div class="valor-card" style="width:100%;">
+ <div class="valor-linea"></div>
+ <p class="t-medio" style="text-align:center;">
+ Creemos que tu valor no depende de lo que lograste, de lo que perdiste ni del lugar donde te encuentras hoy.<br><br>
+ Por eso queremos escucharte.</p>
+ <div class="valor-linea"></div></div>
+ <div class="punto-oro"></div>
+ <button class="btn-inicio" onclick="ir('p3')">Continuar</button></div></div>
 
-  <!-- P3: RECONOCIMIENTO -->
-  <div class="pantalla" id="p3">
-    <div class="pantalla-inner">
-      <div class="progreso"></div>
-      <p class="t-grande">
-        Quizás alguna de estas frases<br>describe un poco <em>dónde estás hoy.</em>
-      </p>
-      <p class="t-nota">Puedes elegir una, varias o ninguna.</p>
-      <div class="opciones">
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Estoy cansado.</span></div>
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Me siento solo.</span></div>
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Tengo muchas preguntas.</span></div>
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Sé que necesito un cambio.</span></div>
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Siento que estoy estancado.</span></div>
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Tengo un sueño que todavía no sé explicar.</span></div>
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">No sé hacia dónde seguir.</span></div>
-        <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Siento que algo dentro mío quiere despertar.</span></div>
-      </div>
-      <div class="campo-grupo" style="margin-top:0.5rem;">
-        <label class="campo-etiq" for="propio">
-          ¿Hay algo que describa mejor cómo te sientes hoy?
-          <span style="font-style:italic;letter-spacing:0;text-transform:none;margin-left:0.3rem;">— opcional</span>
-        </label>
-        <input id="propio" type="text" class="campo-linea" placeholder="Si ninguna de estas frases expresa lo que estás viviendo, puedes escribir la tuya…">
-      </div>
-      <div class="acciones">
-        <button class="btn-ant" onclick="ir('p1')">← Volver</button>
-        <button class="btn-sig" onclick="ir('p4')">Continuar</button>
-      </div>
-    </div>
-  </div>
+ <!-- P3: RECONOCIMIENTO -->
+ <div class="pantalla" id="p3">
+ <div class="pantalla-inner">
+ <div class="progreso"></div>
+ <p class="t-grande">
+ Quizás alguna de estas frases<br>describe un poco <em>dónde estás hoy.</em></p>
+ <p class="t-nota">Puedes elegir una, varias o ninguna.</p>
+ <div class="opciones">
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Estoy cansado.</span></div>
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Me siento solo.</span></div>
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Tengo muchas preguntas.</span></div>
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Sé que necesito un cambio.</span></div>
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Siento que estoy estancado.</span></div>
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Tengo un sueño que todavía no sé explicar.</span></div>
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">No sé hacia dónde seguir.</span></div>
+ <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Siento que algo dentro mío quiere despertar.</span></div></div>
+ <div class="campo-grupo" style="margin-top:0.5rem;">
+ <label class="campo-etiq" for="propio">
+ ¿Hay algo que describa mejor cómo te sientes hoy?
+ <span style="font-style:italic;letter-spacing:0;text-transform:none;margin-left:0.3rem;">opcional</span></label>
+ <input id="propio" type="text" class="campo-linea" placeholder="Si ninguna de estas frases expresa lo que estás viviendo, puedes escribir la tuya…"></div>
+ <div class="acciones">
+ <button class="btn-ant" onclick="ir('p1')">Volver</button>
+ <button class="btn-sig" onclick="ir('p4')">Continuar</button></div></div></div>
 
-  <!-- P4: PREGUNTA 1 -->
-  <div class="pantalla" id="p4">
-    <div class="pantalla-inner">
-      <div class="progreso"></div>
-      <label for="q1" class="t-grande">¿Dónde sientes que <em>estás hoy?</em></label>
-      <p class="t-pequeño">No busques la respuesta perfecta. Escribe lo que tienes — puede ser una sensación, una situación, una pregunta.</p>
-      <textarea id="q1" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq1')"></textarea>
-      <div class="acciones">
-        <button class="btn-ant" onclick="ir('p3')">← Volver</button>
-        <button id="bq1" class="btn-sig" onclick="ir('p5')" disabled>Continuar</button>
-      </div>
-    </div>
-  </div>
+ <!-- P4: PREGUNTA 1 -->
+ <div class="pantalla" id="p4">
+ <div class="pantalla-inner">
+ <div class="progreso"></div>
+ <label for="q1" class="t-grande">¿Dónde sientes que <em>estás hoy?</em></label>
+ <p class="t-pequeño">No busques la respuesta perfecta. Escribe lo que tienes, puede ser una sensación, una situación, una pregunta.</p>
+ <textarea id="q1" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq1')"></textarea>
+ <div class="acciones">
+ <button class="btn-ant" onclick="ir('p3')">Volver</button>
+ <button id="bq1" class="btn-sig" onclick="ir('p5')" disabled>Continuar</button></div></div></div>
 
-  <!-- P5: PREGUNTA 2 -->
-  <div class="pantalla" id="p5">
-    <div class="pantalla-inner">
-      <div class="progreso"></div>
-      <label for="q2" class="t-grande">¿Qué es lo que más <em>anhelas</em> en este momento?</label>
-      <p class="t-pequeño">Puede ser algo concreto o algo que todavía no sabes cómo nombrar.</p>
-      <textarea id="q2" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq2')"></textarea>
-      <div class="acciones">
-        <button class="btn-ant" onclick="ir('p4')">← Volver</button>
-        <button id="bq2" class="btn-sig" onclick="ir('p6')" disabled>Continuar</button>
-      </div>
-    </div>
-  </div>
+ <!-- P5: PREGUNTA 2 -->
+ <div class="pantalla" id="p5">
+ <div class="pantalla-inner">
+ <div class="progreso"></div>
+ <label for="q2" class="t-grande">¿Qué es lo que más <em>anhelas</em> en este momento?</label>
+ <p class="t-pequeño">Puede ser algo concreto o algo que todavía no sabes cómo nombrar.</p>
+ <textarea id="q2" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq2')"></textarea>
+ <div class="acciones">
+ <button class="btn-ant" onclick="ir('p4')">Volver</button>
+ <button id="bq2" class="btn-sig" onclick="ir('p6')" disabled>Continuar</button></div></div></div>
 
-  <!-- P6: PREGUNTA 3 -->
-  <div class="pantalla" id="p6">
-    <div class="pantalla-inner">
-      <div class="progreso"></div>
-      <label for="q3" class="t-grande">¿Qué sientes que hoy te está <em>impidiendo avanzar?</em></label>
-      <p class="t-pequeño">Puede ser miedo, una herida, falta de claridad, soledad, recursos o simplemente no saber por dónde empezar.</p>
-      <textarea id="q3" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq3')"></textarea>
-      <div class="acciones">
-        <button class="btn-ant" onclick="ir('p5')">← Volver</button>
-        <button id="bq3" class="btn-sig" onclick="ir('p7')" disabled>Continuar</button>
-      </div>
-    </div>
-  </div>
+ <!-- P6: PREGUNTA 3 -->
+ <div class="pantalla" id="p6">
+ <div class="pantalla-inner">
+ <div class="progreso"></div>
+ <label for="q3" class="t-grande">¿Qué sientes que hoy te está <em>impidiendo avanzar?</em></label>
+ <p class="t-pequeño">Puede ser miedo, una herida, falta de claridad, soledad, recursos o simplemente no saber por dónde empezar.</p>
+ <textarea id="q3" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq3')"></textarea>
+ <div class="acciones">
+ <button class="btn-ant" onclick="ir('p5')">Volver</button>
+ <button id="bq3" class="btn-sig" onclick="ir('p7')" disabled>Continuar</button></div></div></div>
 
-  <!-- P7: PREGUNTA 4 -->
-  <div class="pantalla" id="p7">
-    <div class="pantalla-inner">
-      <div class="progreso"></div>
-      <label for="q4" class="t-grande">¿Qué crees que hoy podría <em>ayudarte a dar un paso?</em></label>
-      <p class="t-pequeño">No hace falta tener una respuesta clara. Lo que venga a tu mente ya es suficiente.</p>
-      <textarea id="q4" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq4')"></textarea>
-      <div class="acciones">
-        <button class="btn-ant" onclick="ir('p6')">← Volver</button>
-        <button id="bq4" class="btn-sig" onclick="ir('p8')" disabled>Continuar</button>
-      </div>
-    </div>
-  </div>
+ <!-- P7: PREGUNTA 4 -->
+ <div class="pantalla" id="p7">
+ <div class="pantalla-inner">
+ <div class="progreso"></div>
+ <label for="q4" class="t-grande">¿Qué crees que hoy podría <em>ayudarte a dar un paso?</em></label>
+ <p class="t-pequeño">No hace falta tener una respuesta clara. Lo que venga a tu mente ya es suficiente.</p>
+ <textarea id="q4" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq4')"></textarea>
+ <div class="acciones">
+ <button class="btn-ant" onclick="ir('p6')">Volver</button>
+ <button id="bq4" class="btn-sig" onclick="ir('p8')" disabled>Continuar</button></div></div></div>
 
-  <!-- P8: IDENTIDAD Y CONTACTO -->
-  <div class="pantalla" id="p8">
-    <div class="pantalla-inner">
-      <div class="progreso"></div>
-      <p class="t-grande">Ya casi terminamos.<br><em>Una última cosa.</em></p>
-      <p class="t-pequeño">Tu historia merece un nombre. No importa si es el tuyo o uno que eliges para este camino.</p>
-      <div class="campo-grupo">
-        <label class="campo-etiq" for="nombre">¿Cómo te gustaría que te llamemos?</label>
-        <input id="nombre" type="text" class="campo-linea" placeholder="Tu nombre o apodo…" oninput="habBtn('bid')">
-      </div>
-      <div class="campo-grupo" style="margin-top:0.25rem;">
-        <label class="campo-etiq" for="correo">
-          Correo electrónico
-          <span style="font-style:italic;letter-spacing:0;text-transform:none;margin-left:0.3rem;">— opcional</span>
-        </label>
-        <input id="correo" type="email" class="campo-linea" placeholder="tu@correo.com">
-        <p class="t-nota" style="margin-top:0.4rem;">
-          Si quieres que podamos escribirte cuando haya novedades sobre tu historia o cuando encontremos personas, recursos u oportunidades que puedan ayudarte, déjanos un correo. No es un requisito.
-        </p>
-      </div>
-      <div class="acciones">
-        <button class="btn-ant" onclick="ir('p7')">← Volver</button>
-        <button id="bid" class="btn-sig" onclick="ir('p9')" disabled>Compartir mi historia</button>
-      </div>
-    </div>
-  </div>
+ <!-- P8: IDENTIDAD Y CONTACTO -->
+ <div class="pantalla" id="p8">
+ <div class="pantalla-inner">
+ <div class="progreso"></div>
+ <p class="t-grande">Ya casi terminamos.<br><em>Una última cosa.</em></p>
+ <p class="t-pequeño">Tu historia merece un nombre. No importa si es el tuyo o uno que eliges para este camino.</p>
+ <div class="campo-grupo">
+ <label class="campo-etiq" for="nombre">¿Cómo te gustaría que te llamemos?</label>
+ <input id="nombre" type="text" class="campo-linea" placeholder="Tu nombre o apodo…" oninput="habBtn('bid')"></div>
+ <div class="campo-grupo" style="margin-top:0.25rem;">
+ <label class="campo-etiq" for="correo">
+ Correo electrónico
+ <span style="font-style:italic;letter-spacing:0;text-transform:none;margin-left:0.3rem;">opcional</span></label>
+ <input id="correo" type="email" class="campo-linea" placeholder="tu@correo.com">
+ <p class="t-nota" style="margin-top:0.4rem;">
+ Si quieres que podamos escribirte cuando haya novedades sobre tu historia o cuando encontremos personas, recursos u oportunidades que puedan ayudarte, déjanos un correo. No es un requisito.</p></div>
+ <div class="acciones">
+ <button class="btn-ant" onclick="ir('p7')">Volver</button>
+ <button id="bid" class="btn-sig" onclick="ir('p9')" disabled>Compartir mi historia</button></div></div></div>
 
-  <!-- P9: AUTOEVALUACIÓN -->
-  <div class="pantalla" id="p9">
-    <div class="pantalla-inner">
-      <p class="t-grande">Después de escribir todo esto…</p>
-      <p class="t-medio">¿Sientes que ahora ves un poco más claro <em>dónde estás?</em></p>
-      <div class="radio-grupo" id="autoeval">
-        <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">Sí, un poco.</span></div>
-        <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">Todavía no.</span></div>
-        <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">No estoy seguro.</span></div>
-      </div>
-      <div class="acciones" style="justify-content:flex-end;">
-        <button id="beval" class="btn-sig" onclick="recopilarRespuestas()" disabled>Terminar</button>
-      </div>
-    </div>
-  </div>
+ <!-- P9: AUTOEVALUACIÓN -->
+ <div class="pantalla" id="p9">
+ <div class="pantalla-inner">
+ <p class="t-grande">Después de escribir todo esto…</p>
+ <p class="t-medio">¿Sientes que ahora ves un poco más claro <em>dónde estás?</em></p>
+ <div class="radio-grupo" id="autoeval">
+ <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">Sí, un poco.</span></div>
+ <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">Todavía no.</span></div>
+ <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">No estoy seguro.</span></div></div>
+ <div class="acciones" style="justify-content:flex-end;">
+ <button id="beval" class="btn-sig" onclick="recopilarRespuestas()" disabled>Terminar</button></div></div></div>
 
-  <!-- P10: CIERRE -->
-  <div class="pantalla" id="p10">
-    <div class="cierre-wrap">
-      <div class="cierre-icono">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2v20M2 12h20M4.5 4.5l15 15M4.5 19.5l15-15"/>
-        </svg>
-      </div>
-      <p class="t-grande" style="text-align:center;">
-        Gracias por <em>confiar</em><br>este momento de tu historia.
-      </p>
-      <div class="cierre-div"></div>
-      <p class="t-medio" style="text-align:center;">
-        Hoy diste un paso.<br>
-        Ya no estás escondiendo lo que estás viviendo.<br>
-        Tu camino ya comenzó porque decidiste compartirlo.
-      </p>
-      <div class="cierre-caja">
-        <p class="cierre-caja-etiq">¿Qué pasa ahora?</p>
-        <p class="t-medio" style="font-size:1rem;">
-          Tu historia será leída con respeto y responsabilidad. Comenzará un proceso de discernimiento para descubrir si existen personas, recursos u oportunidades que puedan ayudarte a dar el siguiente paso.
-        </p>
-        <p class="t-medio" style="font-size:1rem;">
-          No prometemos soluciones inmediatas. Prometemos que lo que compartiste será recibido, escuchado y considerado con seriedad.
-        </p>
-      </div>
-      <div class="destello" style="width:100%;">
-        <p>
-          Mientras leemos tu historia, no dejes de caminar.<br>
-          Sigue buscando. Sigue aprendiendo.<br>
-          Sigue acercándote a Dios.<br>
-          Sigue cultivando aquello que Él ya empezó en ti.
-        </p>
-      </div>
-      <div class="cierre-div"></div>
-      <p class="t-nota" style="text-align:center;max-width:460px;line-height:1.9;">
-        Creemos que cada persona fue creada con un propósito y que ningún paso sincero es pequeño. Esperamos poder caminar contigo en algún tramo del camino. Pero aun antes de eso, deseamos que nunca dejes de buscar, crecer y responder al llamado que Dios puso en tu vida.
-      </p>
-      <p class="t-pequeño" style="text-align:center;">Puedes seguir caminando desde ya.</p>
-      <div class="cierre-links">
-        <a href="mentoria.html" class="cierre-link" style="border-color: rgba(201,168,76,0.55);">
-          <span class="cierre-link-arrow">→</span>
-          <div class="cierre-link-txt"><strong>Una primera conversación conmigo</strong>Si no querés esperar, podemos mirar tu historia juntos, vos y yo. El primer encuentro es un regalo.</div>
-        </a>
-        <a href="historias.html" class="cierre-link">
-          <span class="cierre-link-arrow">→</span>
-          <div class="cierre-link-txt"><strong>Leer historias</strong>Conoce otros procesos y camina con la comunidad.</div>
-        </a>
-        <a href="quiero-ser-parte.html" class="cierre-link">
-          <span class="cierre-link-arrow">→</span>
-          <div class="cierre-link-txt"><strong>Conocer el ecosistema</strong>Descubre cómo funciona El Gran Sueño por dentro.</div>
-        </a>
-        <a href="index.html" class="cierre-link">
-          <span class="cierre-link-arrow">→</span>
-          <div class="cierre-link-txt"><strong>Volver al inicio</strong>Sigue explorando la visión del proyecto.</div>
-        </a>
-      </div>
-    </div>
-  </div>
+ <!-- P10: CIERRE -->
+ <div class="pantalla" id="p10">
+ <div class="cierre-wrap">
+ <div class="cierre-icono">
+ <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M12 2v20M2 12h20M4.5 4.5l15 15M4.5 19.5l15-15"/></svg></div>
+ <p class="t-grande" style="text-align:center;">
+ Gracias por <em>confiar</em><br>este momento de tu historia.</p>
+ <div class="cierre-div"></div>
+ <p class="t-medio" style="text-align:center;">
+ Hoy diste un paso.<br>
+ Ya no estás escondiendo lo que estás viviendo.<br>
+ Tu camino ya comenzó porque decidiste compartirlo.</p>
+ <div class="cierre-caja">
+ <p class="cierre-caja-etiq">¿Qué pasa ahora?</p>
+ <p class="t-medio" style="font-size:1rem;">
+ Tu historia será leída con respeto y responsabilidad. Comenzará un proceso de discernimiento para descubrir si existen personas, recursos u oportunidades que puedan ayudarte a dar el siguiente paso.</p>
+ <p class="t-medio" style="font-size:1rem;">
+ No prometemos soluciones inmediatas. Prometemos que lo que compartiste será recibido, escuchado y considerado con seriedad.</p></div>
+ <div class="destello" style="width:100%;">
+ <p>
+ Mientras leemos tu historia, no dejes de caminar.<br>
+ Sigue buscando. Sigue aprendiendo.<br>
+ Sigue acercándote a Dios.<br>
+ Sigue cultivando aquello que Él ya empezó en ti.</p></div>
+ <div class="cierre-div"></div>
+ <p class="t-nota" style="text-align:center;max-width:460px;line-height:1.9;">
+ Creemos que cada persona fue creada con un propósito y que ningún paso sincero es pequeño. Esperamos poder caminar contigo en algún tramo del camino. Pero aun antes de eso, deseamos que nunca dejes de buscar, crecer y responder al llamado que Dios puso en tu vida.</p>
+ <p class="t-pequeño" style="text-align:center;">Puedes seguir caminando desde ya.</p>
+ <div class="cierre-links">
+ <a href="mentoria.html" class="cierre-link" style="border-color: rgba(201,168,76,0.55);">
+ <span class="cierre-link-arrow"></span>
+ <div class="cierre-link-txt"><strong>Una primera conversación conmigo</strong>Si no querés esperar, podemos mirar tu historia juntos, vos y yo. El primer encuentro es un regalo.</div></a>
+ <a href="historias.html" class="cierre-link">
+ <span class="cierre-link-arrow"></span>
+ <div class="cierre-link-txt"><strong>Leer historias</strong>Conoce otros procesos y camina con la comunidad.</div></a>
+ <a href="quiero-ser-parte.html" class="cierre-link">
+ <span class="cierre-link-arrow"></span>
+ <div class="cierre-link-txt"><strong>Conocer el ecosistema</strong>Descubre cómo funciona El Gran Sueño por dentro.</div></a>
+ <a href="index.html" class="cierre-link">
+ <span class="cierre-link-arrow"></span>
+ <div class="cierre-link-txt"><strong>Volver al inicio</strong>Sigue explorando la visión del proyecto.</div></a></div></div></div></div>
 
-</div>
-
-<script src="assets/egs.js"></script>
-</body>
-</html>
+<script src="assets/egs.js"></script></body></html>

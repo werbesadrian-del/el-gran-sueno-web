@@ -8,9 +8,9 @@
 <meta name="theme-color" content="#141110">
 <meta name="robots" content="index,follow">
 
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,120 +18,108 @@
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
-  .art-cargando, .art-noexiste { text-align: center; padding: 22vh 2rem; color: var(--ink-mid); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; }
-  .art-noexiste a { color: var(--bordo); }
-</style>
-</head>
+ .art-cargando, .art-noexiste { text-align: center; padding: 22vh 2rem; color: var(--ink-mid); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; }
+ .art-noexiste a { color: var(--bordo); }</style></head>
 <body class="modo-limpio">
 
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="blog.html" class="nav-cta">← Escritos</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="blog.html" class="nav-cta">Escritos</a></nav>
 
 <div id="egs-nav-mount"></div>
 
 <main id="art-main">
-  <p class="art-cargando">Cargando…</p>
-</main>
+ <p class="art-cargando">Cargando…</p></main>
 
 <footer class="egs-footer">
-  <div class="footer-divider" aria-hidden="true"></div>
-  <p class="footer-manifest">Personas de distintos lugares, historias y llamados,<br>descubriendo juntas el Gran Sueño de Dios.</p>
-  <p class="footer-line">Nadie fue creado para caminar solo.</p>
-  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
-  <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
-    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-    <button type="submit">Quiero recibir novedades</button>
-  </form>
-  <div class="footer-social" aria-label="Redes sociales">
-    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-  </div>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p>
-</footer>
+ <div class="footer-divider" aria-hidden="true"></div>
+ <p class="footer-manifest">Personas de distintos lugares, historias y llamados,<br>descubriendo juntas el Gran Sueño de Dios.</p>
+ <p class="footer-line">Nadie fue creado para caminar solo.</p>
+ <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+ <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
+ <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+ <button type="submit">Quiero recibir novedades</button></form>
+ <div class="footer-social" aria-label="Redes sociales">
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+ <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p></footer>
 
 <script>
 // ARTÍCULO: renderiza un blog desde content/blog.json según ?slug=...
 (function () {
-  var main = document.getElementById('art-main');
+ var main = document.getElementById('art-main');
 
-  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-  function inline(s) {
-    return esc(s)
-      .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img class="blog-img" src="$2" alt="$1" loading="lazy">')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-      .replace(/\n/g, '<br>');
-  }
-  // Markdown mínimo: párrafos, ## / ### títulos, > citas
-  function md(texto) {
-    var bloques = String(texto || '').split(/\n\s*\n/);
-    return bloques.map(function (b) {
-      b = b.trim(); if (!b) return '';
-      if (b.indexOf('### ') === 0) return '<h3>' + inline(b.slice(4)) + '</h3>';
-      if (b.indexOf('## ') === 0)  return '<h2>' + inline(b.slice(3)) + '</h2>';
-      if (b.indexOf('> ') === 0)   return '<blockquote>' + inline(b.replace(/^> ?/gm, '')) + '</blockquote>';
-      return '<p>' + inline(b) + '</p>';
-    }).join('\n');
-  }
-  function fmtFecha(iso) {
-    if (!iso) return '';
-    var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-    var p = iso.split('-'); return meses[parseInt(p[1],10)-1] + ' ' + p[0];
-  }
+ function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+ function inline(s) {
+ return esc(s)
+ .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, '<img class="blog-img" src="$2" alt="$1" loading="lazy">')
+ .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+ .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+ .replace(/\n/g, '<br>');
+ }
+ // Markdown mínimo: párrafos, ## / ### títulos, > citas
+ function md(texto) {
+ var bloques = String(texto || '').split(/\n\s*\n/);
+ return bloques.map(function (b) {
+ b = b.trim(); if (!b) return '';
+ if (b.indexOf('### ') === 0) return '<h3>' + inline(b.slice(4)) + '</h3>';
+ if (b.indexOf('## ') === 0) return '<h2>' + inline(b.slice(3)) + '</h2>';
+ if (b.indexOf('> ') === 0) return '<blockquote>' + inline(b.replace(/^> ?/gm, '')) + '</blockquote>';
+ return '<p>' + inline(b) + '</p>';
+ }).join('\n');
+ }
+ function fmtFecha(iso) {
+ if (!iso) return '';
+ var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+ var p = iso.split('-'); return meses[parseInt(p[1],10)-1] + ' ' + p[0];
+ }
 
-  var slug = new URLSearchParams(location.search).get('slug');
-  if (!slug) { noExiste(); return; }
+ var slug = new URLSearchParams(location.search).get('slug');
+ if (!slug) { noExiste(); return; }
 
-  fetch('content/blog.json', { cache: 'no-store' })
-    .then(function (r) { return r.ok ? r.json() : { posts: [] }; })
-    .then(function (data) {
-      var post = (data.posts || []).filter(function (p) { return p.slug === slug; })[0];
-      if (!post) { noExiste(); return; }
-      render(post);
-    })
-    .catch(noExiste);
+ fetch('content/blog.json', { cache: 'no-store' })
+ .then(function (r) { return r.ok ? r.json() : { posts: [] }; })
+ .then(function (data) {
+ var post = (data.posts || []).filter(function (p) { return p.slug === slug; })[0];
+ if (!post) { noExiste(); return; }
+ render(post);
+ })
+ .catch(noExiste);
 
-  function noExiste() {
-    main.innerHTML = '<p class="art-noexiste">No encontramos este escrito.<br><a href="blog.html">Volver a los escritos →</a></p>';
-  }
+ function noExiste() {
+ main.innerHTML = '<p class="art-noexiste">No encontramos este escrito.<br><a href="blog.html">Volver a los escritos</a></p>';
+ }
 
-  var PILAR = { identidad:'Identidad', proposito:'Propósito', reino:'Reino', caracter:'Carácter', comunidad:'Comunidad', dones:'Dones', 'gran-comision':'Gran Comisión', santificacion:'Santificación', servicio:'Servicio' };
+ var PILAR = { identidad:'Identidad', proposito:'Propósito', reino:'Reino', caracter:'Carácter', comunidad:'Comunidad', dones:'Dones', 'gran-comision':'Gran Comisión', santificacion:'Santificación', servicio:'Servicio' };
 
-  function render(post) {
-    document.title = post.titulo + ' · El Gran Sueño';
-    if (post.resumen) document.getElementById('meta-desc').setAttribute('content', post.resumen);
-    var pilarLabel = post.pilarLabel || PILAR[post.pilar] || post.pilar || '';
-    var meta = [];
-    if (post.lectura) meta.push('<span>' + esc(post.lectura) + '</span>');
-    if (post.fecha)   meta.push('<span>·</span><span>' + fmtFecha(post.fecha) + '</span>');
-    main.innerHTML =
-      '<header class="page-header art-hero">' +
-        '<div class="art-meta">' +
-          (pilarLabel ? '<span class="art-pilar">' + esc(pilarLabel) + '</span>' : '') +
-          '<div class="art-meta-datos">' + meta.join('') + '</div>' +
-        '</div>' +
-        '<h1>' + esc(post.titulo) + '</h1>' +
-        (post.pregunta ? '<p class="art-pregunta">' + esc(post.pregunta) + '</p>' : '') +
-      '</header>' +
-      (post.imagen ? '<figure class="art-portada"><img src="' + esc(post.imagen) + '" alt="" loading="lazy"></figure>' : '') +
-      '<article class="long-prose">' +
-        (post.resumen ? '<p class="lead">' + esc(post.resumen) + '</p>' : '') +
-        md(post.cuerpo) +
-      '</article>' +
-      '<section class="art-cta-pregunta"><div class="art-cta-pregunta-inner">' +
-        '<span class="art-cta-eyebrow">Un paso más</span>' +
-        '<p>Si algo de esto resonó, tal vez sea momento de una conversación a solas. <a href="mentoria.html" style="color:var(--ember,#C57A3D);">Reservá un espacio →</a></p>' +
-      '</div></section>';
-  }
-})();
-</script>
-<script src="assets/egs.js"></script>
-</body>
-</html>
+ function render(post) {
+ document.title = post.titulo + ' · El Gran Sueño';
+ if (post.resumen) document.getElementById('meta-desc').setAttribute('content', post.resumen);
+ var pilarLabel = post.pilarLabel || PILAR[post.pilar] || post.pilar || '';
+ var meta = [];
+ if (post.lectura) meta.push('<span>' + esc(post.lectura) + '</span>');
+ if (post.fecha) meta.push('<span>·</span><span>' + fmtFecha(post.fecha) + '</span>');
+ main.innerHTML =
+ '<header class="page-header art-hero">' +
+ '<div class="art-meta">' +
+ (pilarLabel ? '<span class="art-pilar">' + esc(pilarLabel) + '</span>' : '') +
+ '<div class="art-meta-datos">' + meta.join('') + '</div>' +
+ '</div>' +
+ '<h1>' + esc(post.titulo) + '</h1>' +
+ (post.pregunta ? '<p class="art-pregunta">' + esc(post.pregunta) + '</p>' : '') +
+ '</header>' +
+ (post.imagen ? '<figure class="art-portada"><img src="' + esc(post.imagen) + '" alt="" loading="lazy"></figure>' : '') +
+ '<article class="long-prose">' +
+ (post.resumen ? '<p class="lead">' + esc(post.resumen) + '</p>' : '') +
+ md(post.cuerpo) +
+ '</article>' +
+ '<section class="art-cta-pregunta"><div class="art-cta-pregunta-inner">' +
+ '<span class="art-cta-eyebrow">Un paso más</span>' +
+ '<p>Si algo de esto resonó, tal vez sea momento de una conversación a solas. <a href="mentoria.html" style="color:var(--ember,#C57A3D);">Reservá un espacio</a></p>' +
+ '</div></section>';
+ }
+})();</script>
+<script src="assets/egs.js"></script></body></html>

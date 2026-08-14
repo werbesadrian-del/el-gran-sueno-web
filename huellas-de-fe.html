@@ -8,165 +8,144 @@
 <meta property="og:title" content="Huellas de Fe · El Gran Sueño">
 <meta property="og:locale" content="es_ES">
 <meta name="theme-color" content="#6B1A2B">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/estilos-egs.css">
 <style>
-  .huellas-intro { padding: 4rem 2rem 2rem; text-align: center; background: white; }
-  .huellas-intro p { font-family:'Cormorant Garamond',serif; font-size: 1.15rem; color: var(--ink-mid); font-style: italic; max-width: 620px; margin: 0 auto; line-height: 1.8; }
-  .huellas-listado { padding: 4rem 2rem 7rem; background: var(--cream); }
-  .huellas-listado-inner { max-width: 1080px; margin: 0 auto; }
-  .huellas-orden { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(107,26,43,0.08); }
-  .huellas-orden-titulo { font-family:'Playfair Display',serif; font-style:italic; font-size:1.15rem; color:var(--ink); font-weight:400; }
-  .huellas-orden-titulo em { color: var(--bordo); }
-  .huellas-orden-switch { display: inline-flex; background: white; padding: 0.25rem; border: 1px solid var(--cream-dark); border-radius: 30px; }
-  .huellas-orden-btn { padding: 0.4rem 1rem; background: transparent; border: none; font-family:'Cormorant Garamond',serif; font-size:0.9rem; color: var(--ink-mid); cursor: pointer; border-radius: 30px; transition: all 0.25s; letter-spacing: 0.02em; }
-  .huellas-orden-btn.active { background: var(--bordo); color: white; }
-  .huella-card { position: relative; }
-  .huella-card.destacado::after { content: 'Destacado'; position: absolute; top: 1rem; right: 1rem; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: var(--gold-soft); padding: 0.25rem 0.6rem; border-radius: 20px; }
-  .huella-vistas { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--ink-light); margin-top: 1rem; }
-  .huella-vistas svg { width: 12px; height: 12px; opacity: 0.65; }
-</style>
-  <link rel="canonical" href="https://elgransueno.org/huellas-de-fe.html">
-  <meta property="og:site_name" content="El Gran Sueño">
-  <meta property="og:url" content="https://elgransueno.org/huellas-de-fe.html">
-  <meta property="og:description" content="Vidas que caminaron el Gran Sueño mucho antes que nosotros. Y que todavía nos hablan.">
-</head>
+ .huellas-intro { padding: 4rem 2rem 2rem; text-align: center; background: white; }
+ .huellas-intro p { font-family:'Cormorant Garamond',serif; font-size: 1.15rem; color: var(--ink-mid); font-style: italic; max-width: 620px; margin: 0 auto; line-height: 1.8; }
+ .huellas-listado { padding: 4rem 2rem 7rem; background: var(--cream); }
+ .huellas-listado-inner { max-width: 1080px; margin: 0 auto; }
+ .huellas-orden { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(107,26,43,0.08); }
+ .huellas-orden-titulo { font-family:'Playfair Display',serif; font-style:italic; font-size:1.15rem; color:var(--ink); font-weight:400; }
+ .huellas-orden-titulo em { color: var(--bordo); }
+ .huellas-orden-switch { display: inline-flex; background: white; padding: 0.25rem; border: 1px solid var(--cream-dark); border-radius: 30px; }
+ .huellas-orden-btn { padding: 0.4rem 1rem; background: transparent; border: none; font-family:'Cormorant Garamond',serif; font-size:0.9rem; color: var(--ink-mid); cursor: pointer; border-radius: 30px; transition: all 0.25s; letter-spacing: 0.02em; }
+ .huellas-orden-btn.active { background: var(--bordo); color: white; }
+ .huella-card { position: relative; }
+ .huella-card.destacado::after { content: 'Destacado'; position: absolute; top: 1rem; right: 1rem; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); background: var(--gold-soft); padding: 0.25rem 0.6rem; border-radius: 20px; }
+ .huella-vistas { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--ink-light); margin-top: 1rem; }
+ .huella-vistas svg { width: 12px; height: 12px; opacity: 0.65; }</style>
+ <link rel="canonical" href="https://elgransueno.org/huellas-de-fe.html">
+ <meta property="og:site_name" content="El Gran Sueño">
+ <meta property="og:url" content="https://elgransueno.org/huellas-de-fe.html">
+ <meta property="og:description" content="Vidas que caminaron el Gran Sueño mucho antes que nosotros. Y que todavía nos hablan."></head>
 <body class="modo-limpio">
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="blog.html" class="nav-cta">Escritos</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="blog.html" class="nav-cta">Escritos</a></nav>
 
 <div id="egs-nav-mount"></div>
 
 <main>
 
 <section class="dir-hero on-ink">
-  <div class="dir-hero-line" aria-hidden="true"></div>
-  <span class="dir-eyebrow">Huellas de Fe</span>
-  <h1 class="dir-title">Vidas que caminaron el Gran Sueño <em>mucho antes</em> que nosotros.</h1>
-  <p class="dir-sub">Hombres y mujeres cuya fidelidad todavía nos habla. No héroes distantes — hermanos mayores.</p>
-  <div class="dir-hero-line" aria-hidden="true"></div>
-</section>
+ <div class="dir-hero-line" aria-hidden="true"></div>
+ <span class="dir-eyebrow">Huellas de Fe</span>
+ <h1 class="dir-title">Vidas que caminaron el Gran Sueño <em>mucho antes</em> que nosotros.</h1>
+ <p class="dir-sub">Hombres y mujeres cuya fidelidad todavía nos habla. No héroes distantes, hermanos mayores.</p>
+ <div class="dir-hero-line" aria-hidden="true"></div></section>
 
 <section class="huellas-intro">
-  <p>La fe no empezó con nosotros. Miles de personas — muchas de nombre olvidado, otras conocidas — respondieron al mismo llamado. Sus vidas siguen enseñándonos algo que ningún libro puede enseñar por sí solo: que <em>es posible.</em></p>
-</section>
+ <p>La fe no empezó con nosotros. Miles de personas, muchas de nombre olvidado, otras conocidas, respondieron al mismo llamado. Sus vidas siguen enseñándonos algo que ningún libro puede enseñar por sí solo: que <em>es posible.</em></p></section>
 
 <section class="huellas-listado">
-  <div class="huellas-listado-inner">
-    <div class="huellas-orden">
-      <p class="huellas-orden-titulo" id="huellas-orden-titulo">Vidas <em>por fecha de publicación</em></p>
-      <div class="huellas-orden-switch" role="tablist" aria-label="Ordenar por">
-        <button class="huellas-orden-btn active" data-orden="fecha" onclick="huellasOrdenar('fecha', this)" role="tab">Últimas</button>
-        <button class="huellas-orden-btn" data-orden="vistas" onclick="huellasOrdenar('vistas', this)" role="tab">Más leídas</button>
-      </div>
-    </div>
-    <div class="huellas-grid" id="huellas-grid"></div>
-  </div>
-</section>
+ <div class="huellas-listado-inner">
+ <div class="huellas-orden">
+ <p class="huellas-orden-titulo" id="huellas-orden-titulo">Vidas <em>por fecha de publicación</em></p>
+ <div class="huellas-orden-switch" role="tablist" aria-label="Ordenar por">
+ <button class="huellas-orden-btn active" data-orden="fecha" onclick="huellasOrdenar('fecha', this)" role="tab">Últimas</button>
+ <button class="huellas-orden-btn" data-orden="vistas" onclick="huellasOrdenar('vistas', this)" role="tab">Más leídas</button></div></div>
+ <div class="huellas-grid" id="huellas-grid"></div></div></section>
 
 <section class="dir-invite">
-  <span class="dir-invite-eyebrow">Una invitación</span>
-  <h2 class="dir-invite-title">¿Conocés una vida que <em>debería estar acá?</em></h2>
-  <p class="dir-invite-sub">Estas Huellas se van a ir sumando de a poco. Si alguien caminó fielmente y su historia puede alentar a otros, contanos.</p>
-  <a href="mailto:adrian@elgransueno.org?subject=Proponer%20una%20Huella%20de%20Fe" class="dir-invite-cta">Proponer una historia</a>
-</section>
-
-</main>
+ <span class="dir-invite-eyebrow">Una invitación</span>
+ <h2 class="dir-invite-title">¿Conocés una vida que <em>debería estar acá?</em></h2>
+ <p class="dir-invite-sub">Estas Huellas se van a ir sumando de a poco. Si alguien caminó fielmente y su historia puede alentar a otros, contanos.</p>
+ <a href="mailto:adrian@elgransueno.org?subject=Proponer%20una%20Huella%20de%20Fe" class="dir-invite-cta">Proponer una historia</a></section></main>
 
 <script src="assets/entradas.js"></script>
 <script src="assets/blog-cms.js"></script>
 <script src="assets/vistas.js"></script>
 <script>
-  const huellasEstado = { orden: 'fecha', vistas: {} };
+ const huellasEstado = { orden: 'fecha', vistas: {} };
 
-  function huellasRender() {
-    const grid = document.getElementById('huellas-grid');
-    let items = (window.EGS_HUELLAS || []).slice();
+ function huellasRender() {
+ const grid = document.getElementById('huellas-grid');
+ let items = (window.EGS_HUELLAS || []).slice();
 
-    if (huellasEstado.orden === 'fecha') {
-      items.sort((a, b) => {
-        if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
-        return b.fecha.localeCompare(a.fecha);
-      });
-    } else {
-      items.sort((a, b) => {
-        const va = huellasEstado.vistas[a.slug] || 0;
-        const vb = huellasEstado.vistas[b.slug] || 0;
-        if (vb !== va) return vb - va;
-        return b.fecha.localeCompare(a.fecha);
-      });
-    }
+ if (huellasEstado.orden === 'fecha') {
+ items.sort((a, b) => {
+ if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
+ return b.fecha.localeCompare(a.fecha);
+ });
+ } else {
+ items.sort((a, b) => {
+ const va = huellasEstado.vistas[a.slug] || 0;
+ const vb = huellasEstado.vistas[b.slug] || 0;
+ if (vb !== va) return vb - va;
+ return b.fecha.localeCompare(a.fecha);
+ });
+ }
 
-    grid.innerHTML = items.map(h => {
-      const v = huellasEstado.vistas[h.slug];
-      const vistasHtml = (v && v > 0)
-        ? `<span class="huella-vistas" aria-label="${v} lecturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${v} lecturas</span>`
-        : '';
-      return `
-        <a href="${h.link || (h.slug + '.html')}" class="huella-card${h.destacado ? ' destacado' : ''}">
-          <span class="huella-meta">${h.meta}</span>
-          <h2 class="huella-nombre">${h.nombre}</h2>
-          <p class="huella-frase">${h.frase}</p>
-          <span class="huella-goto">Leer su historia →</span>
-          ${vistasHtml}
-        </a>
-      `;
-    }).join('');
-  }
+ grid.innerHTML = items.map(h => {
+ const v = huellasEstado.vistas[h.slug];
+ const vistasHtml = (v && v > 0)
+ ? `<span class="huella-vistas" aria-label="${v} lecturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${v} lecturas</span>`
+ : '';
+ return `
+ <a href="${h.link || (h.slug + '.html')}" class="huella-card${h.destacado ? ' destacado' : ''}">
+ <span class="huella-meta">${h.meta}</span>
+ <h2 class="huella-nombre">${h.nombre}</h2>
+ <p class="huella-frase">${h.frase}</p>
+ <span class="huella-goto">Leer su historia</span>
+ ${vistasHtml}</a>
+ `;
+ }).join('');
+ }
 
-  async function huellasOrdenar(orden, btn) {
-    huellasEstado.orden = orden;
-    document.querySelectorAll('.huellas-orden-btn').forEach(el => el.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('huellas-orden-titulo').innerHTML = orden === 'fecha'
-      ? 'Vidas <em>por fecha de publicación</em>'
-      : 'Vidas <em>más leídas</em>';
-    if (orden === 'vistas' && !Object.keys(huellasEstado.vistas).length) {
-      const slugs = (window.EGS_HUELLAS || []).map(h => h.slug);
-      huellasEstado.vistas = await egsGetVistas(slugs);
-    }
-    huellasRender();
-  }
+ async function huellasOrdenar(orden, btn) {
+ huellasEstado.orden = orden;
+ document.querySelectorAll('.huellas-orden-btn').forEach(el => el.classList.remove('active'));
+ btn.classList.add('active');
+ document.getElementById('huellas-orden-titulo').innerHTML = orden === 'fecha'
+ ? 'Vidas <em>por fecha de publicación</em>'
+ : 'Vidas <em>más leídas</em>';
+ if (orden === 'vistas' && !Object.keys(huellasEstado.vistas).length) {
+ const slugs = (window.EGS_HUELLAS || []).map(h => h.slug);
+ huellasEstado.vistas = await egsGetVistas(slugs);
+ }
+ huellasRender();
+ }
 
-  huellasRender();
-  (async () => {
-    const slugs = (window.EGS_HUELLAS || []).map(h => h.slug);
-    huellasEstado.vistas = await egsGetVistas(slugs);
-    huellasRender();
-  })();
-</script>
+ huellasRender();
+ (async () => {
+ const slugs = (window.EGS_HUELLAS || []).map(h => h.slug);
+ huellasEstado.vistas = await egsGetVistas(slugs);
+ huellasRender();
+ })();</script>
 
 <footer class="egs-footer">
-  <div class="footer-divider" aria-hidden="true"></div>
-  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
-  <p class="footer-line">Nadie fue creado para caminar solo.</p>
-  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
-  <form class="footer-form" id="footerForm" onsubmit="return false;">
-    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-    <button type="submit">Quiero recibir novedades</button>
-  </form>
-  <div class="footer-social" aria-label="Redes sociales">
-    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
-    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
-    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-  </div>
-  <p class="footer-social-nota">Más redes · próximamente</p>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
-</footer>
-<script src="assets/egs.js"></script>
-</body>
-</html>
+ <div class="footer-divider" aria-hidden="true"></div>
+ <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+ <p class="footer-line">Nadie fue creado para caminar solo.</p>
+ <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+ <form class="footer-form" id="footerForm" onsubmit="return false;">
+ <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+ <button type="submit">Quiero recibir novedades</button></form>
+ <div class="footer-social" aria-label="Redes sociales">
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+ <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+ <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+ <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+ <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+ <p class="footer-social-nota">Más redes · próximamente</p>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p></footer>
+<script src="assets/egs.js"></script></body></html>

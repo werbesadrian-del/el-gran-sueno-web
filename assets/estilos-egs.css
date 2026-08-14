@@ -1694,6 +1694,35 @@ nav.egs-nav .nav-left {
   transform: translateY(-50%) scaleX(1);
 }
 
+/* --- Ítem destacado del menú: Mentoría personal (que alguien caiga) --- */
+.nav-featured > a { display: block; }
+.nav-featured .nav-featured-main {
+  display: inline-flex; align-items: center;
+  color: var(--gold-light); font-weight: 600;
+}
+.nav-featured-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #1FA153; flex-shrink: 0;   /* verde "en línea" (dark emerald) */
+  margin-left: 0.6rem;
+  box-shadow: 0 0 0 0 rgba(31,161,83,0.6);
+  animation: egs-pulse-dot 2.6s ease-out infinite;
+}
+.nav-featured-tag {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); opacity: 0.88;
+  margin-top: 0.4rem;
+}
+@keyframes egs-pulse-dot {
+  0%   { box-shadow: 0 0 0 0 rgba(31,161,83,0.6); }
+  70%  { box-shadow: 0 0 0 9px rgba(31,161,83,0); }
+  100% { box-shadow: 0 0 0 0 rgba(31,161,83,0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-featured-dot { animation: none; }
+}
+
 /* Pie del overlay */
 .nav-overlay-footer {
   padding-top: 2rem;
@@ -2884,8 +2913,10 @@ html.lenis, html.lenis body { height: auto; }
 .modo-limpio .st-climax {
   height: auto; min-height: 70vh;
   background: linear-gradient(180deg, var(--noche) 0%, var(--carbon) 100%);
-  overflow: hidden; display: flex; align-items: center;
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+  text-align: center;
 }
+.modo-limpio .st-climax .st-in { width: 100%; align-items: center; }
 .modo-limpio .st-climax::before {
   content: ""; position: absolute; inset: -30%; z-index: 0; pointer-events: none;
   background:
@@ -2904,6 +2935,11 @@ html.lenis, html.lenis body { height: auto; }
   font-size: clamp(2.8rem, 8vw, 5.2rem);
 }
 .modo-limpio .st-climax .name-reveal span { color: var(--cobre); }
+
+/* Separadores cobre entre secciones (cómo nació, manifiesto, escritos, huellas…):
+   se quitaba la línea porque leía como "IA". Queda invisible pero conserva el aire. */
+.modo-limpio .divider,
+.modo-limpio .long-prose .divider { background: transparent; opacity: 0; }
 
 /* --- Tarjetas: claras, bordes casi invisibles, hover cobre --- */
 .modo-limpio .beat-invite { background: var(--cream-dark); }
@@ -3021,7 +3057,7 @@ html.lenis, html.lenis body { height: auto; }
    del home (misma línea en todo el sitio).
    ============================================================ */
 .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-  .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto) {
+  .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto) {
   background: linear-gradient(180deg, var(--noche) 0%, var(--carbon) 100%) !important;
   color: var(--luz) !important;
   position: relative; overflow: hidden;
@@ -3032,7 +3068,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 /* atmósfera (luz que deriva) en cada cabecera */
 .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-  .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto)::before {
+  .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto)::before {
   content: ""; position: absolute; inset: -30%; z-index: 0; pointer-events: none;
   background:
     radial-gradient(45% 42% at 30% 72%, rgba(197,122,61,0.18) 0%, transparent 60%),
@@ -3041,33 +3077,33 @@ html.lenis, html.lenis body { height: auto; }
   animation: egs-drift 36s ease-in-out infinite alternate;
 }
 .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-  .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto) > * {
+  .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto) > * {
   position: relative; z-index: 2;
 }
 /* Tipografía de las cabeceras: título en luz, eyebrow en ember, sub tenue */
 .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-  .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto)
+  .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto)
   :is(h1, h2, [class*="title"], [class*="titulo"]) {
   color: var(--luz) !important; text-shadow: 0 2px 40px rgba(0,0,0,0.4);
   font-weight: 400;
 }
 .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-  .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto)
+  .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto)
   :is([class*="eyebrow"], [class*="label"], [class*="tag"], [class*="kicker"]) {
   color: var(--ember) !important;
 }
 .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-  .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto)
+  .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto)
   :is([class*="sub"], [class*="note"], [class*="desc"]) {
   color: rgba(243, 239, 233, 0.72) !important;
 }
 @media (prefers-reduced-motion: reduce) {
   .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-    .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto)::before { animation: none; }
+    .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto)::before { animation: none; }
 }
 @media (max-width: 640px) {
   .modo-limpio :is(.dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero,
-    .ei-hero, .acomp-hero, .historia-header, .page-header, .page-header--foto) {
+    .ei-hero, .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto) {
     min-height: 42vh; padding: 16vh 1.6rem 8vh;
   }
 }

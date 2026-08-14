@@ -45,6 +45,30 @@ window.egsGuardar = function (form, data) {
   } catch (e) { /* nunca romper la interfaz por esto */ }
 };
 
+/* ----------------------------------------------------------------------------
+   AVISO POR EMAIL (Netlify Forms) — SOLO para los formularios donde Adrián
+   quiere enterarse (mentoría y colaborar). Manda una copia del envío a Netlify,
+   que dispara el email a adrian@elgransueno.org.
+   Requiere: (1) un <form hidden data-netlify="true" name="..."> en la página
+   (para que Netlify lo detecte en el deploy) y (2) la notificación por email
+   activada en el panel de Netlify (Forms → notifications). En local no hace
+   nada (no hay Netlify): solo funciona en el sitio publicado.
+   ---------------------------------------------------------------------------- */
+window.egsAvisarNetlify = function (formName, campos) {
+  try {
+    var datos = { 'form-name': formName, 'bot-field': '' };
+    if (campos) { for (var k in campos) { if (campos.hasOwnProperty(k)) datos[k] = campos[k]; } }
+    var body = Object.keys(datos).map(function (k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(datos[k] == null ? '' : datos[k]);
+    }).join('&');
+    return fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    }).catch(function () { /* silencioso: el guardado en Supabase ya ocurrió */ });
+  } catch (e) { /* nunca romper la interfaz por esto */ }
+};
+
 /* ============================================================================
    MENÚ GLOBAL DEL SITIO — el ÚNICO lugar donde se edita el menú desplegable.
    ----------------------------------------------------------------------------
@@ -63,7 +87,7 @@ window.egsGuardar = function (form, data) {
   var MENU = `
 <div class="nav-overlay" id="navOverlay" aria-hidden="true" role="dialog" aria-label="Menú principal">
   <div class="nav-overlay-header">
-    <a href="index.html" class="nav-overlay-brand">El Gran <span>Sueño</span></a>
+    <a href="/index.html" class="nav-overlay-brand">El Gran <span>Sueño</span></a>
     <button id="navOverlayClose" class="nav-overlay-close" aria-label="Cerrar menú">
       <span>Cerrar</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
@@ -74,34 +98,34 @@ window.egsGuardar = function (form, data) {
       <div class="nav-col">
         <span class="nav-col-eyebrow">Empezar</span>
         <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="nosotros.html">Cómo nació</a></li>
-          <li><a href="manifiesto.html">Manifiesto</a></li>
+          <li><a href="/index.html">Inicio</a></li>
+          <li><a href="/nosotros.html">Cómo nació</a></li>
+          <li><a href="/manifiesto.html">Manifiesto</a></li>
         </ul>
       </div>
       <div class="nav-col">
         <span class="nav-col-eyebrow">Encontrar tu lugar</span>
         <ul>
-          <li><a href="quiero-ser-parte.html">Encontrar mi lugar</a></li>
-          <li><a href="compartir-historia.html">Compartir mi historia</a></li>
-          <li><a href="mentoria.html">Mentoría personal</a></li>
-          <li><a href="quiero-acompanar.html">Ser acompañante</a></li>
-          <li><a href="colaborar.html">Sostener el sueño</a></li>
+          <li><a href="/quiero-ser-parte.html">Encontrar mi lugar</a></li>
+          <li><a href="/compartir-historia.html">Compartir mi historia</a></li>
+          <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Mentoría personal<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Con Adrián · la primera sesión es un regalo</span></a></li>
+          <li><a href="/quiero-acompanar.html">Ser acompañante</a></li>
+          <li><a href="/colaborar.html">Sostener el sueño</a></li>
         </ul>
       </div>
       <div class="nav-col">
         <span class="nav-col-eyebrow">Comunidad</span>
         <ul>
-          <li><a href="historias.html">Historias</a></li>
-          <li><a href="escuelas.html">Escuelas</a></li>
-          <li><a href="registrar-institucion.html">Registrar institución</a></li>
+          <li><a href="/historias.html">Historias</a></li>
+          <li><a href="/escuelas.html">Escuelas</a></li>
+          <li><a href="/registrar-institucion.html">Registrar institución</a></li>
         </ul>
       </div>
       <div class="nav-col">
         <span class="nav-col-eyebrow">Formación</span>
         <ul>
-          <li><a href="blog.html">Escritos</a></li>
-          <li><a href="huellas-de-fe.html">Huellas de Fe</a></li>
+          <li><a href="/blog.html">Escritos</a></li>
+          <li><a href="/huellas-de-fe.html">Huellas de Fe</a></li>
         </ul>
       </div>
     </nav>

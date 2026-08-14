@@ -8,288 +8,237 @@
 <meta property="og:title" content="Escuela de Discipulado Caminar Hondo · El Gran Sueño">
 <meta property="og:locale" content="es_ES">
 <meta name="theme-color" content="#6B1A2B">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/estilos-egs.css">
 <style>
-  /* Aviso de página ilustrativa */
-  .ilustrativo-band { background: var(--gold-soft); border-bottom: 1px solid rgba(201,168,76,0.35); padding: 0.85rem 1.5rem; text-align:center; }
-  .ilustrativo-band p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--bordo-dark); font-size: 0.95rem; letter-spacing: 0.02em; }
-  .ilustrativo-band strong { font-family: 'Playfair Display', serif; font-style: normal; font-weight: 600; color: var(--bordo); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.72rem; margin-right: 0.5rem; }
+ /* Aviso de página ilustrativa */
+ .ilustrativo-band { background: var(--gold-soft); border-bottom: 1px solid rgba(201,168,76,0.35); padding: 0.85rem 1.5rem; text-align:center; }
+ .ilustrativo-band p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--bordo-dark); font-size: 0.95rem; letter-spacing: 0.02em; }
+ .ilustrativo-band strong { font-family: 'Playfair Display', serif; font-style: normal; font-weight: 600; color: var(--bordo); letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.72rem; margin-right: 0.5rem; }
 
-  /* Cabecera con imagen */
-  .ei-hero { position: relative; background: var(--ink); color: white; overflow: hidden; }
-  .ei-hero-media { position: absolute; inset: 0; }
-  .ei-hero-media img { width: 100%; height: 100%; object-fit: cover; opacity: 0.42; }
-  .ei-hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,21,16,0.4) 0%, rgba(26,21,16,0.85) 100%); }
-  .ei-hero-inner { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 8rem 2rem 6rem; }
-  .ei-hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.25rem; }
-  .ei-hero-titulo { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
-  .ei-hero-titulo em { font-style: italic; color: var(--gold-light); }
-  .ei-hero-meta { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: rgba(255,255,255,0.75); }
-  .ei-hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
-  .ei-hero-tag { padding: 0.35rem 0.85rem; border: 1px solid rgba(201,168,76,0.4); border-radius: 30px; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; color: rgba(255,255,255,0.85); }
-  .ei-hero-tag.dest { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-light); }
+ /* Cabecera con imagen */
+ .ei-hero { position: relative; background: var(--ink); color: white; overflow: hidden; }
+ .ei-hero-media { position: absolute; inset: 0; }
+ .ei-hero-media img { width: 100%; height: 100%; object-fit: cover; opacity: 0.42; }
+ .ei-hero-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,21,16,0.4) 0%, rgba(26,21,16,0.85) 100%); }
+ .ei-hero-inner { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 8rem 2rem 6rem; }
+ .ei-hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 1.25rem; }
+ .ei-hero-titulo { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 1rem; }
+ .ei-hero-titulo em { font-style: italic; color: var(--gold-light); }
+ .ei-hero-meta { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: rgba(255,255,255,0.75); }
+ .ei-hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+ .ei-hero-tag { padding: 0.35rem 0.85rem; border: 1px solid rgba(201,168,76,0.4); border-radius: 30px; font-family: 'Cormorant Garamond', serif; font-size: 0.88rem; color: rgba(255,255,255,0.85); }
+ .ei-hero-tag.dest { background: var(--gold-soft); border-color: var(--gold); color: var(--gold-light); }
 
-  /* Datos rápidos */
-  .ei-datos { padding: 3.5rem 2rem; background: var(--cream-dark); }
-  .ei-datos-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-  @media (max-width: 780px) { .ei-datos-inner { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 460px) { .ei-datos-inner { grid-template-columns: 1fr; } }
-  .ei-dato { background: white; padding: 1.5rem 1.25rem; text-align: center; }
-  .ei-dato-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.65rem; }
-  .ei-dato-val { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--bordo); font-weight: 400; line-height: 1.35; }
+ /* Datos rápidos */
+ .ei-datos { padding: 3.5rem 2rem; background: var(--cream-dark); }
+ .ei-datos-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+ @media (max-width: 780px) { .ei-datos-inner { grid-template-columns: repeat(2, 1fr); } }
+ @media (max-width: 460px) { .ei-datos-inner { grid-template-columns: 1fr; } }
+ .ei-dato { background: white; padding: 1.5rem 1.25rem; text-align: center; }
+ .ei-dato-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.65rem; }
+ .ei-dato-val { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--bordo); font-weight: 400; line-height: 1.35; }
 
-  /* Cuerpo */
-  .ei-cuerpo { padding: 6rem 2rem; background: white; }
-  .ei-cuerpo-inner { max-width: 780px; margin: 0 auto; }
-  .ei-block { margin-bottom: 4rem; }
-  .ei-block-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bordo); font-weight: 500; margin-bottom: 1rem; }
-  .ei-block h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.35rem); font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 1.5rem; }
-  .ei-block h2 em { font-style: italic; color: var(--bordo); }
-  .ei-block p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 1.15rem; }
-  .ei-block p em { font-style: italic; color: var(--bordo); }
+ /* Cuerpo */
+ .ei-cuerpo { padding: 6rem 2rem; background: white; }
+ .ei-cuerpo-inner { max-width: 780px; margin: 0 auto; }
+ .ei-block { margin-bottom: 4rem; }
+ .ei-block-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bordo); font-weight: 500; margin-bottom: 1rem; }
+ .ei-block h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.75rem, 3vw, 2.35rem); font-weight: 400; color: var(--ink); line-height: 1.2; margin-bottom: 1.5rem; }
+ .ei-block h2 em { font-style: italic; color: var(--bordo); }
+ .ei-block p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; line-height: 1.75; color: var(--ink-mid); margin-bottom: 1.15rem; }
+ .ei-block p em { font-style: italic; color: var(--bordo); }
 
-  /* Programa: lista de módulos */
-  .ei-programa { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 2rem; }
-  @media (max-width: 640px) { .ei-programa { grid-template-columns: 1fr; } }
-  .ei-modulo { padding: 1.75rem 1.5rem; background: var(--cream); border-left: 3px solid var(--gold); transition: all 0.35s; }
-  .ei-modulo:hover { transform: translateX(3px); border-left-color: var(--bordo); }
-  .ei-modulo-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
-  .ei-modulo-titulo { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); font-weight: 500; margin-bottom: 0.6rem; line-height: 1.3; }
-  .ei-modulo-desc { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; line-height: 1.55; color: var(--ink-mid); }
+ /* Programa: lista de módulos */
+ .ei-programa { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 2rem; }
+ @media (max-width: 640px) { .ei-programa { grid-template-columns: 1fr; } }
+ .ei-modulo { padding: 1.75rem 1.5rem; background: var(--cream); border-left: 3px solid var(--gold); transition: all 0.35s; }
+ .ei-modulo:hover { transform: translateX(3px); border-left-color: var(--bordo); }
+ .ei-modulo-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+ .ei-modulo-titulo { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); font-weight: 500; margin-bottom: 0.6rem; line-height: 1.3; }
+ .ei-modulo-desc { font-family: 'DM Sans', sans-serif; font-size: 0.88rem; line-height: 1.55; color: var(--ink-mid); }
 
-  /* Detalles prácticos */
-  .ei-detalles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 2.5rem; margin-top: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark); }
-  @media (max-width: 640px) { .ei-detalles { grid-template-columns: 1fr; } }
-  .ei-detalle-row { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.5rem 0; }
-  .ei-detalle-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); }
-  .ei-detalle-val { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--ink); }
+ /* Detalles prácticos */
+ .ei-detalles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem 2.5rem; margin-top: 1.5rem; padding: 1.75rem 0; border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark); }
+ @media (max-width: 640px) { .ei-detalles { grid-template-columns: 1fr; } }
+ .ei-detalle-row { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.5rem 0; }
+ .ei-detalle-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-light); }
+ .ei-detalle-val { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--ink); }
 
-  /* Contacto */
-  .ei-contacto { padding: 5rem 2rem; background: var(--cream); border-top: 1px solid var(--cream-dark); }
-  .ei-contacto-inner { max-width: 720px; margin: 0 auto; text-align: center; }
-  .ei-contacto-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bordo); font-weight: 500; margin-bottom: 1rem; }
-  .ei-contacto h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.6rem); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 1rem; }
-  .ei-contacto h2 em { font-style: italic; color: var(--bordo); }
-  .ei-contacto-sub { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--ink-mid); line-height: 1.6; margin-bottom: 2.5rem; }
-  .ei-contacto-vias { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem; margin-bottom: 2.5rem; }
-  .ei-via { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.4rem; background: white; border: 1px solid var(--cream-dark); color: var(--ink); text-decoration: none; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; transition: all 0.3s; }
-  .ei-via:hover { border-color: var(--bordo); color: var(--bordo); transform: translateY(-1px); }
-  .ei-via svg { width: 16px; height: 16px; color: var(--bordo); }
-  .ei-via-primary { background: var(--bordo); color: white; border-color: var(--bordo); }
-  .ei-via-primary svg { color: var(--gold-light); }
-  .ei-via-primary:hover { background: var(--bordo-dark); color: white; border-color: var(--bordo-dark); }
-  .ei-nota-legal { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--ink-light); max-width: 480px; margin: 0 auto; line-height: 1.55; }
+ /* Contacto */
+ .ei-contacto { padding: 5rem 2rem; background: var(--cream); border-top: 1px solid var(--cream-dark); }
+ .ei-contacto-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+ .ei-contacto-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bordo); font-weight: 500; margin-bottom: 1rem; }
+ .ei-contacto h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem, 3.5vw, 2.6rem); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 1rem; }
+ .ei-contacto h2 em { font-style: italic; color: var(--bordo); }
+ .ei-contacto-sub { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--ink-mid); line-height: 1.6; margin-bottom: 2.5rem; }
+ .ei-contacto-vias { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.85rem; margin-bottom: 2.5rem; }
+ .ei-via { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.4rem; background: white; border: 1px solid var(--cream-dark); color: var(--ink); text-decoration: none; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; transition: all 0.3s; }
+ .ei-via:hover { border-color: var(--bordo); color: var(--bordo); transform: translateY(-1px); }
+ .ei-via svg { width: 16px; height: 16px; color: var(--bordo); }
+ .ei-via-primary { background: var(--bordo); color: white; border-color: var(--bordo); }
+ .ei-via-primary svg { color: var(--gold-light); }
+ .ei-via-primary:hover { background: var(--bordo-dark); color: white; border-color: var(--bordo-dark); }
+ .ei-nota-legal { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--ink-light); max-width: 480px; margin: 0 auto; line-height: 1.55; }
 
-  /* Volver */
-  .ei-volver { padding: 3rem 2rem 5rem; background: white; text-align: center; }
-  .ei-volver a { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--bordo); text-decoration: none; border-bottom: 1px solid transparent; transition: border 0.3s; }
-  .ei-volver a:hover { border-bottom-color: var(--bordo); }
-</style>
-  <link rel="canonical" href="https://elgransueno.org/escuela-individual.html">
-  <meta property="og:site_name" content="El Gran Sueño">
-  <meta property="og:url" content="https://elgransueno.org/escuela-individual.html">
-  <meta property="og:description" content="Formación intensiva de un año en identidad, carácter y llamado. Perfil ilustrativo dentro del directorio de El Gran Sueño.">
-</head>
+ /* Volver */
+ .ei-volver { padding: 3rem 2rem 5rem; background: white; text-align: center; }
+ .ei-volver a { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--bordo); text-decoration: none; border-bottom: 1px solid transparent; transition: border 0.3s; }
+ .ei-volver a:hover { border-bottom-color: var(--bordo); }</style>
+ <link rel="canonical" href="https://elgransueno.org/escuela-individual.html">
+ <meta property="og:site_name" content="El Gran Sueño">
+ <meta property="og:url" content="https://elgransueno.org/escuela-individual.html">
+ <meta property="og:description" content="Formación intensiva de un año en identidad, carácter y llamado. Perfil ilustrativo dentro del directorio de El Gran Sueño."></head>
 <body class="modo-limpio">
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="escuelas.html" class="nav-cta">← Todas las escuelas</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="escuelas.html" class="nav-cta">Todas las escuelas</a></nav>
 
 <div id="egs-nav-mount"></div>
 
 <div class="ilustrativo-band">
-  <p><strong>Ejemplo</strong>Perfil ilustrativo. Los datos que verás abajo son ficticios y sirven de plantilla para futuras instituciones reales.</p>
-</div>
+ <p><strong>Ejemplo</strong>Perfil ilustrativo. Los datos que verás abajo son ficticios y sirven de plantilla para futuras instituciones reales.</p></div>
 
 <main>
 
 <section class="ei-hero">
-  <div class="ei-hero-media" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=80" alt="">
-  </div>
-  <div class="ei-hero-inner">
-    <p class="ei-hero-eyebrow">Escuela de formación · Argentina</p>
-    <h1 class="ei-hero-titulo">Escuela de Discipulado <em>Caminar Hondo</em></h1>
-    <p class="ei-hero-meta">Buenos Aires · Fundada en 2016 · Cohortes anuales de marzo a diciembre</p>
-    <div class="ei-hero-tags">
-      <span class="ei-hero-tag dest">Presencial + online</span>
-      <span class="ei-hero-tag">1 año</span>
-      <span class="ei-hero-tag">Identidad</span>
-      <span class="ei-hero-tag">Carácter</span>
-      <span class="ei-hero-tag">Llamado</span>
-    </div>
-  </div>
-</section>
+ <div class="ei-hero-media" aria-hidden="true">
+ <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=80" alt=""></div>
+ <div class="ei-hero-inner">
+ <p class="ei-hero-eyebrow">Escuela de formación · Argentina</p>
+ <h1 class="ei-hero-titulo">Escuela de Discipulado <em>Caminar Hondo</em></h1>
+ <p class="ei-hero-meta">Buenos Aires · Fundada en 2016 · Cohortes anuales de marzo a diciembre</p>
+ <div class="ei-hero-tags">
+ <span class="ei-hero-tag dest">Presencial + online</span>
+ <span class="ei-hero-tag">1 año</span>
+ <span class="ei-hero-tag">Identidad</span>
+ <span class="ei-hero-tag">Carácter</span>
+ <span class="ei-hero-tag">Llamado</span></div></div></section>
 
 <section class="ei-datos">
-  <div class="ei-datos-inner">
-    <div class="ei-dato">
-      <p class="ei-dato-label">Duración</p>
-      <p class="ei-dato-val">10 meses</p>
-    </div>
-    <div class="ei-dato">
-      <p class="ei-dato-label">Modalidad</p>
-      <p class="ei-dato-val">Presencial + online</p>
-    </div>
-    <div class="ei-dato">
-      <p class="ei-dato-label">Cupos por cohorte</p>
-      <p class="ei-dato-val">24 personas</p>
-    </div>
-    <div class="ei-dato">
-      <p class="ei-dato-label">Costo</p>
-      <p class="ei-dato-val">A conciencia</p>
-    </div>
-  </div>
-</section>
+ <div class="ei-datos-inner">
+ <div class="ei-dato">
+ <p class="ei-dato-label">Duración</p>
+ <p class="ei-dato-val">10 meses</p></div>
+ <div class="ei-dato">
+ <p class="ei-dato-label">Modalidad</p>
+ <p class="ei-dato-val">Presencial + online</p></div>
+ <div class="ei-dato">
+ <p class="ei-dato-label">Cupos por cohorte</p>
+ <p class="ei-dato-val">24 personas</p></div>
+ <div class="ei-dato">
+ <p class="ei-dato-label">Costo</p>
+ <p class="ei-dato-val">A conciencia</p></div></div></section>
 
 <section class="ei-cuerpo">
-  <div class="ei-cuerpo-inner">
+ <div class="ei-cuerpo-inner">
 
-    <div class="ei-block">
-      <span class="ei-block-eyebrow">Sobre la escuela</span>
-      <h2>Formación que empieza <em>por adentro.</em></h2>
-      <p>Caminar Hondo no busca producir líderes. Busca formar discípulos: personas que sepan quiénes son delante de Dios antes de saber qué van a hacer con su vida.</p>
-      <p>Durante diez meses, un grupo pequeño de veinticuatro personas se reúne semana a semana, se acompaña personalmente, estudia las Escrituras a fondo y aprende a vivir <em>despacio, en profundidad, con otros</em>. Al terminar, cada participante sale con un lugar concreto donde servir, no con un diploma en la pared.</p>
-    </div>
+ <div class="ei-block">
+ <span class="ei-block-eyebrow">Sobre la escuela</span>
+ <h2>Formación que empieza <em>por adentro.</em></h2>
+ <p>Caminar Hondo no busca producir líderes. Busca formar discípulos: personas que sepan quiénes son delante de Dios antes de saber qué van a hacer con su vida.</p>
+ <p>Durante diez meses, un grupo pequeño de veinticuatro personas se reúne semana a semana, se acompaña personalmente, estudia las Escrituras a fondo y aprende a vivir <em>despacio, en profundidad, con otros</em>. Al terminar, cada participante sale con un lugar concreto donde servir, no con un diploma en la pared.</p></div>
 
-    <div class="ei-block">
-      <span class="ei-block-eyebrow">Qué se estudia</span>
-      <h2>Cuatro estaciones, un mismo <em>camino.</em></h2>
-      <div class="ei-programa">
-        <div class="ei-modulo">
-          <p class="ei-modulo-num">Módulo 01 · Marzo — Mayo</p>
-          <p class="ei-modulo-titulo">Identidad y raíces</p>
-          <p class="ei-modulo-desc">Quién soy antes de lo que hago. Historia personal, sanidad interior, teología de la persona a la luz del Evangelio.</p>
-        </div>
-        <div class="ei-modulo">
-          <p class="ei-modulo-num">Módulo 02 · Junio — Julio</p>
-          <p class="ei-modulo-titulo">Escrituras y oración</p>
-          <p class="ei-modulo-desc">Panorama bíblico, hermenéutica básica, prácticas contemplativas y disciplinas espirituales para toda la vida.</p>
-        </div>
-        <div class="ei-modulo">
-          <p class="ei-modulo-num">Módulo 03 · Agosto — Octubre</p>
-          <p class="ei-modulo-titulo">Carácter y comunidad</p>
-          <p class="ei-modulo-desc">Formación del carácter, vida en comunidad, conflicto, perdón, servicio invisible. Se acompaña con mentoría uno a uno.</p>
-        </div>
-        <div class="ei-modulo">
-          <p class="ei-modulo-num">Módulo 04 · Noviembre — Diciembre</p>
-          <p class="ei-modulo-titulo">Llamado y envío</p>
-          <p class="ei-modulo-desc">Discernimiento del llamado particular, práctica de servicio en terreno, envío con un plan concreto para el año siguiente.</p>
-        </div>
-      </div>
-    </div>
+ <div class="ei-block">
+ <span class="ei-block-eyebrow">Qué se estudia</span>
+ <h2>Cuatro estaciones, un mismo <em>camino.</em></h2>
+ <div class="ei-programa">
+ <div class="ei-modulo">
+ <p class="ei-modulo-num">Módulo 01 · Marzo, Mayo</p>
+ <p class="ei-modulo-titulo">Identidad y raíces</p>
+ <p class="ei-modulo-desc">Quién soy antes de lo que hago. Historia personal, sanidad interior, teología de la persona a la luz del Evangelio.</p></div>
+ <div class="ei-modulo">
+ <p class="ei-modulo-num">Módulo 02 · Junio, Julio</p>
+ <p class="ei-modulo-titulo">Escrituras y oración</p>
+ <p class="ei-modulo-desc">Panorama bíblico, hermenéutica básica, prácticas contemplativas y disciplinas espirituales para toda la vida.</p></div>
+ <div class="ei-modulo">
+ <p class="ei-modulo-num">Módulo 03 · Agosto, Octubre</p>
+ <p class="ei-modulo-titulo">Carácter y comunidad</p>
+ <p class="ei-modulo-desc">Formación del carácter, vida en comunidad, conflicto, perdón, servicio invisible. Se acompaña con mentoría uno a uno.</p></div>
+ <div class="ei-modulo">
+ <p class="ei-modulo-num">Módulo 04 · Noviembre, Diciembre</p>
+ <p class="ei-modulo-titulo">Llamado y envío</p>
+ <p class="ei-modulo-desc">Discernimiento del llamado particular, práctica de servicio en terreno, envío con un plan concreto para el año siguiente.</p></div></div></div>
 
-    <div class="ei-block">
-      <span class="ei-block-eyebrow">Detalles prácticos</span>
-      <h2>Lo que hace falta <em>saber.</em></h2>
-      <div class="ei-detalles">
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Comienzo de cohorte</span>
-          <span class="ei-detalle-val">Primer sábado de marzo</span>
-        </div>
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Encuentros presenciales</span>
-          <span class="ei-detalle-val">Sábados de 9:00 a 13:00 · Buenos Aires</span>
-        </div>
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Encuentros online</span>
-          <span class="ei-detalle-val">Miércoles de 20:00 a 21:30 (Argentina)</span>
-        </div>
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Idioma</span>
-          <span class="ei-detalle-val">Español</span>
-        </div>
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Edad recomendada</span>
-          <span class="ei-detalle-val">Desde los 18 años</span>
-        </div>
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Requisitos</span>
-          <span class="ei-detalle-val">Deseo genuino de caminar en comunidad</span>
-        </div>
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Costo</span>
-          <span class="ei-detalle-val">A conciencia · Nadie queda afuera por dinero</span>
-        </div>
-        <div class="ei-detalle-row">
-          <span class="ei-detalle-label">Certificación</span>
-          <span class="ei-detalle-val">Interna · Sin validez oficial</span>
-        </div>
-      </div>
-    </div>
+ <div class="ei-block">
+ <span class="ei-block-eyebrow">Detalles prácticos</span>
+ <h2>Lo que hace falta <em>saber.</em></h2>
+ <div class="ei-detalles">
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Comienzo de cohorte</span>
+ <span class="ei-detalle-val">Primer sábado de marzo</span></div>
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Encuentros presenciales</span>
+ <span class="ei-detalle-val">Sábados de 9:00 a 13:00 · Buenos Aires</span></div>
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Encuentros online</span>
+ <span class="ei-detalle-val">Miércoles de 20:00 a 21:30 (Argentina)</span></div>
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Idioma</span>
+ <span class="ei-detalle-val">Español</span></div>
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Edad recomendada</span>
+ <span class="ei-detalle-val">Desde los 18 años</span></div>
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Requisitos</span>
+ <span class="ei-detalle-val">Deseo genuino de caminar en comunidad</span></div>
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Costo</span>
+ <span class="ei-detalle-val">A conciencia · Nadie queda afuera por dinero</span></div>
+ <div class="ei-detalle-row">
+ <span class="ei-detalle-label">Certificación</span>
+ <span class="ei-detalle-val">Interna · Sin validez oficial</span></div></div></div>
 
-    <div class="ei-block">
-      <span class="ei-block-eyebrow">Para quién es</span>
-      <h2>Un lugar para <em>quienes buscan hondura.</em></h2>
-      <p>Caminar Hondo es para personas que sienten que llegaron a un momento donde la fe pide más profundidad. Que ya no alcanza con asistir a la iglesia o leer un libro por año. Que quieren un espacio serio, acompañado y en comunidad para formarse durante un tiempo continuo.</p>
-      <p>No hace falta ser líder ni tener un ministerio. No hace falta saber teología. Solo hace falta <em>hambre</em>.</p>
-    </div>
-
-  </div>
-</section>
+ <div class="ei-block">
+ <span class="ei-block-eyebrow">Para quién es</span>
+ <h2>Un lugar para <em>quienes buscan hondura.</em></h2>
+ <p>Caminar Hondo es para personas que sienten que llegaron a un momento donde la fe pide más profundidad. Que ya no alcanza con asistir a la iglesia o leer un libro por año. Que quieren un espacio serio, acompañado y en comunidad para formarse durante un tiempo continuo.</p>
+ <p>No hace falta ser líder ni tener un ministerio. No hace falta saber teología. Solo hace falta <em>hambre</em>.</p></div></div></section>
 
 <section class="ei-contacto">
-  <div class="ei-contacto-inner">
-    <span class="ei-contacto-eyebrow">Contacto directo</span>
-    <h2>¿Querés hablar con <em>la escuela?</em></h2>
-    <p class="ei-contacto-sub">Escribinos y te contamos cómo es el proceso de inscripción, los encuentros informativos y todo lo que necesites saber antes de dar el paso.</p>
+ <div class="ei-contacto-inner">
+ <span class="ei-contacto-eyebrow">Contacto directo</span>
+ <h2>¿Querés hablar con <em>la escuela?</em></h2>
+ <p class="ei-contacto-sub">Escribinos y te contamos cómo es el proceso de inscripción, los encuentros informativos y todo lo que necesites saber antes de dar el paso.</p>
 
-    <div class="ei-contacto-vias">
-      <a href="mailto:hola@caminarhondo.org?subject=Consulta%20desde%20El%20Gran%20Sueño" class="ei-via ei-via-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-        hola@caminarhondo.org
-      </a>
-      <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" class="ei-via">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        WhatsApp
-      </a>
-      <a href="https://instagram.com/caminarhondo" target="_blank" rel="noopener" class="ei-via">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg>
-        @caminarhondo
-      </a>
-    </div>
+ <div class="ei-contacto-vias">
+ <a href="mailto:hola@caminarhondo.org?subject=Consulta%20desde%20El%20Gran%20Sueño" class="ei-via ei-via-primary">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+ hola@caminarhondo.org</a>
+ <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" class="ei-via">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+ WhatsApp</a>
+ <a href="https://instagram.com/caminarhondo" target="_blank" rel="noopener" class="ei-via">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg>
+ @caminarhondo</a></div>
 
-    <p class="ei-nota-legal">Los datos de contacto de esta página son ficticios. Cuando se registre una institución real, este espacio mostrará sus vías de contacto verificadas.</p>
-  </div>
-</section>
+ <p class="ei-nota-legal">Los datos de contacto de esta página son ficticios. Cuando se registre una institución real, este espacio mostrará sus vías de contacto verificadas.</p></div></section>
 
 <section class="ei-volver">
-  <a href="escuelas.html">← Volver al directorio de escuelas</a>
-</section>
-
-</main>
+ <a href="escuelas.html">Volver al directorio de escuelas</a></section></main>
 
 <footer class="egs-footer">
-  <div class="footer-divider" aria-hidden="true"></div>
-  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
-  <p class="footer-line">Nadie fue creado para caminar solo.</p>
-  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
-  <form class="footer-form" id="footerForm" onsubmit="return false;">
-    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-    <button type="submit">Quiero recibir novedades</button>
-  </form>
-  <div class="footer-social" aria-label="Redes sociales">
-    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
-    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
-    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-  </div>
-  <p class="footer-social-nota">Más redes · próximamente</p>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
-</footer>
-<script src="assets/egs.js"></script>
-</body>
-</html>
+ <div class="footer-divider" aria-hidden="true"></div>
+ <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+ <p class="footer-line">Nadie fue creado para caminar solo.</p>
+ <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+ <form class="footer-form" id="footerForm" onsubmit="return false;">
+ <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+ <button type="submit">Quiero recibir novedades</button></form>
+ <div class="footer-social" aria-label="Redes sociales">
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+ <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+ <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+ <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+ <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+ <p class="footer-social-nota">Más redes · próximamente</p>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p></footer>
+<script src="assets/egs.js"></script></body></html>

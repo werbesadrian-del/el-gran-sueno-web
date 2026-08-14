@@ -8,276 +8,220 @@
 <meta property="og:title" content="Escuelas y organizaciones · El Gran Sueño">
 <meta property="og:locale" content="es_ES">
 <meta name="theme-color" content="#6B1A2B">
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/estilos-egs.css">
 <style>
-  .es-filtros { padding: 3rem 2rem; background: white; border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark); }
-  .es-filtros-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
-  .es-filtros-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
-  .es-filtros-label { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-light); font-weight:500; margin-right:0.75rem; }
-  .es-chip { padding: 0.4rem 0.9rem; background: transparent; border: 1px solid var(--cream-dark); color: var(--ink-mid); font-family:'Cormorant Garamond',serif; font-size:0.92rem; cursor:pointer; transition: all 0.25s; border-radius:30px; }
-  .es-chip:hover { border-color: var(--bordo-light); color:var(--bordo); }
-  .es-chip.active { background:var(--bordo); color:white; border-color:var(--bordo); }
-  .es-listado { padding: 5rem 2rem 7rem; background: var(--cream); }
-  .es-listado-inner { max-width: 1100px; margin: 0 auto; }
-  .es-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(107,26,43,0.08); }
-  .es-titulo { font-family:'Playfair Display',serif; font-style:italic; font-size: 1.2rem; color: var(--ink); font-weight: 400; }
-  .es-nota { font-size: 0.78rem; color: var(--ink-light); font-style: italic; }
-  .es-empty { text-align:center; padding: 4rem 1rem; color:var(--ink-light); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; }
-</style>
-  <link rel="canonical" href="https://elgransueno.org/escuelas.html">
-  <meta property="og:site_name" content="El Gran Sueño">
-  <meta property="og:url" content="https://elgransueno.org/escuelas.html">
-  <meta property="og:description" content="Un espacio donde encontrar formación cristiana real: escuelas, ministerios, fundaciones e iglesias que forman personas para el Reino.">
-</head>
+ .es-filtros { padding: 3rem 2rem; background: white; border-top: 1px solid var(--cream-dark); border-bottom: 1px solid var(--cream-dark); }
+ .es-filtros-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.25rem; }
+ .es-filtros-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+ .es-filtros-label { font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-light); font-weight:500; margin-right:0.75rem; }
+ .es-chip { padding: 0.4rem 0.9rem; background: transparent; border: 1px solid var(--cream-dark); color: var(--ink-mid); font-family:'Cormorant Garamond',serif; font-size:0.92rem; cursor:pointer; transition: all 0.25s; border-radius:30px; }
+ .es-chip:hover { border-color: var(--bordo-light); color:var(--bordo); }
+ .es-chip.active { background:var(--bordo); color:white; border-color:var(--bordo); }
+ .es-listado { padding: 5rem 2rem 7rem; background: var(--cream); }
+ .es-listado-inner { max-width: 1100px; margin: 0 auto; }
+ .es-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(107,26,43,0.08); }
+ .es-titulo { font-family:'Playfair Display',serif; font-style:italic; font-size: 1.2rem; color: var(--ink); font-weight: 400; }
+ .es-nota { font-size: 0.78rem; color: var(--ink-light); font-style: italic; }
+ .es-empty { text-align:center; padding: 4rem 1rem; color:var(--ink-light); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; }</style>
+ <link rel="canonical" href="https://elgransueno.org/escuelas.html">
+ <meta property="og:site_name" content="El Gran Sueño">
+ <meta property="og:url" content="https://elgransueno.org/escuelas.html">
+ <meta property="og:description" content="Un espacio donde encontrar formación cristiana real: escuelas, ministerios, fundaciones e iglesias que forman personas para el Reino."></head>
 <body class="modo-limpio">
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="registrar-institucion.html" class="nav-cta">Registrar mi institución</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="registrar-institucion.html" class="nav-cta">Registrar mi institución</a></nav>
 
 <div id="egs-nav-mount"></div>
 
 <main>
 
 <section class="dir-hero">
-  <div class="dir-hero-line" aria-hidden="true"></div>
-  <span class="dir-eyebrow">Escuelas y organizaciones</span>
-  <h1 class="dir-title">Formación real, en <em>comunidades reales.</em></h1>
-  <p class="dir-sub">Escuelas, iglesias, ministerios y fundaciones que forman personas para vivir el Gran Sueño. No un catálogo — un puente entre quien busca aprender y quien fue puesto para enseñar.</p>
-  <div class="dir-hero-line" aria-hidden="true"></div>
-</section>
+ <div class="dir-hero-line" aria-hidden="true"></div>
+ <span class="dir-eyebrow">Escuelas y organizaciones</span>
+ <h1 class="dir-title">Formación real, en <em>comunidades reales.</em></h1>
+ <p class="dir-sub">Escuelas, iglesias, ministerios y fundaciones que forman personas para vivir el Gran Sueño. No un catálogo, un puente entre quien busca aprender y quien fue puesto para enseñar.</p>
+ <div class="dir-hero-line" aria-hidden="true"></div></section>
 
 <div class="ilustrativo-band">
-  <p><strong>Ejemplo</strong>Las comunidades que ves debajo son ilustrativas — muestran cómo se verá el directorio. Pronto vas a encontrar escuelas y ministerios reales.</p>
-</div>
+ <p><strong>Ejemplo</strong>Las comunidades que ves debajo son ilustrativas, muestran cómo se verá el directorio. Pronto vas a encontrar escuelas y ministerios reales.</p></div>
 
 <section class="es-filtros">
-  <div class="es-filtros-inner">
-    <div class="es-filtros-row" role="group" aria-label="Filtrar por tipo">
-      <span class="es-filtros-label">Tipo</span>
-      <button class="es-chip active" data-tipo="todos" onclick="esFiltrar('tipo','todos',this)">Todas</button>
-      <button class="es-chip" data-tipo="escuela" onclick="esFiltrar('tipo','escuela',this)">Escuela de formación</button>
-      <button class="es-chip" data-tipo="ministerio" onclick="esFiltrar('tipo','ministerio',this)">Ministerio</button>
-      <button class="es-chip" data-tipo="iglesia" onclick="esFiltrar('tipo','iglesia',this)">Iglesia</button>
-      <button class="es-chip" data-tipo="fundacion" onclick="esFiltrar('tipo','fundacion',this)">Fundación</button>
-    </div>
-    <div class="es-filtros-row" role="group" aria-label="Filtrar por modalidad">
-      <span class="es-filtros-label">Modalidad</span>
-      <button class="es-chip active" data-modalidad="todos" onclick="esFiltrar('modalidad','todos',this)">Todas</button>
-      <button class="es-chip" data-modalidad="presencial" onclick="esFiltrar('modalidad','presencial',this)">Presencial</button>
-      <button class="es-chip" data-modalidad="online" onclick="esFiltrar('modalidad','online',this)">Online</button>
-      <button class="es-chip" data-modalidad="mixta" onclick="esFiltrar('modalidad','mixta',this)">Mixta</button>
-    </div>
-    <div class="es-filtros-row" role="group" aria-label="Filtrar por región">
-      <span class="es-filtros-label">Región</span>
-      <button class="es-chip active" data-region="todos" onclick="esFiltrar('region','todos',this)">Todas</button>
-      <button class="es-chip" data-region="america" onclick="esFiltrar('region','america',this)">América Latina</button>
-      <button class="es-chip" data-region="espana" onclick="esFiltrar('region','espana',this)">España</button>
-      <button class="es-chip" data-region="global" onclick="esFiltrar('region','global',this)">Global</button>
-    </div>
-  </div>
-</section>
+ <div class="es-filtros-inner">
+ <div class="es-filtros-row" role="group" aria-label="Filtrar por tipo">
+ <span class="es-filtros-label">Tipo</span>
+ <button class="es-chip active" data-tipo="todos" onclick="esFiltrar('tipo','todos',this)">Todas</button>
+ <button class="es-chip" data-tipo="escuela" onclick="esFiltrar('tipo','escuela',this)">Escuela de formación</button>
+ <button class="es-chip" data-tipo="ministerio" onclick="esFiltrar('tipo','ministerio',this)">Ministerio</button>
+ <button class="es-chip" data-tipo="iglesia" onclick="esFiltrar('tipo','iglesia',this)">Iglesia</button>
+ <button class="es-chip" data-tipo="fundacion" onclick="esFiltrar('tipo','fundacion',this)">Fundación</button></div>
+ <div class="es-filtros-row" role="group" aria-label="Filtrar por modalidad">
+ <span class="es-filtros-label">Modalidad</span>
+ <button class="es-chip active" data-modalidad="todos" onclick="esFiltrar('modalidad','todos',this)">Todas</button>
+ <button class="es-chip" data-modalidad="presencial" onclick="esFiltrar('modalidad','presencial',this)">Presencial</button>
+ <button class="es-chip" data-modalidad="online" onclick="esFiltrar('modalidad','online',this)">Online</button>
+ <button class="es-chip" data-modalidad="mixta" onclick="esFiltrar('modalidad','mixta',this)">Mixta</button></div>
+ <div class="es-filtros-row" role="group" aria-label="Filtrar por región">
+ <span class="es-filtros-label">Región</span>
+ <button class="es-chip active" data-region="todos" onclick="esFiltrar('region','todos',this)">Todas</button>
+ <button class="es-chip" data-region="america" onclick="esFiltrar('region','america',this)">América Latina</button>
+ <button class="es-chip" data-region="espana" onclick="esFiltrar('region','espana',this)">España</button>
+ <button class="es-chip" data-region="global" onclick="esFiltrar('region','global',this)">Global</button></div></div></section>
 
 <section class="es-listado">
-  <div class="es-listado-inner">
-    <div class="es-header">
-      <p class="es-titulo">Comunidades <span id="es-count-txt">disponibles</span></p>
-      <p class="es-nota">No hay rankings. No hay "más populares". Cada comunidad tiene un lugar propio.</p>
-    </div>
+ <div class="es-listado-inner">
+ <div class="es-header">
+ <p class="es-titulo">Comunidades <span id="es-count-txt">disponibles</span></p>
+ <p class="es-nota">No hay rankings. No hay "más populares". Cada comunidad tiene un lugar propio.</p></div>
 
-    <div class="escuelas-grid" id="es-grid">
+ <div class="escuelas-grid" id="es-grid">
 
-      <a href="escuela-individual.html" class="escuela-card" data-tipo="escuela" data-modalidad="mixta" data-region="america">
-        <div class="escuela-head">
-          <div class="escuela-logo">CH</div>
-          <div class="escuela-headmeta">
-            <p class="escuela-nombre">Escuela de Discipulado Caminar Hondo</p>
-            <p class="escuela-lugar">Argentina · Buenos Aires</p>
-          </div>
-        </div>
-        <p class="escuela-desc">Formación intensiva de un año en identidad, carácter y llamado. No busca producir líderes — busca formar discípulos que después sean lo que Dios diseñe.</p>
-        <div class="escuela-tags">
-          <span class="escuela-tag mod">Presencial + online</span>
-          <span class="escuela-tag">Identidad</span>
-          <span class="escuela-tag">Carácter</span>
-          <span class="escuela-tag">1 año</span>
-        </div>
-        <div class="escuela-footer">
-          <span class="escuela-meta-num">Nuevas cohortes cada marzo</span>
-          <span class="escuela-cta">Ver detalles →</span>
-        </div>
-      </a>
+ <a href="escuela-individual.html" class="escuela-card" data-tipo="escuela" data-modalidad="mixta" data-region="america">
+ <div class="escuela-head">
+ <div class="escuela-logo">CH</div>
+ <div class="escuela-headmeta">
+ <p class="escuela-nombre">Escuela de Discipulado Caminar Hondo</p>
+ <p class="escuela-lugar">Argentina · Buenos Aires</p></div></div>
+ <p class="escuela-desc">Formación intensiva de un año en identidad, carácter y llamado. No busca producir líderes, busca formar discípulos que después sean lo que Dios diseñe.</p>
+ <div class="escuela-tags">
+ <span class="escuela-tag mod">Presencial + online</span>
+ <span class="escuela-tag">Identidad</span>
+ <span class="escuela-tag">Carácter</span>
+ <span class="escuela-tag">1 año</span></div>
+ <div class="escuela-footer">
+ <span class="escuela-meta-num">Nuevas cohortes cada marzo</span>
+ <span class="escuela-cta">Ver detalles</span></div></a>
 
-      <a href="escuela-individual.html" class="escuela-card" data-tipo="escuela" data-modalidad="online" data-region="global">
-        <div class="escuela-head">
-          <div class="escuela-logo">SB</div>
-          <div class="escuela-headmeta">
-            <p class="escuela-nombre">Semilla Bíblica · Escuela abierta</p>
-            <p class="escuela-lugar">Global · Online</p>
-          </div>
-        </div>
-        <p class="escuela-desc">Cursos breves y gratuitos de teología aplicada para toda persona que quiera profundizar en las Escrituras sin necesidad de dedicarse a tiempo completo.</p>
-        <div class="escuela-tags">
-          <span class="escuela-tag mod">100% online</span>
-          <span class="escuela-tag">Teología</span>
-          <span class="escuela-tag">Escrituras</span>
-          <span class="escuela-tag">Gratis</span>
-        </div>
-        <div class="escuela-footer">
-          <span class="escuela-meta-num">Inscripción abierta todo el año</span>
-          <span class="escuela-cta">Ver detalles →</span>
-        </div>
-      </a>
+ <a href="escuela-individual.html" class="escuela-card" data-tipo="escuela" data-modalidad="online" data-region="global">
+ <div class="escuela-head">
+ <div class="escuela-logo">SB</div>
+ <div class="escuela-headmeta">
+ <p class="escuela-nombre">Semilla Bíblica · Escuela abierta</p>
+ <p class="escuela-lugar">Global · Online</p></div></div>
+ <p class="escuela-desc">Cursos breves y gratuitos de teología aplicada para toda persona que quiera profundizar en las Escrituras sin necesidad de dedicarse a tiempo completo.</p>
+ <div class="escuela-tags">
+ <span class="escuela-tag mod">100% online</span>
+ <span class="escuela-tag">Teología</span>
+ <span class="escuela-tag">Escrituras</span>
+ <span class="escuela-tag">Gratis</span></div>
+ <div class="escuela-footer">
+ <span class="escuela-meta-num">Inscripción abierta todo el año</span>
+ <span class="escuela-cta">Ver detalles</span></div></a>
 
-      <a href="escuela-individual.html" class="escuela-card" data-tipo="ministerio" data-modalidad="presencial" data-region="america">
-        <div class="escuela-head">
-          <div class="escuela-logo">JG</div>
-          <div class="escuela-headmeta">
-            <p class="escuela-nombre">Juventud con Propósito</p>
-            <p class="escuela-lugar">Colombia · Medellín</p>
-          </div>
-        </div>
-        <p class="escuela-desc">Ministerio orientado a formar y enviar adolescentes y jóvenes a servir en sus contextos. Escuela de líderes, mentoría uno a uno, envío misionero.</p>
-        <div class="escuela-tags">
-          <span class="escuela-tag mod">Presencial</span>
-          <span class="escuela-tag">Jóvenes</span>
-          <span class="escuela-tag">Misiones</span>
-          <span class="escuela-tag">Envío</span>
-        </div>
-        <div class="escuela-footer">
-          <span class="escuela-meta-num">14 — 30 años</span>
-          <span class="escuela-cta">Ver detalles →</span>
-        </div>
-      </a>
+ <a href="escuela-individual.html" class="escuela-card" data-tipo="ministerio" data-modalidad="presencial" data-region="america">
+ <div class="escuela-head">
+ <div class="escuela-logo">JG</div>
+ <div class="escuela-headmeta">
+ <p class="escuela-nombre">Juventud con Propósito</p>
+ <p class="escuela-lugar">Colombia · Medellín</p></div></div>
+ <p class="escuela-desc">Ministerio orientado a formar y enviar adolescentes y jóvenes a servir en sus contextos. Escuela de líderes, mentoría uno a uno, envío misionero.</p>
+ <div class="escuela-tags">
+ <span class="escuela-tag mod">Presencial</span>
+ <span class="escuela-tag">Jóvenes</span>
+ <span class="escuela-tag">Misiones</span>
+ <span class="escuela-tag">Envío</span></div>
+ <div class="escuela-footer">
+ <span class="escuela-meta-num">14, 30 años</span>
+ <span class="escuela-cta">Ver detalles</span></div></a>
 
-      <a href="escuela-individual.html" class="escuela-card" data-tipo="escuela" data-modalidad="mixta" data-region="espana">
-        <div class="escuela-head">
-          <div class="escuela-logo">RM</div>
-          <div class="escuela-headmeta">
-            <p class="escuela-nombre">Instituto Reino y Misión</p>
-            <p class="escuela-lugar">España · Madrid</p>
-          </div>
-        </div>
-        <p class="escuela-desc">Programa de formación de dos años que integra teología, formación pastoral, misiones y proyecto propio. Diseñado para quienes sienten llamado al liderazgo cristiano.</p>
-        <div class="escuela-tags">
-          <span class="escuela-tag mod">Presencial + online</span>
-          <span class="escuela-tag">Teología</span>
-          <span class="escuela-tag">Liderazgo</span>
-          <span class="escuela-tag">2 años</span>
-        </div>
-        <div class="escuela-footer">
-          <span class="escuela-meta-num">Cohorte anual · septiembre</span>
-          <span class="escuela-cta">Ver detalles →</span>
-        </div>
-      </a>
+ <a href="escuela-individual.html" class="escuela-card" data-tipo="escuela" data-modalidad="mixta" data-region="espana">
+ <div class="escuela-head">
+ <div class="escuela-logo">RM</div>
+ <div class="escuela-headmeta">
+ <p class="escuela-nombre">Instituto Reino y Misión</p>
+ <p class="escuela-lugar">España · Madrid</p></div></div>
+ <p class="escuela-desc">Programa de formación de dos años que integra teología, formación pastoral, misiones y proyecto propio. Diseñado para quienes sienten llamado al liderazgo cristiano.</p>
+ <div class="escuela-tags">
+ <span class="escuela-tag mod">Presencial + online</span>
+ <span class="escuela-tag">Teología</span>
+ <span class="escuela-tag">Liderazgo</span>
+ <span class="escuela-tag">2 años</span></div>
+ <div class="escuela-footer">
+ <span class="escuela-meta-num">Cohorte anual · septiembre</span>
+ <span class="escuela-cta">Ver detalles</span></div></a>
 
-      <a href="escuela-individual.html" class="escuela-card" data-tipo="fundacion" data-modalidad="presencial" data-region="america">
-        <div class="escuela-head">
-          <div class="escuela-logo">MA</div>
-          <div class="escuela-headmeta">
-            <p class="escuela-nombre">Fundación Manos Abiertas</p>
-            <p class="escuela-lugar">México · Ciudad de México</p>
-          </div>
-        </div>
-        <p class="escuela-desc">Formación práctica en acción social cristiana. Voluntarios acompañan proyectos en barrios vulnerables y aprenden mientras sirven. Fe con manos y pies.</p>
-        <div class="escuela-tags">
-          <span class="escuela-tag mod">Presencial</span>
-          <span class="escuela-tag">Acción social</span>
-          <span class="escuela-tag">Voluntariado</span>
-          <span class="escuela-tag">Práctica</span>
-        </div>
-        <div class="escuela-footer">
-          <span class="escuela-meta-num">Ingreso abierto</span>
-          <span class="escuela-cta">Ver detalles →</span>
-        </div>
-      </a>
+ <a href="escuela-individual.html" class="escuela-card" data-tipo="fundacion" data-modalidad="presencial" data-region="america">
+ <div class="escuela-head">
+ <div class="escuela-logo">MA</div>
+ <div class="escuela-headmeta">
+ <p class="escuela-nombre">Fundación Manos Abiertas</p>
+ <p class="escuela-lugar">México · Ciudad de México</p></div></div>
+ <p class="escuela-desc">Formación práctica en acción social cristiana. Voluntarios acompañan proyectos en barrios vulnerables y aprenden mientras sirven. Fe con manos y pies.</p>
+ <div class="escuela-tags">
+ <span class="escuela-tag mod">Presencial</span>
+ <span class="escuela-tag">Acción social</span>
+ <span class="escuela-tag">Voluntariado</span>
+ <span class="escuela-tag">Práctica</span></div>
+ <div class="escuela-footer">
+ <span class="escuela-meta-num">Ingreso abierto</span>
+ <span class="escuela-cta">Ver detalles</span></div></a>
 
-      <a href="escuela-individual.html" class="escuela-card" data-tipo="iglesia" data-modalidad="presencial" data-region="america">
-        <div class="escuela-head">
-          <div class="escuela-logo">GA</div>
-          <div class="escuela-headmeta">
-            <p class="escuela-nombre">Iglesia Gracia Abundante · Escuela pastoral</p>
-            <p class="escuela-lugar">Chile · Santiago</p>
-          </div>
-        </div>
-        <p class="escuela-desc">Escuela pastoral abierta a la iglesia local. Formación bíblica, teología pastoral y prácticas ministeriales para quienes sirven en su iglesia y quieren profundizar.</p>
-        <div class="escuela-tags">
-          <span class="escuela-tag mod">Presencial</span>
-          <span class="escuela-tag">Iglesia</span>
-          <span class="escuela-tag">Pastoral</span>
-          <span class="escuela-tag">Bíblica</span>
-        </div>
-        <div class="escuela-footer">
-          <span class="escuela-meta-num">Sábados · 8 meses</span>
-          <span class="escuela-cta">Ver detalles →</span>
-        </div>
-      </a>
-
-    </div>
-    <div class="es-empty" id="es-empty" style="display:none;">Ninguna comunidad coincide con esta combinación todavía.<br>Probá con otros filtros.</div>
-  </div>
-</section>
+ <a href="escuela-individual.html" class="escuela-card" data-tipo="iglesia" data-modalidad="presencial" data-region="america">
+ <div class="escuela-head">
+ <div class="escuela-logo">GA</div>
+ <div class="escuela-headmeta">
+ <p class="escuela-nombre">Iglesia Gracia Abundante · Escuela pastoral</p>
+ <p class="escuela-lugar">Chile · Santiago</p></div></div>
+ <p class="escuela-desc">Escuela pastoral abierta a la iglesia local. Formación bíblica, teología pastoral y prácticas ministeriales para quienes sirven en su iglesia y quieren profundizar.</p>
+ <div class="escuela-tags">
+ <span class="escuela-tag mod">Presencial</span>
+ <span class="escuela-tag">Iglesia</span>
+ <span class="escuela-tag">Pastoral</span>
+ <span class="escuela-tag">Bíblica</span></div>
+ <div class="escuela-footer">
+ <span class="escuela-meta-num">Sábados · 8 meses</span>
+ <span class="escuela-cta">Ver detalles</span></div></a></div>
+ <div class="es-empty" id="es-empty" style="display:none;">Ninguna comunidad coincide con esta combinación todavía.<br>Probá con otros filtros.</div></div></section>
 
 <section class="dir-invite">
-  <span class="dir-invite-eyebrow">Para instituciones</span>
-  <h2 class="dir-invite-title">¿Sos parte de una escuela, iglesia, ministerio o fundación que <em>forma personas?</em></h2>
-  <p class="dir-invite-sub">Sumarse a este espacio es gratuito. Es una oportunidad para que quienes buscan formación real puedan conocerte — y para que vos puedas recibir alumnos que ya vienen con hambre de aprender.</p>
-  <a href="registrar-institucion.html" class="dir-invite-cta">Registrar mi institución</a>
-</section>
-
-</main>
+ <span class="dir-invite-eyebrow">Para instituciones</span>
+ <h2 class="dir-invite-title">¿Sos parte de una escuela, iglesia, ministerio o fundación que <em>forma personas?</em></h2>
+ <p class="dir-invite-sub">Sumarse a este espacio es gratuito. Es una oportunidad para que quienes buscan formación real puedan conocerte, y para que vos puedas recibir alumnos que ya vienen con hambre de aprender.</p>
+ <a href="registrar-institucion.html" class="dir-invite-cta">Registrar mi institución</a></section></main>
 
 <script>
-  const esEstado = { tipo:'todos', modalidad:'todos', region:'todos' };
-  function esFiltrar(t, v, btn) {
-    esEstado[t] = v;
-    document.querySelectorAll(`[data-${t}]`).forEach(el => { if (el.classList.contains('es-chip')) el.classList.remove('active'); });
-    btn.classList.add('active');
-    let visibles = 0;
-    document.querySelectorAll('#es-grid .escuela-card').forEach(card => {
-      const okT = esEstado.tipo === 'todos' || card.dataset.tipo === esEstado.tipo;
-      const okM = esEstado.modalidad === 'todos' || card.dataset.modalidad === esEstado.modalidad;
-      const okR = esEstado.region === 'todos' || card.dataset.region === esEstado.region;
-      const vis = okT && okM && okR;
-      card.style.display = vis ? '' : 'none';
-      if (vis) visibles++;
-    });
-    document.getElementById('es-empty').style.display = visibles === 0 ? 'block' : 'none';
-    const txt = document.getElementById('es-count-txt');
-    if (txt) txt.textContent = (esEstado.tipo === 'todos' && esEstado.modalidad === 'todos' && esEstado.region === 'todos') ? 'disponibles' : 'en este recorte';
-  }
-</script>
+ const esEstado = { tipo:'todos', modalidad:'todos', region:'todos' };
+ function esFiltrar(t, v, btn) {
+ esEstado[t] = v;
+ document.querySelectorAll(`[data-${t}]`).forEach(el => { if (el.classList.contains('es-chip')) el.classList.remove('active'); });
+ btn.classList.add('active');
+ let visibles = 0;
+ document.querySelectorAll('#es-grid .escuela-card').forEach(card => {
+ const okT = esEstado.tipo === 'todos' || card.dataset.tipo === esEstado.tipo;
+ const okM = esEstado.modalidad === 'todos' || card.dataset.modalidad === esEstado.modalidad;
+ const okR = esEstado.region === 'todos' || card.dataset.region === esEstado.region;
+ const vis = okT && okM && okR;
+ card.style.display = vis ? '' : 'none';
+ if (vis) visibles++;
+ });
+ document.getElementById('es-empty').style.display = visibles === 0 ? 'block' : 'none';
+ const txt = document.getElementById('es-count-txt');
+ if (txt) txt.textContent = (esEstado.tipo === 'todos' && esEstado.modalidad === 'todos' && esEstado.region === 'todos') ? 'disponibles' : 'en este recorte';
+ }</script>
 
 <footer class="egs-footer">
-  <div class="footer-divider" aria-hidden="true"></div>
-  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
-  <p class="footer-line">Nadie fue creado para caminar solo.</p>
-  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
-  <form class="footer-form" id="footerForm" onsubmit="return false;">
-    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-    <button type="submit">Quiero recibir novedades</button>
-  </form>
-  <div class="footer-social" aria-label="Redes sociales">
-    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
-    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
-    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-  </div>
-  <p class="footer-social-nota">Más redes · próximamente</p>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p>
-</footer>
-<script src="assets/egs.js"></script>
-</body>
-</html>
+ <div class="footer-divider" aria-hidden="true"></div>
+ <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+ <p class="footer-line">Nadie fue creado para caminar solo.</p>
+ <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+ <form class="footer-form" id="footerForm" onsubmit="return false;">
+ <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+ <button type="submit">Quiero recibir novedades</button></form>
+ <div class="footer-social" aria-label="Redes sociales">
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+ <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+ <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+ <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+ <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+ <p class="footer-social-nota">Más redes · próximamente</p>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © <span id="year"></span> El Gran Sueño</p></footer>
+<script src="assets/egs.js"></script></body></html>

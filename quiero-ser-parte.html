@@ -15,9 +15,9 @@
 <meta name="twitter:description" content="No todos estamos en el mismo momento, pero todos seguimos caminando.">
 <meta name="theme-color" content="#6B1A2B">
 
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,532 +25,523 @@
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
-  /* ===== Estilos propios de esta página ===== */
-  .transicion-beat {
-    min-height: 48vh;
-    padding: 13vh 6vw 5vh !important;
-    background: linear-gradient(rgba(16,11,7,0.42), rgba(16,11,7,0.58)), url('assets/fotos/dondeestoy.webp') center 22% / cover no-repeat;
-    position: relative;
-    display: flex !important; align-items: center !important; justify-content: center !important;
-  }
-  .transicion-beat .say, .transicion-beat .dev { color: #FAF8F5; text-shadow: 0 2px 24px rgba(0,0,0,0.38); }
-  .contemplativa-beat { min-height: 100vh; }
+ /* ===== Estilos propios de esta página ===== */
+ .transicion-beat {
+ min-height: 48vh;
+ padding: 13vh 6vw 5vh !important;
+ background: linear-gradient(rgba(16,11,7,0.42), rgba(16,11,7,0.58)), url('assets/fotos/dondeestoy.webp') center 22% / cover no-repeat;
+ position: relative;
+ display: flex !important; align-items: center !important; justify-content: center !important;
+ }
+ .transicion-beat .say, .transicion-beat .dev { color: #FAF8F5; text-shadow: 0 2px 24px rgba(0,0,0,0.38); }
+ .contemplativa-beat { min-height: 100vh; }
 
-  /* HEADER de página */
-  .page-header {
-    background: linear-gradient(rgba(16,11,7,0.50), rgba(16,11,7,0.64)), url('assets/fotos/dondeestoy.webp') center 82% / cover no-repeat;
-    padding: 6rem 2.5rem 6rem;
-    min-height: 42vh;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .page-header::after {
-    content: '';
-    position: absolute; bottom: 0; left: 50%;
-    transform: translateX(-50%);
-    width: 1px; height: 48px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-  }
-  .page-header-label {
-    font-size: 0.65rem; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1.25rem;
-  }
-  .page-header-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 400; color: white;
-    line-height: 1.2; margin-bottom: 1.25rem;
-  }
-  .page-header-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    font-style: italic; color: rgba(255,255,255,0.6);
-    max-width: 480px; margin: 0 auto 1rem; line-height: 1.7;
-  }
-  .page-header-note {
-    font-size: 0.68rem; letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.3); font-style: italic;
-  }
+ /* HEADER de página */
+ .page-header {
+ background: linear-gradient(rgba(16,11,7,0.50), rgba(16,11,7,0.64)), url('assets/fotos/dondeestoy.webp') center 82% / cover no-repeat;
+ padding: 6rem 2.5rem 6rem;
+ min-height: 42vh;
+ display: flex; flex-direction: column; align-items: center; justify-content: center;
+ text-align: center;
+ position: relative;
+ overflow: hidden;
+ }
+ .page-header::after {
+ content: '';
+ position: absolute; bottom: 0; left: 50%;
+ transform: translateX(-50%);
+ width: 1px; height: 48px;
+ background: linear-gradient(to bottom, var(--gold), transparent);
+ }
+ .page-header-label {
+ font-size: 0.65rem; letter-spacing: 0.3em;
+ text-transform: uppercase; color: var(--gold);
+ margin-bottom: 1.25rem;
+ }
+ .page-header-title {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(2rem, 5vw, 3.5rem);
+ font-weight: 400; color: white;
+ line-height: 1.2; margin-bottom: 1.25rem;
+ }
+ .page-header-sub {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: clamp(1rem, 2.5vw, 1.3rem);
+ font-style: italic; color: rgba(255,255,255,0.6);
+ max-width: 480px; margin: 0 auto 1rem; line-height: 1.7;
+ }
+ .page-header-note {
+ font-size: 0.68rem; letter-spacing: 0.12em;
+ color: rgba(255,255,255,0.3); font-style: italic;
+ }
 
-  /* Sección wrapper */
-  .section { padding: 7.5rem 2.5rem; position: relative; z-index: 1; }
-  .section-inner { max-width: 1000px; margin: 0 auto; }
-  .section-label {
-    font-size: 0.65rem; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--bordo);
-    margin-bottom: 0.75rem;
-  }
-  .section-label.gold { color: var(--gold); }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-    font-weight: 400; color: var(--ink);
-    line-height: 1.2; margin-bottom: 0.75rem;
-  }
-  .section-title.white { color: white; }
-  .section-sub {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; font-style: italic;
-    color: var(--ink-mid); line-height: 1.7;
-    margin-bottom: 3rem;
-  }
-  .section-sub.white { color: rgba(255,255,255,0.7); }
+ /* Sección wrapper */
+ .section { padding: 7.5rem 2.5rem; position: relative; z-index: 1; }
+ .section-inner { max-width: 1000px; margin: 0 auto; }
+ .section-label {
+ font-size: 0.65rem; letter-spacing: 0.3em;
+ text-transform: uppercase; color: var(--bordo);
+ margin-bottom: 0.75rem;
+ }
+ .section-label.gold { color: var(--gold); }
+ .section-title {
+ font-family: 'Playfair Display', serif;
+ font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+ font-weight: 400; color: var(--ink);
+ line-height: 1.2; margin-bottom: 0.75rem;
+ }
+ .section-title.white { color: white; }
+ .section-sub {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1.1rem; font-style: italic;
+ color: var(--ink-mid); line-height: 1.7;
+ margin-bottom: 3rem;
+ }
+ .section-sub.white { color: rgba(255,255,255,0.7); }
 
-  /* ===== TRES CAMINOS ===== */
-  .caminos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .camino {
-    background: var(--cream);
-    border: 1px solid var(--cream-dark);
-    display: flex; flex-direction: column;
-    transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-  .camino::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 3px; background: var(--camino-accent, var(--bordo));
-    transform: scaleX(0.3); transform-origin: left; opacity: 0.85;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .camino:hover { box-shadow: 0 14px 34px rgba(0,0,0,0.08); transform: translateY(-3px); }
-  .camino:hover::before { transform: scaleX(1); }
-  .camino.llamado  { --camino-accent: var(--bordo); }
-  .camino.acompana { --camino-accent: var(--gold); }
-  .camino.colabora { --camino-accent: var(--ink); }
-  .camino-top { padding: 2.5rem 2.25rem 2rem; flex: 1; }
-  .camino-badge {
-    display: inline-block;
-    font-size: 0.6rem; letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.85rem;
-    margin-bottom: 1.75rem;
-    font-weight: 500;
-  }
-  .camino.llamado .camino-badge  { background: rgba(107,39,55,0.08);  color: var(--bordo); }
-  .camino.acompana .camino-badge { background: rgba(201,168,76,0.12); color: #8a6a1a; }
-  .camino.colabora .camino-badge { background: rgba(26,21,16,0.06);   color: var(--ink-mid); }
-  .camino-symbol { font-size: 2rem; margin-bottom: 1.25rem; display: block; line-height: 1; }
-  .camino.llamado  .camino-symbol { color: var(--bordo); }
-  .camino.acompana .camino-symbol { color: var(--gold); }
-  .camino.colabora .camino-symbol { color: var(--ink-mid); }
-  .camino-titulo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.45rem; font-weight: 400;
-    color: var(--ink); margin-bottom: 0.4rem;
-  }
-  .camino-subtitulo {
-    font-size: 0.68rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--ink-light);
-    margin-bottom: 1.5rem;
-  }
-  .camino-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.08rem; font-style: italic;
-    color: var(--ink-mid); line-height: 1.8;
-    margin-bottom: 1.75rem;
-  }
-  .camino-lista { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .camino-lista li {
-    font-size: 0.82rem; color: var(--ink-mid);
-    display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5;
-  }
-  .camino-lista li::before { content: '—'; color: var(--ink-light); flex-shrink: 0; }
-  .camino-bottom { padding: 1.75rem 2.25rem; border-top: 1px solid var(--cream-dark); }
-  .camino.llamado  .camino-bottom { border-top-color: rgba(107,39,55,0.12); }
-  .camino.acompana .camino-bottom { border-top-color: rgba(201,168,76,0.18); }
-  .camino-cta {
-    display: block; width: 100%; padding: 0.95rem;
-    text-align: center;
-    font-size: 0.72rem; letter-spacing: 0.18em;
-    text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif; font-weight: 500;
-    border: none; cursor: pointer;
-    transition: all 0.25s;
-    text-decoration: none;
-  }
-  .camino.llamado  .camino-cta { background: var(--bordo); color: white; }
-  .camino.llamado  .camino-cta:hover { background: var(--bordo-light); }
-  .camino.acompana .camino-cta { background: var(--gold); color: var(--ink); }
-  .camino.acompana .camino-cta:hover { background: var(--gold-light); }
-  .camino.colabora .camino-cta { background: var(--ink); color: white; }
-  .camino.colabora .camino-cta:hover { background: #2a2520; }
+ /* ===== TRES CAMINOS ===== */
+ .caminos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+ .camino {
+ background: var(--cream);
+ border: 1px solid var(--cream-dark);
+ display: flex; flex-direction: column;
+ transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+ position: relative;
+ overflow: hidden;
+ }
+ .camino::before {
+ content: ''; position: absolute; top: 0; left: 0; right: 0;
+ height: 3px; background: var(--camino-accent, var(--bordo));
+ transform: scaleX(0.3); transform-origin: left; opacity: 0.85;
+ transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+ }
+ .camino:hover { box-shadow: 0 14px 34px rgba(0,0,0,0.08); transform: translateY(-3px); }
+ .camino:hover::before { transform: scaleX(1); }
+ .camino.llamado { --camino-accent: var(--bordo); }
+ .camino.acompana { --camino-accent: var(--gold); }
+ .camino.colabora { --camino-accent: var(--ink); }
+ .camino-top { padding: 2.5rem 2.25rem 2rem; flex: 1; }
+ .camino-badge {
+ display: inline-block;
+ font-size: 0.6rem; letter-spacing: 0.2em;
+ text-transform: uppercase;
+ padding: 0.35rem 0.85rem;
+ margin-bottom: 1.75rem;
+ font-weight: 500;
+ }
+ .camino.llamado .camino-badge { background: rgba(107,39,55,0.08); color: var(--bordo); }
+ .camino.acompana .camino-badge { background: rgba(201,168,76,0.12); color: #8a6a1a; }
+ .camino.colabora .camino-badge { background: rgba(26,21,16,0.06); color: var(--ink-mid); }
+ .camino-symbol { font-size: 2rem; margin-bottom: 1.25rem; display: block; line-height: 1; }
+ .camino.llamado .camino-symbol { color: var(--bordo); }
+ .camino.acompana .camino-symbol { color: var(--gold); }
+ .camino.colabora .camino-symbol { color: var(--ink-mid); }
+ .camino-titulo {
+ font-family: 'Playfair Display', serif;
+ font-size: 1.45rem; font-weight: 400;
+ color: var(--ink); margin-bottom: 0.4rem;
+ }
+ .camino-subtitulo {
+ font-size: 0.68rem; letter-spacing: 0.1em;
+ text-transform: uppercase; color: var(--ink-light);
+ margin-bottom: 1.5rem;
+ }
+ .camino-desc {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1.08rem; font-style: italic;
+ color: var(--ink-mid); line-height: 1.8;
+ margin-bottom: 1.75rem;
+ }
+ .camino-lista { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+ .camino-lista li {
+ font-size: 0.82rem; color: var(--ink-mid);
+ display: flex; align-items: flex-start; gap: 0.6rem; line-height: 1.5;
+ }
+ .camino-lista li::before { content: '·'; color: var(--ink-light); flex-shrink: 0; }
+ .camino-bottom { padding: 1.75rem 2.25rem; border-top: 1px solid var(--cream-dark); }
+ .camino.llamado .camino-bottom { border-top-color: rgba(107,39,55,0.12); }
+ .camino.acompana .camino-bottom { border-top-color: rgba(201,168,76,0.18); }
+ .camino-cta {
+ display: block; width: 100%; padding: 0.95rem;
+ text-align: center;
+ font-size: 0.72rem; letter-spacing: 0.18em;
+ text-transform: uppercase;
+ font-family: 'DM Sans', sans-serif; font-weight: 500;
+ border: none; cursor: pointer;
+ transition: all 0.25s;
+ text-decoration: none;
+ }
+ .camino.llamado .camino-cta { background: var(--bordo); color: white; }
+ .camino.llamado .camino-cta:hover { background: var(--bordo-light); }
+ .camino.acompana .camino-cta { background: var(--gold); color: var(--ink); }
+ .camino.acompana .camino-cta:hover { background: var(--gold-light); }
+ .camino.colabora .camino-cta { background: var(--ink); color: white; }
+ .camino.colabora .camino-cta:hover { background: #2a2520; }
 
-  /* CICLO */
-  .ciclo-section { background: var(--cream-dark); }
-  .ciclo-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
-  .ciclo-grid::before {
-    content: ''; position: absolute;
-    top: 1.75rem; left: 2rem; right: 2rem;
-    height: 1px; background: linear-gradient(to right, var(--bordo), var(--gold));
-    opacity: 0.15;
-  }
-  .ciclo-paso { padding: 0 1.5rem 0 0; position: relative; }
-  .ciclo-num {
-    width: 3.5rem; height: 3.5rem;
-    border-radius: 50%;
-    background: var(--cream); border: 1px solid #e0dcd6;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem; color: var(--bordo);
-    margin-bottom: 1.25rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-  .ciclo-paso:last-child .ciclo-num { border-color: var(--gold); color: var(--gold); }
-  .ciclo-titulo {
-    font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink); margin-bottom: 0.5rem;
-  }
-  .ciclo-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem; font-style: italic;
-    color: var(--ink-mid); line-height: 1.6;
-  }
+ /* CICLO */
+ .ciclo-section { background: var(--cream-dark); }
+ .ciclo-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+ .ciclo-grid::before {
+ content: ''; position: absolute;
+ top: 1.75rem; left: 2rem; right: 2rem;
+ height: 1px; background: linear-gradient(to right, var(--bordo), var(--gold));
+ opacity: 0.15;
+ }
+ .ciclo-paso { padding: 0 1.5rem 0 0; position: relative; }
+ .ciclo-num {
+ width: 3.5rem; height: 3.5rem;
+ border-radius: 50%;
+ background: var(--cream); border: 1px solid #e0dcd6;
+ display: flex; align-items: center; justify-content: center;
+ font-family: 'Playfair Display', serif;
+ font-size: 1rem; color: var(--bordo);
+ margin-bottom: 1.25rem;
+ box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+ }
+ .ciclo-paso:last-child .ciclo-num { border-color: var(--gold); color: var(--gold); }
+ .ciclo-titulo {
+ font-size: 0.7rem; font-weight: 500;
+ letter-spacing: 0.08em; text-transform: uppercase;
+ color: var(--ink); margin-bottom: 0.5rem;
+ }
+ .ciclo-desc {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 0.95rem; font-style: italic;
+ color: var(--ink-mid); line-height: 1.6;
+ }
 
-  /* COMUNIDAD (fondo oscuro) */
-  .comunidad-section { background: var(--ink); }
-  .comunidad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-  .comunidad-no { display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.06); }
-  .comunidad-no-header {
-    padding: 1.25rem 1.5rem;
-    background: rgba(255,255,255,0.03);
-    font-size: 0.65rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: rgba(255,255,255,0.4);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .comunidad-no-item {
-    padding: 1rem 1.5rem;
-    font-size: 0.85rem; color: rgba(255,255,255,0.45);
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    display: flex; align-items: center; gap: 0.75rem;
-    text-decoration: line-through;
-    text-decoration-color: rgba(255,255,255,0.2);
-  }
-  .comunidad-no-item::before { content: '✕'; font-size: 0.6rem; color: rgba(255,255,255,0.3); flex-shrink: 0; }
-  .comunidad-si { display: flex; flex-direction: column; }
-  .comunidad-si-header {
-    font-size: 0.65rem; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1.25rem;
-  }
-  .comunidad-si-item {
-    padding: 1.1rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    display: flex; align-items: flex-start; gap: 1rem;
-  }
-  .comunidad-si-item:last-child { border-bottom: none; }
-  .comunidad-si-arrow { color: var(--gold); opacity: 0.7; flex-shrink: 0; margin-top: 0.1rem; }
-  .comunidad-si-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem; font-style: italic;
-    color: rgba(255,255,255,0.8); line-height: 1.5;
-  }
+ /* COMUNIDAD (fondo oscuro) */
+ .comunidad-section { background: var(--ink); }
+ .comunidad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+ .comunidad-no { display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,0.06); }
+ .comunidad-no-header {
+ padding: 1.25rem 1.5rem;
+ background: rgba(255,255,255,0.03);
+ font-size: 0.65rem; letter-spacing: 0.2em;
+ text-transform: uppercase; color: rgba(255,255,255,0.4);
+ border-bottom: 1px solid rgba(255,255,255,0.06);
+ }
+ .comunidad-no-item {
+ padding: 1rem 1.5rem;
+ font-size: 0.85rem; color: rgba(255,255,255,0.45);
+ border-bottom: 1px solid rgba(255,255,255,0.04);
+ display: flex; align-items: center; gap: 0.75rem;
+ text-decoration: line-through;
+ text-decoration-color: rgba(255,255,255,0.2);
+ }
+ .comunidad-no-item::before { content: '✕'; font-size: 0.6rem; color: rgba(255,255,255,0.3); flex-shrink: 0; }
+ .comunidad-si { display: flex; flex-direction: column; }
+ .comunidad-si-header {
+ font-size: 0.65rem; letter-spacing: 0.2em;
+ text-transform: uppercase; color: var(--gold);
+ margin-bottom: 1.25rem;
+ }
+ .comunidad-si-item {
+ padding: 1.1rem 0;
+ border-bottom: 1px solid rgba(255,255,255,0.06);
+ display: flex; align-items: flex-start; gap: 1rem;
+ }
+ .comunidad-si-item:last-child { border-bottom: none; }
+ .comunidad-si-arrow { color: var(--gold); opacity: 0.7; flex-shrink: 0; margin-top: 0.1rem; }
+ .comunidad-si-text {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1.05rem; font-style: italic;
+ color: rgba(255,255,255,0.8); line-height: 1.5;
+ }
 
-  /* ESFERAS con SVGs minimalistas (reemplazo de emojis) */
-  .esferas-section { background: var(--cream); }
-  .esferas-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 2.5rem 2rem;
-  }
-  .esfera {
-    padding: 1.25rem 1rem;
-    display: flex; flex-direction: column; gap: 0.6rem;
-    transition: transform 0.3s, background 0.3s;
-    border-radius: 4px;
-    text-align: left;
-  }
-  .esfera:hover { transform: translateY(-3px); background: rgba(107,26,43,0.03); }
-  .esfera-icon {
-    width: 1.9rem; height: 1.9rem;
-    color: var(--bordo);
-    opacity: 0.85;
-    margin-bottom: 0.4rem;
-  }
-  .esfera-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-  .esfera-nombre {
-    font-size: 0.78rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink);
-  }
-  .esfera-desc {
-    font-size: 0.82rem;
-    color: var(--ink-light); line-height: 1.55;
-  }
+ /* ESFERAS con SVGs minimalistas (reemplazo de emojis) */
+ .esferas-section { background: var(--cream); }
+ .esferas-grid {
+ display: grid; grid-template-columns: repeat(4, 1fr);
+ gap: 2.5rem 2rem;
+ }
+ .esfera {
+ padding: 1.25rem 1rem;
+ display: flex; flex-direction: column; gap: 0.6rem;
+ transition: transform 0.3s, background 0.3s;
+ border-radius: 4px;
+ text-align: left;
+ }
+ .esfera:hover { transform: translateY(-3px); background: rgba(107,26,43,0.03); }
+ .esfera-icon {
+ width: 1.9rem; height: 1.9rem;
+ color: var(--bordo);
+ opacity: 0.85;
+ margin-bottom: 0.4rem;
+ }
+ .esfera-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+ .esfera-nombre {
+ font-size: 0.78rem; font-weight: 500;
+ letter-spacing: 0.08em; text-transform: uppercase;
+ color: var(--ink);
+ }
+ .esfera-desc {
+ font-size: 0.82rem;
+ color: var(--ink-light); line-height: 1.55;
+ }
 
-  /* PROFESIONAL PERFIL */
-  .perfil-section { background: var(--bordo-dark); }
-  .perfil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-  .perfil-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 2.5rem;
-  }
-  .perfil-card-label {
-    font-size: 0.6rem; letter-spacing: 0.25em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 1.5rem;
-  }
-  .perfil-fields { display: flex; flex-direction: column; }
-  .perfil-field {
-    padding: 0.9rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    display: flex; justify-content: space-between;
-    align-items: center; gap: 1rem;
-  }
-  .perfil-field:last-child { border-bottom: none; }
-  .perfil-field-key {
-    font-size: 0.65rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: rgba(255,255,255,0.45);
-  }
-  .perfil-field-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem; font-style: italic;
-    color: rgba(255,255,255,0.8); text-align: right;
-  }
-  .perfil-nota {
-    margin-top: 1.5rem;
-    padding: 1rem 1.25rem;
-    background: rgba(201,168,76,0.08);
-    border-left: 2px solid var(--gold);
-    font-size: 0.8rem; color: rgba(255,255,255,0.6);
-    line-height: 1.6; font-style: italic;
-  }
-  .perfil-texto { display: flex; flex-direction: column; gap: 1.5rem; }
-  .perfil-punto { display: flex; gap: 1.25rem; align-items: flex-start; }
-  .perfil-punto-icon { color: var(--gold); opacity: 0.7; flex-shrink: 0; margin-top: 0.2rem; }
-  .perfil-punto-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; font-style: italic;
-    color: rgba(255,255,255,0.75); line-height: 1.7;
-  }
+ /* PROFESIONAL PERFIL */
+ .perfil-section { background: var(--bordo-dark); }
+ .perfil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+ .perfil-card {
+ background: rgba(255,255,255,0.04);
+ border: 1px solid rgba(255,255,255,0.08);
+ padding: 2.5rem;
+ }
+ .perfil-card-label {
+ font-size: 0.6rem; letter-spacing: 0.25em;
+ text-transform: uppercase; color: var(--gold);
+ margin-bottom: 1.5rem;
+ }
+ .perfil-fields { display: flex; flex-direction: column; }
+ .perfil-field {
+ padding: 0.9rem 0;
+ border-bottom: 1px solid rgba(255,255,255,0.06);
+ display: flex; justify-content: space-between;
+ align-items: center; gap: 1rem;
+ }
+ .perfil-field:last-child { border-bottom: none; }
+ .perfil-field-key {
+ font-size: 0.65rem; letter-spacing: 0.12em;
+ text-transform: uppercase; color: rgba(255,255,255,0.45);
+ }
+ .perfil-field-val {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1rem; font-style: italic;
+ color: rgba(255,255,255,0.8); text-align: right;
+ }
+ .perfil-nota {
+ margin-top: 1.5rem;
+ padding: 1rem 1.25rem;
+ background: rgba(201,168,76,0.08);
+ border-left: 2px solid var(--gold);
+ font-size: 0.8rem; color: rgba(255,255,255,0.6);
+ line-height: 1.6; font-style: italic;
+ }
+ .perfil-texto { display: flex; flex-direction: column; gap: 1.5rem; }
+ .perfil-punto { display: flex; gap: 1.25rem; align-items: flex-start; }
+ .perfil-punto-icon { color: var(--gold); opacity: 0.7; flex-shrink: 0; margin-top: 0.2rem; }
+ .perfil-punto-text {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1.1rem; font-style: italic;
+ color: rgba(255,255,255,0.75); line-height: 1.7;
+ }
 
-  /* HISTORIAS */
-  .historias-section { background: var(--cream); }
-  .historias-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .historia-card {
-    border: 1px solid var(--cream-dark);
-    padding: 2rem;
-    display: flex; flex-direction: column; gap: 1rem;
-    transition: box-shadow 0.3s, transform 0.3s;
-  }
-  .historia-card:hover { box-shadow: 0 8px 26px rgba(0,0,0,0.07); transform: translateY(-3px); }
-  .historia-header { display: flex; align-items: center; gap: 1rem; }
-  .historia-avatar {
-    width: 2.75rem; height: 2.75rem;
-    border-radius: 50%;
-    background: var(--cream-dark);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; color: var(--bordo);
-    flex-shrink: 0;
-  }
-  .historia-meta { display: flex; flex-direction: column; gap: 0.2rem; }
-  .historia-nombre { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: var(--ink); }
-  .historia-pais { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); }
-  .historia-estado {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.3rem 0.7rem; align-self: flex-start;
-  }
-  .historia-estado.activo { background: rgba(107,39,55,0.07); color: var(--bordo); }
-  .historia-estado.completado { background: rgba(201,168,76,0.1); color: #8a6a1a; }
-  .historia-estado::before {
-    content: ''; width: 5px; height: 5px;
-    border-radius: 50%; background: currentColor; opacity: 0.6;
-  }
-  .historia-texto {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem; font-style: italic;
-    color: var(--ink-mid); line-height: 1.75; flex: 1;
-  }
-  .historia-footer { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--cream-dark); }
-  .historia-tag-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); }
-  .historia-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .historia-tag { font-size: 0.65rem; padding: 0.25rem 0.6rem; background: var(--cream-dark); color: var(--ink-mid); }
+ /* HISTORIAS */
+ .historias-section { background: var(--cream); }
+ .historias-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+ .historia-card {
+ border: 1px solid var(--cream-dark);
+ padding: 2rem;
+ display: flex; flex-direction: column; gap: 1rem;
+ transition: box-shadow 0.3s, transform 0.3s;
+ }
+ .historia-card:hover { box-shadow: 0 8px 26px rgba(0,0,0,0.07); transform: translateY(-3px); }
+ .historia-header { display: flex; align-items: center; gap: 1rem; }
+ .historia-avatar {
+ width: 2.75rem; height: 2.75rem;
+ border-radius: 50%;
+ background: var(--cream-dark);
+ display: flex; align-items: center; justify-content: center;
+ font-family: 'Playfair Display', serif;
+ font-size: 1.1rem; color: var(--bordo);
+ flex-shrink: 0;
+ }
+ .historia-meta { display: flex; flex-direction: column; gap: 0.2rem; }
+ .historia-nombre { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; color: var(--ink); }
+ .historia-pais { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); }
+ .historia-estado {
+ display: inline-flex; align-items: center; gap: 0.4rem;
+ font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+ padding: 0.3rem 0.7rem; align-self: flex-start;
+ }
+ .historia-estado.activo { background: rgba(107,39,55,0.07); color: var(--bordo); }
+ .historia-estado.completado { background: rgba(201,168,76,0.1); color: #8a6a1a; }
+ .historia-estado::before {
+ content: ''; width: 5px; height: 5px;
+ border-radius: 50%; background: currentColor; opacity: 0.6;
+ }
+ .historia-texto {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1.05rem; font-style: italic;
+ color: var(--ink-mid); line-height: 1.75; flex: 1;
+ }
+ .historia-footer { display: flex; flex-direction: column; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--cream-dark); }
+ .historia-tag-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); }
+ .historia-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+ .historia-tag { font-size: 0.65rem; padding: 0.25rem 0.6rem; background: var(--cream-dark); color: var(--ink-mid); }
 
-  /* PREVIEW HISTORIA */
-  .preview-section { background: var(--cream-dark); }
-  .preview-card { background: var(--cream); border: 1px solid #e0dcd6; max-width: 680px; margin: 0 auto; overflow: hidden; }
-  .preview-card-header {
-    background: var(--ink);
-    padding: 1.5rem 2rem;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .preview-card-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-  .preview-card-estado {
-    font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gold); display: flex; align-items: center; gap: 0.4rem;
-  }
-  .preview-card-estado::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
-  .preview-card-body { padding: 2rem; }
-  .preview-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 0.85rem 0; border-bottom: 1px solid var(--cream-dark); gap: 1rem;
-  }
-  .preview-row:last-child { border-bottom: none; }
-  .preview-row-key {
-    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink-light); flex-shrink: 0; min-width: 130px;
-  }
-  .preview-row-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem; font-style: italic;
-    color: var(--ink-mid); text-align: right;
-  }
-  .preview-row-val.highlight { font-style: normal; font-weight: 400; color: var(--ink); }
-  .preview-mentores { display: flex; gap: 0.4rem; justify-content: flex-end; flex-wrap: wrap; }
-  .preview-mentor-dot {
-    width: 1.8rem; height: 1.8rem;
-    border-radius: 50%;
-    background: var(--cream-dark);
-    border: 2px solid white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.65rem; color: var(--ink-mid);
-    font-family: 'Playfair Display', serif;
-  }
-  .preview-nota {
-    margin-top: 1.5rem;
-    padding: 1rem 1.25rem;
-    background: rgba(107,39,55,0.04);
-    border-left: 2px solid var(--bordo);
-    font-size: 0.85rem; color: var(--ink-mid);
-    font-style: italic; line-height: 1.6;
-  }
+ /* PREVIEW HISTORIA */
+ .preview-section { background: var(--cream-dark); }
+ .preview-card { background: var(--cream); border: 1px solid #e0dcd6; max-width: 680px; margin: 0 auto; overflow: hidden; }
+ .preview-card-header {
+ background: var(--ink);
+ padding: 1.5rem 2rem;
+ display: flex; justify-content: space-between; align-items: center;
+ }
+ .preview-card-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+ .preview-card-estado {
+ font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+ color: var(--gold); display: flex; align-items: center; gap: 0.4rem;
+ }
+ .preview-card-estado::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+ .preview-card-body { padding: 2rem; }
+ .preview-row {
+ display: flex; justify-content: space-between; align-items: baseline;
+ padding: 0.85rem 0; border-bottom: 1px solid var(--cream-dark); gap: 1rem;
+ }
+ .preview-row:last-child { border-bottom: none; }
+ .preview-row-key {
+ font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+ color: var(--ink-light); flex-shrink: 0; min-width: 130px;
+ }
+ .preview-row-val {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1rem; font-style: italic;
+ color: var(--ink-mid); text-align: right;
+ }
+ .preview-row-val.highlight { font-style: normal; font-weight: 400; color: var(--ink); }
+ .preview-mentores { display: flex; gap: 0.4rem; justify-content: flex-end; flex-wrap: wrap; }
+ .preview-mentor-dot {
+ width: 1.8rem; height: 1.8rem;
+ border-radius: 50%;
+ background: var(--cream-dark);
+ border: 2px solid white;
+ display: flex; align-items: center; justify-content: center;
+ font-size: 0.65rem; color: var(--ink-mid);
+ font-family: 'Playfair Display', serif;
+ }
+ .preview-nota {
+ margin-top: 1.5rem;
+ padding: 1rem 1.25rem;
+ background: rgba(107,39,55,0.04);
+ border-left: 2px solid var(--bordo);
+ font-size: 0.85rem; color: var(--ink-mid);
+ font-style: italic; line-height: 1.6;
+ }
 
-  /* MULTIPLICACIÓN */
-  .multiplicacion-section {
-    background: var(--bordo-dark);
-    padding: 6rem 2.5rem;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-  }
-  .multiplicacion-inner { max-width: 620px; margin: 0 auto; }
-  .multiplicacion-divider { width: 32px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; opacity: 0.6; }
-  .multiplicacion-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.3rem, 3vw, 1.9rem);
-    font-weight: 300; color: rgba(255,255,255,0.8);
-    line-height: 1.7; font-style: italic;
-    margin-bottom: 1.5rem;
-  }
-  .multiplicacion-text strong {
-    color: white; font-style: normal; font-weight: 400;
-    display: block; margin-top: 0.5rem;
-  }
-  .multiplicacion-cta {
-    display: inline-block; margin-top: 2rem;
-    padding: 1rem 2.5rem;
-    background: var(--gold); color: var(--ink);
-    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
-    font-family: 'DM Sans', sans-serif; font-weight: 500;
-    text-decoration: none;
-    transition: background 0.25s, transform 0.25s;
-  }
-  .multiplicacion-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+ /* MULTIPLICACIÓN */
+ .multiplicacion-section {
+ background: var(--bordo-dark);
+ padding: 6rem 2.5rem;
+ text-align: center;
+ position: relative;
+ z-index: 1;
+ }
+ .multiplicacion-inner { max-width: 620px; margin: 0 auto; }
+ .multiplicacion-divider { width: 32px; height: 1px; background: var(--gold); margin: 0 auto 2.5rem; opacity: 0.6; }
+ .multiplicacion-text {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: clamp(1.3rem, 3vw, 1.9rem);
+ font-weight: 300; color: rgba(255,255,255,0.8);
+ line-height: 1.7; font-style: italic;
+ margin-bottom: 1.5rem;
+ }
+ .multiplicacion-text strong {
+ color: white; font-style: normal; font-weight: 400;
+ display: block; margin-top: 0.5rem;
+ }
+ .multiplicacion-cta {
+ display: inline-block; margin-top: 2rem;
+ padding: 1rem 2.5rem;
+ background: var(--gold); color: var(--ink);
+ font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+ font-family: 'DM Sans', sans-serif; font-weight: 500;
+ text-decoration: none;
+ transition: background 0.25s, transform 0.25s;
+ }
+ .multiplicacion-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
 
-  /* TRANSPARENCIA */
-  .transparencia-section { background: var(--ink); }
-  .transparencia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
-  .transparencia-item { background: var(--ink); padding: 2.5rem 2rem; }
-  .transparencia-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem; color: rgba(255,255,255,0.08);
-    line-height: 1; margin-bottom: 1rem;
-  }
-  .transparencia-titulo {
-    font-size: 0.7rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 0.75rem; font-weight: 500;
-  }
-  .transparencia-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem; font-style: italic;
-    color: rgba(255,255,255,0.7); line-height: 1.7;
-  }
+ /* TRANSPARENCIA */
+ .transparencia-section { background: var(--ink); }
+ .transparencia-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+ .transparencia-item { background: var(--ink); padding: 2.5rem 2rem; }
+ .transparencia-num {
+ font-family: 'Playfair Display', serif;
+ font-size: 3rem; color: rgba(255,255,255,0.08);
+ line-height: 1; margin-bottom: 1rem;
+ }
+ .transparencia-titulo {
+ font-size: 0.7rem; letter-spacing: 0.15em;
+ text-transform: uppercase; color: var(--gold);
+ margin-bottom: 0.75rem; font-weight: 500;
+ }
+ .transparencia-desc {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1.05rem; font-style: italic;
+ color: rgba(255,255,255,0.7); line-height: 1.7;
+ }
 
-  /* Mobile */
-  @media (max-width: 980px) {
-    .caminos-grid { grid-template-columns: 1fr; }
-    .esferas-grid { grid-template-columns: repeat(2, 1fr); }
-    .perfil-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .transparencia-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 780px) {
-    .ciclo-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .ciclo-grid::before { display: none; }
-    .comunidad-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .historias-grid { grid-template-columns: 1fr; }
-    .preview-row { flex-direction: column; gap: 0.3rem; }
-    .preview-row-val { text-align: left; }
-    .preview-mentores { justify-content: flex-start; }
-    .section { padding: 5rem 1.5rem; }
-    .page-header { padding: 7rem 1.5rem 4.5rem; }
-  }
-</style>
-  <link rel="canonical" href="https://elgransueno.org/quiero-ser-parte.html">
-  <meta property="og:site_name" content="El Gran Sueño">
-  <meta property="og:url" content="https://elgransueno.org/quiero-ser-parte.html">
-</head>
+ /* Mobile */
+ @media (max-width: 980px) {
+ .caminos-grid { grid-template-columns: 1fr; }
+ .esferas-grid { grid-template-columns: repeat(2, 1fr); }
+ .perfil-grid { grid-template-columns: 1fr; gap: 2rem; }
+ .transparencia-grid { grid-template-columns: 1fr; }
+ }
+ @media (max-width: 780px) {
+ .ciclo-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+ .ciclo-grid::before { display: none; }
+ .comunidad-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+ .historias-grid { grid-template-columns: 1fr; }
+ .preview-row { flex-direction: column; gap: 0.3rem; }
+ .preview-row-val { text-align: left; }
+ .preview-mentores { justify-content: flex-start; }
+ .section { padding: 5rem 1.5rem; }
+ .page-header { padding: 7rem 1.5rem 4.5rem; }
+ }</style>
+ <link rel="canonical" href="https://elgransueno.org/quiero-ser-parte.html">
+ <meta property="og:site_name" content="El Gran Sueño">
+ <meta property="og:url" content="https://elgransueno.org/quiero-ser-parte.html"></head>
 <body class="modo-limpio">
 
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
 <!-- Mapa de fondo (mismo que index) -->
 <div class="world-map" aria-hidden="true">
-  <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
-    <defs><filter id="soft-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter></defs>
-    <g filter="url(#soft-blur)">
-      <path class="landmass" d="M120,90 L200,75 L255,95 L245,140 L270,175 L230,205 L215,255 L185,240 L165,190 L135,160 L110,130 Z"/>
-      <path class="landmass" d="M250,270 L295,265 L310,300 L300,355 L275,420 L255,455 L235,420 L245,350 L235,300 Z"/>
-      <path class="landmass" d="M455,80 L520,70 L560,90 L545,120 L500,130 L470,115 Z"/>
-      <path class="landmass" d="M470,150 L545,145 L580,185 L575,255 L540,340 L505,385 L480,340 L465,250 Z"/>
-      <path class="landmass" d="M560,70 L660,50 L790,60 L890,95 L910,150 L850,195 L760,215 L670,195 L600,150 L565,110 Z"/>
-      <path class="landmass" d="M780,340 L850,330 L885,355 L870,390 L815,395 L785,370 Z"/>
-    </g>
-    <g>
-      <circle class="marker-dot" cx="120" cy="130" r="3.2"/><circle class="marker-ring" cx="120" cy="130" r="8.5"/>
-      <circle class="marker-dot" cx="220" cy="110" r="3.2"/><circle class="marker-ring" cx="220" cy="110" r="8.5"/>
-      <circle class="marker-dot" cx="190" cy="210" r="3.2"/><circle class="marker-ring" cx="190" cy="210" r="8.5"/>
-      <circle class="marker-dot" cx="240" cy="260" r="3.2"/><circle class="marker-ring" cx="240" cy="260" r="8.5"/>
-      <circle class="marker-dot" cx="270" cy="380" r="3.2"/><circle class="marker-ring" cx="270" cy="380" r="8.5"/>
-      <circle class="marker-dot" cx="470" cy="90" r="3.2"/><circle class="marker-ring" cx="470" cy="90" r="8.5"/>
-      <circle class="marker-dot" cx="540" cy="95" r="3.2"/><circle class="marker-ring" cx="540" cy="95" r="8.5"/>
-      <circle class="marker-dot" cx="460" cy="220" r="3.2"/><circle class="marker-ring" cx="460" cy="220" r="8.5"/>
-      <circle class="marker-dot" cx="520" cy="320" r="3.2"/><circle class="marker-ring" cx="520" cy="320" r="8.5"/>
-      <circle class="marker-dot" cx="585" cy="155" r="3.2"/><circle class="marker-ring" cx="585" cy="155" r="8.5"/>
-      <circle class="marker-dot" cx="650" cy="205" r="3.2"/><circle class="marker-ring" cx="650" cy="205" r="8.5"/>
-      <circle class="marker-dot" cx="620" cy="120" r="3.2"/><circle class="marker-ring" cx="620" cy="120" r="8.5"/>
-      <circle class="marker-dot" cx="760" cy="120" r="3.2"/><circle class="marker-ring" cx="760" cy="120" r="8.5"/>
-      <circle class="marker-dot" cx="735" cy="235" r="3.2"/><circle class="marker-ring" cx="735" cy="235" r="8.5"/>
-      <circle class="marker-dot" cx="820" cy="110" r="3.2"/><circle class="marker-ring" cx="820" cy="110" r="8.5"/>
-      <circle class="marker-dot" cx="830" cy="345" r="3.2"/><circle class="marker-ring" cx="830" cy="345" r="8.5"/>
-    </g>
-    <path class="arc-line" d="M120,130 Q284.6,19.0 470,90"/><circle class="arc-traveler" r="2.3"><animateMotion dur="8.0s" repeatCount="indefinite" path="M120,130 Q284.6,19.0 470,90"/></circle>
-    <path class="arc-line" d="M220,110 Q376.1,19.3 540,95"/>
-    <path class="arc-line" d="M240,260 Q339.6,182.8 460,220"/><circle class="arc-traveler" r="2.3"><animateMotion dur="13.2s" repeatCount="indefinite" path="M240,260 Q339.6,182.8 460,220"/></circle>
-    <path class="arc-line" d="M470,90 Q544.4,92.6 585,155"/>
-    <path class="arc-line" d="M585,155 Q630.5,163.1 650,205"/><circle class="arc-traveler" r="2.3"><animateMotion dur="18.4s" repeatCount="indefinite" path="M585,155 Q630.5,163.1 650,205"/></circle>
-    <path class="arc-line" d="M650,205 Q700.3,197.9 735,235"/><circle class="arc-traveler" r="2.3"><animateMotion dur="8.0s" repeatCount="indefinite" path="M650,205 Q700.3,197.9 735,235"/></circle>
-    <path class="arc-line" d="M760,120 Q787.4,99.4 820,110"/>
-    <path class="arc-line" d="M735,235 Q811.1,265.3 830,345"/><circle class="arc-traveler" r="2.3"><animateMotion dur="13.2s" repeatCount="indefinite" path="M735,235 Q811.1,265.3 830,345"/></circle>
-    <path class="arc-line" d="M540,95 Q586.5,86.7 620,120"/>
-    <path class="arc-line" d="M520,320 Q681.5,251.9 830,345"/><circle class="arc-traveler" r="2.3"><animateMotion dur="18.4s" repeatCount="indefinite" path="M520,320 Q681.5,251.9 830,345"/></circle>
-  </svg>
-</div>
+ <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid slice">
+ <defs><filter id="soft-blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9"/></filter></defs>
+ <g filter="url(#soft-blur)">
+ <path class="landmass" d="M120,90 L200,75 L255,95 L245,140 L270,175 L230,205 L215,255 L185,240 L165,190 L135,160 L110,130 Z"/>
+ <path class="landmass" d="M250,270 L295,265 L310,300 L300,355 L275,420 L255,455 L235,420 L245,350 L235,300 Z"/>
+ <path class="landmass" d="M455,80 L520,70 L560,90 L545,120 L500,130 L470,115 Z"/>
+ <path class="landmass" d="M470,150 L545,145 L580,185 L575,255 L540,340 L505,385 L480,340 L465,250 Z"/>
+ <path class="landmass" d="M560,70 L660,50 L790,60 L890,95 L910,150 L850,195 L760,215 L670,195 L600,150 L565,110 Z"/>
+ <path class="landmass" d="M780,340 L850,330 L885,355 L870,390 L815,395 L785,370 Z"/></g>
+ <g>
+ <circle class="marker-dot" cx="120" cy="130" r="3.2"/><circle class="marker-ring" cx="120" cy="130" r="8.5"/>
+ <circle class="marker-dot" cx="220" cy="110" r="3.2"/><circle class="marker-ring" cx="220" cy="110" r="8.5"/>
+ <circle class="marker-dot" cx="190" cy="210" r="3.2"/><circle class="marker-ring" cx="190" cy="210" r="8.5"/>
+ <circle class="marker-dot" cx="240" cy="260" r="3.2"/><circle class="marker-ring" cx="240" cy="260" r="8.5"/>
+ <circle class="marker-dot" cx="270" cy="380" r="3.2"/><circle class="marker-ring" cx="270" cy="380" r="8.5"/>
+ <circle class="marker-dot" cx="470" cy="90" r="3.2"/><circle class="marker-ring" cx="470" cy="90" r="8.5"/>
+ <circle class="marker-dot" cx="540" cy="95" r="3.2"/><circle class="marker-ring" cx="540" cy="95" r="8.5"/>
+ <circle class="marker-dot" cx="460" cy="220" r="3.2"/><circle class="marker-ring" cx="460" cy="220" r="8.5"/>
+ <circle class="marker-dot" cx="520" cy="320" r="3.2"/><circle class="marker-ring" cx="520" cy="320" r="8.5"/>
+ <circle class="marker-dot" cx="585" cy="155" r="3.2"/><circle class="marker-ring" cx="585" cy="155" r="8.5"/>
+ <circle class="marker-dot" cx="650" cy="205" r="3.2"/><circle class="marker-ring" cx="650" cy="205" r="8.5"/>
+ <circle class="marker-dot" cx="620" cy="120" r="3.2"/><circle class="marker-ring" cx="620" cy="120" r="8.5"/>
+ <circle class="marker-dot" cx="760" cy="120" r="3.2"/><circle class="marker-ring" cx="760" cy="120" r="8.5"/>
+ <circle class="marker-dot" cx="735" cy="235" r="3.2"/><circle class="marker-ring" cx="735" cy="235" r="8.5"/>
+ <circle class="marker-dot" cx="820" cy="110" r="3.2"/><circle class="marker-ring" cx="820" cy="110" r="8.5"/>
+ <circle class="marker-dot" cx="830" cy="345" r="3.2"/><circle class="marker-ring" cx="830" cy="345" r="8.5"/></g>
+ <path class="arc-line" d="M120,130 Q284.6,19.0 470,90"/><circle class="arc-traveler" r="2.3"><animateMotion dur="8.0s" repeatCount="indefinite" path="M120,130 Q284.6,19.0 470,90"/></circle>
+ <path class="arc-line" d="M220,110 Q376.1,19.3 540,95"/>
+ <path class="arc-line" d="M240,260 Q339.6,182.8 460,220"/><circle class="arc-traveler" r="2.3"><animateMotion dur="13.2s" repeatCount="indefinite" path="M240,260 Q339.6,182.8 460,220"/></circle>
+ <path class="arc-line" d="M470,90 Q544.4,92.6 585,155"/>
+ <path class="arc-line" d="M585,155 Q630.5,163.1 650,205"/><circle class="arc-traveler" r="2.3"><animateMotion dur="18.4s" repeatCount="indefinite" path="M585,155 Q630.5,163.1 650,205"/></circle>
+ <path class="arc-line" d="M650,205 Q700.3,197.9 735,235"/><circle class="arc-traveler" r="2.3"><animateMotion dur="8.0s" repeatCount="indefinite" path="M650,205 Q700.3,197.9 735,235"/></circle>
+ <path class="arc-line" d="M760,120 Q787.4,99.4 820,110"/>
+ <path class="arc-line" d="M735,235 Q811.1,265.3 830,345"/><circle class="arc-traveler" r="2.3"><animateMotion dur="13.2s" repeatCount="indefinite" path="M735,235 Q811.1,265.3 830,345"/></circle>
+ <path class="arc-line" d="M540,95 Q586.5,86.7 620,120"/>
+ <path class="arc-line" d="M520,320 Q681.5,251.9 830,345"/><circle class="arc-traveler" r="2.3"><animateMotion dur="18.4s" repeatCount="indefinite" path="M520,320 Q681.5,251.9 830,345"/></circle></svg></div>
 
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="index.html" class="nav-cta">← Volver al inicio</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="index.html" class="nav-cta">Volver al inicio</a></nav>
 
 <div id="egs-nav-mount"></div>
 
@@ -558,322 +549,185 @@
 
 <!-- Beat transición -->
 <section class="beat transicion-beat">
-  <div class="beat-inner">
-    <span class="say">No todos estamos<br>en el mismo momento.</span>
-  </div>
-</section>
+ <div class="beat-inner">
+ <span class="say">No todos estamos<br>en el mismo momento.</span></div></section>
 
 <section class="beat transicion-abajo">
-  <div class="beat-inner">
-    <span class="dev">Pero todos seguimos caminando.</span>
-    <span class="dev gap-s">Y cada etapa necesita algo diferente.</span>
-  </div>
-</section>
+ <div class="beat-inner">
+ <span class="dev">Pero todos seguimos caminando.</span>
+ <span class="dev gap-s">Y cada etapa necesita algo diferente.</span></div></section>
 
 <!-- Header -->
 <div class="page-header page-header--foto">
-  <p class="page-header-label">El primer paso</p>
-  <h1 class="page-header-title">Contanos dónde<br>estás hoy.</h1>
-</div>
+ <p class="page-header-label">El primer paso</p>
+ <h1 class="page-header-title">Contanos dónde<br>estás hoy.</h1></div>
 
 <div class="page-header-sub-wrap">
-  <p class="page-header-sub">Cada persona vive un momento diferente. Compartí dónde estás hoy para que podamos conocerte y caminar con vos.</p>
-  <p class="page-header-note">No hay una respuesta correcta. Solo la tuya, hoy.</p>
-</div>
+ <p class="page-header-sub">Cada persona vive un momento diferente. Compartí dónde estás hoy para que podamos conocerte y caminar con vos.</p>
+ <p class="page-header-note">No hay una respuesta correcta. Solo la tuya, hoy.</p></div>
 
 <!-- 3 caminos -->
 <div class="section">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>¿Dónde estás hoy?</p>
-    <div class="caminos-grid">
-      <div class="camino llamado" id="sonador" data-reveal>
-        <div class="camino-top">
-          <span class="camino-badge">Estoy descubriendo mi llamado</span>
-          <h2 class="camino-titulo">Estoy empezando<br>a reconocer mi llamado</h2>
-          <p class="camino-subtitulo">Siento que hay algo más, y quiero entenderlo</p>
-          <p class="camino-desc">Quizás ya tenés claridad. Quizás todavía estás buscando. En cualquier caso, este es tu lugar.</p>
-          <ul class="camino-lista">
-            <li>Compartís tu historia y lo que Dios está formando en vos</li>
-            <li>La comunidad te conoce de verdad</li>
-            <li>Encontrás lo que tu momento necesita</li>
-            <li>Con el tiempo, sostenés el camino de alguien más</li>
-          </ul>
-        </div>
-        <div class="camino-bottom">
-          <a class="camino-cta" href="compartir-historia.html" aria-label="Compartir mi historia">Quiero compartir mi historia</a>
-        </div>
-      </div>
-      <div class="camino acompana" id="acompana" data-reveal>
-        <div class="camino-top">
-          <span class="camino-badge">Tengo algo para poner al servicio</span>
-          <h2 class="camino-titulo">Reconozco algo<br>que Dios formó en mí</h2>
-          <p class="camino-subtitulo">Y quiero ponerlo al servicio de otros</p>
-          <p class="camino-desc">Quizás nunca lo viste como parte de algo más grande. Hoy podría ser justo lo que otra persona necesita.</p>
-          <ul class="camino-lista">
-            <li>Médicos, psicólogos y profesionales de la salud</li>
-            <li>Educadores, investigadores y formadores</li>
-            <li>Empresarios, emprendedores y líderes</li>
-            <li>Artistas, comunicadores y creadores</li>
-            <li>Pastores y personas con experiencia espiritual</li>
-            <li>Cualquiera con algo que Dios puso bajo su cuidado</li>
-          </ul>
-        </div>
-        <div class="camino-bottom">
-          <a class="camino-cta" href="quiero-acompanar.html" aria-label="Explorar el camino de acompañar">Quiero explorar esto</a>
-        </div>
-      </div>
-      <div class="camino colabora" id="colaborar" data-reveal>
-        <div class="camino-top">
-          <span class="camino-badge">Quiero impulsar esta visión</span>
-          <h2 class="camino-titulo">Creo en esto,<br>y quiero sostenerlo</h2>
-          <p class="camino-subtitulo">Quiero ayudar a que otros puedan caminar</p>
-          <p class="camino-desc">Sabés que la vida florece cuando cada persona vive su propósito. Una forma de ser parte es sostener a quienes recién empiezan.</p>
-          <ul class="camino-lista">
-            <li>Cada aporte tiene un destino visible</li>
-            <li>Los caminos acompañados se comparten con la comunidad</li>
-            <li>Personas de confianza acompañan cada decisión</li>
-            <li>Nada se entrega de forma automática</li>
-            <li>Cada historia es conocida, acompañada y cuidada</li>
-          </ul>
-        </div>
-        <div class="camino-bottom">
-          <a class="camino-cta" href="colaborar.html" aria-label="Colaborar con El Gran Sueño">Quiero colaborar</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+ <div class="section-inner">
+ <p class="section-label" data-reveal>¿Dónde estás hoy?</p>
+ <div class="caminos-grid">
+ <div class="camino llamado" id="sonador" data-reveal>
+ <div class="camino-top">
+ <span class="camino-badge">Estoy descubriendo mi llamado</span>
+ <h2 class="camino-titulo">Estoy empezando<br>a reconocer mi llamado</h2>
+ <p class="camino-subtitulo">Siento que hay algo más, y quiero entenderlo</p>
+ <p class="camino-desc">Quizás ya tenés claridad. Quizás todavía estás buscando. En cualquier caso, este es tu lugar.</p>
+ <ul class="camino-lista">
+ <li>Compartís tu historia y lo que Dios está formando en vos</li>
+ <li>La comunidad te conoce de verdad</li>
+ <li>Encontrás lo que tu momento necesita</li>
+ <li>Con el tiempo, sostenés el camino de alguien más</li></ul></div>
+ <div class="camino-bottom">
+ <a class="camino-cta" href="compartir-historia.html" aria-label="Compartir mi historia">Quiero compartir mi historia</a></div></div>
+ <div class="camino acompana" id="acompana" data-reveal>
+ <div class="camino-top">
+ <span class="camino-badge">Tengo algo para poner al servicio</span>
+ <h2 class="camino-titulo">Reconozco algo<br>que Dios formó en mí</h2>
+ <p class="camino-subtitulo">Y quiero ponerlo al servicio de otros</p>
+ <p class="camino-desc">Quizás nunca lo viste como parte de algo más grande. Hoy podría ser justo lo que otra persona necesita.</p>
+ <ul class="camino-lista">
+ <li>Médicos, psicólogos y profesionales de la salud</li>
+ <li>Educadores, investigadores y formadores</li>
+ <li>Empresarios, emprendedores y líderes</li>
+ <li>Artistas, comunicadores y creadores</li>
+ <li>Pastores y personas con experiencia espiritual</li>
+ <li>Cualquiera con algo que Dios puso bajo su cuidado</li></ul></div>
+ <div class="camino-bottom">
+ <a class="camino-cta" href="quiero-acompanar.html" aria-label="Explorar el camino de acompañar">Quiero explorar esto</a></div></div>
+ <div class="camino colabora" id="colaborar" data-reveal>
+ <div class="camino-top">
+ <span class="camino-badge">Quiero impulsar esta visión</span>
+ <h2 class="camino-titulo">Creo en esto,<br>y quiero sostenerlo</h2>
+ <p class="camino-subtitulo">Quiero ayudar a que otros puedan caminar</p>
+ <p class="camino-desc">Sabés que la vida florece cuando cada persona vive su propósito. Una forma de ser parte es sostener a quienes recién empiezan.</p>
+ <ul class="camino-lista">
+ <li>Cada aporte tiene un destino visible</li>
+ <li>Los caminos acompañados se comparten con la comunidad</li>
+ <li>Personas de confianza acompañan cada decisión</li>
+ <li>Nada se entrega de forma automática</li>
+ <li>Cada historia es conocida, acompañada y cuidada</li></ul></div>
+ <div class="camino-bottom">
+ <a class="camino-cta" href="colaborar.html" aria-label="Colaborar con El Gran Sueño">Quiero colaborar</a></div></div></div></div></div>
 
 <!-- Invitación serena a la mentoría personal -->
 <div class="section" style="background: var(--cream); padding-top: 5rem; padding-bottom: 5rem;">
-  <div class="section-inner" style="max-width: 560px; text-align: center;">
-    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.35rem,2.8vw,1.8rem); line-height:1.5; color:var(--ink); margin:0 0 1.1rem;" data-reveal>
-      ¿Y si tu momento no está en ninguna de estas tres?<br>Quizás lo que necesitás primero es <em style="color:var(--bordo);">ser escuchado</em>.
-    </p>
-    <p style="font-family:'DM Sans',sans-serif; font-weight:300; font-size:0.98rem; line-height:1.9; color:var(--ink-mid); margin:0 0 2rem;" data-reveal>
-      Una conversación a solas conmigo, para mirar juntos dónde estás.<br>El primer encuentro es un regalo.
-    </p>
-    <a href="mentoria.html" data-reveal style="font-family:'DM Sans',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:0.78rem; color:var(--bordo); text-decoration:none; border:1px solid rgba(107,26,43,0.4); border-radius:40px; padding:0.9rem 2.2rem; display:inline-block; transition:background 0.3s, color 0.3s;">Pedir una conversación</a>
-  </div>
-</div>
+ <div class="section-inner" style="max-width: 560px; text-align: center;">
+ <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.35rem,2.8vw,1.8rem); line-height:1.5; color:var(--ink); margin:0 0 1.1rem;" data-reveal>
+ ¿Y si tu momento no está en ninguna de estas tres?<br>Quizás lo que necesitás primero es <em style="color:var(--bordo);">ser escuchado</em>.</p>
+ <p style="font-family:'DM Sans',sans-serif; font-weight:300; font-size:0.98rem; line-height:1.9; color:var(--ink-mid); margin:0 0 2rem;" data-reveal>
+ Una conversación a solas conmigo, para mirar juntos dónde estás.<br>El primer encuentro es un regalo.</p>
+ <a href="mentoria.html" data-reveal style="font-family:'DM Sans',sans-serif; text-transform:uppercase; letter-spacing:0.14em; font-size:0.78rem; color:var(--bordo); text-decoration:none; border:1px solid rgba(107,26,43,0.4); border-radius:40px; padding:0.9rem 2.2rem; display:inline-block; transition:background 0.3s, color 0.3s;">Pedir una conversación</a></div></div>
 
 <!-- Ciclo -->
 <div class="section ciclo-section">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>Cómo funciona</p>
-    <h2 class="section-title" data-reveal>El camino que caminamos juntos.</h2>
-    <p class="section-sub" data-reveal>Lo que sucede cuando alguien comparte dónde está.</p>
-    <div class="ciclo-grid" data-reveal>
-      <div class="ciclo-paso"><div class="ciclo-num">1</div><p class="ciclo-titulo">Compartís tu historia</p><p class="ciclo-desc">Contás dónde estás y qué necesitás para avanzar.</p></div>
-      <div class="ciclo-paso"><div class="ciclo-num">2</div><p class="ciclo-titulo">La comunidad te conoce</p><p class="ciclo-desc">Alguien te ve. No para exponerte, sino para estar.</p></div>
-      <div class="ciclo-paso"><div class="ciclo-num">3</div><p class="ciclo-titulo">Nacen conexiones</p><p class="ciclo-desc">Personas, recursos y oportunidades para tu momento.</p></div>
-      <div class="ciclo-paso"><div class="ciclo-num">4</div><p class="ciclo-titulo">Empezás a caminar</p><p class="ciclo-desc">Sostenido, según la etapa que estás viviendo.</p></div>
-      <div class="ciclo-paso"><div class="ciclo-num">5</div><p class="ciclo-titulo">Y un día, acompañás</p><p class="ciclo-desc">Lo que Dios formó en vos se vuelve refugio para otro.</p></div>
-    </div>
-  </div>
-</div>
-
-<!-- Historias -->
-<div class="section historias-section" id="historias">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>Historias reales</p>
-    <h2 class="section-title" data-reveal>Personas que un día<br>no sabían por dónde empezar.</h2>
-    <p class="section-sub" data-reveal>Y hoy caminan. Estas son algunas de ellas.</p>
-    <div class="historias-grid">
-      <div class="historia-card" data-reveal>
-        <div class="historia-header">
-          <div class="historia-avatar">L</div>
-          <div class="historia-meta"><span class="historia-nombre">Lucas</span><span class="historia-pais">Argentina</span></div>
-        </div>
-        <span class="historia-estado completado">Hoy camina</span>
-        <p class="historia-texto">Sabía que su corazón latía por los jóvenes, pero no tenía por dónde empezar. Alguien lo escuchó, lo conectó con dos mentores y una escuela. Hoy acompaña adolescentes en su ciudad.</p>
-        <div class="historia-footer"><span class="historia-tag-label">Áreas conectadas</span><div class="historia-tags"><span class="historia-tag">Juventud</span><span class="historia-tag">Formación</span><span class="historia-tag">Liderazgo</span></div></div>
-      </div>
-      <div class="historia-card" data-reveal>
-        <div class="historia-header">
-          <div class="historia-avatar">A</div>
-          <div class="historia-meta"><span class="historia-nombre">Ana</span><span class="historia-pais">España</span></div>
-        </div>
-        <span class="historia-estado completado">Hoy camina</span>
-        <p class="historia-texto">Buscaba dirección para su vida y para su fe, y sentía que nadie unía las dos cosas. Durante un año fue acompañada. Hoy lidera un proyecto social que sueña desde hace tiempo.</p>
-        <div class="historia-footer"><span class="historia-tag-label">Áreas conectadas</span><div class="historia-tags"><span class="historia-tag">Identidad</span><span class="historia-tag">Acción social</span><span class="historia-tag">Mentoría</span></div></div>
-      </div>
-      <div class="historia-card" data-reveal>
-        <div class="historia-header">
-          <div class="historia-avatar">D</div>
-          <div class="historia-meta"><span class="historia-nombre">David</span><span class="historia-pais">Colombia</span></div>
-        </div>
-        <span class="historia-estado activo">En camino ahora</span>
-        <p class="historia-texto">El llamado a las misiones estaba, pero no las conexiones ni la preparación. Fue acompañado hasta una organización que lo recibió. Hoy se prepara para partir hacia otra nación.</p>
-        <div class="historia-footer"><span class="historia-tag-label">Áreas conectadas</span><div class="historia-tags"><span class="historia-tag">Misiones</span><span class="historia-tag">Formación</span><span class="historia-tag">Envío</span></div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Preview historia -->
-<div class="section preview-section">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>Cómo se ve una historia</p>
-    <h2 class="section-title" data-reveal>Así te conoce<br>la comunidad.</h2>
-    <p class="section-sub" data-reveal>Cuando compartís dónde estás, alguien puede verte y caminar con vos.</p>
-    <div class="preview-card" data-reveal>
-      <div class="preview-card-header">
-        <span class="preview-card-label">Una historia, hoy</span>
-        <span class="preview-card-estado">En camino</span>
-      </div>
-      <div class="preview-card-body">
-        <div class="preview-row"><span class="preview-row-key">Nombre</span><span class="preview-row-val highlight">María · México</span></div>
-        <div class="preview-row"><span class="preview-row-key">Dónde está hoy</span><span class="preview-row-val">Descubriendo su llamado</span></div>
-        <div class="preview-row"><span class="preview-row-key">Su historia</span><span class="preview-row-val">Siento que fui creada para enseñar y sanar, pero no sé cómo unir esas dos cosas.</span></div>
-        <div class="preview-row"><span class="preview-row-key">Lo que busca</span><span class="preview-row-val">Alguien que la acompañe · Orientación en su vocación</span></div>
-        <div class="preview-row"><span class="preview-row-key">Quiénes caminan con ella</span><div class="preview-mentores"><div class="preview-mentor-dot">R</div><div class="preview-mentor-dot">C</div></div></div>
-        <div class="preview-row"><span class="preview-row-key">Desde</span><span class="preview-row-val">Marzo 2025</span></div>
-        <div class="preview-row"><span class="preview-row-key">Hoy</span><span class="preview-row-val highlight">Está siendo acompañada</span></div>
-        <div class="preview-nota">Cada encuentro entre personas se acompaña con cuidado, para que nazca en el momento justo y proteja a todos.</div>
-      </div>
-    </div>
-  </div>
-</div>
+ <div class="section-inner">
+ <p class="section-label" data-reveal>Cómo funciona</p>
+ <h2 class="section-title" data-reveal>El camino que caminamos juntos.</h2>
+ <p class="section-sub" data-reveal>Lo que sucede cuando alguien comparte dónde está.</p>
+ <div class="ciclo-grid" data-reveal>
+ <div class="ciclo-paso"><div class="ciclo-num">1</div><p class="ciclo-titulo">Compartís tu historia</p><p class="ciclo-desc">Contás dónde estás y qué necesitás para avanzar.</p></div>
+ <div class="ciclo-paso"><div class="ciclo-num">2</div><p class="ciclo-titulo">La comunidad te conoce</p><p class="ciclo-desc">Alguien te ve. No para exponerte, sino para estar.</p></div>
+ <div class="ciclo-paso"><div class="ciclo-num">3</div><p class="ciclo-titulo">Nacen conexiones</p><p class="ciclo-desc">Personas, recursos y oportunidades para tu momento.</p></div>
+ <div class="ciclo-paso"><div class="ciclo-num">4</div><p class="ciclo-titulo">Empezás a caminar</p><p class="ciclo-desc">Sostenido, según la etapa que estás viviendo.</p></div>
+ <div class="ciclo-paso"><div class="ciclo-num">5</div><p class="ciclo-titulo">Y un día, acompañás</p><p class="ciclo-desc">Lo que Dios formó en vos se vuelve refugio para otro.</p></div></div></div></div>
 
 <!-- Comunidad -->
 <div class="section comunidad-section">
-  <div class="section-inner">
-    <p class="section-label gold" data-reveal>La comunidad</p>
-    <h2 class="section-title white" data-reveal>No es una red social.<br>Es una comunidad viva.</h2>
-    <p class="section-sub white" data-reveal>No buscamos llamar la atención. Buscamos estar cerca.</p>
-    <div class="comunidad-grid">
-      <div data-reveal>
-        <div class="comunidad-no">
-          <div class="comunidad-no-header">Lo que no vas a encontrar</div>
-          <div class="comunidad-no-item">Likes públicos</div>
-          <div class="comunidad-no-item">Competencia por popularidad</div>
-          <div class="comunidad-no-item">Métricas de vanidad</div>
-          <div class="comunidad-no-item">Figuras centrales o celebridades</div>
-        </div>
-      </div>
-      <div data-reveal>
-        <div class="comunidad-si-header">Lo que sí vas a vivir</div>
-        <div class="comunidad-si">
-          <div class="comunidad-si-item"><span class="comunidad-si-arrow">→</span><p class="comunidad-si-text">Conocer historias reales y estar cerca de ellas</p></div>
-          <div class="comunidad-si-item"><span class="comunidad-si-arrow">→</span><p class="comunidad-si-text">Celebrar los avances de otros</p></div>
-          <div class="comunidad-si-item"><span class="comunidad-si-arrow">→</span><p class="comunidad-si-text">Acompañar y descubrir cómo aportar</p></div>
-          <div class="comunidad-si-item"><span class="comunidad-si-arrow">→</span><p class="comunidad-si-text">Compartir lo que aprendiste con quien recién empieza</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+ <div class="section-inner">
+ <p class="section-label gold" data-reveal>La comunidad</p>
+ <h2 class="section-title white" data-reveal>No es una red social.<br>Es una comunidad viva.</h2>
+ <p class="section-sub white" data-reveal>No buscamos llamar la atención. Buscamos estar cerca.</p>
+ <div class="comunidad-grid">
+ <div data-reveal>
+ <div class="comunidad-si-header">Lo que sí vas a vivir</div>
+ <div class="comunidad-si">
+ <div class="comunidad-si-item"><span class="comunidad-si-arrow"></span><p class="comunidad-si-text">Conocer historias reales y estar cerca de ellas</p></div>
+ <div class="comunidad-si-item"><span class="comunidad-si-arrow"></span><p class="comunidad-si-text">Celebrar los avances de otros</p></div>
+ <div class="comunidad-si-item"><span class="comunidad-si-arrow"></span><p class="comunidad-si-text">Acompañar y descubrir cómo aportar</p></div>
+ <div class="comunidad-si-item"><span class="comunidad-si-arrow"></span><p class="comunidad-si-text">Compartir lo que aprendiste con quien recién empieza</p></div></div></div></div></div></div>
 
-<!-- Esferas — con SVG minimalistas -->
+<!-- Esferas, con SVG minimalistas -->
 <div class="section esferas-section">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>Las esferas</p>
-    <h2 class="section-title" data-reveal>El propósito no tiene<br>una sola forma.</h2>
-    <p class="section-sub" data-reveal>Dios distribuyó recursos, autoridad y capacidades en todas las áreas de la sociedad. Todas tienen algo valioso para aportar.</p>
-    <div class="esferas-grid">
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div><p class="esfera-nombre">Familia</p><p class="esfera-desc">La base de toda transformación comunitaria.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12M9 21h6"/></svg></div><p class="esfera-nombre">Iglesia</p><p class="esfera-desc">Comunidad, discipulado y misión local y global.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h10l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 8h6M8 12h8M8 16h5"/></svg></div><p class="esfera-nombre">Educación</p><p class="esfera-desc">Formación, escuelas, universidades y mentores.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M4 8l8 3 8-3M4 8v8l8 3 8-3V8"/></svg></div><p class="esfera-nombre">Gobierno</p><p class="esfera-desc">Liderazgo, políticas y agentes de cambio social.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M3 7h18v13H3z"/><path d="M8 7V4h8v3"/><path d="M3 12h18"/></svg></div><p class="esfera-nombre">Economía</p><p class="esfera-desc">Empresas, negocios y emprendimiento con propósito.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div><p class="esfera-nombre">Ciencia y Tecnología</p><p class="esfera-desc">Innovación, salud y soluciones para el mundo.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M7 21c1-4 3-6 5-6s4 2 5 6"/></svg></div><p class="esfera-nombre">Arte y Cultura</p><p class="esfera-desc">Creatividad, expresión y transformación cultural.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 0 1 16 0"/><path d="M2 11h4l2-3 4 6 3-4h9"/></svg></div><p class="esfera-nombre">Medios</p><p class="esfera-desc">Comunicación, narrativa e influencia pública.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M6 6l12 12M6 18L18 6"/></svg></div><p class="esfera-nombre">Deportes</p><p class="esfera-desc">Liderazgo, comunidad e identidad a través del deporte.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"/><path d="M9 12h6M12 9v6"/></svg></div><p class="esfera-nombre">Salud</p><p class="esfera-desc">Medicina, psicología, bienestar y sanidad integral.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 2-5 5-5s5 2 5 5M13 20c0-2 2-4 4-4s4 2 4 4"/></svg></div><p class="esfera-nombre">Acción Social</p><p class="esfera-desc">ONGs, emergencia humanitaria y ayuda comunitaria.</p></div>
-      <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><p class="esfera-nombre">Misiones</p><p class="esfera-desc">Envío, formación misionera y Gran Comisión global.</p></div>
-    </div>
-  </div>
-</div>
+ <div class="section-inner">
+ <p class="section-label" data-reveal>Las esferas</p>
+ <h2 class="section-title" data-reveal>El propósito no tiene<br>una sola forma.</h2>
+ <p class="section-sub" data-reveal>Dios distribuyó recursos, autoridad y capacidades en todas las áreas de la sociedad. Todas tienen algo valioso para aportar.</p>
+ <div class="esferas-grid">
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></div><p class="esfera-nombre">Familia</p><p class="esfera-desc">La base de toda transformación comunitaria.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 9h12M9 21h6"/></svg></div><p class="esfera-nombre">Iglesia</p><p class="esfera-desc">Comunidad, discipulado y misión local y global.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h10l4 4v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 8h6M8 12h8M8 16h5"/></svg></div><p class="esfera-nombre">Educación</p><p class="esfera-desc">Formación, escuelas, universidades y mentores.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M4 8l8 3 8-3M4 8v8l8 3 8-3V8"/></svg></div><p class="esfera-nombre">Gobierno</p><p class="esfera-desc">Liderazgo, políticas y agentes de cambio social.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M3 7h18v13H3z"/><path d="M8 7V4h8v3"/><path d="M3 12h18"/></svg></div><p class="esfera-nombre">Economía</p><p class="esfera-desc">Empresas, negocios y emprendimiento con propósito.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></div><p class="esfera-nombre">Ciencia y Tecnología</p><p class="esfera-desc">Innovación, salud y soluciones para el mundo.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M7 21c1-4 3-6 5-6s4 2 5 6"/></svg></div><p class="esfera-nombre">Arte y Cultura</p><p class="esfera-desc">Creatividad, expresión y transformación cultural.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M4 11a8 8 0 0 1 16 0"/><path d="M2 11h4l2-3 4 6 3-4h9"/></svg></div><p class="esfera-nombre">Medios</p><p class="esfera-desc">Comunicación, narrativa e influencia pública.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M6 6l12 12M6 18L18 6"/></svg></div><p class="esfera-nombre">Deportes</p><p class="esfera-desc">Liderazgo, comunidad e identidad a través del deporte.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-11a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 6.5-7 11-7 11z"/><path d="M9 12h6M12 9v6"/></svg></div><p class="esfera-nombre">Salud</p><p class="esfera-desc">Medicina, psicología, bienestar y sanidad integral.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 2-5 5-5s5 2 5 5M13 20c0-2 2-4 4-4s4 2 4 4"/></svg></div><p class="esfera-nombre">Acción Social</p><p class="esfera-desc">ONGs, emergencia humanitaria y ayuda comunitaria.</p></div>
+ <div class="esfera" data-reveal><div class="esfera-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><p class="esfera-nombre">Misiones</p><p class="esfera-desc">Envío, formación misionera y Gran Comisión global.</p></div></div></div></div>
 
 <!-- Perfil profesional -->
 <div class="section perfil-section">
-  <div class="section-inner">
-    <p class="section-label gold" data-reveal>Cómo te conoce la comunidad</p>
-    <h2 class="section-title white" data-reveal>Alguien necesita saber<br>que estás disponible.</h2>
-    <p class="section-sub white" data-reveal>Quienes tienen algo para ofrecer lo comparten con otros. El contacto se cuida, para proteger a cada persona.</p>
-    <div class="perfil-grid">
-      <div class="perfil-card" data-reveal>
-        <p class="perfil-card-label">Así te presentás</p>
-        <div class="perfil-fields">
-          <div class="perfil-field"><span class="perfil-field-key">Área</span><span class="perfil-field-val">Psicología y consejería</span></div>
-          <div class="perfil-field"><span class="perfil-field-key">País</span><span class="perfil-field-val">España</span></div>
-          <div class="perfil-field"><span class="perfil-field-key">Idiomas</span><span class="perfil-field-val">Español, inglés</span></div>
-          <div class="perfil-field"><span class="perfil-field-key">Disponibilidad</span><span class="perfil-field-val">Online · Presencial</span></div>
-          <div class="perfil-field"><span class="perfil-field-key">Acompaña en</span><span class="perfil-field-val">Identidad · Sanidad · Llamado</span></div>
-        </div>
-        <div class="perfil-nota">El contacto se acompaña con cuidado, para que cada encuentro nazca en el momento justo y proteja a todos.</div>
-      </div>
-      <div class="perfil-texto" data-reveal>
-        <div class="perfil-punto"><span class="perfil-punto-icon">→</span><p class="perfil-punto-text">La comunidad puede conocerte y saber en qué podés acompañar.</p></div>
-        <div class="perfil-punto"><span class="perfil-punto-icon">→</span><p class="perfil-punto-text">Contás en qué servís, y desde dónde.</p></div>
-        <div class="perfil-punto"><span class="perfil-punto-icon">→</span><p class="perfil-punto-text">No es un lugar para conseguir clientes. Es un lugar para servir.</p></div>
-        <div class="perfil-punto"><span class="perfil-punto-icon">→</span><p class="perfil-punto-text">Alguien del equipo cuida cada conexión, para que sea genuina.</p></div>
-      </div>
-    </div>
-  </div>
-</div>
+ <div class="section-inner">
+ <p class="section-label gold" data-reveal>Cómo te conoce la comunidad</p>
+ <h2 class="section-title white" data-reveal>Alguien necesita saber<br>que estás disponible.</h2>
+ <p class="section-sub white" data-reveal>Quienes tienen algo para ofrecer lo comparten con otros. El contacto se cuida, para proteger a cada persona.</p>
+ <div class="perfil-grid">
+ <div class="perfil-texto" data-reveal>
+ <div class="perfil-punto"><span class="perfil-punto-icon"></span><p class="perfil-punto-text">La comunidad puede conocerte y saber en qué podés acompañar.</p></div>
+ <div class="perfil-punto"><span class="perfil-punto-icon"></span><p class="perfil-punto-text">Contás en qué servís, y desde dónde.</p></div>
+ <div class="perfil-punto"><span class="perfil-punto-icon"></span><p class="perfil-punto-text">No es un lugar para conseguir clientes. Es un lugar para servir.</p></div>
+ <div class="perfil-punto"><span class="perfil-punto-icon"></span><p class="perfil-punto-text">Alguien del equipo cuida cada conexión, para que sea genuina.</p></div></div></div></div></div>
 
 <!-- Multiplicación -->
 <div class="multiplicacion-section">
-  <div class="multiplicacion-inner">
-    <div class="multiplicacion-divider" data-reveal></div>
-    <p class="multiplicacion-text" data-reveal>
-      Todos llegamos necesitando algo. Todos tenemos algo que poner al servicio de otros.
-      <strong>En El Gran Sueño nadie ocupa siempre el mismo lugar.</strong>
-    </p>
-    <a class="multiplicacion-cta" href="compartir-historia.html" aria-label="Compartir mi historia" data-reveal>Quiero dar un paso</a>
-  </div>
-</div>
+ <div class="multiplicacion-inner">
+ <div class="multiplicacion-divider" data-reveal></div>
+ <p class="multiplicacion-text" data-reveal>
+ Todos llegamos necesitando algo. Todos tenemos algo que poner al servicio de otros.
+ <strong>En El Gran Sueño nadie ocupa siempre el mismo lugar.</strong></p>
+ <a class="multiplicacion-cta" href="compartir-historia.html" aria-label="Compartir mi historia" data-reveal>Quiero dar un paso</a></div></div>
 
 <!-- Transparencia -->
 <div class="section transparencia-section">
-  <div class="section-inner">
-    <p class="section-label gold" data-reveal>Transparencia</p>
-    <h2 class="section-title white" data-reveal>Cada recurso tiene<br>un destino visible.</h2>
-    <p class="section-sub white" data-reveal>No hay cajas negras. La confianza se construye con verdad y cuidado.</p>
-    <div class="transparencia-grid">
-      <div class="transparencia-item" data-reveal><div class="transparencia-num">01</div><p class="transparencia-titulo">Historias reales</p><p class="transparencia-desc">Cada persona acompañada tiene un nombre y una historia. No son estadísticas.</p></div>
-      <div class="transparencia-item" data-reveal><div class="transparencia-num">02</div><p class="transparencia-titulo">Decisiones cuidadas</p><p class="transparencia-desc">Personas de confianza acompañan cada decisión. Nada se entrega de forma automática.</p></div>
-      <div class="transparencia-item" data-reveal><div class="transparencia-num">03</div><p class="transparencia-titulo">Para que siga creciendo</p><p class="transparencia-desc">Parte de lo que se comparte sostiene la comunidad, para que alcance a más personas.</p></div>
-    </div>
-  </div>
-</div>
-
-</main>
+ <div class="section-inner">
+ <p class="section-label gold" data-reveal>Transparencia</p>
+ <h2 class="section-title white" data-reveal>Cada recurso tiene<br>un destino visible.</h2>
+ <p class="section-sub white" data-reveal>No hay cajas negras. La confianza se construye con verdad y cuidado.</p>
+ <div class="transparencia-grid">
+ <div class="transparencia-item" data-reveal><div class="transparencia-num">01</div><p class="transparencia-titulo">Historias reales</p><p class="transparencia-desc">Cada persona acompañada tiene un nombre y una historia. No son estadísticas.</p></div>
+ <div class="transparencia-item" data-reveal><div class="transparencia-num">02</div><p class="transparencia-titulo">Decisiones cuidadas</p><p class="transparencia-desc">Personas de confianza acompañan cada decisión. Nada se entrega de forma automática.</p></div>
+ <div class="transparencia-item" data-reveal><div class="transparencia-num">03</div><p class="transparencia-titulo">Para que siga creciendo</p><p class="transparencia-desc">Parte de lo que se comparte sostiene la comunidad, para que alcance a más personas.</p></div></div></div></div></main>
 
 <footer class="egs-footer">
-  <div class="footer-divider" aria-hidden="true"></div>
-  <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
-  <p class="footer-line">Nadie fue creado para caminar solo.</p>
-  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
-  <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
-    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-    <button type="submit">Quiero recibir novedades</button>
-  </form>
-  <div class="footer-social" aria-label="Redes sociales">
-    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-    <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
-    <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
-    <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
-    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-  </div>
-  <p class="footer-social-nota">Más redes · próximamente</p>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p>
-</footer>
+ <div class="footer-divider" aria-hidden="true"></div>
+ <p class="footer-manifest">Somos personas de distintos lugares, historias y llamados,<br>caminando juntas detrás del mismo sueño.</p>
+ <p class="footer-line">Nadie fue creado para caminar solo.</p>
+ <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+ <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
+ <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+ <button type="submit">Quiero recibir novedades</button></form>
+ <div class="footer-social" aria-label="Redes sociales">
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+ <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+ <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+ <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
+ <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+ <p class="footer-social-nota">Más redes · próximamente</p>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p></footer>
 
 <style>
-  /* Reveal para elementos con data-reveal */
-  [data-reveal] {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
-  [data-reveal].in-view { opacity: 1; transform: translateY(0); }
-</style>
+ /* Reveal para elementos con data-reveal */
+ [data-reveal] {
+ opacity: 0;
+ transform: translateY(18px);
+ transition: opacity 1s ease, transform 1s ease;
+ }
+ [data-reveal].in-view { opacity: 1; transform: translateY(0); }</style>
 
-<script src="assets/egs.js"></script>
-</body>
-</html>
+<script src="assets/egs.js"></script></body></html>

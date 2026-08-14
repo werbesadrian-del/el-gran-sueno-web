@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Un espacio para discernir tu historia · El Gran Sueño</title>
-<meta name="description" content="Una conversación a solas con Adrián para ver con claridad dónde estás — y desde dónde seguir. Escucha, herramientas de discernimiento, patrones, identidad en Cristo.">
+<meta name="description" content="Una conversación a solas con Adrián para ver con claridad dónde estás, y desde dónde seguir. Escucha, herramientas de discernimiento, patrones, identidad en Cristo.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Un espacio para discernir tu historia · El Gran Sueño">
-<meta property="og:description" content="Una conversación a solas para mirar tu vida con claridad — y descubrir desde dónde seguir.">
+<meta property="og:description" content="Una conversación a solas para mirar tu vida con claridad, y descubrir desde dónde seguir.">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Un espacio para discernir tu historia · El Gran Sueño">
 <meta name="theme-color" content="#6B1A2B">
 
-<link rel="icon" type="image/png" href="assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,377 +24,368 @@
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
-  /* Estilos propios de esta página (mismo patrón que las demás) */
-  .m-header {
-    background: var(--cream);
-    text-align: center;
-    padding: 22vh 2rem 10vh;
-  }
-  .m-header-label {
-    font-family: 'DM Sans', sans-serif; text-transform: uppercase;
-    letter-spacing: 0.26em; font-size: 0.68rem; color: var(--gold);
-    margin: 0 0 1.4rem;
-  }
-  .m-header-title {
-    font-family: 'Playfair Display', serif; font-weight: 700;
-    font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.14;
-    color: var(--ink); margin: 0 0 1.6rem; text-wrap: balance;
-  }
-  .m-header-title em { font-style: italic; color: var(--bordo); }
-  .m-header-sub {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: clamp(1.15rem, 2.4vw, 1.4rem); color: var(--bordo);
-    max-width: 34rem; margin: 0 auto; line-height: 1.5;
-  }
-  .m-section { padding: 11vh 2rem; }
-  .m-section.alt { background: var(--cream-dark); }
-  .m-inner { max-width: 640px; margin: 0 auto; }
-  .m-label {
-    font-family: 'DM Sans', sans-serif; text-transform: uppercase;
-    letter-spacing: 0.26em; font-size: 0.66rem; color: var(--gold);
-    text-align: center; margin: 0 0 1.6rem;
-  }
-  .m-title {
-    font-family: 'Playfair Display', serif; font-weight: 700;
-    font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2;
-    color: var(--ink); text-align: center; margin: 0 0 3rem; text-wrap: balance;
-  }
-  .m-title em { font-style: italic; color: var(--bordo); }
+ /* Estilos propios de esta página (mismo patrón que las demás) */
+ .m-header {
+ background: var(--cream);
+ text-align: center;
+ padding: 22vh 2rem 10vh;
+ }
+ .m-header-label {
+ font-family: 'DM Sans', sans-serif; text-transform: uppercase;
+ letter-spacing: 0.26em; font-size: 0.68rem; color: var(--gold);
+ margin: 0 0 1.4rem;
+ }
+ .m-header-title {
+ font-family: 'Playfair Display', serif; font-weight: 700;
+ font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.14;
+ color: var(--ink); margin: 0 0 1.6rem; text-wrap: balance;
+ }
+ .m-header-title em { font-style: italic; color: var(--bordo); }
+ .m-header-sub {
+ font-family: 'Cormorant Garamond', serif; font-style: italic;
+ font-size: clamp(1.15rem, 2.4vw, 1.4rem); color: var(--bordo);
+ max-width: 34rem; margin: 0 auto; line-height: 1.5;
+ }
+ .m-section { padding: 11vh 2rem; }
+ .m-section.alt { background: var(--cream-dark); }
+ /* Momento noche: presencia (fuerza sin ruido) */
+ .m-section.m-noche { background: linear-gradient(180deg, var(--noche) 0%, var(--carbon) 100%); position: relative; overflow: hidden; }
+ .m-section.m-noche::before { content:""; position:absolute; inset:-30%; z-index:0; pointer-events:none; background: radial-gradient(46% 44% at 32% 68%, rgba(197,122,61,0.18) 0%, transparent 60%), radial-gradient(54% 50% at 70% 55%, rgba(90,22,32,0.42) 0%, transparent 60%), radial-gradient(50% 46% at 74% 26%, rgba(60,86,104,0.15) 0%, transparent 62%); animation: egs-drift 38s ease-in-out infinite alternate; }
+ .m-section.m-noche .m-inner { position: relative; z-index: 2; }
+ .m-section.m-noche .m-label { color: var(--ember); }
+ .m-section.m-noche .m-title { color: var(--luz); }
+ .m-section.m-noche .m-title em { color: var(--ember); }
+ .m-section.m-noche .m-prosa { color: rgba(243,239,233,0.82); }
+ .m-section.m-noche .m-prosa strong { color: var(--luz); }
+ .m-section.m-noche .m-prosa.destacada { color: var(--luz); }
+ @media (prefers-reduced-motion: reduce) { .m-section.m-noche::before { animation: none; } }
+ .m-inner { max-width: 640px; margin: 0 auto; }
+ .m-label {
+ font-family: 'DM Sans', sans-serif; text-transform: uppercase;
+ letter-spacing: 0.26em; font-size: 0.66rem; color: var(--gold);
+ text-align: center; margin: 0 0 1.6rem;
+ }
+ .m-title {
+ font-family: 'Playfair Display', serif; font-weight: 700;
+ font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2;
+ color: var(--ink); text-align: center; margin: 0 0 3rem; text-wrap: balance;
+ }
+ .m-title em { font-style: italic; color: var(--bordo); }
 
-  /* Identificación — una frase por línea, con aire (reposo) */
-  .m-llegas { display: flex; flex-direction: column; gap: 1.55rem; }
-  .m-llegas p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.12rem, 2.4vw, 1.32rem); line-height: 1.5;
-    color: var(--ink-mid); text-align: center; margin: 0;
-  }
-  .m-llegas p em { font-style: italic; color: var(--bordo); }
-  .m-hilo { width: 26px; height: 1px; background: var(--gold); opacity: 0.6; margin: 0.4rem auto; }
-  .m-puente {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: clamp(1.2rem, 2.6vw, 1.45rem); color: var(--bordo);
-    text-align: center; margin: 3.4rem 0 0; line-height: 1.6;
-  }
+ /* Identificación, una frase por línea, con aire (reposo) */
+ .m-llegas { display: flex; flex-direction: column; gap: 1.55rem; }
+ .m-llegas p {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: clamp(1.12rem, 2.4vw, 1.32rem); line-height: 1.5;
+ color: var(--ink-mid); text-align: center; margin: 0;
+ }
+ .m-llegas p em { font-style: italic; color: var(--bordo); }
+ .m-hilo { width: 26px; height: 1px; background: var(--gold); opacity: 0.6; margin: 0.4rem auto; }
+ .m-puente {
+ font-family: 'Cormorant Garamond', serif; font-style: italic;
+ font-size: clamp(1.2rem, 2.6vw, 1.45rem); color: var(--bordo);
+ text-align: center; margin: 3.4rem 0 0; line-height: 1.6;
+ }
 
-  .m-prosa {
-    font-family: 'DM Sans', sans-serif; font-weight: 300;
-    font-size: clamp(0.98rem, 1.8vw, 1.08rem); line-height: 2;
-    color: var(--ink-mid); text-align: center; margin: 0 0 1.6rem;
-  }
-  .m-prosa strong { font-weight: 500; color: var(--ink); }
-  .m-prosa.destacada {
-    font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
-    font-size: clamp(1.2rem, 2.6vw, 1.45rem); line-height: 1.6; color: var(--bordo);
-  }
+ .m-prosa {
+ font-family: 'DM Sans', sans-serif; font-weight: 300;
+ font-size: clamp(0.98rem, 1.8vw, 1.08rem); line-height: 2;
+ color: var(--ink-mid); text-align: center; margin: 0 0 1.6rem;
+ }
+ .m-prosa strong { font-weight: 500; color: var(--ink); }
+ .m-prosa.destacada {
+ font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400;
+ font-size: clamp(1.2rem, 2.6vw, 1.45rem); line-height: 1.6; color: var(--bordo);
+ }
 
-  /* Profundidad del proceso */
-  .m-prof { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2rem; margin-top: 0.6rem; }
-  @media (max-width: 560px) { .m-prof { grid-template-columns: 1fr; } }
-  .m-prof p {
-    font-family: 'DM Sans', sans-serif; font-weight: 300;
-    font-size: 0.96rem; line-height: 1.7; color: var(--ink-mid);
-    margin: 0; text-align: center;
-    padding: 1.05rem 1rem;
-    background: rgba(201,168,76,0.06);
-    border-radius: 2px;
-  }
-  .m-prof p strong { font-weight: 500; color: var(--ink); display: block; margin-bottom: 0.2rem; }
+ /* Profundidad del proceso */
+ .m-prof { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2rem; margin-top: 0.6rem; }
+ @media (max-width: 560px) { .m-prof { grid-template-columns: 1fr; } }
+ .m-prof p {
+ font-family: 'DM Sans', sans-serif; font-weight: 300;
+ font-size: 0.96rem; line-height: 1.7; color: var(--ink-mid);
+ margin: 0; text-align: center;
+ padding: 1.05rem 1rem;
+ background: rgba(201,168,76,0.06);
+ border-radius: 2px;
+ }
+ .m-prof p strong { font-weight: 500; color: var(--ink); display: block; margin-bottom: 0.2rem; }
 
-  /* Qué te llevás */
-  .m-llevas { display: flex; flex-direction: column; gap: 1.15rem; margin-top: 0.6rem; }
-  .m-llevas p {
-    font-family: 'DM Sans', sans-serif; font-weight: 300;
-    font-size: 1rem; line-height: 1.8; color: var(--ink-mid);
-    margin: 0; text-align: center;
-  }
-  .m-llevas p::before { content: "—"; color: var(--gold); margin-right: 0.6rem; }
+ /* Qué te llevás */
+ .m-llevas { display: flex; flex-direction: column; gap: 1.15rem; margin-top: 0.6rem; }
+ .m-llevas p {
+ font-family: 'DM Sans', sans-serif; font-weight: 300;
+ font-size: 1rem; line-height: 1.8; color: var(--ink-mid);
+ margin: 0; text-align: center;
+ }
+ .m-llevas p::before { content: "·"; color: var(--gold); margin-right: 0.6rem; }
 
-  /* Pasos */
-  .m-pasos { display: flex; flex-direction: column; gap: 3rem; margin-top: 1rem; }
-  .m-paso { text-align: center; }
-  .m-paso-num {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 1rem; color: var(--gold); display: block; margin-bottom: 0.7rem;
-  }
-  .m-paso-txt {
-    font-family: 'DM Sans', sans-serif; font-weight: 300;
-    font-size: 1.02rem; line-height: 1.9; color: var(--ink-mid); margin: 0;
-    max-width: 30rem; margin-left: auto; margin-right: auto;
-  }
-  .m-paso-txt strong { font-weight: 500; color: var(--ink); }
+ /* Pasos */
+ .m-pasos { display: flex; flex-direction: column; gap: 3rem; margin-top: 1rem; }
+ .m-paso { text-align: center; }
+ .m-paso-num {
+ font-family: 'Cormorant Garamond', serif; font-style: italic;
+ font-size: 1rem; color: var(--gold); display: block; margin-bottom: 0.7rem;
+ }
+ .m-paso-txt {
+ font-family: 'DM Sans', sans-serif; font-weight: 300;
+ font-size: 1.02rem; line-height: 1.9; color: var(--ink-mid); margin: 0;
+ max-width: 30rem; margin-left: auto; margin-right: auto;
+ }
+ .m-paso-txt strong { font-weight: 500; color: var(--ink); }
 
-  /* El regalo */
-  .m-regalo {
-    border-top: 1px solid rgba(201,168,76,0.35);
-    border-bottom: 1px solid rgba(201,168,76,0.35);
-    padding: 3rem 1.5rem; margin-top: 4rem; text-align: center;
-  }
-  .m-regalo p { margin: 0; }
+ /* El regalo */
+ .m-regalo {
+ border-top: 1px solid rgba(201,168,76,0.35);
+ border-bottom: 1px solid rgba(201,168,76,0.35);
+ padding: 3rem 1.5rem; margin-top: 4rem; text-align: center;
+ }
+ .m-regalo p { margin: 0; }
 
-  /* Qué necesitás traer */
-  .m-traer { display: flex; justify-content: center; gap: 2.4rem; flex-wrap: wrap; margin-top: 2.6rem; }
-  .m-traer span {
-    font-family: 'Playfair Display', serif; font-style: italic;
-    font-size: clamp(1.25rem, 3vw, 1.6rem); color: var(--bordo);
-  }
+ /* Qué necesitás traer */
+ .m-traer { display: flex; justify-content: center; gap: 2.4rem; flex-wrap: wrap; margin-top: 2.6rem; }
+ .m-traer span {
+ font-family: 'Playfair Display', serif; font-style: italic;
+ font-size: clamp(1.25rem, 3vw, 1.6rem); color: var(--bordo);
+ }
 
-  /* Formulario */
-  .m-form { display: flex; flex-direction: column; gap: 2.2rem; margin-top: 3rem; }
-  .m-form .campo-grupo { display: flex; flex-direction: column; gap: 0.6rem; }
-  .m-form textarea.campo-linea {
-    resize: vertical; min-height: 110px; line-height: 1.8;
-    font-family: 'DM Sans', sans-serif; font-weight: 300;
-  }
-  .m-enviar {
-    align-self: center;
-    font-family: 'DM Sans', sans-serif; text-transform: uppercase;
-    letter-spacing: 0.14em; font-size: 0.8rem;
-    color: var(--cream); background: var(--bordo);
-    border: none; border-radius: 40px; padding: 1.05rem 2.8rem;
-    cursor: pointer; transition: background 0.3s, transform 0.3s, opacity 0.3s;
-  }
-  .m-enviar:hover { background: var(--bordo-dark); transform: translateY(-2px); }
-  .m-enviar:disabled { opacity: 0.45; cursor: default; transform: none; }
-  .m-gracias { display: none; text-align: center; padding: 2rem 0 0; }
-  .m-gracias.visible { display: block; }
+ /* Formulario */
+ .m-form { display: flex; flex-direction: column; gap: 2.2rem; margin-top: 3rem; }
+ .m-form .campo-grupo { display: flex; flex-direction: column; gap: 0.6rem; }
+ .m-form textarea.campo-linea {
+ resize: vertical; min-height: 110px; line-height: 1.8;
+ font-family: 'DM Sans', sans-serif; font-weight: 300;
+ }
+ .m-enviar {
+ align-self: center;
+ font-family: 'DM Sans', sans-serif; text-transform: uppercase;
+ letter-spacing: 0.14em; font-size: 0.8rem;
+ color: var(--cream); background: var(--bordo);
+ border: none; border-radius: 40px; padding: 1.05rem 2.8rem;
+ cursor: pointer; transition: background 0.3s, transform 0.3s, opacity 0.3s;
+ }
+ .m-enviar:hover { background: var(--bordo-dark); transform: translateY(-2px); }
+ .m-enviar:disabled { opacity: 0.45; cursor: default; transform: none; }
+ .m-gracias { display: none; text-align: center; padding: 2rem 0 0; }
+ .m-gracias.visible { display: block; }
 
-  @media (max-width: 720px) {
-    .m-header { padding: 18vh 1.5rem 8vh; }
-    .m-section { padding: 9vh 1.5rem; }
-  }
-</style>
-  <link rel="canonical" href="https://elgransueno.org/mentoria.html">
-  <meta property="og:site_name" content="El Gran Sueño">
-  <meta property="og:url" content="https://elgransueno.org/mentoria.html">
-</head>
+ @media (max-width: 720px) {
+ .m-header { padding: 18vh 1.5rem 8vh; }
+ .m-section { padding: 9vh 1.5rem; }
+ }</style>
+ <link rel="canonical" href="https://elgransueno.org/mentoria.html">
+ <meta property="og:site_name" content="El Gran Sueño">
+ <meta property="og:url" content="https://elgransueno.org/mentoria.html"></head>
 <body class="modo-limpio">
 
 <nav class="egs-nav" id="navbar">
-  <div class="nav-left">
-    <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
-      <span></span><span></span><span></span>
-    </button>
-    <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a>
-  </div>
-  <a href="index.html" class="nav-cta">← Volver al inicio</a>
-</nav>
+ <div class="nav-left">
+ <button class="nav-menu-btn" id="navMenuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navOverlay">
+ <span></span><span></span><span></span></button>
+ <a href="index.html" class="nav-logo">El Gran <span>Sueño</span></a></div>
+ <a href="index.html" class="nav-cta">Volver al inicio</a></nav>
 
 <div id="egs-nav-mount"></div>
 
 <!-- Header -->
 <header class="m-header">
-  <p class="m-header-label">Mentoría personal</p>
-  <h1 class="m-header-title">Un espacio para <em>discernir</em> tu historia.</h1>
-  <p class="m-header-sub">Una conversación a solas, para ver con claridad dónde estás — y desde dónde seguir.</p>
-</header>
+ <p class="m-header-label">Mentoría personal</p>
+ <h1 class="m-header-title">Un espacio para <em>discernir</em> tu historia.</h1>
+ <p class="m-header-sub">Una conversación a solas, para ver con claridad dónde estás, y desde dónde seguir.</p></header>
 
 <!-- Identificación (amplia) -->
 <section class="m-section alt">
-  <div class="m-inner">
-    <p class="m-label">Quizás te reconocés en alguna de estas</p>
-    <div class="m-llegas">
-      <p>Sentís que Dios tiene algo más para vos, <em>pero no sabés qué.</em></p>
-      <p>Querés descubrir <em>para qué fuiste creado.</em></p>
-      <p>Te cuesta creer <em>lo que Dios dice de vos.</em></p>
-      <div class="m-hilo"></div>
-      <p>Vivís más desde el miedo <em>que desde la libertad.</em></p>
-      <p>Repetís relaciones o decisiones <em>que terminan igual.</em></p>
-      <p>No entendés por qué reaccionás <em>siempre de la misma manera.</em></p>
-      <p>Sentís que hay heridas que todavía <em>gobiernan partes de tu vida.</em></p>
-      <div class="m-hilo"></div>
-      <p>Tenés muchas preguntas <em>y pocas respuestas.</em></p>
-      <p>Servís a Dios, <em>pero te sentís vacío.</em></p>
-      <p>Hace tiempo <em>que no encontrás paz.</em></p>
-    </div>
-    <p class="m-puente">Si te viste en alguna de estas líneas,<br>este espacio existe para vos.</p>
-  </div>
-</section>
+ <div class="m-inner">
+ <p class="m-label">Quizás te reconocés en alguna de estas</p>
+ <div class="m-llegas">
+ <p>Sentís que Dios tiene algo más para vos, <em>pero no sabés qué.</em></p>
+ <p>Querés descubrir <em>para qué fuiste creado.</em></p>
+ <p>Te cuesta creer <em>lo que Dios dice de vos.</em></p>
+ <div class="m-hilo"></div>
+ <p>Vivís más desde el miedo <em>que desde la libertad.</em></p>
+ <p>Repetís relaciones o decisiones <em>que terminan igual.</em></p>
+ <p>No entendés por qué reaccionás <em>siempre de la misma manera.</em></p>
+ <p>Sentís que hay heridas que todavía <em>gobiernan partes de tu vida.</em></p>
+ <div class="m-hilo"></div>
+ <p>Tenés muchas preguntas <em>y pocas respuestas.</em></p>
+ <p>Servís a Dios, <em>pero te sentís vacío.</em></p>
+ <p>Hace tiempo <em>que no encontrás paz.</em></p></div>
+ <p class="m-puente">Si te viste en alguna de estas líneas,<br>este espacio existe para vos.</p></div></section>
 
 <!-- Qué es -->
 <section class="m-section">
-  <div class="m-inner">
-    <p class="m-label">Qué es</p>
-    <h2 class="m-title">No es simplemente <em>hablar.</em></h2>
-    <p class="m-prosa">
-      Es un encuentro a solas, de cuarenta minutos, vos y yo.<br>
-      Pero detrás de esa conversación hay un proceso de discernimiento<br>
-      profundamente personalizado.
-    </p>
-    <div class="m-prof">
-      <p><strong>Escucha atenta</strong>Tu historia, contada con tus palabras, sin apuro.</p>
-      <p><strong>Herramientas de evaluación</strong>Tests y recursos para conocer tu personalidad y tus dones.</p>
-      <p><strong>Reconocimiento de patrones</strong>Lo que se repite en tus decisiones, relaciones y reacciones.</p>
-      <p><strong>Heridas y sistemas familiares</strong>Lo que viene de atrás y todavía gobierna partes de tu vida.</p>
-      <p><strong>Identidad en Cristo</strong>Afirmar quién sos de verdad — no quién aprendiste a ser.</p>
-      <p><strong>Claridad para el siguiente paso</strong>Salir sabiendo desde dónde seguir.</p>
-    </div>
-  </div>
-</section>
+ <div class="m-inner">
+ <p class="m-label">Qué es</p>
+ <h2 class="m-title">No es simplemente <em>hablar.</em></h2>
+ <p class="m-prosa">
+ Es un encuentro a solas, de cuarenta minutos, vos y yo.<br>
+ Pero detrás de esa conversación hay un proceso de discernimiento<br>
+ profundamente personalizado.</p>
+ <div class="m-prof">
+ <p><strong>Escucha atenta</strong>Tu historia, contada con tus palabras, sin apuro.</p>
+ <p><strong>Herramientas de evaluación</strong>Tests y recursos para conocer tu personalidad y tus dones.</p>
+ <p><strong>Reconocimiento de patrones</strong>Lo que se repite en tus decisiones, relaciones y reacciones.</p>
+ <p><strong>Heridas y sistemas familiares</strong>Lo que viene de atrás y todavía gobierna partes de tu vida.</p>
+ <p><strong>Identidad en Cristo</strong>Afirmar quién sos de verdad, no quién aprendiste a ser.</p>
+ <p><strong>Afirmar tu lugar</strong>No vengo a enseñarte qué hacer ni cuál es tu lugar. Vengo a afirmar el que Dios ya te dio, y a recordar juntos las verdades que todavía no estás viendo.</p>
+ <p><strong>Orar juntos</strong>Llevar delante de Dios lo que aparezca. No es un análisis: es caminarlo con Él, y no solo.</p>
+ <p><strong>Claridad para el siguiente paso</strong>Salir sabiendo desde dónde seguir.</p></div>
+ <p class="m-prosa destacada" style="margin-top:2.6rem;">Casi nada de esto es nuevo.<br>Es volver a ver lo que ya está en vos: lo que Dios ya te habló, y que entre tanto ruido nos fuimos olvidando.</p></div></section>
 
 <!-- Qué te llevás -->
 <section class="m-section alt">
-  <div class="m-inner">
-    <p class="m-label">Qué te llevás</p>
-    <h2 class="m-title">Al terminar este encuentro,<br>probablemente tengas:</h2>
-    <div class="m-llevas">
-      <p>Más claridad sobre el momento que estás viviendo.</p>
-      <p>Patrones que antes no veías.</p>
-      <p>Una comprensión más profunda de tu identidad.</p>
-      <p>Próximos pasos concretos.</p>
-      <p>Herramientas para seguir discerniendo.</p>
-      <p>Una perspectiva renovada sobre tu historia.</p>
-    </div>
-  </div>
-</section>
+ <div class="m-inner">
+ <p class="m-label">Qué te llevás</p>
+ <h2 class="m-title">Al terminar este encuentro,<br>probablemente tengas:</h2>
+ <div class="m-llevas">
+ <p>Más claridad sobre el momento que estás viviendo.</p>
+ <p>Patrones que antes no veías.</p>
+ <p>Una comprensión más profunda de tu identidad.</p>
+ <p>Próximos pasos concretos.</p>
+ <p>Herramientas para seguir discerniendo.</p>
+ <p>Una perspectiva renovada sobre tu historia.</p></div></div></section>
 
 <!-- Qué no es -->
 <section class="m-section">
-  <div class="m-inner">
-    <p class="m-label">Qué no es</p>
-    <p class="m-prosa">
-      No es coaching de rendimiento.<br>
-      No es una fórmula, ni un programa de pasos.<br>
-      No vengo a ayudarte a alcanzar una mejor versión de vos mismo.
-    </p>
-    <p class="m-prosa destacada">
-      Vengo a mirar con vos lo que Cristo ya puso en vos,<br>y a quitar lo que lo tapa.
-    </p>
-  </div>
-</section>
+ <div class="m-inner">
+ <p class="m-label">Qué no es</p>
+ <p class="m-prosa">
+ No es coaching de rendimiento.<br>
+ No es una fórmula, ni un programa de pasos.<br>
+ No vengo a ayudarte a alcanzar una mejor versión de vos mismo.</p>
+ <p class="m-prosa destacada">
+ Vengo a mirar con vos lo que Cristo ya puso en vos,<br>y a quitar lo que lo tapa.</p></div></section>
 
 <!-- Quién soy -->
 <section class="m-section alt">
-  <div class="m-inner">
-    <p class="m-label">Quién te recibe</p>
-    <p class="m-prosa">
-      Soy Adrián, el creador de El Gran Sueño.<br>
-      Durante años acompañé personas que estaban exactamente<br>
-      donde quizás hoy estás vos:<br>
-      con un llamado que no sabían nombrar,<br>
-      con heridas que decidían por ellas,<br>
-      sirviendo con todo — y aun así, vacías.
-    </p>
-    <p class="m-prosa">
-      No llego con respuestas prefabricadas.<br>
-      Llego con tiempo, con escucha,<br>
-      y con la convicción de que tu historia tiene un hilo<br>
-      que Dios viene tejiendo desde antes de que nacieras.
-    </p>
-  </div>
-</section>
+ <div class="m-inner">
+ <p class="m-label">Quién te recibe</p>
+ <p class="m-prosa">
+ Soy Adrián, el creador de El Gran Sueño.<br>
+ Durante años acompañé personas que estaban exactamente<br>
+ donde quizás hoy estás vos:<br>
+ con un llamado que no sabían nombrar,<br>
+ con heridas que decidían por ellas,<br>
+ sirviendo con todo, y aun así, vacías.</p>
+ <p class="m-prosa">
+ No llego con respuestas prefabricadas.<br>
+ Llego con tiempo, con escucha,<br>
+ y con la convicción de que tu historia tiene un hilo<br>
+ que Dios viene tejiendo desde antes de que nacieras.</p></div></section>
+
+<!-- El deseo detrás de esto -->
+<section class="m-section m-noche">
+ <div class="m-inner">
+ <p class="m-label">El deseo detrás de esto</p>
+ <h2 class="m-title">En el fondo, mi deseo tiene que ver con <em>el gran sueño de Dios</em> para vos.</h2>
+ <p class="m-prosa">
+ Que te veas pleno.<br>
+ Que caigan las mentiras que creíste.<br>
+ Que Cristo se vaya formando en vos,<br>
+ hasta la medida de ese Varón perfecto.</p>
+ <p class="m-prosa">
+ Que tu vida trabaje por algo más grande<br>
+ que cualquier otra cosa.</p>
+ <p class="m-prosa destacada">
+ Y que aprendas a celebrar, y a abrazar,<br>
+ aun lo que no llega, en esta fragilidad<br>
+ que también es parte del camino.</p></div></section>
 
 <!-- Cómo funciona -->
 <section class="m-section">
-  <div class="m-inner">
-    <p class="m-label">Cómo funciona</p>
-    <div class="m-pasos">
-      <div class="m-paso">
-        <span class="m-paso-num">uno</span>
-        <p class="m-paso-txt"><strong>Contame brevemente dónde estás.</strong><br>Acá abajo, con tus palabras. No hace falta tenerlo ordenado.</p>
-      </div>
-      <div class="m-paso">
-        <span class="m-paso-num">dos</span>
-        <p class="m-paso-txt"><strong>Te escribo para coordinar.</strong><br>Buscamos juntos un momento que nos sirva a los dos.</p>
-      </div>
-      <div class="m-paso">
-        <span class="m-paso-num">tres</span>
-        <p class="m-paso-txt"><strong>Nos encontramos.</strong><br>Una videollamada tranquila, de cuarenta minutos. Sin apuro y sin guion.</p>
-      </div>
-    </div>
-    <div class="m-regalo">
-      <p class="m-prosa destacada" style="margin-bottom:1.4rem;">Este primer encuentro es un regalo.</p>
-      <p class="m-prosa" style="margin:0;">
-        Quiero conocerte antes de proponerte cualquier camino.<br>
-        Si al terminar ambos sentimos que Dios nos invita a seguir<br>
-        trabajando juntos, recién ahí hablaremos de cómo continuar.
-      </p>
-    </div>
-  </div>
-</section>
+ <div class="m-inner">
+ <p class="m-label">Cómo funciona</p>
+ <div class="m-pasos">
+ <div class="m-paso">
+ <span class="m-paso-num">uno</span>
+ <p class="m-paso-txt"><strong>Contame brevemente dónde estás.</strong><br>Acá abajo, con tus palabras. No hace falta tenerlo ordenado.</p></div>
+ <div class="m-paso">
+ <span class="m-paso-num">dos</span>
+ <p class="m-paso-txt"><strong>Te escribo para coordinar.</strong><br>Buscamos juntos un momento que nos sirva a los dos.</p></div>
+ <div class="m-paso">
+ <span class="m-paso-num">tres</span>
+ <p class="m-paso-txt"><strong>Nos encontramos.</strong><br>Una videollamada tranquila, de cuarenta minutos. Sin apuro y sin guion.</p></div></div>
+ <div class="m-regalo">
+ <p class="m-prosa destacada" style="margin-bottom:1.4rem;">Este primer encuentro es un regalo.</p>
+ <p class="m-prosa" style="margin:0;">
+ Quiero conocerte antes de proponerte cualquier camino.<br>
+ Si al terminar ambos sentimos que Dios nos invita a seguir<br>
+ trabajando juntos, recién ahí hablaremos de cómo continuar.</p></div></div></section>
 
 <!-- Qué necesitás traer -->
 <section class="m-section alt">
-  <div class="m-inner">
-    <p class="m-label">Qué necesitás traer</p>
-    <p class="m-prosa">
-      No experiencia.<br>
-      No respuestas.<br>
-      No una vida perfecta.<br>
-      Solo cuatro cosas.
-    </p>
-    <div class="m-traer">
-      <span>Valentía.</span>
-      <span>Humildad.</span>
-      <span>Responsabilidad.</span>
-      <span>Fe.</span>
-    </div>
-  </div>
-</section>
+ <div class="m-inner">
+ <p class="m-label">Qué necesitás traer</p>
+ <p class="m-prosa">
+ No experiencia.<br>
+ No respuestas.<br>
+ No una vida perfecta.<br>
+ Solo cuatro cosas.</p>
+ <div class="m-traer">
+ <span>Valentía.</span>
+ <span>Humildad.</span>
+ <span>Sinceridad.</span>
+ <span>Responsabilidad.</span>
+ <span>Fe.</span></div></div></section>
 
 <!-- Pedido -->
 <section class="m-section" id="pedir">
-  <div class="m-inner" style="max-width:520px;">
-    <p class="m-label">El primer paso</p>
-    <h2 class="m-title">Contame dónde <em>estás hoy.</em></h2>
-    <form class="m-form" id="mentoriaForm" onsubmit="return false;">
-      <div class="campo-grupo">
-        <label class="campo-etiq" for="mNombre">Tu nombre</label>
-        <input id="mNombre" type="text" class="campo-linea" placeholder="¿Cómo te llamás?" required>
-      </div>
-      <div class="campo-grupo">
-        <label class="campo-etiq" for="mCorreo">Correo electrónico</label>
-        <input id="mCorreo" type="email" class="campo-linea" placeholder="tu@correo.com" required>
-      </div>
-      <div class="campo-grupo">
-        <label class="campo-etiq" for="mMensaje">¿Dónde sentís que estás hoy?</label>
-        <textarea id="mMensaje" class="campo-linea" placeholder="Dos o tres líneas alcanzan…"></textarea>
-      </div>
-      <button class="m-enviar" id="mEnviar" type="submit">Pedir mi encuentro</button>
-    </form>
-    <div class="m-gracias" id="mGracias">
-      <p class="m-prosa destacada">Recibido.<br>Te escribo pronto para coordinar.</p>
-      <p class="m-prosa" style="margin-top:1rem;">Mientras tanto, no dejes de caminar.</p>
-    </div>
-  </div>
-</section>
+ <div class="m-inner" style="max-width:520px;">
+ <p class="m-label">El primer paso</p>
+ <h2 class="m-title">Contame dónde <em>estás hoy.</em></h2>
+ <form class="m-form" id="mentoriaForm" onsubmit="return false;">
+ <div class="campo-grupo">
+ <label class="campo-etiq" for="mNombre">Tu nombre</label>
+ <input id="mNombre" type="text" class="campo-linea" placeholder="¿Cómo te llamás?" required></div>
+ <div class="campo-grupo">
+ <label class="campo-etiq" for="mCorreo">Correo electrónico</label>
+ <input id="mCorreo" type="email" class="campo-linea" placeholder="tu@correo.com" required></div>
+ <div class="campo-grupo">
+ <label class="campo-etiq" for="mMensaje">¿Dónde sentís que estás hoy?</label>
+ <textarea id="mMensaje" class="campo-linea" placeholder="Dos o tres líneas alcanzan…"></textarea></div>
+ <button class="m-enviar" id="mEnviar" type="submit">Pedir mi encuentro</button></form>
+ <div class="m-gracias" id="mGracias">
+ <p class="m-prosa destacada">Recibido.<br>Te escribo pronto para coordinar.</p>
+ <p class="m-prosa" style="margin-top:1rem;">Mientras tanto, no dejes de caminar.</p></div></div></section>
 
 <footer class="egs-footer">
-  <div class="footer-divider" aria-hidden="true"></div>
-  <p class="footer-manifest">Personas de distintos lugares, historias y llamados,<br>descubriendo juntas el Gran Sueño de Dios.</p>
-  <p class="footer-line">Nadie fue creado para caminar solo.</p>
-  <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
-  <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
-    <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
-    <button type="submit">Quiero recibir novedades</button>
-  </form>
-  <div class="footer-social" aria-label="Redes sociales">
-    <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-    <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
-  </div>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p>
-</footer>
+ <div class="footer-divider" aria-hidden="true"></div>
+ <p class="footer-manifest">Personas de distintos lugares, historias y llamados,<br>descubriendo juntas el Gran Sueño de Dios.</p>
+ <p class="footer-line">Nadie fue creado para caminar solo.</p>
+ <p class="footer-suscri-nota">Una vez al mes, algo breve que te anime en el camino. Podés salirte cuando quieras.</p>
+ <form class="footer-form" id="footerForm" onsubmit="return false;" aria-label="Suscribite para recibir novedades">
+ <input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico">
+ <button type="submit">Quiero recibir novedades</button></form>
+ <div class="footer-social" aria-label="Redes sociales">
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+ <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p></footer>
+
+<!-- Formulario oculto: Netlify lo detecta en el deploy para poder mandar el email de aviso.
+     El envío real lo hace el JS de abajo (egsAvisarNetlify). No se muestra al usuario. -->
+<form name="mentoria" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+ <input type="text" name="nombre"><input type="email" name="correo"><textarea name="mensaje"></textarea>
+ <input type="text" name="bot-field">
+</form>
 
 <script src="assets/egs.js"></script>
 <script>
 (function () {
-  var form = document.getElementById('mentoriaForm');
-  var btn = document.getElementById('mEnviar');
-  form.addEventListener('submit', function () {
-    var nombre = document.getElementById('mNombre').value.trim();
-    var correo = document.getElementById('mCorreo').value.trim();
-    if (!nombre || !correo || correo.indexOf('@') < 0) return;
-    btn.disabled = true;
-    if (window.egsGuardar) {
-      window.egsGuardar('mentoria', {
-        nombre: nombre,
-        correo: correo,
-        mensaje: document.getElementById('mMensaje').value.trim()
-      });
-    }
-    form.style.display = 'none';
-    document.getElementById('mGracias').classList.add('visible');
-  });
-})();
-</script>
-</body>
-</html>
+ var form = document.getElementById('mentoriaForm');
+ var btn = document.getElementById('mEnviar');
+ form.addEventListener('submit', function () {
+ var nombre = document.getElementById('mNombre').value.trim();
+ var correo = document.getElementById('mCorreo').value.trim();
+ if (!nombre || !correo || correo.indexOf('@') < 0) return;
+ btn.disabled = true;
+ var mensaje = document.getElementById('mMensaje').value.trim();
+ if (window.egsGuardar) {
+ window.egsGuardar('mentoria', { nombre: nombre, correo: correo, mensaje: mensaje });
+ }
+ if (window.egsAvisarNetlify) {
+ window.egsAvisarNetlify('mentoria', { nombre: nombre, correo: correo, mensaje: mensaje });
+ }
+ form.style.display = 'none';
+ document.getElementById('mGracias').classList.add('visible');
+ });
+})();</script></body></html>

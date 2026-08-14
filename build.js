@@ -89,7 +89,7 @@ function paginaEscrito(p) {
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(p.titulo)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:site_name" content="El Gran Sueño"><meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.titulo)}">${HEAD_COMUN}
 ${ld}</head><body class="modo-limpio">
-${nav('/blog', '← Escritos')}
+${nav('/blog', 'Escritos')}
 <main>
 <header class="page-header art-hero">
   <div class="art-meta">${pilarLabel ? '<span class="art-pilar">' + esc(pilarLabel) + '</span>' : ''}<div class="art-meta-datos">${meta.join('')}</div></div>
@@ -102,7 +102,7 @@ ${p.imagen ? '<figure class="art-portada"><img src="' + esc(p.imagen) + '" alt="
   ${md(p.cuerpo)}
 </article>
 <section class="art-cta-pregunta"><div class="art-cta-pregunta-inner"><span class="art-cta-eyebrow">Un paso más</span>
-<p>Si algo de esto resonó, tal vez sea momento de una conversación a solas. <a href="/mentoria.html" style="color:var(--ember,#C57A3D);">Reservá un espacio →</a></p></div></section>
+<p>Si algo de esto resonó, tal vez sea momento de una conversación a solas. <a href="/mentoria.html" style="color:var(--ember,#C57A3D);">Reservá un espacio</a></p></div></section>
 </main>
 ${FOOTER}</body></html>`;
 }
@@ -121,7 +121,7 @@ function paginaHuella(p) {
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.nombre)} · Huella de Fe">${HEAD_COMUN}
 <style>.huella-frase-hero{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,2.8vw,1.9rem);color:rgba(243,239,233,.9);line-height:1.5;max-width:40rem;margin:1.8rem auto 0}</style>
 ${ld}</head><body class="modo-limpio">
-${nav('/huellas-de-fe.html', '← Huellas')}
+${nav('/huellas-de-fe.html', 'Huellas')}
 <main>
 <header class="page-header art-hero">
   <div class="art-meta"><span class="art-pilar">Huella de Fe</span>${p.meta ? '<div class="art-meta-datos"><span>' + esc(p.meta) + '</span></div>' : ''}</div>
