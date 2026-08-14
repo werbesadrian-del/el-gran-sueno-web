@@ -1723,6 +1723,14 @@ nav.egs-nav .nav-left {
   .nav-featured-dot { animation: none; }
 }
 
+/* Mensajes de CONFIRMACIÓN de formularios → verde "recibido" (que se noten,
+   antes iban en dorado y no se veían). Verde en línea #1FA153. */
+.m-gracias .m-prosa.destacada,
+.col-form-gracias-icon, .col-form-gracias-title,
+.reg-gracias-icon, .reg-gracias-title,
+.sug-ok,
+.cierre-icono, #p10 .t-grande { color: #1FA153 !important; }
+
 /* Pie del overlay */
 .nav-overlay-footer {
   padding-top: 2rem;

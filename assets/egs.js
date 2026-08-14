@@ -258,7 +258,12 @@ window.egsAvisarNetlify = function (formName, campos) {
         return;
       }
       form.classList.add('sent');
-      if (btn) btn.textContent = 'Gracias, te avisamos ✓';
+      if (btn) {
+        btn.textContent = 'Gracias, te avisamos ✓';
+        btn.style.background = '#1FA153';   // verde "recibido" (que se note)
+        btn.style.borderColor = '#1FA153';
+        btn.style.color = '#fff';
+      }
       try {
         const list = JSON.parse(localStorage.getItem('egs_emails') || '[]');
         if (!list.includes(val)) { list.push(val); localStorage.setItem('egs_emails', JSON.stringify(list)); }
