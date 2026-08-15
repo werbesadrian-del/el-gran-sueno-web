@@ -217,7 +217,7 @@
  <div class="cierre-links">
  <a href="mentoria.html" class="cierre-link" style="border-color: rgba(201,168,76,0.55);">
  <span class="cierre-link-arrow"></span>
- <div class="cierre-link-txt"><strong>Una primera conversación conmigo</strong>Si no querés esperar, podemos mirar tu historia juntos, vos y yo. El primer encuentro es un regalo.</div></a>
+ <div class="cierre-link-txt"><strong>Una primera conversación con Adrián</strong>Si no querés esperar, podemos mirar tu historia juntos, vos y yo. El primer encuentro es un regalo.</div></a>
  <a href="historias.html" class="cierre-link">
  <span class="cierre-link-arrow"></span>
  <div class="cierre-link-txt"><strong>Leer historias</strong>Conoce otros procesos y camina con la comunidad.</div></a>
@@ -228,4 +228,9 @@
  <span class="cierre-link-arrow"></span>
  <div class="cierre-link-txt"><strong>Volver al inicio</strong>Sigue explorando la visión del proyecto.</div></a></div></div></div></div>
 
+<!-- Formulario oculto: Netlify lo detecta para avisar por email de cada historia compartida. -->
+<form name="historia" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+ <input type="text" name="nombre"><input type="email" name="email"><textarea name="mensaje"></textarea>
+ <input type="text" name="bot-field">
+</form>
 <script src="assets/egs.js"></script></body></html>

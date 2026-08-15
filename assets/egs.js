@@ -260,8 +260,8 @@ window.egsAvisarNetlify = function (formName, campos) {
       form.classList.add('sent');
       if (btn) {
         btn.textContent = 'Gracias, te avisamos ✓';
-        btn.style.background = '#1FA153';   // verde "recibido" (que se note)
-        btn.style.borderColor = '#1FA153';
+        btn.style.background = '#2E7350';   // verde "recibido" (que se note)
+        btn.style.borderColor = '#2E7350';
         btn.style.color = '#fff';
       }
       try {
@@ -269,6 +269,7 @@ window.egsAvisarNetlify = function (formName, campos) {
         if (!list.includes(val)) { list.push(val); localStorage.setItem('egs_emails', JSON.stringify(list)); }
       } catch (_) {}
       window.egsGuardar('newsletter', { email: val });
+      if (window.egsAvisarNetlify) window.egsAvisarNetlify('newsletter', { email: val });
     });
   }
 })();
@@ -370,6 +371,18 @@ window.egsAvisarNetlify = function (formName, campos) {
                  : pagina.indexOf('compartir-historia')    >= 0 ? 'historia'
                  : 'wizard';
     window.egsGuardar(formName, data);
+    // Aviso por email (Netlify) para compartir-historia y solicitud-acompanante
+    if (window.egsAvisarNetlify) {
+      var email = '', nombre = '', resumen = [];
+      for (var k in data) {
+        if (!data[k] || k === 'timestamp') continue;
+        var lk = k.toLowerCase();
+        if (!email && (lk.indexOf('email') >= 0 || lk.indexOf('correo') >= 0)) email = data[k];
+        else if (!nombre && lk.indexOf('nombre') >= 0) nombre = data[k];
+        resumen.push(data[k]);
+      }
+      window.egsAvisarNetlify(formName, { nombre: nombre, email: email, mensaje: resumen.join(' · ').slice(0, 600) });
+    }
     // ir a la última pantalla si existe
     const all = document.querySelectorAll('.pantalla');
     const last = all[all.length - 1];
@@ -419,4 +432,70 @@ window.egsAvisarNetlify = function (formName, campos) {
     const href = (a.getAttribute('href') || '').split('/').pop().toLowerCase();
     if (href === path) a.classList.add('current');
   });
+})();
+
+/* ============================================================================
+   COMPARTIR EN REDES — se agrega sola al final de cada artículo (blog, huellas,
+   escritos). Detecta .long-prose y usa la URL + título de la página. En celular
+   ofrece el menú nativo (Web Share API: Instagram, WhatsApp, etc.).
+   ============================================================================ */
+(function () {
+  var prose = document.querySelector('.long-prose');
+  if (!prose || document.querySelector('.egs-compartir')) return;
+  var url = location.href.split('#')[0];
+  var h1 = document.querySelector('h1');
+  var titulo = ((h1 ? h1.textContent : document.title) || '').trim();
+  var texto = titulo ? (titulo + ' · El Gran Sueño') : 'El Gran Sueño';
+  var e = encodeURIComponent;
+  var ic = {
+    wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.76.46 3.45 1.32 4.96L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm4.52 11.99c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.48-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.55-.42h-.48c-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.75.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.19.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>',
+    fb: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24h-6.66l-5.21-6.82-5.96 6.82H1.68l7.73-8.84L1.25 2.25h6.83l4.71 6.23zm-1.16 17.52h1.83L7.01 4.13H5.05z"/></svg>',
+    tg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.94 4.9 18.9 19.2c-.22 1-.82 1.25-1.67.78l-4.64-3.42-2.24 2.16c-.25.24-.46.45-.94.45l.33-4.72L18.7 6.1c.37-.33-.08-.51-.58-.18L7.4 12.68l-4.6-1.44c-1-.31-1.02-1 .21-1.48l17.98-6.93c.83-.31 1.56.19 1.29 1.44z"/></svg>',
+    link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2-2a5 5 0 1 0-7.07-7.07l-1 1"/><path d="M14 11a5 5 0 0 0-7.07 0l-2 2a5 5 0 1 0 7.07 7.07l1-1"/></svg>',
+    nat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>'
+  };
+  var redes = [
+    { k: 'WhatsApp', c: 'red-wa', href: 'https://wa.me/?text=' + e(texto + ' ' + url), i: ic.wa },
+    { k: 'Facebook', c: 'red-fb', href: 'https://www.facebook.com/sharer/sharer.php?u=' + e(url), i: ic.fb },
+    { k: 'X', c: 'red-x', href: 'https://twitter.com/intent/tweet?text=' + e(texto) + '&url=' + e(url), i: ic.x },
+    { k: 'Telegram', c: 'red-tg', href: 'https://t.me/share/url?url=' + e(url) + '&text=' + e(texto), i: ic.tg }
+  ];
+  var bar = document.createElement('div');
+  bar.className = 'egs-compartir';
+  var html = '<span class="egs-compartir-label">Compartir</span><div class="egs-compartir-btns">';
+  redes.forEach(function (r) {
+    html += '<a class="egs-compartir-btn ' + r.c + '" href="' + r.href + '" target="_blank" rel="noopener" aria-label="Compartir en ' + r.k + '" title="' + r.k + '">' + r.i + '</a>';
+  });
+  html += '<button type="button" class="egs-compartir-btn egs-compartir-copiar" aria-label="Copiar enlace" title="Copiar enlace">' + ic.link + '</button></div>';
+  bar.innerHTML = html;
+  prose.parentNode.insertBefore(bar, prose.nextSibling);
+
+  var copiar = bar.querySelector('.egs-compartir-copiar');
+  copiar.addEventListener('click', function () {
+    var ok = function () {
+      copiar.classList.add('copiado'); copiar.setAttribute('title', '¡Enlace copiado!');
+      setTimeout(function () { copiar.classList.remove('copiado'); copiar.setAttribute('title', 'Copiar enlace'); }, 1800);
+    };
+    try {
+      if (navigator.clipboard) { navigator.clipboard.writeText(url).then(ok, ok); }
+      else {
+        var t = document.createElement('textarea'); t.value = url; document.body.appendChild(t);
+        t.select(); document.execCommand('copy'); document.body.removeChild(t); ok();
+      }
+    } catch (_) { ok(); }
+  });
+
+  if (navigator.share) {
+    var nat = document.createElement('button');
+    nat.type = 'button';
+    nat.className = 'egs-compartir-btn egs-compartir-nativo';
+    nat.setAttribute('aria-label', 'Compartir');
+    nat.innerHTML = ic.nat + '<span>Compartir</span>';
+    nat.addEventListener('click', function () {
+      navigator.share({ title: titulo, text: texto, url: url }).catch(function () {});
+    });
+    var btns = bar.querySelector('.egs-compartir-btns');
+    btns.insertBefore(nat, btns.firstChild);
+  }
 })();

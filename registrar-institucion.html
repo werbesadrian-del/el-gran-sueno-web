@@ -226,10 +226,17 @@
  list.push(data); localStorage.setItem('egs_instituciones', JSON.stringify(list));
  } catch(_){}
  window.egsGuardar('institucion', data);
+ if (window.egsAvisarNetlify) window.egsAvisarNetlify('institucion', { nombre: data.institucion, email: data.email, mensaje: (data.tipo + ' · ' + data.pais + ' · ' + data.descripcion).slice(0, 600) });
  document.getElementById('reg-form-vivo').style.display = 'none';
  document.getElementById('reg-gracias').classList.add('visible');
  document.getElementById('reg-gracias').scrollIntoView({ behavior: 'smooth', block: 'center' });
  }</script>
+
+<!-- Formulario oculto: Netlify lo detecta para avisar por email de cada institución registrada. -->
+<form name="institucion" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
+ <input type="text" name="nombre"><input type="email" name="email"><textarea name="mensaje"></textarea>
+ <input type="text" name="bot-field">
+</form>
 
 <footer class="egs-footer">
  <div class="footer-divider" aria-hidden="true"></div>
