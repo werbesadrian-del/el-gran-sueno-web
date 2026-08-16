@@ -72,6 +72,16 @@ var FOOTER = `<footer class="egs-footer">
 
 function jsonLd(o) { return '<script type="application/ld+json">' + JSON.stringify(o) + '</script>'; }
 
+// Imagen de previsualización para redes (Facebook, WhatsApp, X): la del post si tiene, si no la de marca.
+function ogImagen(p) {
+  if (p && p.imagen) return p.imagen.indexOf('http') === 0 ? p.imagen : SITE + (p.imagen[0] === '/' ? '' : '/') + p.imagen;
+  return SITE + '/assets/og-default.png';
+}
+function ogImageMetas(p) {
+  var img = ogImagen(p);
+  return '<meta property="og:image" content="' + img + '"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="' + img + '">';
+}
+
 function paginaEscrito(p) {
   var url = SITE + '/blog/' + p.slug;
   var pilarLabel = p.pilarLabel || PILAR[p.pilar] || p.pilar || '';
@@ -87,7 +97,7 @@ function paginaEscrito(p) {
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(p.titulo)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:site_name" content="El Gran Sueño"><meta property="og:locale" content="es_ES">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.titulo)}">${HEAD_COMUN}
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.titulo)}">${ogImageMetas(p)}${HEAD_COMUN}
 ${ld}</head><body class="modo-limpio">
 ${nav('/blog', 'Escritos')}
 <main>
@@ -118,7 +128,7 @@ function paginaHuella(p) {
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(p.nombre)} · Huella de Fe"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:site_name" content="El Gran Sueño"><meta property="og:locale" content="es_ES">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.nombre)} · Huella de Fe">${HEAD_COMUN}
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.nombre)} · Huella de Fe">${ogImageMetas(p)}${HEAD_COMUN}
 <style>.huella-frase-hero{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,2.8vw,1.9rem);color:rgba(243,239,233,.9);line-height:1.5;max-width:40rem;margin:1.8rem auto 0}</style>
 ${ld}</head><body class="modo-limpio">
 ${nav('/huellas-de-fe.html', 'Huellas')}
