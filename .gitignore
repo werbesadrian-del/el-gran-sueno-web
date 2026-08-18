@@ -4,6 +4,10 @@ Thumbs.db
 node_modules/
 *.log
 _LEEME-version-nueva.txt
+.claude/
 # Generadas por build.js (Netlify las regenera en cada deploy)
 /blog/
 /huella/
+# Tarjetas sociales generadas por og-card.mjs (Netlify las regenera en cada deploy)
+prueba-*.png
+/assets/og/

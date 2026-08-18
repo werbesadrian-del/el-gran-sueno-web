@@ -1,9 +1,14 @@
-# El Gran Sueño — build MÍNIMO (node build.js, sin dependencias → ~1-2 s, casi cero crédito).
+# El Gran Sueño — build.
+# og-card.mjs genera las tarjetas sociales (1200x630, el hero de cada escrito/huella) con
+# satori, SIN navegador, así se crean solas al publicar desde donde sea (panel, celular).
 # build.js convierte los posts del panel (content/*.json) en páginas estáticas fuertes
-# para Google (/blog/<slug>, /huella/<slug>) y regenera el sitemap. El resto se publica igual.
+# para Google (/blog/<slug>, /huella/<slug>) y regenera el sitemap.
 [build]
   publish = "."
-  command = "node build.js"
+  command = "node og-card.mjs && node build.js"
+
+[build.environment]
+  NODE_VERSION = "20"
 
 [[redirects]]
   from = "/blog-articulo.html"
