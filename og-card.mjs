@@ -45,7 +45,7 @@ function markup({ pilar, meta, titulo, pregunta }) {
 async function tarjeta(datos, outFile) {
   const svg = await satori(markup(datos), { width: 1200, height: 630, fonts: FONTS });
   // Render a 2x (2400x1260) => nítida en Facebook y en pantallas retina.
-  const png = new Resvg(svg, { background: '#141110', fitTo: { mode: 'width', value: 2400 } }).render().asPng();
+  const png = new Resvg(svg, { background: '#141110', fitTo: { mode: 'width', value: 1200 } }).render().asPng();
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
   fs.writeFileSync(outFile, png);
 }

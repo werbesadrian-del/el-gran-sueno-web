@@ -82,9 +82,8 @@ function ogImagen(p, tipo) {
 }
 function ogImageMetas(p, tipo) {
   var img = ogImagen(p, tipo);
-  // Las tarjetas generadas (assets/og/...) se rinden a 2x; la de marca es 1200x630.
-  var esTarjeta = img.indexOf('/assets/og/') !== -1;
-  var w = esTarjeta ? '2400' : '1200', h = esTarjeta ? '1260' : '630';
+  // Todas las imágenes de previsualización son 1200x630 (tamaño recomendado por Facebook).
+  var w = '1200', h = '630';
   return '<meta property="og:image" content="' + img + '"><meta property="og:image:width" content="' + w + '"><meta property="og:image:height" content="' + h + '"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="' + img + '">';
 }
 
