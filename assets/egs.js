@@ -108,7 +108,7 @@ window.egsAvisarNetlify = function (formName, campos) {
         <ul>
           <li><a href="/quiero-ser-parte.html">Encontrar mi lugar</a></li>
           <li><a href="/compartir-historia.html">Compartir mi historia</a></li>
-          <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Mentoría personal<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Con Adrián · la primera sesión es un regalo</span></a></li>
+          <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Mentoría con Adrián<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Reservar una sesión gratis</span></a></li>
           <li><a href="/quiero-acompanar.html">Ser acompañante</a></li>
           <li><a href="/colaborar.html">Sostener el sueño</a></li>
         </ul>
@@ -485,6 +485,18 @@ window.egsAvisarNetlify = function (formName, campos) {
       }
     } catch (_) { ok(); }
   });
+
+  // En el CELULAR (iPhone y Android), el ícono de Facebook abre la hoja de compartir nativa:
+  // en el móvil estás logueado en la APP de Facebook, no en el navegador; el compartir web no
+  // funciona, la hoja nativa sí llega a la app. En la computadora se deja el enlace directo.
+  var esMovil = navigator.share && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  if (esMovil) {
+    var fbBtn = bar.querySelector('.red-fb');
+    if (fbBtn) fbBtn.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      navigator.share({ title: titulo, text: texto, url: url }).catch(function () {});
+    });
+  }
 
   if (navigator.share) {
     var nat = document.createElement('button');

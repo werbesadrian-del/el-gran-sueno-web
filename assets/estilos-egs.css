@@ -2944,17 +2944,7 @@ html.lenis, html.lenis body { height: auto; }
   padding: 9vh 2rem;
 }
 
-/* Hilo de cobre: una sola línea que dirige la mirada */
-.modo-limpio .st-mirador .st-in::before,
-.modo-limpio .st-tree .st-in::before,
-.modo-limpio .st-horizonte .st-in::before,
-.modo-limpio .st-duo .st-in::before {
-  content: ""; position: absolute; top: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 1px; height: 5vh;
-  background: linear-gradient(to bottom, transparent, var(--cobre));
-  opacity: 0.7;
-}
+/* (Se quitó el "hilo de cobre" vertical de las secciones, por pedido: quedaba muy artificial) */
 
 /* --- CLÍMAX: "El Gran Sueño" — portada de cierre, misma atmósfera. --- */
 .modo-limpio .st-climax {

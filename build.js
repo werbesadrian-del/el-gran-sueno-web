@@ -66,7 +66,7 @@ var FOOTER = `<footer class="egs-footer">
     <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
     <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
   </div>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntas detrás del mismo llamado · España · © El Gran Sueño</p>
+  <p class="footer-meta">Personas de distintos lugares, caminando juntos en la Gran Comisión · <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-2px;opacity:.85;margin:0 .1em" role="img" aria-label="El mundo"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg> · © El Gran Sueño</p>
 </footer>
 <script src="/assets/egs.js"></script>`;
 
@@ -82,7 +82,10 @@ function ogImagen(p, tipo) {
 }
 function ogImageMetas(p, tipo) {
   var img = ogImagen(p, tipo);
-  return '<meta property="og:image" content="' + img + '"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="' + img + '">';
+  // Las tarjetas generadas (assets/og/...) se rinden a 2x; la de marca es 1200x630.
+  var esTarjeta = img.indexOf('/assets/og/') !== -1;
+  var w = esTarjeta ? '2400' : '1200', h = esTarjeta ? '1260' : '630';
+  return '<meta property="og:image" content="' + img + '"><meta property="og:image:width" content="' + w + '"><meta property="og:image:height" content="' + h + '"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="' + img + '">';
 }
 
 function paginaEscrito(p) {
