@@ -486,18 +486,9 @@ window.egsAvisarNetlify = function (formName, campos) {
     } catch (_) { ok(); }
   });
 
-  // En el CELULAR (iPhone y Android), el ícono de Facebook abre la hoja de compartir nativa:
-  // en el móvil estás logueado en la APP de Facebook, no en el navegador; el compartir web no
-  // funciona, la hoja nativa sí llega a la app. En la computadora se deja el enlace directo.
-  var esMovil = navigator.share && window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-  if (esMovil) {
-    var fbBtn = bar.querySelector('.red-fb');
-    if (fbBtn) fbBtn.addEventListener('click', function (ev) {
-      ev.preventDefault();
-      navigator.share({ title: titulo, text: texto, url: url }).catch(function () {});
-    });
-  }
-
+  // El ícono de Facebook va SIEMPRE directo al compartir de Facebook (en compu y en celular).
+  // Además, si el navegador lo permite, se agrega un botón "Compartir" con la hoja nativa
+  // (útil en el celular para llegar a cualquier app: Facebook, WhatsApp, Instagram, etc.).
   if (navigator.share) {
     var nat = document.createElement('button');
     nat.type = 'button';
