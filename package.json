@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
+    "jpeg-js": "^0.4.4",
     "satori": "^0.12.1",
     "satori-html": "^0.3.2"
   }

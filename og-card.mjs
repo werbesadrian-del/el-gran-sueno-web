@@ -13,6 +13,7 @@ import { fileURLToPath } from 'url';
 import satori from 'satori';
 import { html } from 'satori-html';
 import { Resvg } from '@resvg/resvg-js';
+import jpeg from 'jpeg-js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const F = (p) => fs.readFileSync(path.join(ROOT, 'assets', 'fonts', p));
@@ -44,10 +45,11 @@ function markup({ pilar, meta, titulo, pregunta }) {
 
 async function tarjeta(datos, outFile) {
   const svg = await satori(markup(datos), { width: 1200, height: 630, fonts: FONTS });
-  // Render a 2x (2400x1260) => nítida en Facebook y en pantallas retina.
-  const png = new Resvg(svg, { background: '#141110', fitTo: { mode: 'width', value: 1200 } }).render().asPng();
+  const img = new Resvg(svg, { background: '#141110', fitTo: { mode: 'width', value: 1200 } }).render();
+  // JPEG (sin canal alfa): Facebook a veces no muestra PNG con transparencia.
+  const jpg = jpeg.encode({ data: img.pixels, width: img.width, height: img.height }, 90);
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
-  fs.writeFileSync(outFile, png);
+  fs.writeFileSync(outFile, jpg.data);
 }
 
 const leer = (f) => { try { return JSON.parse(fs.readFileSync(path.join(ROOT, 'content', f), 'utf8')).posts || []; } catch (e) { return []; } };
@@ -68,7 +70,7 @@ const soloPrueba = process.argv.includes('--prueba');
 let n = 0;
 
 for (const p of leer('blog.json')) {
-  const out = soloPrueba ? path.join(ROOT, '..', 'prueba-' + p.slug + '.png') : path.join(ROOT, 'assets', 'og', 'blog', p.slug + '.png');
+  const out = soloPrueba ? path.join(ROOT, '..', 'prueba-' + p.slug + '.jpg') : path.join(ROOT, 'assets', 'og', 'blog', p.slug + '.jpg');
   await tarjeta({ pilar: p.pilarLabel || p.pilar || '', meta: [p.lectura, fmtFecha(p.fecha)].filter(Boolean).join(' · '), titulo: p.titulo, pregunta: p.pregunta }, out);
   console.log('escrito ->', p.slug); n++;
   if (soloPrueba) break;
@@ -76,13 +78,13 @@ for (const p of leer('blog.json')) {
 
 if (!soloPrueba) {
   for (const p of leer('huellas.json')) {
-    await tarjeta({ pilar: 'Huella de Fe', meta: p.meta || fmtFecha(p.fecha), titulo: p.nombre, pregunta: p.frase ? '«' + p.frase + '»' : '' }, path.join(ROOT, 'assets', 'og', 'huella', p.slug + '.png'));
+    await tarjeta({ pilar: 'Huella de Fe', meta: p.meta || fmtFecha(p.fecha), titulo: p.nombre, pregunta: p.frase ? '«' + p.frase + '»' : '' }, path.join(ROOT, 'assets', 'og', 'huella', p.slug + '.jpg'));
     console.log('huella  ->', p.slug); n++;
   }
   for (const pg of PAGINAS) {
     let htmlStr = ''; try { htmlStr = fs.readFileSync(path.join(ROOT, pg.archivo), 'utf8'); } catch (e) { continue; }
     const titulo = ogDe(htmlStr, 'title').replace(/\s*·\s*El Gran Sueño\s*$/, '').trim() || 'El Gran Sueño';
-    await tarjeta({ pilar: 'El Gran Sueño', meta: '', titulo, pregunta: ogDe(htmlStr, 'description') }, path.join(ROOT, 'assets', 'og', 'pagina', pg.key + '.png'));
+    await tarjeta({ pilar: 'El Gran Sueño', meta: '', titulo, pregunta: ogDe(htmlStr, 'description') }, path.join(ROOT, 'assets', 'og', 'pagina', pg.key + '.jpg'));
     console.log('página  ->', pg.key); n++;
   }
 }

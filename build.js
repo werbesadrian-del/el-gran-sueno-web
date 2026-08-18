@@ -77,14 +77,15 @@ function jsonLd(o) { return '<script type="application/ld+json">' + JSON.stringi
 //   Las tarjetas se generan en el build (og-card.mjs) en assets/og/<tipo>/<slug>.png
 function ogImagen(p, tipo) {
   if (p && p.imagen) return p.imagen.indexOf('http') === 0 ? p.imagen : SITE + (p.imagen[0] === '/' ? '' : '/') + p.imagen;
-  if (p && p.slug && tipo) { try { if (fs.existsSync(path.join(__dirname, 'assets', 'og', tipo, p.slug + '.png'))) return SITE + '/assets/og/' + tipo + '/' + p.slug + '.png'; } catch (e) {} }
+  if (p && p.slug && tipo) { try { if (fs.existsSync(path.join(__dirname, 'assets', 'og', tipo, p.slug + '.jpg'))) return SITE + '/assets/og/' + tipo + '/' + p.slug + '.jpg'; } catch (e) {} }
   return SITE + '/assets/og-default.png';
 }
 function ogImageMetas(p, tipo) {
   var img = ogImagen(p, tipo);
   // Todas las imágenes de previsualización son 1200x630 (tamaño recomendado por Facebook).
   var w = '1200', h = '630';
-  return '<meta property="og:image" content="' + img + '"><meta property="og:image:width" content="' + w + '"><meta property="og:image:height" content="' + h + '"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="' + img + '">';
+  var mime = img.slice(-4) === '.jpg' ? 'image/jpeg' : 'image/png';
+  return '<meta property="og:image" content="' + img + '"><meta property="og:image:type" content="' + mime + '"><meta property="og:image:width" content="' + w + '"><meta property="og:image:height" content="' + h + '"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="' + img + '">';
 }
 
 function paginaEscrito(p) {
