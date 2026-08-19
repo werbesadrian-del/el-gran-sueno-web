@@ -10,6 +10,18 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Caché estable para las imágenes de previsualización (Open Graph): la imagen se genera
+# idéntica en cada build, así que Facebook/WhatsApp la pueden guardar sin re-validar a cada rato.
+[[headers]]
+  for = "/assets/og/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/og-default.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 [[redirects]]
   from = "/blog-articulo.html"
   to   = "/escrito-identidad-dios-ya-dijo"
