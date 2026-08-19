@@ -108,7 +108,7 @@ window.egsAvisarNetlify = function (formName, campos) {
         <ul>
           <li><a href="/quiero-ser-parte.html">Encontrar mi lugar</a></li>
           <li><a href="/compartir-historia.html">Compartir mi historia</a></li>
-          <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Mentoría con Adrián<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Reservar una sesión gratis</span></a></li>
+          <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Un encuentro con Adrián<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Reservar una sesión gratis</span></a></li>
           <li><a href="/quiero-acompanar.html">Ser acompañante</a></li>
           <li><a href="/colaborar.html">Sostener el sueño</a></li>
         </ul>
