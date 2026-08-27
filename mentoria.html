@@ -195,9 +195,11 @@
 
 <!-- Header -->
 <header class="m-header">
- <p class="m-header-label">Un encuentro con Adrián</p>
+ <p class="m-header-label">Una sesión con Adrián</p>
  <h1 class="m-header-title">Un espacio para <em>verte con claridad</em>, y ser afirmado para el camino.</h1>
- <p class="m-header-sub">Para comprender en qué lugar estás hoy y hacia dónde vas. Y salir afirmado y equipado para los próximos pasos, hacia una realidad más completa en Cristo.</p></header>
+ <p class="m-header-sub">Para comprender en qué lugar estás hoy y hacia dónde vas. Y salir afirmado y equipado para los próximos pasos, hacia una realidad más completa en Cristo.</p>
+ <a href="#pedir" class="m-header-cta">Quiero una sesión con Adrián</a>
+ <p class="m-header-nota">Gratis · una videollamada de 40 minutos</p></header>
 
 <!-- Identificación (amplia) -->
 <section class="m-section alt">
@@ -307,11 +309,11 @@
  <span class="m-paso-num">tres</span>
  <p class="m-paso-txt"><strong>Nos encontramos.</strong><br>Una videollamada tranquila, de cuarenta minutos. Sin apuro y sin guion.</p></div></div>
  <div class="m-regalo">
- <p class="m-prosa destacada" style="margin-bottom:1.4rem;">Este primer encuentro es un regalo.</p>
+ <p class="m-prosa destacada" style="margin-bottom:1.4rem;">Este encuentro es un regalo. Gratis, sin condiciones.</p>
  <p class="m-prosa" style="margin:0;">
- Quiero conocerte antes de proponerte cualquier camino.<br>
- Si al terminar ambos sentimos que Dios nos invita a seguir<br>
- trabajando juntos, recién ahí hablaremos de cómo continuar.</p></div></div></section>
+ Quiero conocerte y, sobre todo, escucharte.<br>
+ Si al terminar ambos sentimos que Dios nos invita a<br>
+ seguir caminando juntos, lo vemos con calma.</p></div></div></section>
 
 <!-- Qué necesitás traer -->
 <section class="m-section alt">
@@ -350,11 +352,14 @@
  <label class="campo-etiq" for="mCorreo">Correo electrónico</label>
  <input id="mCorreo" type="email" class="campo-linea" placeholder="tu@correo.com" required></div>
  <div class="campo-grupo">
+ <label class="campo-etiq" for="mTelefono">Teléfono <span style="font-style:italic;letter-spacing:0;text-transform:none;opacity:.7;">opcional</span></label>
+ <input id="mTelefono" type="tel" class="campo-linea" placeholder="Si querés, para coordinar más rápido"></div>
+ <div class="campo-grupo">
  <label class="campo-etiq" for="mMensaje">¿Dónde sentís que estás hoy?</label>
  <textarea id="mMensaje" class="campo-linea" placeholder="Dos o tres líneas alcanzan…"></textarea></div>
- <button class="m-enviar" id="mEnviar" type="submit">Pedir mi encuentro</button></form>
+ <button class="m-enviar" id="mEnviar" type="submit">Enviar mis datos para una sesión</button></form>
  <div class="m-gracias" id="mGracias">
- <p class="m-prosa destacada">Recibido.<br>Te escribo pronto para coordinar.</p>
+ <p class="m-prosa destacada">¡Enviado! Recibí tus datos.<br>Pronto te respondo por email para coordinar la sesión.</p>
  <p class="m-prosa" style="margin-top:1rem;">Mientras tanto, no dejes de caminar.</p></div></div></section>
 
 <footer class="egs-footer">
@@ -373,7 +378,7 @@
 <!-- Formulario oculto: Netlify lo detecta en el deploy para poder mandar el email de aviso.
      El envío real lo hace el JS de abajo (egsAvisarNetlify). No se muestra al usuario. -->
 <form name="mentoria" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
- <input type="text" name="nombre"><input type="email" name="correo"><textarea name="mensaje"></textarea>
+ <input type="text" name="nombre"><input type="email" name="correo"><input type="tel" name="telefono"><textarea name="mensaje"></textarea>
  <input type="text" name="bot-field">
 </form>
 
@@ -388,13 +393,50 @@
  if (!nombre || !correo || correo.indexOf('@') < 0) return;
  btn.disabled = true;
  var mensaje = document.getElementById('mMensaje').value.trim();
+ var telefono = document.getElementById('mTelefono').value.trim();
  if (window.egsGuardar) {
- window.egsGuardar('mentoria', { nombre: nombre, correo: correo, mensaje: mensaje });
+ window.egsGuardar('mentoria', { nombre: nombre, correo: correo, telefono: telefono, mensaje: mensaje });
  }
  if (window.egsAvisarNetlify) {
- window.egsAvisarNetlify('mentoria', { nombre: nombre, correo: correo, mensaje: mensaje });
+ window.egsAvisarNetlify('mentoria', { nombre: nombre, correo: correo, telefono: telefono, mensaje: mensaje });
  }
  form.style.display = 'none';
  document.getElementById('mGracias').classList.add('visible');
  });
+})();</script>
+
+<style>
+/* CTA del header */
+.m-header a.m-header-cta{display:inline-block;margin-top:2.4rem;font-family:'DM Sans',sans-serif;font-weight:500;font-size:.98rem;letter-spacing:.02em;color:#F3EFE9;background:#2C6A4A;padding:1rem 2.3rem;border-radius:40px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;box-shadow:0 8px 24px rgba(44,106,74,.24)}
+.m-header a.m-header-cta:hover{background:#337954;transform:translateY(-1px);box-shadow:0 12px 30px rgba(44,106,74,.32)}
+.m-header-nota{font-family:'DM Sans',sans-serif;font-size:.8rem;color:var(--ink-mid,#6b6259);letter-spacing:.03em;margin:1rem 0 0;opacity:.85}
+/* Botón flotante: siempre a mano */
+.m-float{position:fixed;left:50%;transform:translateX(-50%) translateY(8px);bottom:1.3rem;z-index:60;font-family:'DM Sans',sans-serif;font-weight:500;font-size:.92rem;color:#F3EFE9;background:#2C6A4A;padding:.9rem 1.9rem;border-radius:40px;text-decoration:none;box-shadow:0 10px 30px rgba(20,50,36,.42);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.m-float.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+@media(min-width:760px){.m-float{left:auto;right:2rem;transform:translateY(8px)}.m-float.show{transform:translateY(0)}}
+/* Doble columna en las listas largas: baja el largo a la mitad */
+@media(min-width:720px){
+ .m-prof{display:grid;grid-template-columns:1fr 1fr;gap:1.7rem 2.6rem}
+ .m-prof p{margin:0;text-align:left}
+ .m-llevas{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 2.6rem}
+ .m-llevas p{text-align:left}
+}
+/* El botón de envío del formulario, también verde */
+#mentoriaForm button.m-enviar{background:#2C6A4A;border-color:#2C6A4A;color:#F3EFE9}
+#mentoriaForm button.m-enviar:hover{background:#337954;border-color:#337954}
+</style>
+<a href="#pedir" class="m-float" id="mFloat">Quiero una sesión con Adrián</a>
+<script>
+(function(){
+ var f=document.getElementById('mFloat'); if(!f) return;
+ var header=document.querySelector('.m-header');
+ var form=document.getElementById('pedir');
+ function upd(){
+  var pastHeader=window.scrollY>((header?header.offsetHeight:400)*0.8);
+  var fr=form?form.getBoundingClientRect():null;
+  var formNear=fr&&fr.top<window.innerHeight*0.9;
+  if(pastHeader&&!formNear)f.classList.add('show');else f.classList.remove('show');
+ }
+ window.addEventListener('scroll',upd,{passive:true});
+ window.addEventListener('resize',upd); upd();
 })();</script></body></html>

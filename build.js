@@ -78,7 +78,7 @@ function jsonLd(o) { return '<script type="application/ld+json">' + JSON.stringi
 function ogImagen(p, tipo) {
   if (p && p.imagen) return p.imagen.indexOf('http') === 0 ? p.imagen : SITE + (p.imagen[0] === '/' ? '' : '/') + p.imagen;
   if (p && p.slug && tipo) { try { if (fs.existsSync(path.join(__dirname, 'assets', 'og', tipo, p.slug + '.jpg'))) return SITE + '/assets/og/' + tipo + '/' + p.slug + '.jpg'; } catch (e) {} }
-  return SITE + '/assets/og-default.png';
+  return SITE + '/assets/og-marca.jpg';
 }
 function ogImageMetas(p, tipo) {
   var img = ogImagen(p, tipo);
@@ -86,6 +86,45 @@ function ogImageMetas(p, tipo) {
   var w = '1200', h = '630';
   var mime = img.slice(-4) === '.jpg' ? 'image/jpeg' : 'image/png';
   return '<meta property="og:image" content="' + img + '"><meta property="og:image:type" content="' + mime + '"><meta property="og:image:width" content="' + w + '"><meta property="og:image:height" content="' + h + '"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="' + img + '">';
+}
+
+// Estilos propios de la página de escrito: tarjeta de raíces + bloque de invitación.
+var ESTILO_ESCRITO = `<style>
+.art-raices{padding:1.5vh 2rem 2vh}
+.art-raices-inner{max-width:500px;margin:0 auto;background:linear-gradient(165deg,#241a17 0%,#17110d 100%);border:1px solid rgba(197,122,61,.28);border-radius:14px;padding:1.9rem 1.8rem;position:relative;overflow:hidden}
+.art-raices-inner::before{content:"";position:absolute;top:-45%;right:-20%;width:60%;height:80%;background:radial-gradient(circle,rgba(197,122,61,.18),transparent 65%);pointer-events:none}
+.art-raices-q{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(1.05rem,2.5vw,1.32rem);line-height:1.25;color:var(--cream,#F3EFE9);margin:0 0 .7rem;text-wrap:balance;position:relative}
+.art-raices-intro{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.9rem;color:rgba(243,239,233,.72);margin:0 0 1.25rem;line-height:1.55;position:relative}
+.art-raices-list{list-style:none;margin:0 0 1.3rem;padding:0;display:flex;flex-direction:column;gap:.6rem;position:relative}
+.art-raices-list li{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.95rem;color:rgba(243,239,233,.9);line-height:1.4;padding-left:1.15rem;position:relative}
+.art-raices-list li::before{content:"—";position:absolute;left:0;color:#C57A3D}
+.art-raices-list strong{font-weight:600;color:#E0A868}
+.art-raices-cierre{font-family:'DM Sans',sans-serif;font-size:.88rem;color:rgba(243,239,233,.7);line-height:1.65;margin:0;position:relative}
+.art-cta-invita{padding:3vh 2rem 6vh}
+.art-cta-invita-inner{max-width:600px;margin:0 auto;text-align:center}
+.invita-titulo{font-family:'Playfair Display',serif;font-weight:700;font-style:italic;font-size:clamp(1.3rem,3.2vw,1.75rem);color:var(--bordo,#6B1A2B);display:block;margin:0 0 1.1rem}
+.art-cta-invita p{font-family:'Cormorant Garamond',serif;font-size:clamp(1.12rem,2.3vw,1.32rem);color:var(--ink-mid,#5a5148);line-height:1.6;max-width:34rem;margin:0 auto 1.9rem}
+.art-cta-boton{display:inline-block;font-family:'DM Sans',sans-serif;font-weight:500;font-size:.95rem;letter-spacing:.02em;color:#F3EFE9;background:#2C6A4A;padding:.95rem 2.1rem;border-radius:40px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;box-shadow:0 8px 22px rgba(44,106,74,.22)}
+.art-cta-boton:hover{background:#337954;transform:translateY(-1px);box-shadow:0 12px 28px rgba(44,106,74,.30)}
+</style>`;
+
+function bloqueRaices(r) {
+  if (!r) return '';
+  var items = (r.items || []).map(function (it) { return '<li>' + inline(it) + '</li>'; }).join('');
+  return `<section class="art-raices"><div class="art-raices-inner">
+${r.pregunta ? '<h2 class="art-raices-q">' + esc(r.pregunta) + '</h2>' : ''}
+${r.intro ? '<p class="art-raices-intro">' + esc(r.intro) + '</p>' : ''}
+<ul class="art-raices-list">${items}</ul>
+${r.cierre ? '<p class="art-raices-cierre">' + inline(r.cierre) + '</p>' : ''}
+</div></section>`;
+}
+
+function bloqueInvitacion() {
+  return `<section class="art-cta-invita"><div class="art-cta-invita-inner">
+<span class="invita-titulo">¿Algo de esto te resonó?</span>
+<p>Quizás es algo que estás viviendo. Quizás te quedaron dudas, preguntas. O quizás ves las cosas un poco diferente y querés compartirlo, ponerlo en palabras, aclararlo. Me encantaría charlar con vos.</p>
+<a class="art-cta-boton" href="/mentoria.html">Quiero una sesión con Adrián</a>
+</div></section>`;
 }
 
 function paginaEscrito(p) {
@@ -104,6 +143,7 @@ function paginaEscrito(p) {
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="article"><meta property="og:title" content="${esc(p.titulo)}"><meta property="og:description" content="${esc(desc)}"><meta property="og:url" content="${url}"><meta property="og:site_name" content="El Gran Sueño"><meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="${esc(p.titulo)}">${ogImageMetas(p, 'blog')}${HEAD_COMUN}
+${ESTILO_ESCRITO}
 ${ld}</head><body class="modo-limpio">
 ${nav('/blog', 'Escritos')}
 <main>
@@ -117,8 +157,8 @@ ${p.imagen ? '<figure class="art-portada"><img src="' + esc(p.imagen) + '" alt="
   ${p.resumen ? '<p class="lead">' + esc(p.resumen) + '</p>' : ''}
   ${md(p.cuerpo)}
 </article>
-<section class="art-cta-pregunta"><div class="art-cta-pregunta-inner"><span class="art-cta-eyebrow">Un paso más</span>
-<p>Si algo de esto resonó, tal vez sea momento de una conversación a solas. <a href="/mentoria.html" style="color:var(--ember,#C57A3D);">Reservá un espacio</a></p></div></section>
+${bloqueRaices(p.raices)}
+${bloqueInvitacion()}
 </main>
 ${FOOTER}</body></html>`;
 }

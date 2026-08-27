@@ -8,7 +8,7 @@ name: Mantener Supabase despierta
 
 on:
   schedule:
-    - cron: '17 8 */2 * *'   # cada 2 días, 08:17 UTC (margen amplio antes de los 7 días)
+    - cron: '17 8 * * *'   # cada 2 días, 08:17 UTC (margen amplio antes de los 7 días)
   workflow_dispatch:          # permite correrlo a mano desde la pestaña Actions
 
 jobs:
