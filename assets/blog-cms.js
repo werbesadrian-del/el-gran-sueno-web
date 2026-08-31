@@ -1,5 +1,5 @@
 /* ============================================================================
-   EL GRAN SUEÑO — Contenido desde el panel (CMS)
+   EL GRAN SUEÑO - Contenido desde el panel (CMS)
    ----------------------------------------------------------------------------
    Lee lo que escribís en el panel y lo suma a las dos secciones:
      · content/blog.json    → Escritos  (se abren en articulo.html?slug=...)

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   El Gran Sueño — Sistema de diseño compartido
+   El Gran Sueño - Sistema de diseño compartido
    Este archivo contiene los tokens, tipografía, componentes y estados
    comunes a todas las páginas del sitio.
    ========================================================================== */
@@ -204,7 +204,7 @@ nav.egs-nav.nav-hidden {
 .divider-mark {
   width: 24px;
   height: 1px;
-  background: var(--gold);
+  background: none;
   margin: 3rem auto;
   opacity: 0.6;
 }
@@ -298,10 +298,7 @@ footer.egs-footer {
   z-index: 1;
 }
 .egs-footer .footer-divider {
-  width: 40px; height: 1px;
-  background: var(--gold);
-  opacity: 0.5;
-  margin: 0 auto 2.4rem;
+  display: none;
 }
 .egs-footer .footer-manifest {
   font-family: 'Cormorant Garamond', serif;
@@ -506,7 +503,7 @@ footer.egs-footer {
 /* Elementos decorativos */
 .linea-oro {
   width: 40px; height: 1px;
-  background: var(--gold);
+  background: none;
   opacity: 0.7;
   margin: 0 auto;
 }
@@ -695,7 +692,6 @@ footer.egs-footer {
   margin-top: 1.5rem;
   padding: 1.5rem;
   background: rgba(201,168,76,0.06);
-  border-left: 2px solid var(--gold);
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   color: var(--ink-mid);
@@ -737,7 +733,6 @@ footer.egs-footer {
 }
 .cierre-caja, .carta {
   background: rgba(107,26,43,0.03);
-  border-left: 2px solid var(--bordo);
   padding: 1.75rem 1.5rem;
   text-align: left;
   width: 100%;
@@ -753,7 +748,6 @@ footer.egs-footer {
 .destello {
   padding: 1.75rem 1.5rem;
   background: rgba(201,168,76,0.06);
-  border-left: 2px solid var(--gold);
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   color: var(--ink-mid);
@@ -829,16 +823,16 @@ footer.egs-footer {
 .page-section.on-ink .s-title em, .page-section.on-bordo .s-title em { color: var(--gold-light); }
 .divider {
   width: 40px; height: 1px;
-  background: var(--gold);
+  background: none;
   opacity: 0.6;
   margin: 1.75rem 0;
 }
 .body {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
-  color: var(--ink-mid);
-  line-height: 1.85;
-  margin-bottom: 1.25rem;
+  font-size: clamp(1.28rem, 2vw, 1.46rem);
+  color: var(--ink);
+  line-height: 1.68;
+  margin-bottom: 1.15rem;
 }
 .body em { color: var(--bordo); font-style: italic; }
 .pull {
@@ -847,7 +841,6 @@ footer.egs-footer {
   font-style: italic;
   color: var(--bordo);
   line-height: 1.55;
-  border-left: 2px solid var(--gold);
   padding: 0.5rem 0 0.5rem 1.5rem;
   margin: 2rem 0;
 }
@@ -902,7 +895,6 @@ footer.egs-footer {
   margin-top: 2.5rem;
   padding: 1.75rem 1.5rem;
   background: rgba(201,168,76,0.08);
-  border-left: 2px solid var(--gold);
 }
 .page-section.on-cream .honest-box,
 .page-section.on-white .honest-box { background: rgba(201,168,76,0.08); }
@@ -960,7 +952,6 @@ footer.egs-footer {
 /* Principio destacado */
 .principle {
   background: rgba(107,26,43,0.04);
-  border-left: 2px solid var(--bordo);
   padding: 1.5rem 1.5rem;
   margin-top: 2rem;
   font-family: 'Cormorant Garamond', serif;
@@ -1094,7 +1085,7 @@ footer.egs-footer {
 .cta-secondary:hover { color: var(--bordo); }
 
 /* ==========================================================================
-   FASE 2 — COMPONENTES ADICIONALES
+   FASE 2 - COMPONENTES ADICIONALES
    Blog · Huellas de Fe · Escuelas · Redes sociales
    ========================================================================== */
 
@@ -1152,7 +1143,7 @@ footer.egs-footer {
   font-style: italic; color: var(--ink-mid);
   max-width: 580px; line-height: 1.75;
 }
-.dir-hero-line { width: 32px; height: 1px; background: var(--gold); opacity: 0.6; }
+.dir-hero-line { width: 32px; height: 1px; background: none; opacity: 0.6; }
 
 /* ---- Card de artículo (blog) ---- */
 .blog-grid {
@@ -1260,7 +1251,6 @@ footer.egs-footer {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.1rem; font-style: italic;
   color: var(--ink-mid); line-height: 1.7;
-  border-left: 2px solid var(--bordo);
   padding-left: 1rem;
 }
 .huella-frase::before { content: '\201C'; opacity: 0.6; }
@@ -1375,12 +1365,12 @@ footer.egs-footer {
 .long-prose h1 em { font-style: italic; color: var(--bordo); }
 .long-prose h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-size: clamp(1.55rem, 3.2vw, 2rem);
   font-weight: 400;
   color: var(--ink);
-  line-height: 1.3;
-  margin-top: 3.5rem;
-  margin-bottom: 1.25rem;
+  line-height: 1.28;
+  margin-top: 2.4rem;
+  margin-bottom: 0.95rem;
 }
 .long-prose h2 em { font-style: italic; color: var(--bordo); }
 .long-prose h3 {
@@ -1390,26 +1380,33 @@ footer.egs-footer {
   text-transform: uppercase;
   color: var(--bordo);
   font-weight: 500;
-  margin-top: 2.5rem;
+  margin-top: 1.8rem;
   margin-bottom: 1rem;
 }
 .long-prose p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.08rem, 1.8vw, 1.22rem);
-  color: var(--ink-mid);
-  line-height: 1.85;
-  margin-bottom: 1.35rem;
+  font-family: 'Crimson Pro', serif;
+  font-weight: 400;
+  font-size: clamp(1.24rem, 1.9vw, 1.4rem);
+  color: var(--ink);
+  line-height: 1.68;
+  margin-bottom: 1.05rem;
 }
 .long-prose p em { color: var(--bordo); font-style: italic; }
+/* Página de lectura ENTERA en blanco papel (sin hoja flotante, sin bordes que parezcan luz) */
+body.modo-limpio:has(article.long-prose):not(:has(.nacio-layout)) { background: #FBFAF7; }
+article.long-prose {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(2.2rem, 4.5vw, 3.4rem) clamp(1.4rem, 5vw, 2.5rem);
+}
 .long-prose .lead {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.3rem, 2.5vw, 1.55rem);
+  font-size: clamp(1.4rem, 2.6vw, 1.68rem);
   font-style: italic;
+  font-weight: 400;
   color: var(--ink);
-  line-height: 1.6;
-  padding-left: 1.5rem;
-  border-left: 2px solid var(--gold);
-  margin: 2rem 0;
+  line-height: 1.55;
+  margin: 1.6rem 0;
 }
 .long-prose .lead-bordo {
   font-family: 'Playfair Display', serif;
@@ -1418,10 +1415,8 @@ footer.egs-footer {
   color: var(--bordo);
   line-height: 1.5;
   text-align: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
   margin: 2.5rem 0;
-  border-top: 1px solid rgba(107,26,43,0.15);
-  border-bottom: 1px solid rgba(107,26,43,0.15);
 }
 .long-prose .eyebrow {
   font-size: 0.68rem;
@@ -1434,7 +1429,7 @@ footer.egs-footer {
 }
 .long-prose .divider {
   width: 40px; height: 1px;
-  background: var(--gold);
+  background: none;
   opacity: 0.6;
   margin: 2.5rem 0;
 }
@@ -1521,7 +1516,7 @@ footer.egs-footer {
 .dir-invite-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
 
 /* ==========================================================================
-   MENÚ DE NAVEGACIÓN — overlay fullscreen contemplativo
+   MENÚ DE NAVEGACIÓN - overlay fullscreen contemplativo
    ========================================================================== */
 
 /* Botón hamburguesa en el nav */
@@ -1584,7 +1579,6 @@ nav.egs-nav .nav-left {
 .nav-overlay-header {
   display: flex; justify-content: space-between; align-items: center;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .nav-overlay-brand {
   font-family: 'Playfair Display', serif;
@@ -1650,8 +1644,6 @@ nav.egs-nav .nav-left {
   font-weight: 500;
   margin-bottom: 1.5rem;
   display: block;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .nav-col ul {
   list-style: none;
@@ -1672,15 +1664,7 @@ nav.egs-nav .nav-left {
   transform: translateX(6px);
 }
 .nav-col a::before {
-  content: '';
-  position: absolute;
-  left: -18px; top: 50%;
-  width: 10px; height: 1px;
-  background: var(--gold);
-  opacity: 0;
-  transform: translateY(-50%) scaleX(0);
-  transform-origin: left;
-  transition: opacity 0.3s, transform 0.3s;
+  content: none;
 }
 .nav-col a:hover::before {
   opacity: 0.8;
@@ -1734,15 +1718,15 @@ nav.egs-nav .nav-left {
 /* --- Barra de compartir en artículos (blog, huellas, escritos) --- */
 .egs-compartir {
   max-width: 720px; margin: 3rem auto 1rem; padding: 1.5rem 2rem;
-  display: flex; align-items: center; justify-content: center; gap: 1.2rem; flex-wrap: wrap;
-  border-top: 1px solid rgba(107,26,43,0.12);
-  border-bottom: 1px solid rgba(107,26,43,0.12);
+  display: flex; flex-direction: column; align-items: center; gap: 1.2rem;
 }
 .egs-compartir-label {
   font-family: 'DM Sans', sans-serif; text-transform: uppercase;
   letter-spacing: 0.22em; font-size: 0.66rem; color: var(--ink-light, #a89a88);
 }
-.egs-compartir-btns { display: inline-flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; }
+.egs-compartir-btns { display: flex; gap: 1.6rem; align-items: center; justify-content: center; flex-wrap: wrap; }
+/* En "Cómo nació" el layout es una grilla: que el bloque de compartir ocupe todo el ancho y no se apriete en la columna lateral */
+.nacio-layout > .egs-compartir { grid-column: 1 / -1; }
 .egs-compartir-btn {
   width: 42px; height: 42px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
@@ -1806,7 +1790,7 @@ nav.egs-nav .nav-left {
 /* Cuando el menú está abierto, el body no scrollea */
 body.menu-open { overflow: hidden; }
 
-/* ============ Refinamiento editorial — aire, ritmo, respiración ============ */
+/* ============ Refinamiento editorial - aire, ritmo, respiración ============ */
 .beat { padding-top: 13vh; padding-bottom: 13vh; }
 .beat-inner { max-width: 640px; }
 .gap-s   { margin-top: 2.2rem; }
@@ -1849,7 +1833,7 @@ body.menu-open { overflow: hidden; }
 .ov-dark::after   { background: rgba(20,14,10,0.46); }
 .ov-darker::after { background: rgba(20,14,10,0.58); }
 
-/* HERO — imagen desde arriba, TEXTO ABAJO, degradado inferior cine */
+/* HERO - imagen desde arriba, TEXTO ABAJO, degradado inferior cine */
 .beat.hero.beat-foto { justify-content: flex-end; }
 .beat.hero.beat-foto > .beat-inner { padding-bottom: 9vh; }
 .beat.hero.beat-foto .foto-bg { background-position: center 30%; }
@@ -1857,7 +1841,7 @@ body.menu-open { overflow: hidden; }
   background: linear-gradient(to top, rgba(12,9,6,0.82) 0%, rgba(12,9,6,0.34) 38%, rgba(12,9,6,0.04) 70%);
 }
 
-/* CLÍMAX — degradado para leer el nombre sobre el sol */
+/* CLÍMAX - degradado para leer el nombre sobre el sol */
 .beat-foto.mv-zoom-out::after {
   background: linear-gradient(to bottom, rgba(12,9,6,0.34) 0%, rgba(12,9,6,0.12) 45%, rgba(12,9,6,0.42) 100%);
 }
@@ -1883,7 +1867,7 @@ body.menu-open { overflow: hidden; }
 .mv-pan       .foto-bg { animation: kb-pan  44s ease-in-out infinite alternate; }
 .mv-zoom-slow .foto-bg { animation: kb-slow 48s ease-in-out infinite alternate; }
 
-/* FOOTER — velo BLANCO fuerte, foto apenas insinuada, formulario legible */
+/* FOOTER - velo BLANCO fuerte, foto apenas insinuada, formulario legible */
 .footer-foto { position: relative; overflow: hidden; }
 .footer-foto > * { position: relative; z-index: 2; }
 .footer-foto .foto-bg { position: absolute; inset: -4%; z-index: 0; background-size: cover; background-position: center; will-change: transform; }
@@ -1930,7 +1914,7 @@ html.lenis, html.lenis body { height: auto; }
 
 @media (prefers-reduced-motion: reduce) { .foto-img { animation: none !important; } }
 
-/* Hero arriba (r1): banda más baja — la mitad de alto */
+/* Hero arriba (r1): banda más baja - la mitad de alto */
 .st-hero-top { height: 46vh; }
 .st-hero-top .foto-img { height: 100%; object-fit: cover; object-position: center 38%; }
 @media (max-width: 720px) { .st-hero-top { height: 34vh; } }
@@ -1948,17 +1932,17 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 720px) { .st-duo { height: 36vh; } }
 
 /* Banda del árbol (realidad): recorte tipo banda, foco en árbol + horizonte */
-/* 3ª · árbol a la IZQUIERDA (dondehoy) — altura recuperada */
+/* 3ª · árbol a la IZQUIERDA (dondehoy) - altura recuperada */
 .st-tree { height: 38vh; }
 .st-tree .foto-img { height: 100%; object-fit: cover; object-position: center 40%; }
 @media (max-width: 720px) { .st-tree { height: 32vh; } }
 
-/* 2ª · hombre mirando el horizonte (r2) — ~40% menos, persona visible */
+/* 2ª · hombre mirando el horizonte (r2) - ~40% menos, persona visible */
 .st-mirador { height: 40vh; }
 .st-mirador .foto-img { height: 100%; object-fit: cover; object-position: center 31%; }
 @media (max-width: 720px) { .st-mirador { height: 32vh; } }
 
-/* 4ª · árbol a la DERECHA (r5) — recorte leve desde abajo (se conserva lo alto) */
+/* 4ª · árbol a la DERECHA (r5) - recorte leve desde abajo (se conserva lo alto) */
 .st-horizonte { height: 40vh; }
 .st-horizonte .foto-img { height: 100%; object-fit: cover; object-position: center 15%; }
 @media (max-width: 720px) { .st-horizonte { height: 30vh; } }
@@ -2105,7 +2089,7 @@ html.lenis, html.lenis body { height: auto; }
 .h-card--real:hover { transform: none; }
 
 /* ======================================================
-   MODAL — leer una historia real completa
+   MODAL - leer una historia real completa
    ====================================================== */
 .hist-modal {
   position: fixed; inset: 0; z-index: 1000;
@@ -2179,9 +2163,16 @@ html.lenis, html.lenis body { height: auto; }
 .etapas-linea { list-style: none; margin: 0; padding: 0; position: relative; }
 .etapas-linea::before {
   content: ''; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 2px;
-  background: linear-gradient(to bottom,
-    var(--bordo) 0%, var(--bordo) 32%, var(--gold) 58%, rgba(201,168,76,0.22) 100%);
+  background-image: repeating-linear-gradient(to bottom,
+    var(--bordo) 0, var(--bordo) 6px, transparent 6px, transparent 15px);
+  background-size: 100% 15px;
+  opacity: 0.7;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 62%, transparent 100%);
+  animation: etapas-flujo 1.2s linear infinite;
 }
+@keyframes etapas-flujo { to { background-position-y: 15px; } }
+@media (prefers-reduced-motion: reduce) { .etapas-linea::before { animation: none; } }
 .etapa { position: relative; padding: 0 0 2.8rem 3rem; }
 .etapa:last-child { padding-bottom: 0; }
 .etapa-punto {
@@ -2224,7 +2215,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ======================================================
-   LAYOUT "Cómo nació" — ruta lateral que acompaña el texto
+   LAYOUT "Cómo nació" - ruta lateral que acompaña el texto
    ====================================================== */
 .etapas-title-aside {
   font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400;
@@ -2348,7 +2339,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ======================================================
-   HUELLAS — pull quote, separador con ícono, pregunta final
+   HUELLAS - pull quote, separador con ícono, pregunta final
    ====================================================== */
 .pull-quote {
   border: none; margin: 3.5rem 0; padding: 0; text-align: center;
@@ -2390,7 +2381,6 @@ html.lenis, html.lenis body { height: auto; }
 /* Citas bíblicas dentro del texto (no aplica al pull-quote grande) */
 .long-prose blockquote:not(.pull-quote) {
   margin: 1.8rem 0; padding: 0.2rem 0 0.2rem 1.4rem;
-  border-left: 2px solid var(--gold);
 }
 .long-prose blockquote:not(.pull-quote) p {
   font-family: 'Cormorant Garamond', serif; font-style: italic;
@@ -2398,7 +2388,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ======================================================
-   HUELLAS — banda hero con imagen (recreación)
+   HUELLAS - banda hero con imagen (recreación)
    ====================================================== */
 .huella-hero {
   position: relative; min-height: 44vh; max-height: 540px;
@@ -2436,7 +2426,7 @@ html.lenis, html.lenis body { height: auto; }
 @media (max-width: 640px) { .huella-hero { min-height: 42vh; max-height: none; } }
 
 /* ======================================================
-   HUELLAS — retrato enmarcado (estilo lápiz / archivo)
+   HUELLAS - retrato enmarcado (estilo lápiz / archivo)
    ====================================================== */
 .huella-retrato { background: var(--cream); padding: 7rem 2rem 4rem; text-align: center; }
 .huella-retrato-inner { max-width: 640px; margin: 0 auto; }
@@ -2458,7 +2448,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ======================================================
-   HUELLAS hero — mostrar la imagen COMPLETA (sin recorte)
+   HUELLAS hero - mostrar la imagen COMPLETA (sin recorte)
    (override: se ve toda la escena; el nombre va sobreimpreso abajo)
    ====================================================== */
 .huella-hero { min-height: 0; max-height: none; display: block; }
@@ -2470,7 +2460,7 @@ html.lenis, html.lenis body { height: auto; }
 .huella-hero-cont { position: absolute; left: 0; right: 0; bottom: 0; padding: 2rem 2rem 2.4rem; }
 
 /* ======================================================
-   HUELLAS hero DEFINITIVO — banda panorámica 2.4:1
+   HUELLAS hero DEFINITIVO - banda panorámica 2.4:1
    La imagen se genera a esa medida (1680×700) → entra COMPLETA, sin recorte.
    ====================================================== */
 .huella-hero {
@@ -2569,7 +2559,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 .hero-btn:hover { background: rgba(250,248,245,0.14); border-color: #fff; }
 
-/* Franja SEO / posicionamiento — inmediatamente bajo el hero */
+/* Franja SEO / posicionamiento - inmediatamente bajo el hero */
 .seo-eyebrow {
   font-family: 'DM Sans', sans-serif; text-transform: uppercase;
   letter-spacing: 0.24em; font-size: 0.68rem; color: var(--gold);
@@ -2622,7 +2612,7 @@ html.lenis, html.lenis body { height: auto; }
   clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
 
-/* Explicación de marca — franja propia, separada, con aire */
+/* Explicación de marca - franja propia, separada, con aire */
 .marca-desde {
   font-family: 'Cormorant Garamond', serif; font-style: italic;
   font-size: clamp(1.15rem, 2.3vw, 1.45rem);
@@ -2673,7 +2663,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ============================================================
-   DIRECCIÓN DE ARTE — "PRESENCIA" (Adrián, ago 2026)
+   DIRECCIÓN DE ARTE - "PRESENCIA" (Adrián, ago 2026)
    Experiencia cinematográfica, minimalista y emocional.
    No es una web que se consume: es un lugar donde detenerse.
    Palabras guía: profundidad · silencio · discernimiento ·
@@ -2758,8 +2748,8 @@ html.lenis, html.lenis body { height: auto; }
 .modo-limpio .st-img { line-height: normal; }
 
 /* --- Sin fotos genéricas: los capítulos son luz y palabra.
-       (Cuando Adrián elija fotografías con significado —una ventana,
-        un camino, niebla— entran acá.) --- */
+       (Cuando Adrián elija fotografías con significado -una ventana,
+        un camino, niebla- entran acá.) --- */
 .modo-limpio .st-hero-top .foto-img,
 .modo-limpio .st-mirador .foto-img,
 .modo-limpio .st-tree .foto-img,
@@ -2946,7 +2936,7 @@ html.lenis, html.lenis body { height: auto; }
 
 /* (Se quitó el "hilo de cobre" vertical de las secciones, por pedido: quedaba muy artificial) */
 
-/* --- CLÍMAX: "El Gran Sueño" — portada de cierre, misma atmósfera. --- */
+/* --- CLÍMAX: "El Gran Sueño" - portada de cierre, misma atmósfera. --- */
 .modo-limpio .st-climax {
   height: auto; min-height: 70vh;
   background: linear-gradient(180deg, var(--noche) 0%, var(--carbon) 100%);
@@ -3089,7 +3079,7 @@ html.lenis, html.lenis body { height: auto; }
 }
 
 /* ============================================================
-   CONSISTENCIA — TODA página entra por "la noche".
+   CONSISTENCIA - TODA página entra por "la noche".
    Cada cabecera se vuelve el mismo umbral oscuro y atmosférico
    del home (misma línea en todo el sitio).
    ============================================================ */
@@ -3144,7 +3134,7 @@ html.lenis, html.lenis body { height: auto; }
     min-height: 42vh; padding: 16vh 1.6rem 8vh;
   }
 }
-/* Cabeceras propias con su nombre — mismo umbral oscuro (gracias, historia) */
+/* Cabeceras propias con su nombre - mismo umbral oscuro (gracias, historia) */
 .modo-limpio .gr-wrap,
 .modo-limpio .cabecera {
   background: linear-gradient(180deg, var(--noche) 0%, var(--carbon) 100%) !important;
@@ -3225,7 +3215,7 @@ html.lenis, html.lenis body { height: auto; }
 .art-raices-intro{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.9rem;color:rgba(243,239,233,.72);margin:0 0 1.25rem;line-height:1.55;position:relative}
 .art-raices-list{list-style:none;margin:0 0 1.3rem;padding:0;display:flex;flex-direction:column;gap:.6rem;position:relative}
 .art-raices-list li{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.95rem;color:rgba(243,239,233,.9);line-height:1.4;padding-left:1.15rem;position:relative}
-.art-raices-list li::before{content:"—";position:absolute;left:0;color:#C57A3D}
+.art-raices-list li::before{content: none;position:absolute;left:0;color:#C57A3D}
 .art-raices-list strong{font-weight:600;color:#E0A868}
 .art-raices-cierre{font-family:'DM Sans',sans-serif;font-size:.88rem;color:rgba(243,239,233,.7);line-height:1.65;margin:0;position:relative}
 .art-cta-invita{padding:3vh 2rem 6vh}

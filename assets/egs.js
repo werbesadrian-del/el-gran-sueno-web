@@ -1,5 +1,5 @@
 /* ============================================================================
-   EL GRAN SUEÑO — CONEXIÓN CON LA BASE DE DATOS (Supabase)
+   EL GRAN SUEÑO - CONEXIÓN CON LA BASE DE DATOS (Supabase)
    ----------------------------------------------------------------------------
    Acá es donde TODOS los formularios del sitio guardan sus respuestas.
    La clave "anon" es PÚBLICA y segura de mostrar: la protección real está en
@@ -46,7 +46,7 @@ window.egsGuardar = function (form, data) {
 };
 
 /* ----------------------------------------------------------------------------
-   AVISO POR EMAIL (Netlify Forms) — SOLO para los formularios donde Adrián
+   AVISO POR EMAIL (Netlify Forms) - SOLO para los formularios donde Adrián
    quiere enterarse (mentoría y colaborar). Manda una copia del envío a Netlify,
    que dispara el email a adrian@elgransueno.org.
    Requiere: (1) un <form hidden data-netlify="true" name="..."> en la página
@@ -70,7 +70,7 @@ window.egsAvisarNetlify = function (formName, campos) {
 };
 
 /* ============================================================================
-   MENÚ GLOBAL DEL SITIO — el ÚNICO lugar donde se edita el menú desplegable.
+   MENÚ GLOBAL DEL SITIO - el ÚNICO lugar donde se edita el menú desplegable.
    ----------------------------------------------------------------------------
    Cambiá acá un enlace, una sección o un título y se actualiza en TODAS las
    páginas a la vez. Antes había que tocar 19 archivos; ahora, solo este bloque.
@@ -133,9 +133,9 @@ window.egsAvisarNetlify = function (formName, campos) {
   <div class="nav-overlay-footer">
     <p class="nav-overlay-quote">Nadie fue creado para caminar solo.</p>
     <div class="nav-overlay-social" aria-label="Redes sociales">
-      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
-      <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
-      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
+      <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
+      <a href="https://www.youtube.com/@adrianencamino" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=100070784831956" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
       <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
       <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
     </div>
@@ -150,7 +150,7 @@ window.egsAvisarNetlify = function (formName, campos) {
   }
 })();
 
-/* El Gran Sueño — Scripts compartidos
+/* El Gran Sueño - Scripts compartidos
    Funciones idempotentes: cada una chequea si su target existe. */
 (function () {
   'use strict';
@@ -396,7 +396,7 @@ window.egsAvisarNetlify = function (formName, campos) {
 })();
 
 /* ============================================================================
-   MENÚ overlay — toggle + cierre con Escape + marcar página actual
+   MENÚ overlay - toggle + cierre con Escape + marcar página actual
    ============================================================================ */
 (function () {
   'use strict';
@@ -435,7 +435,7 @@ window.egsAvisarNetlify = function (formName, campos) {
 })();
 
 /* ============================================================================
-   COMPARTIR EN REDES — se agrega sola al final de cada artículo (blog, huellas,
+   COMPARTIR EN REDES - se agrega sola al final de cada artículo (blog, huellas,
    escritos). Detecta .long-prose y usa la URL + título de la página. En celular
    ofrece el menú nativo (Web Share API: Instagram, WhatsApp, etc.).
    ============================================================================ */
@@ -501,4 +501,19 @@ window.egsAvisarNetlify = function (formName, campos) {
     var btns = bar.querySelector('.egs-compartir-btns');
     btns.insertBefore(nat, btns.firstChild);
   }
+})();
+
+/* ============================================================================
+   CHAT EN VIVO - Crisp (en TODAS las páginas)
+   Website ID del sitio de El Gran Sueño. Adrián responde en vivo desde la app
+   de Crisp cuando está en línea; cuando no, Crisp pide el email y responde luego.
+   Color y saludo se ajustan en el panel de Crisp (crisp.chat).
+   ============================================================================ */
+(function () {
+  window.$crisp = window.$crisp || [];
+  window.CRISP_WEBSITE_ID = "0ff697b2-b104-4abd-8c49-9986e6675fc4";
+  var d = document, s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
 })();

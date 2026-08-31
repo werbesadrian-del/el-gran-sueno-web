@@ -1,5 +1,5 @@
 /* ============================================================================
-   EL GRAN SUEÑO — Generador de páginas (build, sin dependencias)
+   EL GRAN SUEÑO - Generador de páginas (build, sin dependencias)
    ----------------------------------------------------------------------------
    Convierte lo que se escribe en el panel (content/blog.json, content/huellas.json)
    en PÁGINAS ESTÁTICAS DE VERDAD, fuertes para Google:
@@ -46,7 +46,7 @@ var HEAD_COMUN = `
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/estilos-egs.css">`;
 
 function nav(volverHref, volverTxt) {
@@ -66,7 +66,7 @@ var FOOTER = `<footer class="egs-footer">
     <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
     <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
   </div>
-  <p class="footer-meta">Personas de distintos lugares, caminando juntos en la Gran Comisión · <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-2px;opacity:.85;margin:0 .1em" role="img" aria-label="El mundo"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg> · © El Gran Sueño</p>
+  <p class="footer-meta">Personas de distintos lugares, caminando juntos en la Gran Comisión <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-2px;opacity:.85;margin:0 .1em" role="img" aria-label="El mundo"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg> © El Gran Sueño</p>
 </footer>
 <script src="/assets/egs.js"></script>`;
 
@@ -97,7 +97,7 @@ var ESTILO_ESCRITO = `<style>
 .art-raices-intro{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.9rem;color:rgba(243,239,233,.72);margin:0 0 1.25rem;line-height:1.55;position:relative}
 .art-raices-list{list-style:none;margin:0 0 1.3rem;padding:0;display:flex;flex-direction:column;gap:.6rem;position:relative}
 .art-raices-list li{font-family:'DM Sans',sans-serif;font-weight:300;font-size:.95rem;color:rgba(243,239,233,.9);line-height:1.4;padding-left:1.15rem;position:relative}
-.art-raices-list li::before{content:"—";position:absolute;left:0;color:#C57A3D}
+.art-raices-list li::before{content: none;position:absolute;left:0;color:#C57A3D}
 .art-raices-list strong{font-weight:600;color:#E0A868}
 .art-raices-cierre{font-family:'DM Sans',sans-serif;font-size:.88rem;color:rgba(243,239,233,.7);line-height:1.65;margin:0;position:relative}
 .art-cta-invita{padding:3vh 2rem 6vh}
@@ -136,7 +136,7 @@ function paginaEscrito(p) {
     mainEntityOfPage:url, articleSection:pilarLabel, inLanguage:'es' });
   var meta = [];
   if (p.lectura) meta.push('<span>' + esc(p.lectura) + '</span>');
-  if (p.fecha) meta.push('<span>·</span><span>' + fmtFecha(p.fecha) + '</span>');
+  if (p.fecha) meta.push('<span>, </span><span>' + fmtFecha(p.fecha) + '</span>');
   return `<!DOCTYPE html><html lang="es"><head>
 <title>${esc(p.titulo)} · El Gran Sueño</title>
 <meta name="description" content="${esc(desc)}">
@@ -218,4 +218,4 @@ var xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sit
   '\n</urlset>\n';
 fs.writeFileSync('sitemap.xml', xml);
 
-console.log('BUILD OK — escritos:', escritos.length, '| huellas:', huellas.length, '| URLs en sitemap:', urls.length);
+console.log('BUILD OK - escritos:', escritos.length, '| huellas:', huellas.length, '| URLs en sitemap:', urls.length);

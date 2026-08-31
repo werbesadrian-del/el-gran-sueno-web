@@ -1,9 +1,9 @@
 /* ==========================================================================
-   El Gran Sueño — Sistema de contador de vistas
+   El Gran Sueño - Sistema de contador de vistas
    --------------------------------------------------------------------------
    Usa un servicio externo gratuito y sin autenticación para contar cuántas
    veces se abrió cada artículo o huella.
-   Servicio: https://abacus.jasoncameron.dev — Free, no auth, no rate limit
+   Servicio: https://abacus.jasoncameron.dev - Free, no auth, no rate limit
    público. Fallback silencioso si el servicio no responde.
    --------------------------------------------------------------------------
    USO:

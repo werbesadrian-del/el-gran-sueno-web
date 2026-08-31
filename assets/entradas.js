@@ -1,12 +1,12 @@
 /* ==========================================================================
-   El Gran Sueño — Base de datos de publicaciones
+   El Gran Sueño - Base de datos de publicaciones
    --------------------------------------------------------------------------
    Este archivo es TU FUENTE ÚNICA para el listado de Escritos y Huellas.
    Cada vez que publiques uno nuevo:
      1) Duplicá la plantilla (_PLANTILLA-articulo.html o _PLANTILLA-huella.html)
      2) Renombrá el archivo con el slug (ej: sos-lo-que-dios-dijo.html)
      3) Agregá una entrada acá con ese mismo slug
-     4) Guardá — el listado se actualiza solo.
+     4) Guardá - el listado se actualiza solo.
    --------------------------------------------------------------------------
    CAMPOS OBLIGATORIOS:
      slug     → nombre del archivo SIN el .html (ej: 'sos-lo-que-dios-dijo')
@@ -23,6 +23,18 @@
    ========================================================================== */
 
 window.EGS_ESCRITOS = [
+  {
+    slug: "por-que-vivo-con-miedo-y-culpa",
+    titulo: "¿Por qué vivís con miedo, culpa y esa sensación de que nunca alcanza?",
+    pregunta: "¿Desde cuál de los dos sistemas estás mirando tu vida hoy?",
+    pilar: "identidad",
+    pilarLabel: "Identidad",
+    excerpt: "Hay dos sistemas desde los que se puede vivir. Uno gobierna con miedo, culpa y vergüenza; el otro es la vida de Cristo en vos. No tenés que mejorar el primero: tenés que aprender a vivir desde el segundo.",
+    lectura: "7 min",
+    fecha: "2026-08-31",
+    destacado: true,
+    link: "/blog/por-que-vivo-con-miedo-y-culpa"
+  },
   {
     slug: "escrito-identidad-dios-ya-dijo",
     titulo: "Tu identidad no comienza en vos. Comienza en Cristo.",
@@ -128,56 +140,56 @@ window.EGS_HUELLAS = [
   {
     slug: 'huella-george-muller',
     nombre: 'George Müller',
-    meta: '1805 — 1898 · Inglaterra · Fe',
+    meta: '1805-1898, Inglaterra, Fe',
     frase: 'Nunca le pediré a un ser humano por dinero para la obra del Señor. Le pediré solo a Dios.',
     fecha: '2026-01-15',
     destacado: false  },
   {
     slug: 'huella-hudson-taylor',
     nombre: 'Hudson Taylor',
-    meta: '1832 — 1905 · Inglaterra / China · Misiones',
+    meta: '1832-1905, Inglaterra / China, Misiones',
     frase: 'La obra de Dios, hecha a la manera de Dios, nunca va a carecer de las provisiones de Dios.',
     fecha: '2026-01-05',
     destacado: false  },
   {
     slug: 'huella-corrie-ten-boom',
     nombre: 'Corrie ten Boom',
-    meta: '1892 — 1983 · Países Bajos · Perdón',
+    meta: '1892-1983, Países Bajos, Perdón',
     frase: 'No hay pozo tan profundo que el amor de Dios no sea aún más profundo.',
     fecha: '2025-12-18',
     destacado: false  },
   {
     slug: 'huella-jim-elliot',
     nombre: 'Jim Elliot',
-    meta: '1927 — 1956 · EE.UU. / Ecuador · Entrega',
+    meta: '1927-1956, EE.UU. / Ecuador, Entrega',
     frase: 'No es tonto quien da lo que no puede conservar, para ganar lo que no puede perder.',
     fecha: '2025-12-05',
     destacado: false  },
   {
     slug: 'huella-charles-spurgeon',
     nombre: 'Charles Spurgeon',
-    meta: '1834 — 1892 · Inglaterra · Dependencia',
+    meta: '1834-1892, Inglaterra, Dependencia',
     frase: 'La oración no vence la resistencia de Dios; se adhiere a la voluntad de Dios.',
     fecha: '2025-11-22',
     destacado: false  },
   {
     slug: 'huella-madre-teresa',
     nombre: 'Madre Teresa',
-    meta: '1910 — 1997 · Albania / India · Servicio',
-    frase: 'No podemos hacer grandes cosas. Solo pequeñas cosas — con gran amor.',
+    meta: '1910-1997, Albania / India, Servicio',
+    frase: 'No podemos hacer grandes cosas. Solo pequeñas cosas, con gran amor.',
     fecha: '2025-11-10',
     destacado: false  },
   {
     slug: 'huella-dietrich-bonhoeffer',
     nombre: 'Dietrich Bonhoeffer',
-    meta: '1906 — 1945 · Alemania · Discipulado',
+    meta: '1906-1945, Alemania, Discipulado',
     frase: 'Cuando Cristo llama a un hombre, lo llama a venir y morir.',
     fecha: '2025-10-30',
     destacado: false  },
   {
     slug: 'huella-amy-carmichael',
     nombre: 'Amy Carmichael',
-    meta: '1867 — 1951 · Irlanda / India · Amor',
+    meta: '1867-1951, Irlanda / India, Amor',
     frase: 'Uno puede dar sin amar. Pero no puede amar sin dar.',
     fecha: '2025-10-15',
     destacado: false  }

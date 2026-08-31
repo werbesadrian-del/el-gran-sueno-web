@@ -1,5 +1,5 @@
 /* ============================================================================
-   EL GRAN SUEÑO — LÉXICO DE CONCEPTOS
+   EL GRAN SUEÑO - LÉXICO DE CONCEPTOS
    ----------------------------------------------------------------------------
    Las palabras que desfilan en la marquesina del inicio. Al pasar el mouse o
    tocar una, aparece su definición (el "globito").
