@@ -27,7 +27,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Pro:ital,wght@0,300..600;1,300..600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
@@ -61,28 +61,17 @@
  position: relative;
  overflow: hidden;
  }
- .path-card::before {
- content: "";
- position: absolute; top: 0; left: 0; right: 0;
- height: 3px;
- background: var(--accent, var(--bordo));
- transform: scaleX(0.3);
- transform-origin: left;
- opacity: 0.85;
- transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
- }
  .path-card:hover {
  border-color: var(--bordo);
  transform: translateY(-4px);
  box-shadow: 0 14px 34px rgba(107, 26, 43, 0.1);
  }
- .path-card:hover::before { transform: scaleX(1); }
  .path-card.accent-bordo { --accent: var(--bordo); }
  .path-card.accent-gold { --accent: var(--gold); }
  .path-card.accent-light { --accent: var(--bordo-light); }
  .path-label {
  display: block;
- font-family: 'DM Sans', sans-serif;
+ font-family: var(--f-texto);
  font-size: 0.74rem;
  font-weight: 500;
  letter-spacing: 0.1em;
@@ -91,15 +80,13 @@
  margin-bottom: 1rem;
  }
  .path-said {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-style: italic;
  font-size: 1.3rem;
  color: var(--ink);
  line-height: 1.4;
  margin-bottom: 0.9rem;
  }
- .path-said::before { content: "\201C"; }
- .path-said::after { content: "\201D"; }
  .path-detail {
  font-size: 0.92rem;
  color: var(--ink-mid);
@@ -125,8 +112,8 @@
  text-align: center;
  max-width: 520px;
  }
- .also-econ a { color: var(--bordo); text-decoration: none; transition: color 0.3s; }
- .also-econ a:hover { color: var(--bordo-dark); }
+ .also-econ a { color: var(--enlace); text-decoration: underline; text-underline-offset: 3px; transition: color 0.3s; }
+ .also-econ a:hover { color: var(--casa); }
 
  /* Atajo del hero: un triángulo grande hacia abajo, al pie del hero, que
  salta directo a "¿en qué lugar estás?". Se desvanece solo al scrollear
@@ -136,14 +123,14 @@
  z-index: 2;
  display: flex; flex-direction: column; align-items: center; gap: 1rem;
  text-decoration: none;
- color: rgba(243, 239, 233, 0.8);
+ color: rgba(250,248,245,0.8);
  opacity: 0;
  animation: hintFadeIn 1.6s ease 1.8s forwards;
  transition: color 0.4s ease, opacity 0.5s ease;
  }
- .hero-skip:hover, .hero-skip:focus-visible { color: var(--luz, #F3EFE9); }
+ .hero-skip:hover, .hero-skip:focus-visible { color: var(--luz, #FAF8F5); }
  .hero-skip-label {
- font-family: 'DM Sans', sans-serif;
+ font-family: var(--f-texto);
  font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
  }
  .hero-skip-tri {
@@ -167,7 +154,7 @@
  @media (prefers-reduced-motion: reduce) { .hero-skip-tri { animation: none; } }
  @media (max-width: 600px) {
  .hero-skip { bottom: 5vh; gap: 0.8rem; }
- .hero-skip-label { font-size: 0.62rem; letter-spacing: 0.2em; }
+ .hero-skip-label { font-size: 0.74rem; letter-spacing: 0.2em; }
  .hero-skip-tri { border-left-width: 11px; border-right-width: 11px; border-top-width: 15px; }
  }</style>
  <link rel="canonical" href="https://elgransueno.org/">
@@ -228,7 +215,7 @@
 
 <!-- 1. HERO ARRIBA (montañas) -->
 <section class="st st-img st-hero-top mv-zoom-slow">
- <img class="foto-img" src="assets/fotos/r1.webp" alt="Montañas al amanecer" fetchpriority="high" decoding="async">
+ <img class="foto-img" src="assets/fotos/r1.webp" alt="Montañas al amanecer" loading="lazy" decoding="async">
  <div class="hero-marca-velo" aria-hidden="true"></div>
  <div class="hero-marca">
  <h1 class="sr-only">El Gran Sueño, Propósito de vida, sentido e identidad, desde la Nueva Vida</h1>
@@ -334,7 +321,7 @@
  <p class="invita-eyebrow">Una conversación a solas</p>
  <p class="invita-frase">A veces el primer paso no es elegir un camino.<br>Es <em>ser escuchado</em>.</p>
  <p class="invita-texto">Si querés empezar por un encuentro personal conmigo, dejame tus datos y coordinamos. Me encantaría charlar con vos.</p>
- <a href="mentoria.html" class="invita-cta" style="background:#2C6A4A;border-color:#2C6A4A;color:#F3EFE9">Quiero una sesión con Adrián</a></div></section>
+ <a href="mentoria.html" class="invita-cta">Quiero una sesión con Adrián</a></div></section>
 
 <!-- ==================== ÚLTIMAS PUBLICACIONES ==================== -->
 <section class="beat idx-ultimos">
@@ -343,19 +330,19 @@
  .idx-ultimos-inner { max-width: 1200px; margin: 0 auto; }
  .idx-ultimos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
  @media (max-width: 900px) { .idx-ultimos-grid { grid-template-columns: 1fr; gap: 4rem; } }
- .idx-col-eyebrow { font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bordo); font-weight: 500; margin-bottom: 0.75rem; }
- .idx-col-titulo { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 0.5rem; }
+ .idx-col-eyebrow { font-size: 0.74rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bordo); font-weight: 500; margin-bottom: 0.75rem; }
+ .idx-col-titulo { font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal); font-size: clamp(1.6rem, 2.8vw, 2.2rem); font-weight: 400; color: var(--ink); line-height: 1.15; margin-bottom: 0.5rem; }
  .idx-col-titulo em { font-style: italic; color: var(--bordo); }
- .idx-col-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--ink-mid); margin-bottom: 2rem; }
+ .idx-col-sub { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic; font-size: 1rem; color: var(--ink-mid); margin-bottom: 2rem; }
  .idx-col-list { display: flex; flex-direction: column; gap: 1rem; }
  .idx-item { display: block; background: var(--cream); padding: 1.4rem 1.5rem; border: 1px solid transparent; transition: all 0.35s; text-decoration: none; color: inherit; }
  .idx-item:hover { border-color: var(--gold); transform: translateY(-2px); }
- .idx-item-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; }
+ .idx-item-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; }
  .idx-item-pilar { color: var(--bordo); font-weight: 500; }
- .idx-item-fecha { color: var(--ink-light); font-family: 'Cormorant Garamond', serif; text-transform: none; letter-spacing: 0; font-style: italic; font-size: 0.8rem; }
- .idx-item-titulo { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--ink); font-weight: 400; line-height: 1.35; }
+ .idx-item-fecha { color: var(--ink-light); font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); text-transform: none; letter-spacing: 0; font-style: italic; font-size: 0.8rem; }
+ .idx-item-titulo { font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal); font-size: 1.05rem; color: var(--ink); font-weight: 400; line-height: 1.35; }
  .idx-item-titulo em { font-style: italic; color: var(--bordo); }
- .idx-col-mas { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.75rem; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--bordo); text-decoration: none; border-bottom: 1px solid transparent; transition: border 0.3s; }
+ .idx-col-mas { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.75rem; font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic; font-size: 1rem; color: var(--enlace); text-decoration: none; border-bottom: 1px solid transparent; transition: border 0.3s; }
  .idx-col-mas:hover { border-bottom-color: var(--bordo); }</style>
 
  <div class="idx-ultimos-inner">
@@ -389,9 +376,8 @@
  <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
  <a href="https://www.youtube.com/@adrianencamino" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
  <a href="https://www.facebook.com/profile.php?id=100070784831956" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
- <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
  <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
- <p class="footer-meta">Personas de distintos lugares, caminando juntos en la Gran Comisión <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-2px;opacity:.85;margin:0 .1em" role="img" aria-label="El mundo"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg> © El Gran Sueño</p></footer>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntos en la Gran Comisión <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-2px;opacity:.85;margin:0 .1em" role="img" aria-label="El mundo"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg> © El Gran Sueño</p><p class="footer-legal"><a href="/privacidad.html">Privacidad</a><a href="/cookies.html">Cookies</a><a href="/terminos.html">Términos</a></p></footer>
 
 <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
 <script>
@@ -459,7 +445,7 @@
  elH.innerHTML = huellas.map(function (h) {
  return '<a href="' + (h.link || (h.slug + '.html')) + '" class="idx-item">' +
  '<div class="idx-item-top"><span class="idx-item-pilar">' + h.nombre + '</span><span class="idx-item-fecha">' + fmtFecha(h.fecha) + '</span></div>' +
- '<p class="idx-item-titulo"><em>"' + h.frase + '"</em></p>' +
+ '<p class="idx-item-titulo"><em>' + h.frase + '</em></p>' +
  '</a>';
  }).join('');
  }
@@ -556,13 +542,15 @@
  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') ocultar(); });
  window.addEventListener('scroll', function () { if (globito.classList.contains('visible') && !fijado) ocultar(); }, { passive: true });
 })();</script>
-<!-- Netlify Identity: procesa la invitación al panel y redirige a /admin -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<!-- Netlify Identity: solo cuando el enlace trae una invitación al panel o un cambio de clave.
+     Procesa el token y, al entrar, lleva a /admin. Al resto de las visitas no se le carga nada. -->
 <script>
- if (window.netlifyIdentity) {
- window.netlifyIdentity.on('init', function (user) {
- if (!user) {
+ (function () {
+ if (!/(invite|recovery|confirmation|email_change)_token=/.test(location.hash)) return;
+ var s = document.createElement('script');
+ s.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+ s.onload = function () {
  window.netlifyIdentity.on('login', function () { document.location.href = '/admin/'; });
- }
- });
- }</script></body></html>
+ };
+ document.head.appendChild(s);
+ })();</script></body></html>

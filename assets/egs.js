@@ -14,7 +14,7 @@ window.EGS_SUPABASE = {
 /* Guarda una respuesta de formulario en la base.
    form = nombre del formulario (newsletter, colaborar, oracion, historia, ...)
    data = objeto con todas las respuestas.
-   No bloquea la pantalla: si la red falla, el respaldo en localStorage ya guardó. */
+   No bloquea la pantalla. */
 window.egsGuardar = function (form, data) {
   try {
     var cfg = window.EGS_SUPABASE || {};
@@ -32,6 +32,8 @@ window.egsGuardar = function (form, data) {
       email:   pick(['email', 'correo']),
       payload: data
     };
+    // Historias: se publican solo si la persona lo aceptó (casilla en compartir-historia)
+    if (typeof data.publicar === 'boolean') cuerpo.publicar = data.publicar;
     return fetch(cfg.url + '/rest/v1/submissions', {
       method: 'POST',
       headers: {
@@ -41,7 +43,7 @@ window.egsGuardar = function (form, data) {
         'Prefer':        'return=minimal'
       },
       body: JSON.stringify(cuerpo)
-    }).catch(function () { /* silencioso: el respaldo local ya quedó guardado */ });
+    }).catch(function () { /* silencioso: nunca romper la interfaz */ });
   } catch (e) { /* nunca romper la interfaz por esto */ }
 };
 
@@ -108,7 +110,7 @@ window.egsAvisarNetlify = function (formName, campos) {
         <ul>
           <li><a href="/quiero-ser-parte.html">Encontrar mi lugar</a></li>
           <li><a href="/compartir-historia.html">Compartir mi historia</a></li>
-          <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Una sesión con Adrián<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Reservar una sesión gratis</span></a></li>
+          <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Una sesión con Adrián<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Reservar una sesión</span></a></li>
           <li><a href="/quiero-acompanar.html">Ser acompañante</a></li>
           <li><a href="/colaborar.html">Sostener el sueño</a></li>
         </ul>
@@ -136,7 +138,6 @@ window.egsAvisarNetlify = function (formName, campos) {
       <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
       <a href="https://www.youtube.com/@adrianencamino" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
       <a href="https://www.facebook.com/profile.php?id=100070784831956" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
-      <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
       <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
     </div>
   </div>
@@ -264,10 +265,6 @@ window.egsAvisarNetlify = function (formName, campos) {
         btn.style.borderColor = '#2E7350';
         btn.style.color = '#fff';
       }
-      try {
-        const list = JSON.parse(localStorage.getItem('egs_emails') || '[]');
-        if (!list.includes(val)) { list.push(val); localStorage.setItem('egs_emails', JSON.stringify(list)); }
-      } catch (_) {}
       window.egsGuardar('newsletter', { email: val });
       if (window.egsAvisarNetlify) window.egsAvisarNetlify('newsletter', { email: val });
     });
@@ -346,7 +343,7 @@ window.egsAvisarNetlify = function (formName, campos) {
     if (btnId) { const b = $(btnId); if (b) b.disabled = false; }
   };
 
-  // Recopilar respuestas del wizard y enviar (simulado localStorage)
+  // Recopilar respuestas del wizard y enviarlas a la base
   window.recopilarRespuestas = function () {
     const data = {};
     document.querySelectorAll('textarea, input[type="text"], input[type="email"]').forEach(inp => {
@@ -359,12 +356,9 @@ window.egsAvisarNetlify = function (formName, campos) {
       data['radio_' + i] = t.textContent;
     });
     data['timestamp'] = new Date().toISOString();
-    try {
-      const key = 'egs_wizard_' + (location.pathname.split('/').pop() || 'form');
-      const arr = JSON.parse(localStorage.getItem(key) || '[]');
-      arr.push(data);
-      localStorage.setItem(key, JSON.stringify(arr));
-    } catch (_) {}
+    // la casilla de publicar la historia (si la página la tiene); sin marcar, no se publica
+    const publicar = $('publicar');
+    if (publicar) data.publicar = !!publicar.checked;
     // Guardar también en la base, con nombre de formulario según la página
     var pagina = (location.pathname.split('/').pop() || '').toLowerCase();
     var formName = pagina.indexOf('solicitud-acompanante') >= 0 ? 'acompanante'
@@ -445,7 +439,7 @@ window.egsAvisarNetlify = function (formName, campos) {
   var url = location.href.split('#')[0];
   var h1 = document.querySelector('h1');
   var titulo = ((h1 ? h1.textContent : document.title) || '').trim();
-  var texto = titulo ? (titulo + ' · El Gran Sueño') : 'El Gran Sueño';
+  var texto = titulo ? (titulo + ' | El Gran Sueño') : 'El Gran Sueño';
   var e = encodeURIComponent;
   var ic = {
     wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.76.46 3.45 1.32 4.96L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22c5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2zm4.52 11.99c-.25-.13-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.48-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.55-.42h-.48c-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.75.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.19.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>',
@@ -507,13 +501,85 @@ window.egsAvisarNetlify = function (formName, campos) {
    CHAT EN VIVO - Crisp (en TODAS las páginas)
    Website ID del sitio de El Gran Sueño. Adrián responde en vivo desde la app
    de Crisp cuando está en línea; cuando no, Crisp pide el email y responde luego.
-   Color y saludo se ajustan en el panel de Crisp (crisp.chat).
+
+   Crisp se carga recién cuando la persona toca el botón de chat (o si ya tenía
+   una conversación abierta en este navegador). Así, a quien solo lee no se le
+   guarda ninguna cookie, la página carga más liviana y no hace falta un cartel
+   de cookies. El saludo se ajusta en el panel de Crisp; el color va acá abajo.
    ============================================================================ */
 (function () {
-  window.$crisp = window.$crisp || [];
-  window.CRISP_WEBSITE_ID = "0ff697b2-b104-4abd-8c49-9986e6675fc4";
-  var d = document, s = d.createElement("script");
-  s.src = "https://client.crisp.chat/l.js";
-  s.async = 1;
-  d.getElementsByTagName("head")[0].appendChild(s);
+  var ID = "0ff697b2-b104-4abd-8c49-9986e6675fc4";
+  var boton = null, cargado = false;
+
+  function cargar(abrir) {
+    if (cargado) return;
+    cargado = true;
+    window.$crisp = window.$crisp || [];
+    window.CRISP_WEBSITE_ID = ID;
+    window.$crisp.push(["config", "color:theme", ["black"]]);   // sin el azul de fábrica
+    window.$crisp.push(["on", "session:loaded", function () { if (boton) boton.remove(); }]);
+    if (abrir) window.$crisp.push(["do", "chat:open"]);
+    var s = document.createElement("script");
+    s.src = "https://client.crisp.chat/l.js";
+    s.async = 1;
+    document.head.appendChild(s);
+  }
+
+  // ya había una conversación en este navegador: seguimos donde quedó
+  if (/(^|;\s*)crisp-client/.test(document.cookie)) { cargar(false); return; }
+
+  boton = document.createElement("button");
+  boton.type = "button";
+  boton.className = "egs-chat";
+  boton.setAttribute("aria-label", "Abrir el chat con Adrián");
+  boton.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12.5c0 3.9-3.6 7-8 7-1.2 0-2.3-.2-3.3-.6L4 20l1.2-3.6C4.4 15.3 4 13.9 4 12.5c0-3.9 3.6-7 8-7s8 3.1 8 7z"/></svg>';
+  boton.addEventListener("click", function () {
+    boton.classList.add("cargando");
+    boton.setAttribute("aria-busy", "true");
+    cargar(true);
+  });
+  document.body.appendChild(boton);
+})();
+
+/* ============================================================================
+   AVISO DE PRIVACIDAD DE CADA FORMULARIO (la letra chica, en un solo lugar)
+   Quién recibe los datos, para qué y cómo pedir que se borren, en una línea
+   chiquita debajo de cada formulario. La explicación completa está en
+   /privacidad.html. Para cambiar el texto, se cambia acá y vale para todo el sitio.
+   ============================================================================ */
+(function () {
+  var PARA = {
+    newsletter:  'mandarte estas novedades',
+    mentoria:    'coordinar la sesión con vos',
+    colaborar:   'responderte sobre cómo querés sumarte',
+    institucion: 'conocer a tu institución y escribirte',
+    sugerencia:  'leer tu idea y, si dejás tu correo, responderte',
+    historia:    'leer tu historia y, si dejás tu correo, escribirte',
+    acompanante: 'conocerte y escribirte sobre el acompañamiento'
+  };
+  function aviso(tipo) {
+    var p = document.createElement('p');
+    p.className = 'form-aviso';
+    p.innerHTML = 'Tus datos los recibe Adrián Werbes, de El Gran Sueño, solo para ' + PARA[tipo] +
+      '. No se venden ni se comparten, salvo con los servicios que hacen funcionar la web. ' +
+      'Podés pedir verlos, corregirlos o borrarlos cuando quieras. <a href="/privacidad.html">Privacidad</a>';
+    return p;
+  }
+  function despues(el, tipo) {
+    if (el && !(el.nextElementSibling && el.nextElementSibling.classList.contains('form-aviso'))) {
+      el.insertAdjacentElement('afterend', aviso(tipo));
+    }
+  }
+  function antesDeAcciones(idBoton, tipo) {
+    var b = document.getElementById(idBoton);
+    var acciones = b && b.closest('.acciones');
+    if (acciones) acciones.insertAdjacentElement('beforebegin', aviso(tipo));
+  }
+  despues(document.getElementById('footerForm'), 'newsletter');
+  despues(document.getElementById('mentoriaForm'), 'mentoria');
+  despues(document.getElementById('col-submit'), 'colaborar');
+  despues(document.getElementById('reg-submit'), 'institucion');
+  despues(document.querySelector('.sug-form'), 'sugerencia');
+  antesDeAcciones('bid', 'historia');
+  antesDeAcciones('b-contacto', 'acompanante');
 })();

@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ser acompañante · El Gran Sueño</title>
+<title>Ser acompañante | El Gran Sueño</title>
 <meta name="description" content="Todo lo que viviste tiene un destino que va más allá de ti. Hay personas que están hoy donde vos estuviste.">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Ser acompañante · El Gran Sueño">
+<meta property="og:title" content="Ser acompañante | El Gran Sueño">
 <meta property="og:description" content="Todo lo que viviste tiene un destino que va más allá de ti.">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ser acompañante · El Gran Sueño">
+<meta name="twitter:title" content="Ser acompañante | El Gran Sueño">
 <meta name="theme-color" content="#6B1A2B">
 
 <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -20,7 +20,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Crimson+Pro:ital,wght@0,300..600;1,300..600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
@@ -51,7 +51,7 @@
  position: relative; z-index: 2;
  }
  .acomp-hero-title {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(2.4rem, 5.5vw, 4rem);
  font-weight: 400;
  color: white;
@@ -61,7 +61,7 @@
  }
  .acomp-hero-title em { font-style: italic; color: var(--gold-light); font-weight: 400; }
  .acomp-hero-sub {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: clamp(1.1rem, 2vw, 1.4rem);
  font-style: italic;
  color: rgba(255,255,255,0.75);
@@ -109,7 +109,7 @@
  margin-bottom: 2rem;
  }
  .gratitud-q {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(1.8rem, 4vw, 2.7rem);
  font-weight: 400;
  color: var(--ink);
@@ -118,7 +118,7 @@
  margin: 0 auto 2.5rem;
  }
  .gratitud-body {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: 1.2rem;
  color: var(--ink-mid);
  font-style: italic;
@@ -140,7 +140,7 @@
  margin: 0 auto;
  }
  .escena-label {
- font-size: 0.65rem;
+ font-size: 0.74rem;
  letter-spacing: 0.3em;
  text-transform: uppercase;
  color: var(--gold);
@@ -151,7 +151,7 @@
  margin-bottom: 2rem;
  }
  .escena-txt {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: clamp(1.2rem, 2vw, 1.4rem);
  color: rgba(255,255,255,0.85);
  line-height: 1.75;
@@ -165,7 +165,7 @@
  margin: 3rem auto;
  }
  .escena-tiempo {
- font-size: 0.65rem;
+ font-size: 0.74rem;
  letter-spacing: 0.3em;
  text-transform: uppercase;
  color: rgba(255,255,255,0.4);
@@ -173,7 +173,7 @@
  margin: 2rem 0;
  }
  .escena-cierre {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: 1.35rem;
  color: var(--gold-light);
  font-style: italic;
@@ -187,7 +187,7 @@
  /* Tres preguntas */
  .preguntas { padding: 7rem 2rem; background: var(--cream-dark); text-align: center; }
  .preguntas-intro {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-style: italic;
  font-size: 1.15rem;
  color: var(--ink-mid);
@@ -201,7 +201,7 @@
  align-items: center; gap: 1rem;
  }
  .q-txt {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
  font-weight: 400;
  color: var(--ink);
@@ -217,7 +217,7 @@
  /* Reflexión (checkboxes personales) */
  .reflexion { padding: 7rem 2rem; background: white; text-align: center; }
  .reflexion-eyebrow {
- font-size: 0.65rem;
+ font-size: 0.74rem;
  letter-spacing: 0.3em;
  text-transform: uppercase;
  color: var(--bordo);
@@ -225,7 +225,7 @@
  margin-bottom: 1rem;
  }
  .reflexion-title {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
  font-weight: 400;
  color: var(--ink);
@@ -264,7 +264,7 @@
  .r-check { opacity: 0; transition: opacity 0.25s; }
  .r-item.checked .r-check { opacity: 1; }
  .r-txt {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: 1.05rem;
  color: var(--ink);
  line-height: 1.55;
@@ -280,16 +280,16 @@
  }
 
  /* Descubrimiento */
- .descubrimiento { padding: 7rem 2rem; background: linear-gradient(180deg, var(--noche, #141110) 0%, var(--carbon, #0E0C0B) 100%); color: white; text-align: center; }
+ .descubrimiento { padding: 7rem 2rem; background: linear-gradient(180deg, var(--noche, #1C1A1A) 0%, var(--carbon, #070505) 100%); color: white; text-align: center; }
  .descubrimiento-eyebrow {
- font-size: 0.65rem;
+ font-size: 0.74rem;
  letter-spacing: 0.3em;
  text-transform: uppercase;
  color: var(--gold);
  margin-bottom: 1rem;
  }
  .descubrimiento-title {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(1.9rem, 4.5vw, 3rem);
  font-weight: 400;
  color: white;
@@ -299,7 +299,7 @@
  }
  .descubrimiento-title em { color: var(--gold-light); font-style: italic; }
  .descubrimiento-body {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
  color: rgba(255,255,255,0.8);
  line-height: 1.8;
@@ -307,7 +307,7 @@
  margin: 0 auto 2.5rem;
  }
  .descubrimiento-name {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(1.4rem, 3vw, 1.9rem);
  color: var(--gold);
  margin: 2.5rem auto 2rem;
@@ -318,7 +318,7 @@
  
  }
  .descubrimiento-sub {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: 1.1rem;
  color: rgba(255,255,255,0.75);
  line-height: 1.75;
@@ -330,7 +330,7 @@
  /* El giro */
  .giro { padding: 6rem 2rem; background: var(--cream); text-align: center; }
  .giro-title {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
  font-weight: 400;
  color: var(--ink);
@@ -340,7 +340,7 @@
  }
  .giro-title em { font-style: italic; color: var(--bordo); }
  .giro-body {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: 1.15rem;
  color: var(--ink-mid);
  line-height: 1.8;
@@ -352,14 +352,14 @@
  /* Cierre espiritual */
  .cierre-esp { padding: 7rem 2rem; background: var(--ink); color: white; text-align: center; }
  .cierre-esp-pre {
- font-size: 0.65rem;
+ font-size: 0.74rem;
  letter-spacing: 0.3em;
  text-transform: uppercase;
  color: var(--gold);
  margin-bottom: 2rem;
  }
  .cierre-esp-q {
- font-family: 'Playfair Display', serif;
+ font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
  font-weight: 400;
  color: white;
@@ -368,7 +368,7 @@
  margin: 0 auto 2.5rem;
  }
  .cierre-esp-body {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: 1.15rem;
  color: rgba(255,255,255,0.75);
  line-height: 1.8;
@@ -377,7 +377,7 @@
  margin: 0 auto 2rem;
  }
  .cierre-esp-conv {
- font-family: 'Cormorant Garamond', serif;
+ font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
  font-size: 1.3rem;
  color: var(--gold-light);
  font-style: italic;
@@ -394,7 +394,8 @@
  }</style>
  <link rel="canonical" href="https://elgransueno.org/quiero-acompanar.html">
  <meta property="og:site_name" content="El Gran Sueño">
- <meta property="og:url" content="https://elgransueno.org/quiero-acompanar.html"></head>
+ <meta property="og:url" content="https://elgransueno.org/quiero-acompanar.html"><meta property="og:image" content="https://elgransueno.org/assets/og/pagina/quiero-acompanar.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="El Gran Sueño"><meta name="twitter:image" content="https://elgransueno.org/assets/og/pagina/quiero-acompanar.jpg">
+</head>
 <body class="modo-limpio">
 
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
@@ -453,7 +454,7 @@
  <p class="body">Es caminar al lado de alguien mientras aprende a escuchar su propia voz, y la voz de Dios.</p>
 <p class="body">En el fondo, acompañar es afirmar lo que Dios ya dijo: ayudar a alguien a ver quién ya es en Cristo, y a ocupar el lugar que Él ya le dio. No venimos a formar nada desde cero, sino a confirmar lo que Dios ya puso.</p>
  <p class="body">No es un rol ni un cargo: es poner lo que Dios hizo en tu vida al servicio de alguien que todavía está en el medio del mismo camino.</p>
- <div class="pull">"Acompañar empieza cuando dejás de intentar resolver al otro y empezás a creer en él."</div>
+ <div class="pull">Acompañar empieza cuando dejás de intentar resolver al otro y empezás a creer en él.</div>
  <p class="body">El Gran Sueño nace desde una visión cristiana. Quienes acompañan dentro del ecosistema comparten esa base de fe, no para imponer nada, sino porque el acompañamiento que ofrecemos nace de esa misma fuente.</p></div></section>
 
 <!-- TU HISTORIA -->
@@ -468,7 +469,7 @@
  <p class="body">Porque, entonces, ¿quién mejor para caminar junto a alguien que está atravesando un proceso que aquel que también caminó por ahí?</p>
  <p class="body">No para convertirse en su respuesta.<br>No para vivir su vida por él.<br>No para ocupar el lugar de Dios.</p>
  <p class="body">Sino para afirmar, recordar, corregir, acompañar, aconsejar, escuchar, orar junto a él y ministrar vida cuando sea necesario.</p>
- <p class="body">Alguien que pueda decir: «Yo también estuve ahí. Esto fue lo que aprendí. Esto es lo que Dios me mostró. Y ahora puedo caminar con vos mientras descubrís cómo vivirlo.»</p>
+ <p class="body">Alguien que pueda decir: <em>Yo también estuve ahí. Esto fue lo que aprendí. Esto es lo que Dios me mostró. Y ahora puedo caminar con vos mientras descubrís cómo vivirlo.</em></p>
  <p class="body">Porque Dios rara vez desperdicia una historia.</p>
  <p class="body">Lo que Él hizo en tu vida puede convertirse en una herramienta para acompañar la vida de alguien más.</p></div></section>
 
@@ -526,7 +527,7 @@
  <div class="divider"></div>
  <p class="body">Cuando pasás a formar parte de la comunidad de acompañantes, entrás a una red de personas que comparten el mismo llamado, desde distintos países, experiencias y esferas.</p>
  <p class="body">Un mensaje que llega de alguien en otro continente que está atravesando lo mismo que vos atravesaste. Una conversación que cambia una perspectiva. Una persona que cree en tu historia antes de que vos mismo termines de creer en ella.</p>
- <div class="pull">"Nadie acompaña solo. Todo acompañante sigue siendo también un discípulo, un soñador y una persona en proceso."</div></div></section>
+ <div class="pull">Nadie acompaña solo. Todo acompañante sigue siendo también un discípulo, un soñador y una persona en proceso.</div></div></section>
 
 <!-- EL GIRO -->
 <section class="giro">
@@ -576,7 +577,7 @@
  position: fixed; right: 1.4rem; bottom: 1.4rem; z-index: 60;
  display: inline-flex; align-items: center; gap: 0.5rem;
  background: var(--bordo); color: #FAF8F5;
- font-family: 'DM Sans', sans-serif; font-size: 0.72rem;
+ font-family: var(--f-texto); font-size: 0.72rem;
  letter-spacing: 0.12em; text-transform: uppercase;
  padding: 0.8rem 1.2rem; border-radius: 40px;
  text-decoration: none; box-shadow: 0 8px 26px rgba(0,0,0,0.2);
@@ -587,7 +588,7 @@
  .acomp-atajo:hover { background: var(--bordo-dark); }
  .acomp-atajo svg { width: 14px; height: 14px; }
  @media (max-width: 560px) {
- .acomp-atajo { font-size: 0.62rem; padding: 0.7rem 1rem; right: 1rem; bottom: 1rem; letter-spacing: 0.08em; }
+ .acomp-atajo { font-size: 0.74rem; padding: 0.7rem 1rem; right: 1rem; bottom: 1rem; letter-spacing: 0.08em; }
  }
  @media (prefers-reduced-motion: reduce) { .acomp-atajo { transition: opacity 0.3s ease; transform: none; } }
 </style>
@@ -628,8 +629,7 @@
  <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.9" fill="currentColor"/></svg></a>
  <a href="https://www.youtube.com/@adrianencamino" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a2.6 2.6 0 0 0-1.8-1.85C18.5 6.2 12 6.2 12 6.2s-6.5 0-8.2.45A2.6 2.6 0 0 0 2 8.5C1.55 10.2 1.55 12 1.55 12s0 1.8.45 3.5a2.6 2.6 0 0 0 1.8 1.85c1.7.45 8.2.45 8.2.45s6.5 0 8.2-.45A2.6 2.6 0 0 0 22 15.5c.45-1.7.45-3.5.45-3.5s0-1.8-.45-3.5z"/><polygon points="10,9 15.5,12 10,15" fill="currentColor" stroke="none"/></svg></a>
  <a href="https://www.facebook.com/profile.php?id=100070784831956" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H17V3.6c-.3-.05-1.3-.15-2.5-.15-2.45 0-4.15 1.5-4.15 4.25v2.2H7.6V13h2.75v8z"/></svg></a>
- <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M7.5 9.5c3-.9 6.5-.5 9 1M8 12.5c2.5-.7 5.3-.4 7.4.9M8.5 15.3c2-.5 4.2-.3 6 .7"/></svg></a>
  <a href="mailto:adrian@elgransueno.org" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></div>
- <p class="footer-meta">Personas de distintos lugares, caminando juntos en la Gran Comisión <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-2px;opacity:.85;margin:0 .1em" role="img" aria-label="El mundo"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg> © <span id="year"></span> El Gran Sueño</p></footer>
+ <p class="footer-meta">Personas de distintos lugares, caminando juntos en la Gran Comisión <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" style="vertical-align:-2px;opacity:.85;margin:0 .1em" role="img" aria-label="El mundo"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18"/></svg> © <span id="year"></span> El Gran Sueño</p><p class="footer-legal"><a href="/privacidad.html">Privacidad</a><a href="/cookies.html">Cookies</a><a href="/terminos.html">Términos</a></p></footer>
 
 <script src="assets/egs.js"></script></body></html>

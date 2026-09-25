@@ -32,17 +32,11 @@
   }
 
   /**
-   * Registra una vista para un slug. Solo una vez por sesión por slug
-   * (para no inflar el contador si el visitante recarga la página).
+   * Registra una vista para un slug. No guarda nada en el navegador de quien lee
+   * (sin cookies ni almacenamiento local): solo cuenta la apertura.
    */
   window.egsTrackVista = async function (slug) {
     if (!slug) return null;
-    const key = 'egs_vista_' + slug;
-    try {
-      if (sessionStorage.getItem(key)) return null;
-      sessionStorage.setItem(key, '1');
-    } catch (_) { /* modo privado, seguimos */ }
-
     const url = `${BASE}/hit/${encodeURIComponent(NS)}/${encodeURIComponent(slug)}`;
     const data = await fetchWithTimeout(url);
     return data && typeof data.value === 'number' ? data.value : null;

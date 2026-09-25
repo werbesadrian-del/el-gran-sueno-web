@@ -1,3 +1,6 @@
+# Cosas de trabajo que no son parte del sitio
+/demo/*                           /                                 301!
+
 # Páginas viejas (plantillas) → su versión nueva definitiva
 /blog-articulo.html                /escrito-identidad-dios-ya-dijo   301
 /huella-individual.html            /huella-george-muller             301
