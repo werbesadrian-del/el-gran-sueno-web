@@ -1,31 +1,38 @@
 name: Mantener Supabase despierta
 
 # Supabase (plan gratis) pausa el proyecto tras ~7 días sin actividad.
-# Este "ping" consulta la base cada 2 días para que nunca se duerma.
+# Este "ping" escribe en la base todos los días para que nunca se duerma.
+# Una lectura sola no alcanza: el 10-oct-2026 llegó el aviso de pausa con el
+# ping leyendo una vista vacía todos los días. Por eso ahora hace una escritura real.
 # No usa secretos: la apikey de abajo es la clave ANÓNIMA pública (la misma
-# que ya viaja en el sitio, en assets/egs.js). No da acceso a datos privados:
-# la tabla de envíos solo permite insertar, no leer.
+# que ya viaja en el sitio, en assets/egs.js). No da acceso a datos privados.
 
 on:
   schedule:
-    - cron: '17 8 * * *'   # cada 2 días, 08:17 UTC (margen amplio antes de los 7 días)
+    - cron: '17 8 * * *'   # todos los días, 08:17 UTC (GitHub suele atrasarlo unas horas)
   workflow_dispatch:          # permite correrlo a mano desde la pestaña Actions
 
 jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Consultar la API de Supabase
+      - name: Escribir un latido en la base
         run: |
           BASE="https://eicedyftposrsohlgzrl.supabase.co"
           KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVpY2VkeWZ0cG9zcnNvaGxnenJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI2NTAwMzcsImV4cCI6MjA5ODIyNjAzN30.h01a4OF66LS71FEWyjOx0BqaiQwClNdmwlQtsZMD54w"
-          CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-            "$BASE/rest/v1/historias_publicas?select=created_at&limit=1" \
-            -H "apikey: $KEY" \
-            -H "Authorization: Bearer $KEY")
-          echo "Respuesta de Supabase: HTTP $CODE"
-          if [ "$CODE" != "200" ]; then
-            echo "Aviso: la base no respondió 200 (puede estar pausada o reactivándose)."
+          H=(-H "apikey: $KEY" -H "Authorization: Bearer $KEY" -H "Content-Type: application/json")
+
+          # 1. Función latir(): actualiza una sola fila en la tabla latido.
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$BASE/rest/v1/rpc/latir" "${H[@]}" -d '{}')
+          echo "latir: HTTP $CODE"
+          if [ "$CODE" = "200" ]; then echo "OK: base despierta."; exit 0; fi
+
+          # 2. Respaldo mientras latir() no exista: una fila en submissions con form _latido.
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$BASE/rest/v1/submissions" "${H[@]}" \
+            -H "Prefer: return=minimal" -d '{"form":"_latido","name":"keepalive","payload":{"origen":"github"}}')
+          echo "respaldo submissions: HTTP $CODE"
+          if [ "$CODE" != "201" ]; then
+            echo "Aviso: la base no aceptó la escritura (puede estar pausada o reactivándose)."
             exit 1
           fi
-          echo "OK: base despierta."
+          echo "OK: base despierta (por el respaldo)."
