@@ -27,7 +27,7 @@ function iniciar() {
   const climax = secciones[secciones.length - 1];
   const nombre = climax.querySelector('.name-reveal');
 
-  const LADOS = ['centro', 'arriba', 'izq', 'der', 'arriba', 'arriba', 'arriba', 'der', 'arriba', 'centro'];
+  const LADOS = ['arriba', 'arriba', 'izq', 'der', 'arriba', 'arriba', 'arriba', 'arriba', 'arriba', 'centro'];
   secciones.forEach((s, i) => s.setAttribute('data-lado', LADOS[i] || 'centro'));
   const renglones = secciones.map((s) => {
     const lista = [];
@@ -232,55 +232,98 @@ function iniciar() {
   });
   compositor.addPass(new EffectPass(camara, rayos));
 
-  // ---------- Cámara por momento ----------
-  // cz distancia; ex, ey dónde queda el planeta; h plano de horizonte (en el celular no se aleja)
+  // ---------- El viaje: la cámara va de un lugar real a otro ----------
+  // mira: [longitud, latitud] del lugar que la cámara busca; tipo: 'vuelo' (bajo, como un dron sobre el relieve),
+  // 'horizonte' (el mundo abajo) o 'orbita'. cz distancia; ex, ey dónde queda el planeta en pantalla.
+  const ARGENTINA = [-65, -32];
   const K = [
-    { cz: 3.6, cy: 0, ex: 0, ey: -1.05 },           // portada: oscuridad, la luz pequeña arriba
-    { cz: 12, cy: 0, ex: 0, ey: -0.1 },             // antes de que nacieras: el amanecer empieza a cubrir el mundo
-    { cz: 4.8, cy: 0.15, ex: 0, ey: -0.62 },        // tu lugar
-    { cz: 3.7, cy: 0, ex: 1, ey: 0 },
-    { cz: 3.5, cy: 0.1, ex: -1, ey: 0 },
-    { cz: 3.2, cy: 0, ex: 0, ey: -0.95 },           // comenzamos viendo: el mundo ya tiene color
-    { cz: 2.25, cy: 0, ex: 0, ey: -1.1, h: 1 },     // aventura: vuelo bajo sobre el relieve
-    { cz: 2.08, cy: 0, ex: 0, ey: -1.1, h: 1 },
-    { cz: 3.7, cy: 0.1, ex: -1, ey: 0 },            // no fuiste diseñado para recorrerlo solo
-    { cz: 5.6, cy: 0, ex: 0, ey: -0.35 },           // Gran Comisión: los pueblos se encienden
-    { cz: 2.45, cy: 0, ex: 0, ey: -1.36, h: 1 }     // El Gran Sueño
+    { cz: 3.6, ey: -1.05, mira: [35.2, 31.8], tipo: 'horizonte' },               // portada: la luz sobre Israel
+    { cz: 2.05, ey: -1.08, mira: [35.2, 31.8], tipo: 'vuelo', fov: 40 },         // antes de que nacieras: Jerusalén de cerca
+    { cz: 4.4, cy: 0.1, ey: -0.55, mira: [28, 24], tipo: 'orbita' },             // tu lugar: el amanecer avanza
+    { cz: 3.7, ex: 1, mira: [8, 14], tipo: 'orbita' },                           // África y el Mediterráneo
+    { cz: 3.5, cy: 0.1, ex: -1, mira: [-18, 2], tipo: 'orbita' },                // el Atlántico
+    { cz: 3.1, ey: -0.9, mira: [-48, -16], tipo: 'horizonte' },                  // comenzamos viendo: América
+    { cz: 2.05, ey: -1.1, mira: [-65.5, -24], tipo: 'vuelo', fov: 44, roll: 0.05 },  // los Andes del norte argentino
+    { cz: 1.95, ey: -1.1, mira: [-70, -36], tipo: 'vuelo', fov: 46, roll: -0.05 },  // vuelo por la cordillera
+    { cz: 2.3, ey: -1.05, mira: [-71.5, -45], tipo: 'vuelo', fov: 42, roll: 0.03 }, // la Patagonia: no fuiste diseñado para recorrerlo solo
+    { cz: 5.4, ey: -0.35, mira: [-20, 12], tipo: 'orbita' },                     // la red de luz entre las naciones
+    { cz: 2.45, ey: -1.36, mira: [-10, 22], tipo: 'horizonte' }                  // El Gran Sueño
   ];
   const MEDIO = Math.tan(17.5 * Math.PI / 180);
   const ajustar = (k) => {
-    if (movil) return { cz: k.h ? k.cz * 1.05 : k.cz * 1.55, cy: k.cy, ex: 0, ey: k.h ? k.ey * 0.98 : k.ey - 0.75 };
+    const h = k.tipo !== 'orbita';
+    if (movil) return { cz: h ? k.cz * 1.05 : k.cz * 1.55, cy: k.cy || 0, ex: 0, ey: h ? k.ey * 0.98 : (k.ey || 0) - 0.75 };
     const ancho = MEDIO * k.cz * camara.aspect;
-    return { cz: k.cz, cy: k.cy, ex: k.ex ? Math.sign(k.ex) * ancho * 0.74 : 0, ey: k.ey };
+    return { cz: k.cz, cy: k.cy || 0, ex: k.ex ? Math.sign(k.ex) * ancho * 0.74 : 0, ey: k.ey || 0 };
   };
-  const GIRO = 3.0;
-  const ROT0 = (() => {
-    const meta = new THREE.Vector3(0, 0.78, 0.62).normalize(), e = new THREE.Euler(), v = new THREE.Vector3();
-    let mejor = 0, rMejor = 0;
-    for (let r = 0; r < Math.PI * 2; r += 0.005) { e.set(-0.42, r, 0); const d = v.copy(JERUSALEN).applyEuler(e).dot(meta); if (d > mejor) { mejor = d; rMejor = r; } }
-    return rMejor - GIRO * (0.4 / DUR);   // Jerusalén queda arriba mientras la luz baja (0 a 0.8)
-  })();
-  const INICIO = { rot: ROT0, incl: -0.42, revela: 0, altura: 0.95, cielo: 0, rayos: 0.75, lugar: 0, sendero: 0, arcos: 0, alba: 0 };
-  const S = Object.assign({}, INICIO, ajustar(K[0]));
-
-  // Sendero y arcos: se trazan donde la cámara va a estar mirando cuando llegue la aventura
-  function trazarCamino(centro) {
-    const este = new THREE.Vector3(0, 1, 0).cross(centro).normalize();
-    const norte = centro.clone().cross(este).normalize();
-    caminoPts = [];
-    const N = 160, pos = new Float32Array(N * 3), tt = new Float32Array(N);
-    for (let k = 0; k < N; k++) {
-      const u = k / (N - 1);
-      const x = 0.07 * Math.sin(u * Math.PI * 3.1) + 0.03 * Math.sin(u * Math.PI * 7.3) - 0.04 + 0.08 * u;
-      const y = -0.16 + 0.42 * u;
-      const v = centro.clone().addScaledVector(este, x).addScaledVector(norte, y).normalize().multiplyScalar(1.004);
-      pos.set([v.x, v.y, v.z], k * 3); tt[k] = u; caminoPts.push(v);
+  // Giro e inclinación del planeta para que el lugar quede donde mira la cámara
+  function orientar(k, rotPrevia) {
+    const a = ajustar(k);
+    const c = new THREE.Vector3(-a.ex, (a.cy || 0) - a.ey, a.cz).normalize();
+    const meta = c.add(new THREE.Vector3(a.ex ? -Math.sign(a.ex) * 0.3 : 0, k.tipo === 'orbita' ? 0.35 : 0.95, 0)).normalize();
+    const v = aXYZ(k.mira[0], k.mira[1]);
+    let mejor = -2, rM = 0, iM = 0;
+    for (let i = -0.7; i <= 0.7001; i += 0.02) {
+      const ci = Math.cos(i), si = Math.sin(i);
+      for (let r = 0; r < Math.PI * 2; r += 0.01) {
+        const cr = Math.cos(r), sr = Math.sin(r);
+        const x1 = v.x * cr + v.z * sr, z1 = -v.x * sr + v.z * cr;
+        const y2 = v.y * ci - z1 * si, z2 = v.y * si + z1 * ci;
+        const d = x1 * meta.x + y2 * meta.y + z2 * meta.z;
+        if (d > mejor) { mejor = d; rM = r; iM = i; }
+      }
     }
+    if (rotPrevia !== undefined) { while (rM - rotPrevia > Math.PI) rM -= Math.PI * 2; while (rM - rotPrevia < -Math.PI) rM += Math.PI * 2; }
+    return { rot: rM, incl: iM };
+  }
+  let giros = [];
+  function calcularGiros() {
+    giros = [];
+    K.forEach((k, i) => giros.push(orientar(k, i ? giros[i - 1].rot : undefined)));
+  }
+
+  // Los nombres de los lugares: un guiño discreto
+  const rotulos = [['Jerusalén', [35.2, 31.8]], ['Argentina', [-66.5, -29]]].map(([texto, ll]) => {
+    const el = document.createElement('div');
+    el.className = 'cine-rotulo'; el.textContent = texto; el.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(el);
+    return { el, v: aXYZ(ll[0], ll[1], 1.01) };
+  });
+
+  // El sendero del mochilero por la cordillera: Humahuaca, Salta, Aconcagua, Neuquén, Bariloche, El Bolsón, El Chaltén
+  const RUTA = [[-65.35, -23.2], [-65.4, -24.8], [-67.2, -28.5], [-69.9, -32.65], [-70.4, -36.5], [-70.9, -39.5], [-71.3, -41.1], [-71.5, -42.6], [-72.2, -45.6], [-72.9, -49.3]];
+  function trazarSendero() {
+    const curva = new THREE.CatmullRomCurve3(RUTA.map((p) => aXYZ(p[0], p[1], 1.004)));
+    caminoPts = curva.getSpacedPoints(320).map((p) => p.normalize().multiplyScalar(1.0045));
+    const pos = new Float32Array(caminoPts.length * 3), tt = new Float32Array(caminoPts.length);
+    caminoPts.forEach((p, k) => { pos.set([p.x, p.y, p.z], k * 3); tt[k] = k / (caminoPts.length - 1); });
     sendero.geometry.dispose();
     sendero.geometry = new THREE.BufferGeometry();
     sendero.geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     sendero.geometry.setAttribute('aT', new THREE.BufferAttribute(tt, 1));
+    // Compañeros de camino: luces que aparecen junto al sendero (no fuiste diseñado para recorrerlo solo)
+    const cp = [], cu = [];
+    for (let k = 0; k < 70; k++) {
+      const u = 0.25 + Math.random() * 0.75, p = caminoPts[Math.floor(u * (caminoPts.length - 1))];
+      const e = new THREE.Vector3(0, 1, 0).cross(p).normalize(), n = p.clone().cross(e).normalize();
+      const r = 0.006 + Math.random() * 0.03, a = Math.random() * Math.PI * 2;
+      const q = p.clone().addScaledVector(e, Math.cos(a) * r).addScaledVector(n, Math.sin(a) * r).normalize().multiplyScalar(1.005);
+      cp.push(q.x, q.y, q.z); cu.push(Math.random());
+    }
+    gCompania.setAttribute('position', new THREE.Float32BufferAttribute(cp, 3));
+    gCompania.setAttribute('aU', new THREE.Float32BufferAttribute(cu, 1));
+  }
+  const gCompania = new THREE.BufferGeometry();
+  const matCompania = new THREE.ShaderMaterial({
+    uniforms: Object.assign({ uComp: { value: 0 } }, uComunes),
+    vertexShader: 'attribute float aU; uniform float uComp, uPR, uTiempo; varying float vA; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.); vA = clamp((uComp - aU) * 6.0, 0.0, 1.0) * (0.8 + 0.2*sin(uTiempo*2.6 + aU*40.0)); gl_PointSize = 22.0*uPR/(-mv.z); gl_Position = projectionMatrix*mv; }',
+    fragmentShader: 'varying float vA; void main(){ float d = length(gl_PointCoord-0.5); float a = (exp(-d*d*120.)*1.4 + exp(-d*d*18.)*0.3) * vA; gl_FragColor = vec4(vec3(1.0,0.95,0.86)*a, a); }',
+    blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
+  });
+  tierra.add(new THREE.Points(gCompania, matCompania));
 
+  // La red de luz que se multiplica desde Jerusalén (Hch 1:8)
+  function trazarRed() {
     // La luz se multiplica desde Jerusalén (Hch 1:8): llega a 3 lugares cercanos; cada uno la lleva a 2 o 3
     // más que todavía no la tienen, y así se abre como una red. Cada lugar se enciende cuando le llega
     // (generación g llega en g + 1) y alrededor se encienden sus personas.
@@ -299,7 +342,6 @@ function iniciar() {
       });
     }
     generaciones = Math.max(...llegada) + 1;
-    // Lugares y personas: cada punto lleva su momento de encenderse (aT)
     const pts = [], tiempos = [], tam = [];
     lugares.forEach((v, i) => {
       const w = v.clone().multiplyScalar(1.006); pts.push(w.x, w.y, w.z); tiempos.push(llegada[i]); tam.push(1);
@@ -336,15 +378,19 @@ function iniciar() {
     });
   }
 
+  const INICIO = { revela: 0, altura: 0.95, cielo: 0, rayos: 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
+  const S = {};
+
   let tl = null, avance = 0;
   function armar() {
     if (tl) tl.kill();
-    Object.assign(S, INICIO, ajustar(K[0]));
+    calcularGiros();
+    Object.assign(S, INICIO, ajustar(K[0]), giros[0]);
     tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' } });
-    tl.to(S, { rot: ROT0 + GIRO, duration: DUR, ease: 'none' }, 0);
+    // La cámara viaja: cada tramo empieza un poco antes de la escena y llega cuando la frase ya está
     for (let i = 1; i < K.length; i++) {
       const k = ajustar(K[i]);
-      tl.to(S, { cz: k.cz, cy: k.cy, ex: k.ex, ey: k.ey, duration: i === 1 ? 1 : 0.85 }, i === 1 ? 0.05 : i - 0.45);
+      tl.to(S, { cz: k.cz, cy: k.cy, ex: k.ex, ey: k.ey, rot: giros[i].rot, incl: giros[i].incl, fov: K[i].fov || 35, roll: K[i].roll || 0, duration: i === 1 ? 1 : 0.9, ease: 'power2.inOut' }, i === 1 ? 0.05 : i - 0.5);
     }
     renglones.forEach((lista, i) => {
       if (!lista.length) return;
@@ -352,18 +398,19 @@ function iniciar() {
       tl.fromTo(lista, { yPercent: 115, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.32, stagger: 0.06, ease: 'power3.out' }, t0 + 0.04 - (i === 0 ? 0.3 : 0));
       if (i < secciones.length - 1) tl.to(lista, { yPercent: -110, opacity: 0, duration: 0.26, stagger: 0.04, ease: 'power2.in' }, t0 + 0.74);
     });
-    // Actos 2 y 3: la luz baja y toca el mundo; el amanecer lo cubre y llega el color
+    // La luz baja sobre Jerusalén, el amanecer se extiende con el viaje y llega el color
     tl.to(S, { altura: 0.015, duration: 0.8, ease: 'power2.in' }, 0);
     tl.to(S, { rayos: 0, duration: 0.7, ease: 'power1.out' }, 0.75);
-    tl.to(S, { revela: 0.55, duration: 0.7, ease: 'power2.out' }, 0.78);
-    tl.to(S, { revela: 3.4, duration: 4.4, ease: 'power1.inOut' }, 1.48);
-    tl.to(S, { lugar: 1, duration: 0.4, ease: 'power2.out' }, 2.15).to(S, { lugar: 0, duration: 0.5 }, 4.6);
-    // Acto 4: el planeta se inclina para mostrar las montañas y se dibuja el sendero
-    tl.to(S, { incl: 0.12, duration: 1.6 }, 2.4);
-    tl.to(S, { incl: -0.05, duration: 0.8 }, 5.6).to(S, { incl: 0.25, duration: 0.8 }, 8.4);
-    tl.to(S, { sendero: 1, duration: 1.8, ease: 'none' }, 6.1);
-    // Acto 5: la Gran Comisión
-    tl.to(S, { arcos: 1, duration: 1.9, ease: 'none' }, 8.0);
+    tl.to(S, { revela: 0.5, duration: 0.8, ease: 'power2.out' }, 0.78);
+    tl.to(S, { revela: 3.4, duration: 4.6, ease: 'power1.inOut' }, 1.6);
+    tl.to(S, { jer: 1, duration: 0.3 }, 1.0).to(S, { jer: 0, duration: 0.3 }, 1.75);
+    tl.to(S, { lugar: 1, duration: 0.4, ease: 'power2.out' }, 2.2).to(S, { lugar: 0, duration: 0.5 }, 3.6);
+    // Argentina: vuelo bajo por la cordillera y el sendero del mochilero; aparecen compañeros de camino
+    tl.to(S, { arg: 1, duration: 0.3 }, 6.15).to(S, { arg: 0, duration: 0.3 }, 7.6);
+    tl.to(S, { sendero: 1, duration: 2.6, ease: 'none' }, 6.3);
+    tl.to(S, { compania: 1, duration: 0.9, ease: 'power1.out' }, 8.05);
+    // La red de luz entre las naciones
+    tl.to(S, { arcos: 1, duration: 1.8, ease: 'none' }, 8.9);
     // El Gran Sueño: la luz queda en lo alto, sus rayos caen, el nombre baja y la luz inunda la pantalla
     tl.set(S, { cielo: 1 }, 10.0);
     tl.to(S, { rayos: 0.9, duration: 0.5, ease: 'power2.out' }, 10.05);
@@ -380,14 +427,12 @@ function iniciar() {
     compositor.setSize(w, h, false);
     camara.aspect = w / h; camara.updateProjectionMatrix();
   }
-  const vCentro = new THREE.Vector3();
-  function centroVisible() { vCentro.set(S.ex, S.ey, 0).add(new THREE.Vector3(0, 0.55, 0.835)); tierra.updateMatrixWorld(); tierra.worldToLocal(vCentro); return vCentro.clone().normalize(); }
-  tamano(); trazarCamino(new THREE.Vector3(0, 0.5, 0.86).normalize()); armar();
+  tamano(); trazarSendero(); trazarRed(); armar();
 
   // ---------- Cuadro a cuadro ----------
+  const vLugar = new THREE.Vector3(), vJer = new THREE.Vector3(), vRot = new THREE.Vector3(), vCam = new THREE.Vector3();
   const reloj = new THREE.Clock();
-  const vLugar = new THREE.Vector3(), vJer = new THREE.Vector3();
-  let lugarFijo = false, caminoFijo = false, activo = true;
+  let lugarFijo = false, activo = true, fovPrevio = 35;
   function cuadro() {
     requestAnimationFrame(cuadro);
     if (document.hidden) return;
@@ -395,7 +440,11 @@ function iniciar() {
     const inicio = peli.offsetTop, fin = inicio + peli.offsetHeight - vh;
     const meta = y < inicio ? (y / Math.max(1, inicio)) / DUR : (1 + Math.min(1, (y - inicio) / Math.max(1, fin - inicio)) * ESC) / DUR;
     const debe = y < fin + vh * 0.05;
-    if (debe !== activo) { activo = debe; canvas.style.visibility = alba.style.visibility = activo ? 'visible' : 'hidden'; }
+    if (debe !== activo) {
+      activo = debe;
+      canvas.style.visibility = alba.style.visibility = activo ? 'visible' : 'hidden';
+      rotulos.forEach((r) => { r.el.style.visibility = activo ? 'visible' : 'hidden'; });
+    }
     if (!activo) return;
     avance += (meta - avance) * 0.1;
     if (Math.abs(meta - avance) < 0.00003) avance = meta;
@@ -404,23 +453,26 @@ function iniciar() {
     uComunes.uTiempo.value = reloj.getElapsedTime();
     tierra.position.set(S.ex, S.ey, 0);
     tierra.rotation.set(S.incl, S.rot, 0);
+    tierra.updateMatrixWorld();
     atmosfera.position.copy(tierra.position);
     camara.position.set(0, S.cy, S.cz);
+    camara.up.set(Math.sin(S.roll), Math.cos(S.roll), 0);
     camara.lookAt(0, S.cy * 0.5, 0);
+    if (Math.abs(S.fov - fovPrevio) > 0.01) { camara.fov = S.fov; camara.updateProjectionMatrix(); fovPrevio = S.fov; }
     estrellas.rotation.y = S.rot * 0.05;
 
-    // La luz: primero sobre el mundo y bajando hasta tocarlo; al final, en lo alto de la pantalla
+    // La luz: primero sobre Jerusalén y bajando hasta tocarla; al final, en lo alto de la pantalla
+    vJer.copy(JERUSALEN).applyQuaternion(tierra.quaternion).normalize();
     if (S.cielo > 0.5) fuente.position.set(0, movil ? 0.82 : 0.9, -1.6);
     else fuente.position.set(S.ex, S.ey, 0).addScaledVector(vJer, 1 + S.altura);
     halo.position.copy(fuente.position);
     matHalo.uniforms.uA.value = S.cielo > 0.5 ? 0.9 : Math.max(0, 1 - S.revela * 1.4);
     rayos.blendMode.opacity.value = S.rayos;
     fuente.visible = S.rayos > 0.01;
-
-    vJer.copy(JERUSALEN).applyQuaternion(tierra.quaternion).normalize();
     uRevelaC.copy(vJer);
     uT.uRevela.value = S.revela;
-    uAtm.uFuerza.value = 0.18 + Math.min(1, S.revela / 2.2);
+    // En los vuelos bajos la atmósfera se nota más en el horizonte
+    uAtm.uFuerza.value = (0.18 + Math.min(1, S.revela / 2.2)) * (1 + Math.max(0, (S.fov - 35) / 10) * 0.5);
 
     matLugar.uniforms.uA.value = S.lugar;
     if (S.lugar > 0.001 && !lugarFijo) {
@@ -430,19 +482,28 @@ function iniciar() {
     }
     if (S.lugar <= 0.001) lugarFijo = false;
 
-    // Sendero con su caminante: se traza donde la cámara está mirando al empezar la aventura
-    if (S.sendero > 0.001 && !caminoFijo) { trazarCamino(centroVisible()); caminoFijo = true; }
-    if (S.sendero <= 0.001) caminoFijo = false;
+    // El mochilero por la cordillera y sus compañeros de camino
     matSendero.uniforms.uProg.value = S.sendero;
     const pC = caminoPts[Math.min(caminoPts.length - 1, Math.floor(S.sendero * (caminoPts.length - 1)))];
     if (pC) { caminante.geometry.attributes.position.setXYZ(0, pC.x * 1.002, pC.y * 1.002, pC.z * 1.002); caminante.geometry.attributes.position.needsUpdate = true; }
-    matCaminante.uniforms.uA.value = S.sendero > 0.001 ? Math.max(0, 1 - S.arcos * 12) : 0;
+    matCaminante.uniforms.uA.value = S.sendero > 0.001 ? Math.max(0, 1 - S.arcos * 8) : 0;
+    matCompania.uniforms.uComp.value = S.compania;
 
-    // La luz se multiplica: cada generación de arcos sale cuando la anterior llegó; cada lugar se enciende
-    // con un pulso al recibirla y enseguida sus personas
+    // La luz se multiplica: cada generación de arcos sale cuando la anterior llegó
     const G = (generaciones + 0.9) * S.arcos;
     arcos.forEach((a) => { a.m.uniforms.uProg.value = Math.max(0, Math.min(1, G - a.gen)); });
     matCiudades.uniforms.uAvance.value = G;
+
+    // Los nombres siguen a su lugar en pantalla y se apagan si el lugar queda del otro lado del mundo
+    rotulos.forEach((r, i) => {
+      const a = i === 0 ? S.jer : S.arg;
+      if (a < 0.01) { r.el.style.opacity = '0'; return; }
+      vRot.copy(r.v).applyMatrix4(tierra.matrixWorld);
+      const frente = vCam.copy(camara.position).sub(tierra.position).normalize().dot(vRot.clone().sub(tierra.position).normalize());
+      vRot.project(camara);
+      r.el.style.transform = 'translate(' + ((vRot.x + 1) / 2 * window.innerWidth).toFixed(1) + 'px,' + ((1 - vRot.y) / 2 * vh).toFixed(1) + 'px)';
+      r.el.style.opacity = (a * Math.max(0, Math.min(1, (frente - 0.1) * 4))).toFixed(3);
+    });
 
     alba.style.opacity = S.alba.toFixed(3);
     compositor.render();

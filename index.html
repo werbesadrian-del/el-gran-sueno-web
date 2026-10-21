@@ -252,6 +252,17 @@
  @keyframes mochilero-tranco { from { transform: translateY(0); } to { transform: translateY(-0.6px); } }
  @media (prefers-reduced-motion: reduce) { .mochilero.camina .pierna, .mochilero.camina .cuerpo { animation: none; } }
 
+ /* Nombres de los lugares del viaje (Jerusalén, Argentina): un guiño discreto pegado a su punto del mapa */
+ .cine-rotulo {
+ position: fixed; left: 0; top: 0; z-index: 2; pointer-events: none; opacity: 0;
+ font-family: var(--f-texto); font-size: 0.8rem; letter-spacing: 0.06em; color: rgba(250, 248, 245, 0.92);
+ padding-left: 14px; margin-top: -0.6em; white-space: nowrap; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.8);
+ }
+ .cine-rotulo::before {
+ content: ""; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%;
+ background: #FAF8F5; box-shadow: 0 0 10px 2px rgba(250, 248, 245, 0.6);
+ }
+
  /* El menú se funde con la noche y vuelve a ser claro cuando la luz inunda la página */
  body.en-noche nav.egs-nav { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
  body.en-noche .nav-logo, body.en-noche .nav-masthead { color: #FAF8F5; }
