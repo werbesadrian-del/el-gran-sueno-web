@@ -410,7 +410,7 @@ function iniciar() {
     estrellas.rotation.y = S.rot * 0.05;
 
     // La luz: primero sobre el mundo y bajando hasta tocarlo; al final, en lo alto de la pantalla
-    if (S.cielo > 0.5) fuente.position.set(0, 1.02, -1.6);
+    if (S.cielo > 0.5) fuente.position.set(0, movil ? 0.82 : 0.9, -1.6);
     else fuente.position.set(S.ex, S.ey, 0).addScaledVector(vJer, 1 + S.altura);
     halo.position.copy(fuente.position);
     matHalo.uniforms.uA.value = S.cielo > 0.5 ? 0.9 : Math.max(0, 1 - S.revela * 1.4);
