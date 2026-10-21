@@ -41,7 +41,7 @@ function iniciar() {
   // Línea de tiempo: de 0 a 1 la portada; cada escena dura 1 (la escena i empieza en i + 1); la final dura 2
   const ESC = secciones.length + 1;
   const DUR = 1 + ESC;
-  const LARGO = 0.9;
+  const LARGO = 0.5;
   document.body.classList.add('cine-on');
   peli.classList.add('peli-on');
   const medir = () => { peli.style.height = ((ESC * LARGO + 1) * window.innerHeight) + 'px'; };
@@ -219,9 +219,9 @@ function iniciar() {
   let arcos = [], generaciones = 1;
 
   // La fuente de luz: pequeña, arriba del mundo; al final queda en lo alto y sus rayos caen
-  const fuente = new THREE.Mesh(new THREE.SphereGeometry(0.035, 24, 24), new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, depthWrite: false }));
+  const fuente = new THREE.Mesh(new THREE.SphereGeometry(movil ? 0.022 : 0.035, 24, 24), new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, depthWrite: false }));
   escena.add(fuente);
-  const matHalo = puntoLuz(60);
+  const matHalo = puntoLuz(movil ? 34 : 60);
   const halo = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3)), matHalo);
   escena.add(halo);
   const compositor = new EffectComposer(renderer, { frameBufferType: THREE.HalfFloatType });
@@ -283,7 +283,7 @@ function iniciar() {
   }
 
   // Los nombres de los lugares: un guiño discreto
-  const rotulos = [['Jerusalén', [35.2, 31.8]], ['Argentina', [-66.5, -29]]].map(([texto, ll]) => {
+  const rotulos = [['Argentina', [-66.5, -29]]].map(([texto, ll]) => {
     const el = document.createElement('div');
     el.className = 'cine-rotulo'; el.textContent = texto; el.setAttribute('aria-hidden', 'true');
     document.body.appendChild(el);
@@ -378,7 +378,7 @@ function iniciar() {
     });
   }
 
-  const INICIO = { revela: 0, altura: 0.95, cielo: 0, rayos: 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
+  const INICIO = { revela: 0, altura: 0.95, cielo: 0, rayos: movil ? 0.42 : 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
   const S = {};
 
   let tl = null, avance = 0;
@@ -390,7 +390,7 @@ function iniciar() {
     // La cámara viaja: cada tramo empieza un poco antes de la escena y llega cuando la frase ya está
     for (let i = 1; i < K.length; i++) {
       const k = ajustar(K[i]);
-      tl.to(S, { cz: k.cz, cy: k.cy, ex: k.ex, ey: k.ey, rot: giros[i].rot, incl: giros[i].incl, fov: K[i].fov || 35, roll: K[i].roll || 0, duration: i === 1 ? 1 : 0.9, ease: 'power2.inOut' }, i === 1 ? 0.05 : i - 0.5);
+      tl.to(S, { cz: k.cz, cy: k.cy, ex: k.ex, ey: k.ey, rot: giros[i].rot, incl: giros[i].incl, fov: K[i].fov || 35, roll: K[i].roll || 0, duration: i === 1 ? 1.05 : 1.0, ease: 'sine.inOut' }, i === 1 ? 0 : i - 0.5);
     }
     renglones.forEach((lista, i) => {
       if (!lista.length) return;
@@ -413,7 +413,7 @@ function iniciar() {
     tl.to(S, { arcos: 1, duration: 1.8, ease: 'none' }, 8.9);
     // El Gran Sueño: la luz queda en lo alto, sus rayos caen, el nombre baja y la luz inunda la pantalla
     tl.set(S, { cielo: 1 }, 10.0);
-    tl.to(S, { rayos: 0.9, duration: 0.5, ease: 'power2.out' }, 10.05);
+    tl.to(S, { rayos: movil ? 0.6 : 0.9, duration: 0.5, ease: 'power2.out' }, 10.05);
     tl.fromTo(nombre, { y: () => -window.innerHeight * 0.42, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, 10.2);
     tl.fromTo(nombre.querySelector('span'), { filter: 'blur(18px)', opacity: 0.1 }, { filter: 'blur(0px)', opacity: 1, duration: 0.4, ease: 'power2.out' }, 10.45);
     tl.to(S, { alba: 1, duration: 0.42, ease: 'power2.in' }, DUR - 0.45);
@@ -446,7 +446,7 @@ function iniciar() {
       rotulos.forEach((r) => { r.el.style.visibility = activo ? 'visible' : 'hidden'; });
     }
     if (!activo) return;
-    avance += (meta - avance) * 0.1;
+    avance += (meta - avance) * 0.085;
     if (Math.abs(meta - avance) < 0.00003) avance = meta;
     tl.progress(Math.min(1, avance));
 
@@ -496,7 +496,7 @@ function iniciar() {
 
     // Los nombres siguen a su lugar en pantalla y se apagan si el lugar queda del otro lado del mundo
     rotulos.forEach((r, i) => {
-      const a = i === 0 ? S.jer : S.arg;
+      const a = S.arg;
       if (a < 0.01) { r.el.style.opacity = '0'; return; }
       vRot.copy(r.v).applyMatrix4(tierra.matrixWorld);
       const frente = vCam.copy(camara.position).sub(tierra.position).normalize().dot(vRot.clone().sub(tierra.position).normalize());
