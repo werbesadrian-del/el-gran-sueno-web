@@ -224,13 +224,63 @@
  .pelicula.peli-on [data-lado="izq"] .st-in > *, .pelicula.peli-on [data-lado="der"] .st-in > * { max-width: none; }
  .pelicula.peli-on .st-climax .name-reveal { font-size: 16vw; }
  .pelicula.peli-on .st-climax .name-reveal span { display: block; font-size: 1.55em; margin-top: 0.02em; }
- }</style>
+ }
+
+ /* EL MOCHILERO: la barra de progreso es un sendero y por él camina un viajero con mochila.
+ Va pegado debajo del menú; avanza al bajar, vuelve al subir y llega al final con la página. */
+ .progress-bar { display: none; }
+ .sendero-top {
+ position: fixed; left: 0; right: 0; top: 0; height: 24px; z-index: 99; pointer-events: none;
+ transform: translateY(var(--nav-b, 0px)); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s ease;
+ color: rgba(107, 26, 43, 0.75);
+ --avance: 0;
+ }
+ body.en-noche .sendero-top { color: rgba(250, 248, 245, 0.8); }
+ .sendero-top::before {
+ content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; opacity: 0.35;
+ background-image: radial-gradient(circle, currentColor 0.9px, transparent 1.3px); background-size: 7px 2px; background-repeat: repeat-x;
+ }
+ .sendero-hecho { position: absolute; left: 0; bottom: 0.5px; height: 1.5px; width: calc(var(--avance) * 100%); background: currentColor; border-radius: 1px; }
+ .mochilero {
+ position: absolute; bottom: 1px; width: 17px; height: 23px;
+ left: calc(10px + var(--avance) * (100% - 20px)); transform: translateX(-50%);
+ }
+ .mochilero.vuelve { transform: translateX(-50%) scaleX(-1); }
+ .mochilero .pierna { transform-box: fill-box; transform-origin: 50% 0; }
+ .mochilero.camina .pierna-a { animation: mochilero-paso 0.42s ease-in-out infinite alternate; }
+ .mochilero.camina .pierna-b { animation: mochilero-paso 0.42s ease-in-out infinite alternate-reverse; }
+ .mochilero.camina .cuerpo { animation: mochilero-tranco 0.21s ease-in-out infinite alternate; }
+ @keyframes mochilero-paso { from { transform: rotate(24deg); } to { transform: rotate(-24deg); } }
+ @keyframes mochilero-tranco { from { transform: translateY(0); } to { transform: translateY(-0.6px); } }
+ @media (prefers-reduced-motion: reduce) { .mochilero.camina .pierna, .mochilero.camina .cuerpo { animation: none; } }
+
+ /* El menú se funde con la noche y vuelve a ser claro cuando la luz inunda la página */
+ body.en-noche nav.egs-nav { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+ body.en-noche .nav-logo, body.en-noche .nav-masthead { color: #FAF8F5; }
+ body.en-noche .nav-logo span, body.en-noche .nav-masthead span { color: #74ACDF; }
+ body.en-noche .nav-menu-btn span { background: #FAF8F5; }
+ body.en-noche nav.egs-nav .nav-cta { color: #FAF8F5; border-color: rgba(250, 248, 245, 0.45); background: transparent; }
+ nav.egs-nav, .nav-logo, .nav-masthead, .nav-menu-btn span, nav.egs-nav .nav-cta { transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease; }</style>
  <link rel="canonical" href="https://elgransueno.org/">
  <meta property="og:site_name" content="El Gran Sueño">
  <meta property="og:url" content="https://elgransueno.org/"></head>
 <body class="modo-limpio">
 
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+<div class="sendero-top" aria-hidden="true">
+ <div class="sendero-hecho"></div>
+ <svg class="mochilero" viewBox="0 0 17 23" fill="currentColor">
+  <g class="cuerpo">
+   <circle cx="9.6" cy="2.6" r="2.2"/>
+   <rect x="2.4" y="5.6" width="4.6" height="7.6" rx="1.6"/>
+   <path d="M7.4 5.8h3.2a1.3 1.3 0 0 1 1.3 1.3v5.9H7.4z"/>
+   <path d="M11.6 7.4l2.6 3.4-0.9 0.7-2.4-2.9z"/>
+  </g>
+  <rect class="pierna pierna-a" x="8.1" y="12.6" width="1.9" height="9.6" rx="0.95"/>
+  <rect class="pierna pierna-b" x="9.5" y="12.6" width="1.9" height="9.6" rx="0.95"/>
+  <rect x="14.2" y="8.6" width="0.9" height="14" rx="0.45" transform="rotate(10 14.6 15.6)"/>
+ </svg>
+</div>
 
 <!-- Mapa de fondo -->
 <div class="world-map" aria-hidden="true">
@@ -533,6 +583,43 @@
  <input type="email" name="email"><input type="text" name="bot-field">
 </form>
 <script src="assets/egs.js"></script>
+<script>
+// El mochilero: camina por el sendero de arriba al ritmo del scroll y se da vuelta si se sube.
+// También marca cuándo la página está "en la noche" para que el menú se funda con ella.
+(function () {
+ var tira = document.querySelector('.sendero-top');
+ var hombre = tira && tira.querySelector('.mochilero');
+ var nav = document.getElementById('navbar');
+ var peli = document.getElementById('pelicula');
+ var portada = document.querySelector('.st-hero-top');
+ if (!tira || !hombre) return;
+ var ultimoY = window.scrollY, quieto = null, pedido = false;
+ function pintar() {
+  pedido = false;
+  var y = window.scrollY, h = document.documentElement;
+  var max = Math.max(1, h.scrollHeight - h.clientHeight);
+  tira.style.setProperty('--avance', Math.min(1, Math.max(0, y / max)).toFixed(4));
+  var nb = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
+  tira.style.setProperty('--nav-b', nb + 'px');
+  var finNoche = document.body.classList.contains('cine-on') && peli
+   ? peli.offsetTop + peli.offsetHeight - window.innerHeight * 1.25
+   : (portada ? portada.offsetHeight * 0.75 : 0);
+  document.body.classList.toggle('en-noche', y < finNoche);
+  if (y !== ultimoY) {
+   hombre.classList.add('camina');
+   hombre.classList.toggle('vuelve', y < ultimoY);
+   clearTimeout(quieto);
+   quieto = setTimeout(function () { hombre.classList.remove('camina'); }, 220);
+  }
+  ultimoY = y;
+ }
+ function pedir() { if (!pedido) { pedido = true; requestAnimationFrame(pintar); } }
+ window.addEventListener('scroll', pedir, { passive: true });
+ window.addEventListener('resize', pedir);
+ setInterval(pedir, 400);   // sigue al menú cuando se esconde o vuelve
+ pintar();
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script type="module" src="assets/home-scroll.js"></script>
 <script>

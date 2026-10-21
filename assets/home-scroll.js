@@ -59,7 +59,7 @@ function iniciar() {
   escena.add(tierra);
   const aXYZ = (lon, lat, r = 1) => {
     const la = lat * Math.PI / 180, lo = lon * Math.PI / 180;
-    return new THREE.Vector3(r * Math.cos(la) * Math.sin(lo), r * Math.sin(la), r * Math.cos(la) * Math.cos(lo));
+    return new THREE.Vector3(r * Math.cos(la) * Math.cos(lo), r * Math.sin(la), -r * Math.cos(la) * Math.sin(lo));   // misma convención que el mapa de la esfera
   };
 
   // La luz llega desde arriba y se extiende por el mundo desde donde toca
@@ -183,11 +183,12 @@ function iniciar() {
 
   // Ciudades de las naciones: se encienden una tras otra, cada una con un pulso
   const CIUDADES = [
-    [-58.4, -34.6], [-3.7, 40.4], [19.8, 41.3], [35.2, 31.8], [-77.0, -12.0], [-99.1, 19.4], [-74.0, 40.7],
+    [-58.4, -34.6], [-3.7, 40.4], [19.8, 41.3], [36.3, 33.5], [35.9, 31.95], [35.5, 33.9], [31.2, 30.0], [36.16, 36.2], [23.7, 37.98], [12.5, 41.9], [-77.0, -12.0], [-99.1, 19.4], [-74.0, 40.7],
     [-0.1, 51.5], [36.8, -1.3], [3.4, 6.5], [77.2, 28.6], [37.6, 55.8], [116.4, 39.9], [139.7, 35.7],
     [106.8, -6.2], [151.2, -33.9], [-46.6, -23.5], [18.4, -33.9], [15.3, -4.3], [121.0, 14.6], [29.0, 41.0],
     [55.3, 25.2], [100.5, 13.7], [-118.2, 34.0], [-74.1, 4.7], [38.7, 9.0], [127.0, 37.6], [-70.6, -33.4]
   ];
+  const JERUSALEN = aXYZ(35.2, 31.8);
   const nC = CIUDADES.length;
   const matCiudades = new THREE.ShaderMaterial({
     uniforms: Object.assign({ uAvance: { value: 0 } }, uComunes),
@@ -252,9 +253,14 @@ function iniciar() {
     const ancho = MEDIO * k.cz * camara.aspect;
     return { cz: k.cz, cy: k.cy, ex: k.ex ? Math.sign(k.ex) * ancho * 0.74 : 0, ey: k.ey };
   };
-  const ROT0 = 3.05, GIRO = 3.0;   // así, en la aventura la cámara mira el Himalaya
-  const rotEn = (T) => ROT0 + GIRO * (T / DUR);
-  const INICIO = { rot: ROT0, incl: 0.38, revela: 0, altura: 0.95, cielo: 0, rayos: 0.75, lugar: 0, sendero: 0, arcos: 0, alba: 0 };
+  const GIRO = 3.0;
+  const ROT0 = (() => {
+    const meta = new THREE.Vector3(0, 0.78, 0.62).normalize(), e = new THREE.Euler(), v = new THREE.Vector3();
+    let mejor = 0, rMejor = 0;
+    for (let r = 0; r < Math.PI * 2; r += 0.005) { e.set(-0.42, r, 0); const d = v.copy(JERUSALEN).applyEuler(e).dot(meta); if (d > mejor) { mejor = d; rMejor = r; } }
+    return rMejor - GIRO * (0.4 / DUR);   // Jerusalén queda arriba mientras la luz baja (0 a 0.8)
+  })();
+  const INICIO = { rot: ROT0, incl: -0.42, revela: 0, altura: 0.95, cielo: 0, rayos: 0.75, lugar: 0, sendero: 0, arcos: 0, alba: 0 };
   const S = Object.assign({}, INICIO, ajustar(K[0]));
 
   // Sendero y arcos: se trazan donde la cámara va a estar mirando cuando llegue la aventura
@@ -275,17 +281,17 @@ function iniciar() {
     sendero.geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     sendero.geometry.setAttribute('aT', new THREE.BufferAttribute(tt, 1));
 
-    // La luz se multiplica: desde el final del sendero llega a 3 lugares cercanos; cada uno la lleva a 2 o 3
+    // La luz se multiplica desde Jerusalén (Hch 1:8): llega a 3 lugares cercanos; cada uno la lleva a 2 o 3
     // más que todavía no la tienen, y así se abre como una red. Cada lugar se enciende cuando le llega
     // (generación g llega en g + 1) y alrededor se encienden sus personas.
-    const fin = caminoPts[caminoPts.length - 1].clone().normalize();
-    const lugares = CIUDADES.map((c) => aXYZ(c[0], c[1]));
-    const llegada = new Array(nC).fill(-1), uniones = [];
-    const cola = [{ v: fin, gen: 0, idx: -1 }];
+    const lugares = [JERUSALEN.clone()].concat(CIUDADES.map((c) => aXYZ(c[0], c[1])));
+    const llegada = new Array(lugares.length).fill(-1), uniones = [];
+    llegada[0] = 0;
+    const cola = [{ v: JERUSALEN, gen: 0, idx: 0 }];
     while (cola.length) {
       const nodo = cola.shift();
       const libres = lugares.map((v, i) => i).filter((i) => llegada[i] < 0).sort((a, b) => lugares[a].angleTo(nodo.v) - lugares[b].angleTo(nodo.v));
-      const cuantos = nodo.idx < 0 ? 3 : (nodo.gen % 2 ? 2 : 3);
+      const cuantos = nodo.gen === 0 ? 3 : (nodo.gen % 2 ? 2 : 3);
       libres.slice(0, cuantos).forEach((i) => {
         llegada[i] = nodo.gen + 1;
         uniones.push({ A: nodo.v, B: lugares[i], gen: nodo.gen });
@@ -353,7 +359,8 @@ function iniciar() {
     tl.to(S, { revela: 3.4, duration: 4.4, ease: 'power1.inOut' }, 1.48);
     tl.to(S, { lugar: 1, duration: 0.4, ease: 'power2.out' }, 2.15).to(S, { lugar: 0, duration: 0.5 }, 4.6);
     // Acto 4: el planeta se inclina para mostrar las montañas y se dibuja el sendero
-    tl.to(S, { incl: -0.05, duration: 0.8 }, 5.6).to(S, { incl: 0.38, duration: 0.8 }, 8.4);
+    tl.to(S, { incl: 0.12, duration: 1.6 }, 2.4);
+    tl.to(S, { incl: -0.05, duration: 0.8 }, 5.6).to(S, { incl: 0.25, duration: 0.8 }, 8.4);
     tl.to(S, { sendero: 1, duration: 1.8, ease: 'none' }, 6.1);
     // Acto 5: la Gran Comisión
     tl.to(S, { arcos: 1, duration: 1.9, ease: 'none' }, 8.0);
@@ -379,7 +386,7 @@ function iniciar() {
 
   // ---------- Cuadro a cuadro ----------
   const reloj = new THREE.Clock();
-  const vLugar = new THREE.Vector3();
+  const vLugar = new THREE.Vector3(), vJer = new THREE.Vector3();
   let lugarFijo = false, caminoFijo = false, activo = true;
   function cuadro() {
     requestAnimationFrame(cuadro);
@@ -404,12 +411,14 @@ function iniciar() {
 
     // La luz: primero sobre el mundo y bajando hasta tocarlo; al final, en lo alto de la pantalla
     if (S.cielo > 0.5) fuente.position.set(0, 1.02, -1.6);
-    else fuente.position.set(S.ex, S.ey + 1 + S.altura, 0.14);
+    else fuente.position.set(S.ex, S.ey, 0).addScaledVector(vJer, 1 + S.altura);
     halo.position.copy(fuente.position);
     matHalo.uniforms.uA.value = S.cielo > 0.5 ? 0.9 : Math.max(0, 1 - S.revela * 1.4);
     rayos.blendMode.opacity.value = S.rayos;
     fuente.visible = S.rayos > 0.01;
 
+    vJer.copy(JERUSALEN).applyQuaternion(tierra.quaternion).normalize();
+    uRevelaC.copy(vJer);
     uT.uRevela.value = S.revela;
     uAtm.uFuerza.value = 0.18 + Math.min(1, S.revela / 2.2);
 
