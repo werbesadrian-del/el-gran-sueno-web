@@ -466,6 +466,9 @@ function iniciar() {
     if (S.cielo > 0.5) fuente.position.set(0, movil ? 0.82 : 0.9, -1.6);
     else fuente.position.set(S.ex, S.ey, 0).addScaledVector(vJer, 1 + S.altura);
     halo.position.copy(fuente.position);
+    // Para el sendero de arriba: dónde está la luz en pantalla mientras cuelga sobre el mundo
+    vCam.copy(fuente.position).project(camara);
+    window.__luzCine = { x: (vCam.x + 1) / 2 * window.innerWidth, y: (1 - vCam.y) / 2 * vh, ver: S.cielo < 0.5 && S.altura > 0.03 };
     matHalo.uniforms.uA.value = S.cielo > 0.5 ? 0.9 : Math.max(0, 1 - S.revela * 1.4);
     rayos.blendMode.opacity.value = S.rayos;
     fuente.visible = S.rayos > 0.01;
