@@ -221,7 +221,8 @@ function iniciar() {
   // La fuente de luz: pequeña, arriba del mundo; al final queda en lo alto y sus rayos caen
   const fuente = new THREE.Mesh(new THREE.SphereGeometry(movil ? 0.022 : 0.035, 24, 24), new THREE.MeshBasicMaterial({ color: 0xFFFFFF, transparent: true, depthWrite: false }));
   escena.add(fuente);
-  const matHalo = puntoLuz(movil ? 34 : 60);
+  const TAM_HALO = movil ? 34 : 60;
+  const matHalo = puntoLuz(TAM_HALO);
   const halo = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3)), matHalo);
   escena.add(halo);
   const compositor = new EffectComposer(renderer, { frameBufferType: THREE.HalfFloatType });
@@ -399,7 +400,7 @@ function iniciar() {
       if (i < secciones.length - 1) tl.to(lista, { yPercent: -110, opacity: 0, duration: 0.26, stagger: 0.04, ease: 'power2.in' }, t0 + 0.74);
     });
     // La luz baja sobre Jerusalén, el amanecer se extiende con el viaje y llega el color
-    tl.to(S, { altura: 0.015, duration: 0.8, ease: 'power2.in' }, 0);
+    tl.to(S, { altura: 0.015, duration: 0.65, ease: 'sine.inOut' }, 0.15);   // la luz sale de la piedrita y baja a la Tierra
     tl.to(S, { rayos: 0, duration: 0.7, ease: 'power1.out' }, 0.75);
     tl.to(S, { revela: 0.5, duration: 0.8, ease: 'power2.out' }, 0.78);
     tl.to(S, { revela: 3.4, duration: 4.6, ease: 'power1.inOut' }, 1.6);
@@ -430,6 +431,7 @@ function iniciar() {
   tamano(); trazarSendero(); trazarRed(); armar();
 
   // ---------- Cuadro a cuadro ----------
+  const vMeta = new THREE.Vector3(), vSal = new THREE.Vector3();
   const vLugar = new THREE.Vector3(), vJer = new THREE.Vector3(), vRot = new THREE.Vector3(), vCam = new THREE.Vector3();
   const reloj = new THREE.Clock();
   let lugarFijo = false, activo = true, fovPrevio = 35;
@@ -463,14 +465,23 @@ function iniciar() {
 
     // La luz: primero sobre Jerusalén y bajando hasta tocarla; al final, en lo alto de la pantalla
     vJer.copy(JERUSALEN).applyQuaternion(tierra.quaternion).normalize();
-    if (S.cielo > 0.5) fuente.position.set(0, movil ? 0.82 : 0.9, -1.6);
-    else fuente.position.set(S.ex, S.ey, 0).addScaledVector(vJer, 1 + S.altura);
+    // Sale de la piedrita del sendero (pequeña) y baja creciendo hasta tocar Jerusalén
+    const k = Math.max(0, Math.min(1, (0.95 - S.altura) / 0.935)), ks = k * k * (3 - 2 * k);
+    if (S.cielo > 0.5) { fuente.position.set(0, movil ? 0.82 : 0.9, -1.6); fuente.scale.setScalar(1); matHalo.uniforms.uTam.value = TAM_HALO; }
+    else {
+      vMeta.set(S.ex, S.ey, 0).addScaledVector(vJer, 1.015);
+      const ls = window.__luzSendero;
+      if (ls) {
+        const zN = vCam.copy(vMeta).project(camara).z;
+        vSal.set(ls.x / window.innerWidth * 2 - 1, -(ls.y / vh) * 2 + 1, zN).unproject(camara);
+        fuente.position.copy(vSal).lerp(vMeta, ks);
+      } else fuente.position.set(S.ex, S.ey, 0).addScaledVector(vJer, 1 + S.altura);
+      fuente.scale.setScalar(0.3 + 0.7 * ks);
+      matHalo.uniforms.uTam.value = TAM_HALO * (0.36 + 0.64 * ks);
+    }
     halo.position.copy(fuente.position);
-    // Para el sendero de arriba: dónde está la luz en pantalla mientras cuelga sobre el mundo
-    vCam.copy(fuente.position).project(camara);
-    window.__luzCine = { x: (vCam.x + 1) / 2 * window.innerWidth, y: (1 - vCam.y) / 2 * vh, ver: S.cielo < 0.5 && S.altura > 0.03 };
     matHalo.uniforms.uA.value = S.cielo > 0.5 ? 0.9 : Math.max(0, 1 - S.revela * 1.4);
-    rayos.blendMode.opacity.value = S.rayos;
+    rayos.blendMode.opacity.value = S.rayos * (S.cielo > 0.5 ? 1 : 0.12 + 0.88 * ks);
     fuente.visible = S.rayos > 0.01;
     uRevelaC.copy(vJer);
     uT.uRevela.value = S.revela;

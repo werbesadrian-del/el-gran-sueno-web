@@ -267,10 +267,6 @@
  @media (prefers-reduced-motion: reduce) { .sendero-top .llama { animation: none; } }
  @media (prefers-reduced-motion: reduce) { .sendero-top.camina * { animation: none !important; } }
 
- .hilo-luz { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 98; pointer-events: none; opacity: 0; transition: opacity 0.5s ease; overflow: visible; }
- .hilo-luz line { stroke: rgba(250, 248, 245, 0.85); stroke-width: 1; stroke-linecap: round; filter: drop-shadow(0 0 3px rgba(250, 248, 245, 0.7)); stroke-dasharray: 2 5; animation: hilo-baja 1.2s linear infinite; }
- @keyframes hilo-baja { to { stroke-dashoffset: -14; } }
- @media (prefers-reduced-motion: reduce) { .hilo-luz line { animation: none; } }
  /* Nombres de los lugares del viaje (Jerusalén, Argentina): un guiño discreto pegado a su punto del mapa */
  .cine-rotulo {
  position: fixed; left: 0; top: 0; z-index: 2; pointer-events: none; opacity: 0;
@@ -657,10 +653,7 @@
  var yo = crear('caminante', capaViajeros);
  var dormido = crear('dormido', capaViajeros), agachado = crear('agachado', capaViajeros), caido = crear('caido', capaViajeros);
  var luzSuelo = crear('luz', capaEscenas), farol = crear('luz', capaViajeros);
- var POSES = { duerme: [0, 16], encuentra: [38, 52], cae: [224, 238] }, LUZ_X = 47;
- // El hilo de luz: de la luz del sendero baja a la luz grande que cuelga sobre la Tierra
- var hiloSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); hiloSvg.setAttribute('class', 'hilo-luz'); hiloSvg.setAttribute('aria-hidden', 'true');
- var hilo = document.createElementNS('http://www.w3.org/2000/svg', 'line'); hiloSvg.appendChild(hilo); document.body.appendChild(hiloSvg);
+ var POSES = { duerme: [0, 14], encuentra: [37, 49], cae: [224, 238] }, LUZ_X = 47;
  var amigos = [crear('companero', capaViajeros), crear('companero', capaViajeros)];
 
  // El relieve del sendero: alto del camino para cada x
@@ -686,9 +679,10 @@
   var max = Math.max(1, doc.scrollHeight - doc.clientHeight);
   var W = tira.clientWidth || window.innerWidth, H = tira.clientHeight || 40;
   var avance = Math.min(1, Math.max(0, y / max));
-  var x = 6 + Math.min(1, avance / 0.74) * 988;   // la historia se cuenta en las tres cuartas partes de la página
-  // Toca la luz justo cuando la luz grande llega a la Tierra (al 80 % de la portada)
-  if (peli && document.body.classList.contains('cine-on')) { LUZ_X = 6 + Math.min(1, (peli.offsetTop * 0.8 / max) / 0.74) * 988; POSES.encuentra = [LUZ_X - 10, LUZ_X + 4]; }
+  // Al empezar camina rápido hasta la piedrita (la toca al 15 % de la portada); el resto de la historia ocupa
+  // hasta las tres cuartas partes de la página
+  var y0 = (peli && document.body.classList.contains('cine-on')) ? peli.offsetTop * 0.15 : max * 0.04;
+  var x = y < y0 ? 6 + 40 * (y / y0) : 46 + Math.min(1, (y - y0) / Math.max(1, max * 0.74 - y0)) * 948;
   tira.style.setProperty('--nav-b', (nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0) + 'px');
   var finNoche = document.body.classList.contains('cine-on') && peli ? peli.offsetTop + peli.offsetHeight - window.innerHeight * 1.25 : (portada ? portada.offsetHeight * 0.75 : 0);
   document.body.classList.toggle('en-noche', y < finNoche);
@@ -731,18 +725,14 @@
   poner(agachado, x, W, H, pose === 'encuentra', 0);
   poner(caido, x, W, H, pose === 'cae', 0);
   // La luz: está en el suelo hasta que la levanta; entonces entra en él
-  var mmL = mira; mira = 1; poner(luzSuelo, LUZ_X, W, H - 1, x < LUZ_X - 2 && x + 170 > LUZ_X, 0); mira = mmL;
+  var mmL = mira; mira = 1; poner(luzSuelo, LUZ_X, W, H - 1, x < LUZ_X - 2 && x + 170 > LUZ_X && !document.body.classList.contains('cine-on'), 0); mira = mmL;
   var tieneLuz = x >= LUZ_X - 2, recien = x >= LUZ_X - 2 && x < LUZ_X + 28;
   [yo, dormido, agachado, caido].forEach(function (s) { s.classList.toggle('con-luz', tieneLuz); s.classList.toggle('recien', recien); if (s.style.opacity === '1' && !tieneLuz) s.style.opacity = '0.5'; });
   amigos.forEach(function (a) { a.classList.add('con-luz'); });
   farol.style.opacity = '0';
-  var lc = window.__luzCine, nbH = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
-  if (lc && lc.ver && x < LUZ_X) {
-   var x1 = LUZ_X / 1000 * W, y1 = nbH + altoEn(LUZ_X) / 40 * H - 4;
-   hilo.setAttribute('x1', x1.toFixed(1)); hilo.setAttribute('y1', y1.toFixed(1)); hilo.setAttribute('x2', lc.x.toFixed(1)); hilo.setAttribute('y2', lc.y.toFixed(1));
-   hiloSvg.style.opacity = (0.55 * Math.min(1, (LUZ_X - x) / 25 + 0.3)).toFixed(2);
-   setTimeout(pedir, 16);   // mientras el hilo se ve, lo sigue cuadro a cuadro
-  } else { hiloSvg.style.opacity = '0'; }
+  // La piedrita de luz: desde acá sale la luz grande que baja a la Tierra (la escena 3D lee este punto)
+  var nbH = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
+  window.__luzSendero = { x: LUZ_X / 1000 * W, y: nbH + altoEn(LUZ_X) / 40 * H - 5 };
   poner(nadador, x, W, H + 3, nadando, 0);
   // Los compañeros caminan detrás; en el auto y el barco van adentro
   amigos.forEach(function (a, i) {
