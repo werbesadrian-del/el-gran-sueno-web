@@ -3293,7 +3293,8 @@ html.lenis, html.lenis body { height: auto; }
 .egs-chat:hover { background: var(--casa); transform: translateY(-2px); }
 .egs-chat:focus-visible { outline: 2px solid var(--casa); outline-offset: 3px; }
 .egs-chat.cargando { opacity: 0.6; cursor: progress; }
-@media (max-width: 760px) {
+/* El botón flotante de mentoría entra al lado del chat; solo en pantallas muy angostas el chat sube */
+@media (max-width: 359px) {
   body:has(.m-float.show) .egs-chat { bottom: 5rem; }
 }
 
