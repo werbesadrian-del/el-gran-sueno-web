@@ -52,7 +52,7 @@ function iniciar() {
     peli.style.height = ((ESC * LARGO + 2) * window.innerHeight) + 'px';
     // La sección que sigue sube por encima de la luz que inundó la pantalla: sin escenario vacío entre medio
     // Queda montada justo donde termina el relato, invisible; aparece de golpe al terminar (un corte, sin scroll de por medio)
-    if (siguiente) { Object.assign(siguiente.style, { marginTop: (-2 * window.innerHeight + 64) + 'px', position: 'relative', zIndex: '7', transition: 'opacity 0.35s ease' }); }
+    if (siguiente) { Object.assign(siguiente.style, { marginTop: (-2 * window.innerHeight + 64) + 'px', paddingTop: '15vh', position: 'relative', zIndex: '7', transition: 'opacity 0.35s ease' }); }
   };
   medir();
 
@@ -389,7 +389,7 @@ function iniciar() {
     });
   }
 
-  const INICIO = { revela: 0, altura: 0.95, cielo: 0, rayos: movil ? 0.42 : 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
+  const INICIO = { salto: 0, revela: 0, altura: 0.95, cielo: 0, rayos: movil ? 0.42 : 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
   const S = {};
 
   let tl = null, avance = 0;
@@ -429,7 +429,9 @@ function iniciar() {
     tl.fromTo(nombre.querySelector('span'), { filter: 'blur(18px)', opacity: 0.1 }, { filter: 'blur(0px)', opacity: 1, duration: 0.4, ease: 'power2.out' }, 10.45);
     const cta = climax.querySelector('.cine-cta');
     if (cta) tl.fromTo(cta, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, 10.7);
-    tl.to(S, { alba: 1, duration: 0.32, ease: 'power2.in' }, DUR - 0.32);
+    // El salto final: la escena sale disparada hacia arriba con un destello y queda la página clara (chuf)
+    tl.to(S, { salto: 1, duration: 0.4, ease: 'power3.in' }, DUR - 0.4);
+    tl.to(S, { alba: 1, duration: 0.2, ease: 'power2.in' }, DUR - 0.2);
     tl.progress(avance);
   }
 
@@ -461,6 +463,7 @@ function iniciar() {
       mostrado = fuera;
       despues.forEach((el) => { el.style.transition = 'opacity 0.35s ease'; el.style.opacity = fuera ? '1' : '0'; el.style.pointerEvents = fuera ? '' : 'none'; });
       if (fuera && siguiente) siguiente.querySelectorAll('[data-reveal]').forEach((el) => { el.style.transitionDuration = '0.5s'; el.classList.add('in-view'); });
+      if (fuera) window.dispatchEvent(new Event('cine-corte'));
     }
     const debe = !fuera;
     if (debe !== activo) {
@@ -541,6 +544,10 @@ function iniciar() {
     });
 
     alba.style.opacity = S.alba.toFixed(3);
+    if (S.salto > 0.001) {
+      canvas.style.transform = 'translateY(' + (-S.salto * 55).toFixed(2) + 'vh) scale(' + (1 + S.salto * 0.08).toFixed(3) + ')';
+      escenario.style.transform = 'translateY(' + (-S.salto * 85).toFixed(2) + 'vh)';
+    } else if (canvas.style.transform) { canvas.style.transform = ''; escenario.style.transform = ''; }
     compositor.render();
   }
   cuadro();
