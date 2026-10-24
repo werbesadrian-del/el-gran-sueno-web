@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Un espacio para verte con claridad | El Gran Sueño</title>
-<meta name="description" content="Una conversación a solas con Adrián para ver con claridad dónde estás, y desde dónde seguir. Escucha, herramientas de discernimiento, patrones, identidad en Cristo.">
+<title>Una sesión con Adrián | Lo que Dios te dio ya es tuyo | El Gran Sueño</title>
+<meta name="description" content="Una sesión de 40 minutos por videollamada para quitar el ruido, mirar con sinceridad y poner fundamentos en lo que Cristo ya hizo. La primera es un regalo, sin compromiso de continuar.">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Un espacio para verte con claridad | El Gran Sueño">
-<meta property="og:description" content="Una conversación a solas para mirar tu vida con claridad, y descubrir desde dónde seguir.">
+<meta property="og:title" content="Una sesión con Adrián | El Gran Sueño">
+<meta property="og:description" content="Lo que Dios te dio ya es tuyo. Una sesión para verlo con claridad. La primera es un regalo.">
 <meta property="og:image" content="https://elgransueno.org/assets/og/pagina/mentoria.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -17,8 +17,8 @@
 <meta name="twitter:image" content="https://elgransueno.org/assets/og/pagina/mentoria.jpg">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Un espacio para verte con claridad | El Gran Sueño">
-<meta name="theme-color" content="#6B1A2B">
+<meta name="twitter:title" content="Una sesión con Adrián | El Gran Sueño">
+<meta name="theme-color" content="#0D0A0B">
 
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
@@ -30,153 +30,169 @@
 <link rel="stylesheet" href="assets/estilos-egs.css">
 
 <style>
- /* Estilos propios de esta página (mismo patrón que las demás) */
- .m-header {
- background: var(--cream);
- text-align: center;
- padding: 12vh 2rem 7vh;
- }
- .m-header-label {
- font-family: var(--f-texto); text-transform: uppercase;
- letter-spacing: 0.26em; font-size: 0.74rem; color: var(--gold);
- margin: 0 0 1.4rem;
- }
- .m-header-title {
- font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal); font-weight: 700;
- font-size: clamp(2.1rem, 5.6vw, 3.4rem); line-height: 1.14;
- color: var(--ink); margin: 0 0 1.6rem; text-wrap: balance;
- }
- .m-header-title em { font-style: italic; color: var(--bordo); }
- .m-header-sub {
- font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic;
- font-size: clamp(1.15rem, 2.4vw, 1.4rem); color: var(--bordo);
- max-width: 34rem; margin: 0 auto; line-height: 1.5;
- }
- .m-section { padding: 7vh 2rem; }
- .m-section.alt { background: var(--cream-dark); }
- /* Momento noche: presencia (fuerza sin ruido) */
- .m-section.m-noche { background: linear-gradient(180deg, var(--noche) 0%, var(--carbon) 100%); position: relative; overflow: hidden; }
- .m-section.m-noche::before { content:""; position:absolute; inset:-30%; z-index:0; pointer-events:none; background: radial-gradient(46% 44% at 32% 68%, rgba(200,48,63,0.108) 0%, transparent 60%), radial-gradient(54% 50% at 70% 55%, rgba(107,26,43,0.42) 0%, transparent 60%), radial-gradient(50% 46% at 74% 26%, rgba(107,26,43,0.15) 0%, transparent 62%); animation: egs-drift 38s ease-in-out infinite alternate; }
- .m-section.m-noche .m-inner { position: relative; z-index: 2; }
- .m-section.m-noche .m-label { color: var(--ember); }
- .m-section.m-noche .m-title { color: var(--luz); }
- .m-section.m-noche .m-title em { color: var(--acento-oscuro); }
- .m-section.m-noche .m-prosa { color: rgba(250,248,245,0.82); }
- .m-section.m-noche .m-prosa strong { color: var(--luz); }
- .m-section.m-noche .m-prosa.destacada { color: var(--luz); }
- @media (prefers-reduced-motion: reduce) { .m-section.m-noche::before { animation: none; } }
- .m-inner { max-width: 640px; margin: 0 auto; }
- .m-label {
- font-family: var(--f-texto); text-transform: uppercase;
- letter-spacing: 0.26em; font-size: 0.74rem; color: var(--gold);
- text-align: center; margin: 0 0 1.6rem;
- }
- .m-title {
- font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal); font-weight: 700;
- font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2;
- color: var(--ink); text-align: center; margin: 0 0 3rem; text-wrap: balance;
- }
- .m-title em { font-style: italic; color: var(--bordo); }
+ /* UNA SESIÓN CON ADRIÁN: el fogón del camino.
+ Misma lengua que la home: la noche y una fogata al entrar, después la luz de la página; en el centro,
+ la tierra que ya estaba dada, con el camino de Israel que se dibuja al bajar. */
+ :root { --s-noche: #0D0A0B; --s-hueso: #FAF8F5; --s-papel: #F3EEE5; --s-tinta: #1A1510; --s-tinta-2: #4A4540; --s-vino: #6B1A2B; --s-vino-hondo: #3A0E18; --s-celeste: #74ACDF; }
+ body.modo-limpio { background: var(--s-hueso); }
+ .s-inner { max-width: 640px; margin: 0 auto; }
+ .s-sec { padding: 13vh 1.6rem; position: relative; }
+ .s-sec.papel { background: var(--s-papel); }
+ .s-h2 { font-family: var(--f-titulo); font-weight: 400; font-size: clamp(1.9rem, 4.6vw, 3rem); line-height: 1.14; letter-spacing: -0.012em; color: var(--s-tinta); margin: 0 0 1.6rem; text-wrap: balance; }
+ .s-prosa { font-family: var(--f-texto); font-size: clamp(1.03rem, 1.7vw, 1.14rem); line-height: 1.72; color: var(--s-tinta-2); margin: 0 0 1.1rem; }
+ .s-voz { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic; font-size: clamp(1.25rem, 2.5vw, 1.5rem); line-height: 1.55; color: var(--s-vino); margin: 2rem 0 0; text-wrap: balance; }
+ .s-centro { text-align: center; }
 
- /* Identificación, una frase por línea, con aire (reposo) */
- .m-llegas { display: flex; flex-direction: column; gap: 1.55rem; }
- .m-llegas p {
- font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal);
- font-size: clamp(1.12rem, 2.4vw, 1.32rem); line-height: 1.5;
- color: var(--ink-mid); text-align: center; margin: 0;
- }
- .m-llegas p em { font-style: italic; color: var(--bordo); }
- .m-hilo { width: 26px; height: 1px; background: none; opacity: 0.6; margin: 0.4rem auto; }
- .m-puente {
- font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic;
- font-size: clamp(1.2rem, 2.6vw, 1.45rem); color: var(--bordo);
- text-align: center; margin: 3.4rem 0 0; line-height: 1.6;
- }
+ /* ENTRADA: de noche, junto al fogón */
+ .s-entrada { min-height: 92vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16vh 1.6rem 10vh; background: var(--s-noche); color: var(--s-hueso); position: relative; overflow: hidden; }
+ .s-entrada::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.75;
+ background-image: radial-gradient(1px 1px at 12% 18%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 78% 12%, #FAF8F5, transparent 60%), radial-gradient(1.2px 1.2px at 64% 34%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 30% 62%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 88% 58%, #FAF8F5, transparent 60%), radial-gradient(1.2px 1.2px at 45% 9%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 6% 80%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 94% 86%, #FAF8F5, transparent 60%);
+ background-size: 340px 340px; }
+ .s-entrada-in { position: relative; max-width: 760px; }
+ .s-quien { font-family: var(--f-texto); font-size: 0.95rem; color: rgba(250, 248, 245, 0.72); margin: 0 0 1.4rem; }
+ .s-h1 { font-family: var(--f-titulo); font-weight: 400; font-size: clamp(2.3rem, 6.4vw, 4.3rem); line-height: 1.06; letter-spacing: -0.02em; margin: 0 0 1.5rem; text-wrap: balance; color: var(--s-hueso); }
+ .s-h1 span { display: block; color: var(--s-celeste); }
+ .s-sub { font-family: var(--f-texto); font-size: clamp(1.04rem, 1.8vw, 1.2rem); line-height: 1.65; color: rgba(250, 248, 245, 0.8); max-width: 34rem; margin: 0 auto 2.3rem; }
+ .s-boton { display: inline-block; font-family: var(--f-texto); font-weight: 500; font-size: 1rem; letter-spacing: 0.01em; text-decoration: none; border-radius: 999px; padding: 1rem 2.3rem; transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+ .s-boton.claro { color: var(--s-vino-hondo); background: var(--s-hueso); }
+ .s-boton.claro:hover { background: #FFFFFF; transform: translateY(-2px); }
+ .s-boton.vino { color: var(--s-hueso); background: var(--s-vino); }
+ .s-boton.vino:hover { background: var(--s-vino-hondo); transform: translateY(-2px); }
+ .s-boton:focus-visible { outline: 2px solid var(--s-celeste); outline-offset: 3px; }
+ .s-datos { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.6rem; margin: 1.7rem 0 0; padding: 0; list-style: none; font-family: var(--f-texto); font-size: 0.9rem; color: rgba(250, 248, 245, 0.7); }
+ .s-datos strong { font-weight: 500; color: var(--s-hueso); }
 
- .m-prosa {
- font-family: var(--f-texto); font-weight: 400;
- font-size: clamp(1.05rem, 1.8vw, 1.18rem); line-height: 1.6;
- color: var(--ink); text-align: center; margin: 0 0 1.05rem;
- }
- .m-prosa strong { font-weight: 500; color: var(--ink); }
- .m-prosa.destacada {
- font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic; font-weight: 400;
- font-size: clamp(1.2rem, 2.6vw, 1.45rem); line-height: 1.6; color: var(--bordo);
- }
+ /* El fogón (el mismo de la home) */
+ .fogon { position: relative; width: 64px; height: 58px; margin: 0 auto 1.9rem; }
+ .fogon svg { display: block; overflow: visible; filter: drop-shadow(0 0 10px rgba(233, 135, 74, 0.5)); }
+ .fogon .llama { transform-box: fill-box; transform-origin: 50% 100%; animation: llama 0.55s ease-in-out infinite alternate; }
+ .fogon .llama-2 { animation-duration: 0.4s; }
+ .fogon .chispa { position: absolute; left: 50%; bottom: 26px; width: 3px; height: 3px; border-radius: 50%; background: #FFD9B5; opacity: 0; animation: chispa 2.6s ease-out infinite; }
+ .fogon .chispa:nth-child(2) { --dx: -14px; animation-delay: 0.4s; }
+ .fogon .chispa:nth-child(3) { --dx: 9px; animation-delay: 1.1s; }
+ .fogon .chispa:nth-child(4) { --dx: -5px; animation-delay: 1.7s; }
+ .fogon .chispa:nth-child(5) { --dx: 16px; animation-delay: 2.2s; }
+ @keyframes llama { from { transform: scaleY(0.86) skewX(-4deg); } to { transform: scaleY(1.08) skewX(4deg); } }
+ @keyframes chispa { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, 6px), -74px); } }
 
- /* Profundidad del proceso */
- .m-prof { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2rem; margin-top: 0.6rem; }
- @media (max-width: 560px) { .m-prof { grid-template-columns: 1fr; } }
- .m-prof p {
- font-family: var(--f-texto); font-weight: 400;
- font-size: 0.96rem; line-height: 1.7; color: var(--ink-mid);
- margin: 0; text-align: center;
- padding: 1.05rem 1rem;
- background: rgba(107,26,43,0.042);
- border-radius: 2px;
- }
- .m-prof p strong { font-weight: 500; color: var(--ink); display: block; margin-bottom: 0.2rem; }
+ /* QUIZÁS TE RECONOCÉS: se tocan y viajan al mensaje */
+ .reconoce { display: flex; flex-direction: column; gap: 0.7rem; margin: 2rem 0 0; }
+ .reconoce button { display: flex; align-items: center; gap: 0.95rem; width: 100%; text-align: left; cursor: pointer; padding: 1rem 1.2rem; border-radius: 14px; border: 1px solid rgba(26, 21, 16, 0.13); background: var(--s-hueso); font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-size: clamp(1.1rem, 2.2vw, 1.25rem); line-height: 1.4; color: var(--s-tinta); transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease; }
+ .reconoce button:hover { border-color: rgba(107, 26, 43, 0.5); transform: translateX(3px); }
+ .reconoce button:focus-visible { outline: 2px solid var(--s-vino); outline-offset: 2px; }
+ .reconoce .marca { flex: 0 0 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--s-vino); display: grid; place-items: center; transition: background 0.25s ease; }
+ .reconoce .marca svg { width: 11px; height: 11px; opacity: 0; transition: opacity 0.2s ease; }
+ .reconoce button[aria-pressed="true"] { border-color: var(--s-vino); background: rgba(107, 26, 43, 0.06); }
+ .reconoce button[aria-pressed="true"] .marca { background: var(--s-vino); }
+ .reconoce button[aria-pressed="true"] .marca svg { opacity: 1; }
+ .reconoce-nota { font-family: var(--f-texto); font-size: 0.92rem; color: var(--s-tinta-2); margin: 1.1rem 0 0; min-height: 1.4em; }
 
- /* Qué te llevás */
- .m-llevas { display: flex; flex-direction: column; gap: 1.15rem; margin-top: 0.6rem; }
- .m-llevas p {
- font-family: var(--f-texto); font-weight: 400;
- font-size: 1rem; line-height: 1.8; color: var(--ink-mid);
- margin: 0; text-align: center;
- }
- .m-llevas p::before { content: none; color: var(--gold); margin-right: 0.6rem; }
+ /* LA TIERRA YA ESTABA DADA: el camino de Israel se dibuja al bajar */
+ .tierra { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 4.5rem; max-width: 1120px; margin: 0 auto; align-items: start; }
+ .tierra-mapa { position: sticky; top: 16vh; }
+ .tierra-mapa svg { width: 100%; height: auto; display: block; overflow: visible; }
+ .mapa-costa, .mapa-rio { fill: none; stroke: rgba(26, 21, 16, 0.38); stroke-width: 1.2; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+ .mapa-rio { stroke: rgba(116, 172, 223, 0.9); stroke-width: 1.6; }
+ .mapa-agua { fill: rgba(116, 172, 223, 0.35); stroke: rgba(116, 172, 223, 0.9); stroke-width: 1; }
+ .mapa-mar { fill: rgba(116, 172, 223, 0.09); }
+ .mapa-ruta-base { fill: none; stroke: rgba(107, 26, 43, 0.2); stroke-width: 1.4; stroke-dasharray: 1 6; stroke-linecap: round; }
+ .mapa-ruta { fill: none; stroke: var(--s-vino); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: var(--ruta, 1); }
+ .mapa-nombre { font-family: var(--f-texto); font-size: 11px; letter-spacing: 0.04em; fill: var(--s-tinta-2); }
+ .mapa-nombre.grande { font-family: var(--f-titulo); font-style: italic; font-size: 15px; fill: var(--s-vino); }
+ .mapa-luz { fill: #FFFFFF; filter: drop-shadow(0 0 4px rgba(107, 26, 43, 0.9)) drop-shadow(0 0 10px rgba(233, 135, 74, 0.6)); }
+ .mapa-tierra { fill: rgba(107, 26, 43, 0.06); stroke: rgba(107, 26, 43, 0.4); stroke-width: 1; stroke-dasharray: 3 4; transition: fill 0.8s ease; }
+ .tierra.llego .mapa-tierra { fill: rgba(107, 26, 43, 0.16); }
+ .tierra-texto .s-prosa { margin-bottom: 1.4rem; }
+ .tierra-texto .cita { font-family: var(--f-texto); font-size: 0.85rem; color: rgba(74, 69, 64, 0.85); white-space: nowrap; }
 
- /* Pasos */
- .m-pasos { display: flex; flex-direction: column; gap: 3rem; margin-top: 1rem; }
- .m-paso { text-align: center; }
- .m-paso-num {
- font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic;
- font-size: 1rem; color: var(--gold); display: block; margin-bottom: 0.7rem;
- }
- .m-paso-txt {
- font-family: var(--f-texto); font-weight: 400;
- font-size: 1.02rem; line-height: 1.9; color: var(--ink-mid); margin: 0;
- max-width: 30rem; margin-left: auto; margin-right: auto;
- }
- .m-paso-txt strong { font-weight: 500; color: var(--ink); }
+ /* QUÉ HACEMOS: tres ejes */
+ .ejes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.6rem; max-width: 1080px; margin: 3rem auto 0; }
+ .eje svg { width: 38px; height: 38px; color: var(--s-vino); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 1rem; }
+ .eje h3 { font-family: var(--f-titulo); font-weight: 400; font-size: 1.45rem; line-height: 1.2; color: var(--s-tinta); margin: 0 0 0.7rem; }
+ .eje p { font-family: var(--f-texto); font-size: 1rem; line-height: 1.7; color: var(--s-tinta-2); margin: 0; }
 
- /* El regalo */
- .m-regalo {
- padding: 2rem 1.5rem; margin-top: 3rem; text-align: center;
- }
- .m-regalo p { margin: 0; }
+ /* QUÉ NO ES */
+ .no-es { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+ .no-es li { font-family: var(--f-texto); font-size: clamp(1.03rem, 1.7vw, 1.14rem); line-height: 1.6; color: var(--s-tinta-2); padding-left: 1.6rem; position: relative; }
+ .no-es li::before { content: ""; position: absolute; left: 0.2rem; top: 0.72em; width: 0.8rem; height: 1.5px; background: var(--s-vino); transform: rotate(-45deg); }
+ .no-es li::after { content: ""; position: absolute; left: 0.2rem; top: 0.72em; width: 0.8rem; height: 1.5px; background: var(--s-vino); transform: rotate(45deg); }
 
- /* Qué necesitás traer */
- .m-traer { display: flex; justify-content: center; gap: 2.4rem; flex-wrap: wrap; margin-top: 2.6rem; }
- .m-traer span {
- font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal); font-style: italic;
- font-size: clamp(1.25rem, 3vw, 1.6rem); color: var(--bordo);
- }
+ /* QUIÉN TE RECIBE: la conversación junto al fuego */
+ .s-sec.noche { background: var(--s-noche); color: var(--s-hueso); }
+ .s-sec.noche .s-h2 { color: var(--s-hueso); }
+ .s-sec.noche .s-prosa { color: rgba(250, 248, 245, 0.8); }
+ .s-sec.noche .s-voz { color: var(--s-celeste); }
 
- /* Formulario */
- .m-form { display: flex; flex-direction: column; gap: 2.2rem; margin-top: 3rem; }
+ /* CÓMO FUNCIONA: tres paradas sobre un sendero */
+ .paradas { list-style: none; padding: 0; margin: 3rem auto 0; max-width: 1000px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.4rem; position: relative; }
+ .paradas::before { content: ""; position: absolute; left: 8%; right: 8%; top: 11px; height: 2px; background-image: radial-gradient(circle, rgba(107, 26, 43, 0.5) 1px, transparent 1.4px); background-size: 8px 2px; }
+ .parada { position: relative; text-align: center; padding-top: 2.4rem; }
+ .parada::before { content: ""; position: absolute; left: 50%; top: 2px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; background: var(--s-hueso); border: 2px solid var(--s-vino); transition: background 0.5s ease, box-shadow 0.5s ease; }
+ .paradas.visto .parada::before { background: var(--s-vino); box-shadow: 0 0 0 6px rgba(107, 26, 43, 0.12); }
+ .paradas.visto .parada:nth-child(2)::before { transition-delay: 0.25s; }
+ .paradas.visto .parada:nth-child(3)::before { transition-delay: 0.5s; }
+ .parada h3 { font-family: var(--f-titulo); font-weight: 400; font-size: 1.3rem; color: var(--s-tinta); margin: 0 0 0.5rem; }
+ .parada p { font-family: var(--f-texto); font-size: 0.98rem; line-height: 1.65; color: var(--s-tinta-2); margin: 0; }
+ .regalo { max-width: 560px; margin: 3.2rem auto 0; text-align: center; }
+
+ /* QUÉ TRAER: cinco actitudes */
+ .actitudes { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem 2.2rem; margin: 2rem 0 0; padding: 0; list-style: none; }
+ .actitudes li { font-family: var(--f-titulo); font-style: italic; font-size: clamp(1.3rem, 3vw, 1.7rem); color: var(--s-vino); }
+
+ /* PREGUNTAS */
+ .preguntas { margin: 2rem 0 0; border-top: 1px solid rgba(26, 21, 16, 0.12); }
+ .preguntas details { border-bottom: 1px solid rgba(26, 21, 16, 0.12); }
+ .preguntas summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1.2rem 0.2rem; font-family: var(--f-texto); font-weight: 500; font-size: 1.05rem; color: var(--s-tinta); }
+ .preguntas summary::-webkit-details-marker { display: none; }
+ .preguntas summary::after { content: ""; flex: 0 0 12px; height: 12px; background: linear-gradient(var(--s-vino), var(--s-vino)) center / 12px 1.5px no-repeat, linear-gradient(var(--s-vino), var(--s-vino)) center / 1.5px 12px no-repeat; transition: transform 0.3s ease; }
+ .preguntas details[open] summary::after { transform: rotate(45deg); }
+ .preguntas summary:focus-visible { outline: 2px solid var(--s-vino); outline-offset: 2px; }
+ .preguntas p { font-family: var(--f-texto); font-size: 1rem; line-height: 1.7; color: var(--s-tinta-2); margin: 0 0 1.3rem; padding: 0 0.2rem; }
+
+ /* EL FORMULARIO */
+ .m-form { display: flex; flex-direction: column; gap: 2rem; margin-top: 2.6rem; }
  .m-form .campo-grupo { display: flex; flex-direction: column; gap: 0.6rem; }
- .m-form textarea.campo-linea {
- resize: vertical; min-height: 110px; line-height: 1.8;
- font-family: var(--f-texto); font-weight: 400;
- }
- .m-enviar {
- align-self: center;
- font-family: var(--f-texto); text-transform: uppercase;
- letter-spacing: 0.14em; font-size: 0.8rem;
- color: var(--cream); background: var(--bordo);
- border: none; border-radius: 40px; padding: 1.05rem 2.8rem;
- cursor: pointer; transition: background 0.3s, transform 0.3s, opacity 0.3s;
- }
- .m-enviar:hover { background: var(--bordo-dark); transform: translateY(-2px); }
+ .m-form textarea.campo-linea { resize: vertical; min-height: 110px; line-height: 1.8; font-family: var(--f-texto); font-weight: 400; }
+ .marcadas { display: none; flex-wrap: wrap; gap: 0.45rem; margin: 0; }
+ .marcadas.hay { display: flex; }
+ .marcadas span { font-family: var(--f-texto); font-size: 0.86rem; color: var(--s-vino); background: rgba(107, 26, 43, 0.07); border-radius: 999px; padding: 0.35rem 0.8rem; }
+ .m-enviar { align-self: center; border: none; cursor: pointer; }
  .m-enviar:disabled { opacity: 0.45; cursor: default; transform: none; }
  .m-gracias { display: none; text-align: center; padding: 2rem 0 0; }
  .m-gracias.visible { display: block; }
 
- @media (max-width: 720px) {
- .m-header { padding: 11vh 1.5rem 6vh; }
- .m-section { padding: 6vh 1.5rem; }
- }</style>
+ /* Botón que acompaña mientras se lee */
+ .m-float { position: fixed; left: 50%; bottom: 1.3rem; z-index: 60; transform: translateX(-50%) translateY(8px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; box-shadow: 0 10px 30px rgba(7, 5, 5, 0.35); }
+ .m-float.show { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+ @media (min-width: 760px) { .m-float { left: auto; right: 5.4rem; transform: translateY(8px); } .m-float.show { transform: translateY(0); } }
+
+ /* Entradas suaves de cada bloque */
+ .aparece { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+ .aparece.visto { opacity: 1; transform: none; }
+
+ @media (max-width: 900px) {
+ .tierra { grid-template-columns: 1fr; gap: 2.4rem; }
+ .tierra-mapa { position: sticky; top: 9vh; z-index: 2; background: var(--s-papel); padding: 0.4rem 0 0.8rem; }
+ .tierra-mapa svg { max-height: 30vh; }
+ .ejes { grid-template-columns: 1fr; gap: 2.2rem; }
+ .paradas { grid-template-columns: 1fr; gap: 2rem; max-width: 420px; }
+ .paradas::before { left: 10px; right: auto; top: 12px; bottom: 12px; width: 2px; height: auto; background-size: 2px 8px; background-image: radial-gradient(circle, rgba(107, 26, 43, 0.5) 1px, transparent 1.4px); }
+ .parada { text-align: left; padding: 0 0 0 2.6rem; }
+ .parada::before { left: 0; margin-left: 0; top: 2px; }
+ }
+ @media (max-width: 640px) { .s-sec { padding: 10vh 1.4rem; } .s-entrada { min-height: 88vh; padding-top: 14vh; } }
+ @media (prefers-reduced-motion: reduce) {
+ .fogon *, .aparece { animation: none !important; transition: none !important; opacity: 1; transform: none; }
+ .mapa-ruta { stroke-dashoffset: 0; }
+ }
+ /* El menú se funde con la noche de la entrada, como en la home */
+ body.en-noche nav.egs-nav { background: transparent; border-bottom-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none; }
+ body.en-noche .nav-logo { color: #FAF8F5; }
+ body.en-noche .nav-logo span { color: #74ACDF; }
+ body.en-noche .nav-menu-btn span { background: #FAF8F5; }
+ body.en-noche nav.egs-nav .nav-cta { color: #FAF8F5; border-color: rgba(250, 248, 245, 0.45); background: transparent; }
+ nav.egs-nav, .nav-logo, .nav-menu-btn span, nav.egs-nav .nav-cta { transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease; }
+</style>
  <link rel="canonical" href="https://elgransueno.org/mentoria.html">
  <meta property="og:site_name" content="El Gran Sueño">
  <meta property="og:url" content="https://elgransueno.org/mentoria.html"></head>
@@ -191,155 +207,142 @@
 
 <div id="egs-nav-mount"></div>
 
-<!-- Header -->
-<header class="m-header">
- <p class="m-header-label">Una sesión con Adrián</p>
- <h1 class="m-header-title">Un espacio para <em>verte con claridad</em>, y ser afirmado para el camino.</h1>
- <p class="m-header-sub">Para comprender en qué lugar estás hoy y hacia dónde vas. Y salir afirmado y equipado para los próximos pasos, hacia una realidad más completa en Cristo.</p>
- <a href="#pedir" class="m-header-cta">Quiero una sesión con Adrián</a>
- <p class="m-header-nota">Una videollamada de 40 minutos, sin apuro</p></header>
+<!-- Entrada: de noche, junto al fogón -->
+<header class="s-entrada">
+ <div class="s-entrada-in">
+ <div class="fogon" aria-hidden="true"><svg viewBox="0 0 64 58" width="64" height="58"><path class="llama" d="M32 4c6 12 14 16 12 28-1 7-6 10-12 10s-12-4-12-11c0-7 7-10 6-19 3 4 5 2 6-8z" fill="#E9874A"/><path class="llama llama-2" d="M32 20c3 6 6 9 5 15-1 4-4 5-5 5-3 0-6-2-6-6 0-4 4-6 6-14z" fill="#FFE2C2"/><path d="M14 54l36-9M14 45l36 9" stroke="#FAF8F5" stroke-opacity="0.5" stroke-width="4" stroke-linecap="round"/></svg><span class="chispa"></span><span class="chispa"></span><span class="chispa"></span><span class="chispa"></span></div>
+ <p class="s-quien">Una sesión con Adrián</p>
+ <h1 class="s-h1">Lo que Dios te dio <span>ya es tuyo.</span></h1>
+ <p class="s-sub">No te ofrezco un milagro ni resultados garantizados. Te ofrezco un espacio para quitar el ruido, mirar con sinceridad y poner fundamentos en lo que Cristo ya hizo.</p>
+ <a href="#pedir" class="s-boton claro">Quiero mi sesión</a>
+ <ul class="s-datos">
+ <li><strong>40 minutos</strong> por videollamada</li>
+ <li><strong>La primera es un regalo</strong></li>
+ <li>Sin compromiso de continuar</li></ul></div></header>
 
-<!-- Identificación (amplia) -->
-<section class="m-section alt">
- <div class="m-inner">
- <p class="m-label">Quizás te reconocés en alguna de estas</p>
- <div class="m-llegas">
- <p>Sentís que Dios tiene algo más para vos, <em>pero no sabés qué.</em></p>
- <p>Querés descubrir <em>para qué fuiste creado.</em></p>
- <p>Te cuesta creer <em>lo que Dios dice de vos.</em></p>
- <p>Vivís más desde el miedo <em>que desde la libertad.</em></p>
- <p>Repetís relaciones o decisiones <em>que terminan igual.</em></p>
- <p>No entendés por qué reaccionás <em>siempre de la misma manera.</em></p>
- <p>Sentís que hay heridas que todavía <em>gobiernan partes de tu vida.</em></p>
- <p>Tenés muchas preguntas <em>y pocas respuestas.</em></p>
- <p>Servís a Dios, <em>pero te sentís vacío.</em></p>
- <p>Hace tiempo <em>que no encontrás paz.</em></p></div>
- <p class="m-puente">Si te viste en alguna de estas líneas,<br>este espacio existe para vos.</p></div></section>
+<!-- Quizás te reconocés: se tocan y viajan al mensaje -->
+<section class="s-sec">
+ <div class="s-inner aparece">
+ <h2 class="s-h2">Quizás te reconocés en alguna de estas.</h2>
+ <p class="s-prosa">Tocá las que sientas tuyas. Te ahorran tener que explicarlo todo después.</p>
+ <div class="reconoce" id="reconoce">
+ <button type="button" aria-pressed="false"><span class="marca"><svg viewBox="0 0 12 12" fill="none" stroke="#FAF8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2 4.8-5"/></svg></span>Sentís que Dios tiene algo más para vos, pero no sabés qué.</button>
+ <button type="button" aria-pressed="false"><span class="marca"><svg viewBox="0 0 12 12" fill="none" stroke="#FAF8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2 4.8-5"/></svg></span>Te cuesta creer lo que Dios dice de vos.</button>
+ <button type="button" aria-pressed="false"><span class="marca"><svg viewBox="0 0 12 12" fill="none" stroke="#FAF8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2 4.8-5"/></svg></span>Vivís más desde el miedo que desde la libertad.</button>
+ <button type="button" aria-pressed="false"><span class="marca"><svg viewBox="0 0 12 12" fill="none" stroke="#FAF8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2 4.8-5"/></svg></span>Repetís decisiones o relaciones que terminan igual.</button>
+ <button type="button" aria-pressed="false"><span class="marca"><svg viewBox="0 0 12 12" fill="none" stroke="#FAF8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2 4.8-5"/></svg></span>Servís a Dios, pero te sentís vacío.</button>
+ <button type="button" aria-pressed="false"><span class="marca"><svg viewBox="0 0 12 12" fill="none" stroke="#FAF8F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2 4.8-5"/></svg></span>Hace tiempo que no encontrás paz.</button></div>
+ <p class="reconoce-nota" id="reconoceNota" aria-live="polite"></p>
+ <p class="s-voz">Si te viste en alguna de estas líneas, este espacio existe para vos.</p></div></section>
 
-<!-- Qué es -->
-<section class="m-section">
- <div class="m-inner">
- <p class="m-label">Qué es</p>
- <h2 class="m-title">No es simplemente <em>hablar.</em></h2>
- <p class="m-prosa">
- Es un encuentro a solas, de cuarenta minutos, vos y yo.<br>
- Pero detrás de esa conversación hay un proceso de discernimiento<br>
- profundamente personalizado.</p>
- <div class="m-prof">
- <p><strong>Escucha atenta</strong>Tu historia, contada con tus palabras, sin apuro.</p>
- <p><strong>Herramientas de evaluación</strong>Tests y recursos para conocer tu personalidad y tus dones.</p>
- <p><strong>Reconocimiento de patrones</strong>Lo que se repite en tus decisiones, relaciones y reacciones.</p>
- <p><strong>Heridas y sistemas familiares</strong>Lo que viene de atrás y todavía gobierna partes de tu vida.</p>
- <p><strong>Identidad en Cristo</strong>Afirmar quién sos de verdad, no quién aprendiste a ser.</p>
- <p><strong>Afirmar tu lugar</strong>No vengo a enseñarte qué hacer ni cuál es tu lugar. Vengo a afirmar el que Dios ya te dio, y a recordar juntos las verdades que todavía no estás viendo.</p>
- <p><strong>Orar juntos</strong>Llevar delante de Dios lo que aparezca. No es un análisis: es caminarlo con Él, y no solo.</p>
- <p><strong>Claridad para el siguiente paso</strong>Salir sabiendo desde dónde seguir.</p></div>
- <p class="m-prosa destacada" style="margin-top:2.6rem;">Casi nada de esto es nuevo.<br>Es volver a ver lo que ya está en vos: lo que Dios ya te habló, y que entre tanto ruido nos fuimos olvidando.</p></div></section>
+<!-- La tierra ya estaba dada -->
+<section class="s-sec papel">
+ <div class="tierra" id="tierra">
+ <div class="tierra-mapa" aria-hidden="true">
+ <svg viewBox="0 0 400 300">
+  <path class="mapa-mar" d="M0 0H318V40C310 60 300 72 280 70 240 66 200 74 150 72 110 70 60 58 0 60Z"/>
+  <path class="mapa-costa" d="M0 60C60 58 110 70 150 72S240 66 280 70C300 72 310 60 318 40V0"/>
+  <path class="mapa-rio" d="M58 300C68 240 78 180 92 122 97 100 90 86 84 74M92 122C100 104 112 92 118 74"/>
+  <path class="mapa-rio" d="M176 300L206 190M286 300L300 206"/>
+  <ellipse class="mapa-agua" cx="331" cy="66" rx="4" ry="6"/>
+  <path class="mapa-rio" d="M331 72C328 92 336 112 331 150"/>
+  <ellipse class="mapa-agua" cx="331" cy="166" rx="5" ry="15"/>
+  <path class="mapa-tierra" d="M288 76C300 70 318 62 326 66 332 92 334 120 326 150 314 150 300 140 292 120 286 104 284 88 288 76Z"/>
+  <path class="mapa-ruta-base" d="M120 112C150 114 170 126 190 150 205 180 215 214 238 252 255 230 250 190 262 152 270 128 300 140 300 166 298 192 332 206 360 192 372 176 362 150 340 142 328 138 318 128 306 112"/>
+  <path class="mapa-ruta" id="mapaRuta" pathLength="1" d="M120 112C150 114 170 126 190 150 205 180 215 214 238 252 255 230 250 190 262 152 270 128 300 140 300 166 298 192 332 206 360 192 372 176 362 150 340 142 328 138 318 128 306 112"/>
+  <circle class="mapa-luz" id="mapaLuz" r="4.5" cx="120" cy="112"/>
+  <text class="mapa-nombre" x="50" y="150">Egipto</text>
+  <text class="mapa-nombre" x="214" y="206">Desierto</text>
+  <text class="mapa-nombre" x="232" y="270">Sinaí</text>
+  <text class="mapa-nombre" x="340" y="112">Jordán</text>
+  <text class="mapa-nombre grande" x="272" y="100">La tierra</text>
+ </svg></div>
+ <div class="tierra-texto">
+ <h2 class="s-h2 aparece">La tierra ya estaba dada.</h2>
+ <p class="s-prosa aparece">Israel salió de Egipto en un día. Pero Egipto siguió viviendo en su manera de mirar.</p>
+ <p class="s-prosa aparece">Dios les habló de la tierra que yo les doy. No de una tierra que tenían que ganarse con sus fuerzas. De la que ya era de ellos. <span class="cita">Números 13:2</span></p>
+ <p class="s-prosa aparece">Doce entraron a reconocerla. Diez volvieron hablando de gigantes. Dos volvieron hablando de Dios.</p>
+ <p class="s-prosa aparece">No les faltó tierra. Les faltó ver. Y no pudieron entrar por su incredulidad. <span class="cita">Hebreos 3:19</span></p>
+ <p class="s-voz aparece">Esta sesión no te da algo nuevo. Te ayuda a ver lo que ya es tuyo, y a soltar lo que todavía mira como Egipto.</p>
+ <p class="s-prosa aparece" style="margin-top:1.6rem;">Todavía queda un reposo para el pueblo de Dios. <span class="cita">Hebreos 4:9</span></p></div></div></section>
 
-<!-- Qué te llevás -->
-<section class="m-section alt">
- <div class="m-inner">
- <p class="m-label">Qué te llevás</p>
- <h2 class="m-title">Al terminar este encuentro,<br>probablemente tengas:</h2>
- <div class="m-llevas">
- <p>Más claridad sobre el momento que estás viviendo.</p>
- <p>Patrones que antes no veías.</p>
- <p>Una comprensión más profunda de tu identidad.</p>
- <p>Próximos pasos concretos.</p>
- <p>Herramientas para seguir discerniendo.</p>
- <p>Una perspectiva renovada sobre tu historia.</p></div></div></section>
+<!-- Qué hacemos en la sesión -->
+<section class="s-sec">
+ <div class="s-inner s-centro aparece">
+ <h2 class="s-h2">Cuarenta minutos, vos y yo.</h2>
+ <p class="s-prosa">Detrás de esa conversación hay un discernimiento profundamente personal. Tres cosas que hacemos juntos:</p></div>
+ <div class="ejes">
+ <div class="eje aparece">
+ <svg viewBox="0 0 38 38" aria-hidden="true"><path d="M3 19s6-10 16-10 16 10 16 10-6 10-16 10S3 19 3 19z"/><circle cx="19" cy="19" r="4.5"/></svg>
+ <h3>Mirar con sinceridad</h3>
+ <p>Tu historia, con tus palabras y sin apuro. Lo que se repite en tus decisiones, tus relaciones y tus reacciones. Lo que viene de atrás y todavía gobierna partes de tu vida.</p></div>
+ <div class="eje aparece">
+ <svg viewBox="0 0 38 38" aria-hidden="true"><circle cx="19" cy="19" r="15"/><path d="M19 8l4 11-4 11-4-11z"/></svg>
+ <h3>Discernir juntos</h3>
+ <p>Dejándonos guiar por el Espíritu Santo. Separar la verdad de las mentiras que creíste. Y llevar delante de Dios lo que aparezca, orando juntos.</p></div>
+ <div class="eje aparece">
+ <svg viewBox="0 0 38 38" aria-hidden="true"><path d="M4 32h30M7 32V24h10v8M21 32V20h10v12M12 24V16h12v4"/></svg>
+ <h3>Poner fundamentos</h3>
+ <p>Volver a la raíz, al origen: lo que Cristo ya hizo y quién sos en Él. Desde ahí, ver con claridad el próximo paso.</p></div></div>
+ <div class="s-inner s-centro aparece">
+ <p class="s-voz">No vengo a enseñarte qué hacer ni cuál es tu lugar. Vengo a afirmar el que Dios ya te dio.</p></div></section>
 
 <!-- Qué no es -->
-<section class="m-section">
- <div class="m-inner">
- <p class="m-label">Qué no es</p>
- <p class="m-prosa">
- No es coaching de rendimiento.<br>
- No es una fórmula, ni un programa de pasos.<br>
- No vengo a ayudarte a alcanzar una mejor versión de vos mismo.</p>
- <p class="m-prosa destacada">
- Vengo a mirar con vos lo que Cristo ya puso en vos,<br>y a quitar lo que lo tapa.</p></div></section>
+<section class="s-sec papel">
+ <div class="s-inner aparece">
+ <h2 class="s-h2">Lo que no vas a encontrar.</h2>
+ <ul class="no-es">
+ <li>Un milagro inmediato ni resultados garantizados.</li>
+ <li>Una fórmula ni un programa de pasos.</li>
+ <li>Coaching de rendimiento ni una mejor versión de vos mismo.</li>
+ <li>Una terapia psicológica o una atención médica. Este acompañamiento no las reemplaza.</li></ul>
+ <p class="s-voz">Es un camino que se ve y se camina, paso a paso. Vengo a mirar con vos lo que Cristo ya puso en vos, y a quitar lo que lo tapa.</p></div></section>
 
-<!-- Quién soy -->
-<section class="m-section alt">
- <div class="m-inner">
- <p class="m-label">Quién te recibe</p>
- <p class="m-prosa destacada">Comprometido y apasionado por trabajar junto a las personas para encontrar su libertad en Cristo, y caminar juntos en ese descubrimiento.</p>
- <p class="m-prosa">Me dedico a acercarles las verdades profundas de la obra completa de Cristo, y a discernir juntos las mentiras, las creencias, las carencias, la historia y los fundamentos que todavía rigen distintas áreas de nuestra vida.</p>
- <p class="m-prosa">Porque solo Él puede hacernos libres y plenos. Él es la libertad. Él es la plenitud.</p>
- <p class="m-prosa">Hace más de cinco años que camino junto a otros. Por caminos que yo ya recorrí, y por otros que descubrimos juntos, buscando el consuelo y la verdad en Cristo para fortalecernos. Por eso ofrezco mi tiempo para acompañarte, desde un encuentro de sinceridad y aceptación.</p>
- <p class="m-prosa">Muchas veces, nuestros ciclos de estancamiento y nuestras caídas no vienen de no esforzarnos lo suficiente. Vienen de no estar viendo la luz, esa verdad tan profunda que nos hace libres.</p>
- <p class="m-prosa">Siempre afirmo lo mismo: Dios ya hizo lo que tenía que hacer por nosotros. Él nos dio, nos libertó, nos presentó. Pero muchas veces no estamos viendo esa verdad tan profunda como para sujetarnos a ella, aferrarnos a ella, y dejar que todo nuestro ser sea alineado, transformado y orientado por ella.</p>
- <p class="m-prosa destacada">Pero en Cristo todo cambia. Porque solo Él va a ser el Señor. Solo Él va a ser mi vida. Y cuanto más lo miramos a Él, más somos transformados a su imagen.</p></div></section>
-
-<!-- El deseo detrás de esto -->
-<section class="m-section m-noche">
- <div class="m-inner">
- <p class="m-label">El deseo detrás de esto</p>
- <h2 class="m-title">En el fondo, mi deseo tiene que ver con <em>el gran sueño de Dios</em> para vos.</h2>
- <p class="m-prosa">
- Que te veas pleno.<br>
- Que caigan las mentiras que creíste.<br>
- Que Cristo se vaya formando en vos,<br>
- hasta la medida de ese Varón perfecto.</p>
- <p class="m-prosa">
- Que tu vida trabaje por algo más grande<br>
- que cualquier otra cosa.</p>
- <p class="m-prosa destacada">
- Y que aprendas a celebrar, y a abrazar,<br>
- aun lo que no llega, en esta fragilidad<br>
- que también es parte del camino.</p></div></section>
+<!-- Quién te recibe: junto al fuego -->
+<section class="s-sec noche">
+ <div class="s-inner aparece">
+ <h2 class="s-h2">Soy Adrián Werbes.</h2>
+ <p class="s-prosa">Hace más de cinco años que camino junto a otros. Por caminos que yo ya recorrí, y por otros que descubrimos juntos, buscando el consuelo y la verdad en Cristo.</p>
+ <p class="s-prosa">Aprendí que la vida con Dios no es un milagro permanente. Es mirar, discernir, caer, levantarse y seguir caminando. No te acompaño desde un lugar de llegada, sino desde la sinceridad de quien también camina.</p>
+ <p class="s-prosa">Muchas veces nuestros estancamientos no vienen de no esforzarnos lo suficiente. Vienen de no estar viendo la verdad que nos hace libres. Dios ya hizo lo que tenía que hacer por nosotros.</p>
+ <p class="s-voz">Mi deseo es que caigan las mentiras que creíste, y que Cristo se vaya formando en vos.</p></div></section>
 
 <!-- Cómo funciona -->
-<section class="m-section">
- <div class="m-inner">
- <p class="m-label">Cómo funciona</p>
- <div class="m-pasos">
- <div class="m-paso">
- <span class="m-paso-num">uno</span>
- <p class="m-paso-txt"><strong>Contame brevemente dónde estás.</strong><br>Acá abajo, con tus palabras. No hace falta tenerlo ordenado.</p></div>
- <div class="m-paso">
- <span class="m-paso-num">dos</span>
- <p class="m-paso-txt"><strong>Te escribo para coordinar.</strong><br>Buscamos juntos un momento que nos sirva a los dos.</p></div>
- <div class="m-paso">
- <span class="m-paso-num">tres</span>
- <p class="m-paso-txt"><strong>Nos encontramos.</strong><br>Una videollamada tranquila, de cuarenta minutos. Sin apuro y sin guion.</p></div></div>
- <div class="m-regalo">
- <p class="m-prosa destacada" style="margin-bottom:1.4rem;">Este encuentro es una invitación abierta. Sin condiciones, sin apuro.</p>
- <p class="m-prosa" style="margin:0;">
- Quiero conocerte y, sobre todo, escucharte.<br>
- Si al terminar ambos sentimos que Dios nos invita a<br>
- seguir caminando juntos, lo vemos con calma.</p></div></div></section>
+<section class="s-sec">
+ <div class="s-inner s-centro aparece">
+ <h2 class="s-h2">Cómo funciona.</h2></div>
+ <ol class="paradas" id="paradas">
+ <li class="parada"><h3>Me contás dónde estás</h3><p>Acá abajo, con tus palabras. No hace falta tenerlo ordenado.</p></li>
+ <li class="parada"><h3>Coordinamos un horario</h3><p>Te escribo y buscamos un momento que nos sirva a los dos.</p></li>
+ <li class="parada"><h3>Nos encontramos</h3><p>Una videollamada de cuarenta minutos, sin apuro y sin guion.</p></li></ol>
+ <div class="regalo aparece">
+ <p class="s-voz" style="margin-top:0;">La primera sesión es un regalo, sin compromiso de continuar.</p>
+ <p class="s-prosa" style="margin-top:1rem;">Quiero conocerte y, sobre todo, escucharte. Si al terminar ambos sentimos que Dios nos invita a seguir caminando juntos, lo vemos con calma.</p></div></section>
 
-<!-- Qué necesitás traer -->
-<section class="m-section alt">
- <div class="m-inner">
- <p class="m-label">Qué necesitás traer</p>
- <p class="m-prosa">
- No experiencia.<br>
- No respuestas.<br>
- No una vida perfecta.<br>
- Solo cuatro cosas.</p>
- <div class="m-traer">
- <span>Valentía</span>
- <span>Humildad</span>
- <span>Sinceridad</span>
- <span>Responsabilidad</span>
- <span>Fe</span></div></div></section>
+<!-- Qué traer y para quién es -->
+<section class="s-sec papel">
+ <div class="s-inner s-centro aparece">
+ <h2 class="s-h2">Qué necesitás traer.</h2>
+ <p class="s-prosa">No necesitás experiencia, respuestas ni una vida perfecta. Solo cinco actitudes.</p>
+ <ul class="actitudes"><li>Valentía</li><li>Humildad</li><li>Sinceridad</li><li>Responsabilidad</li><li>Fe</li></ul>
+ <p class="s-voz">Es para quienes de verdad quieren vivir la vida que Dios diseñó para ellos. No para quien busca una fórmula o una solución mágica.</p></div></section>
 
-<!-- Para quién es -->
-<section class="m-section">
- <div class="m-inner">
- <p class="m-label">Para quién es esto</p>
- <h2 class="m-title">Es para quienes de verdad quieren vivir la <em>vida que Dios diseñó</em> para ellos.</h2>
- <p class="m-prosa">Que anhelan conocerlo profundamente. Que quieren ser libres. Personas comprometidas, que entienden que este camino pide amar a Dios sobre todas las cosas.</p>
- <p class="m-prosa destacada">Es un llamado para quienes están dispuestos a eso. Y si llegaste hasta acá, es muy probable que ya lo estés buscando. Que eso ya sea tu anhelo.</p></div></section>
+<!-- Preguntas -->
+<section class="s-sec">
+ <div class="s-inner aparece">
+ <h2 class="s-h2">Preguntas que suelen aparecer.</h2>
+ <div class="preguntas">
+ <details><summary>¿Tiene costo?</summary><p>La primera sesión es un regalo. Si después decidimos seguir caminando juntos, lo hablamos con calma.</p></details>
+ <details><summary>¿Es una terapia?</summary><p>No. Es acompañamiento espiritual. No reemplaza una terapia psicológica ni una atención médica, y si hace falta, te voy a animar a buscarlas.</p></details>
+ <details><summary>¿Qué pasa después de la sesión?</summary><p>Si ambos sentimos que Dios nos invita a seguir, lo vemos juntos. Si no, te llevás lo que vimos, sin ningún compromiso.</p></details>
+ <details><summary>¿Lo que hablemos es confidencial?</summary><p>Sí. Lo que compartas queda entre nosotros.</p></details>
+ <details><summary>¿Y si no puedo asistir?</summary><p>Escribime y buscamos otro momento.</p></details>
+ <details><summary>¿Necesito saber mucho de la Biblia?</summary><p>No. Solo ganas de mirar con sinceridad.</p></details></div></div></section>
 
-<!-- Pedido -->
-<section class="m-section" id="pedir">
- <div class="m-inner" style="max-width:520px;">
- <p class="m-label">El primer paso</p>
- <h2 class="m-title">Contame dónde <em>estás hoy.</em></h2>
+<!-- El primer paso -->
+<section class="s-sec papel" id="pedir">
+ <div class="s-inner" style="max-width:520px;">
+ <h2 class="s-h2 s-centro">Contame dónde estás hoy.</h2>
  <form class="m-form" id="mentoriaForm" onsubmit="return false;">
  <div class="campo-grupo">
  <label class="campo-etiq" for="mNombre">Tu nombre</label>
@@ -352,11 +355,12 @@
  <input id="mTelefono" type="tel" class="campo-linea" placeholder="Si querés, para coordinar más rápido"></div>
  <div class="campo-grupo">
  <label class="campo-etiq" for="mMensaje">¿Dónde sentís que estás hoy?</label>
+ <div class="marcadas" id="marcadas" aria-label="Lo que marcaste más arriba"></div>
  <textarea id="mMensaje" class="campo-linea" placeholder="Dos o tres líneas alcanzan…"></textarea></div>
- <button class="m-enviar" id="mEnviar" type="submit">Enviar mis datos para una sesión</button></form>
+ <button class="m-enviar s-boton vino" id="mEnviar" type="submit">Quiero mi sesión</button></form>
  <div class="m-gracias" id="mGracias">
- <p class="m-prosa destacada">¡Enviado! Recibí tus datos.<br>Pronto te respondo por email para coordinar la sesión.</p>
- <p class="m-prosa" style="margin-top:1rem;">Mientras tanto, no dejes de caminar.</p></div></div></section>
+ <p class="s-voz" style="margin-top:0;">Recibí tus datos.<br>Pronto te escribo para coordinar la sesión.</p>
+ <p class="s-prosa" style="margin-top:1rem;">Mientras tanto, no dejes de caminar.</p></div></div></section>
 
 <footer class="egs-footer">
  <div class="footer-divider" aria-hidden="true"></div>
@@ -378,61 +382,78 @@
  <input type="text" name="bot-field">
 </form>
 
+<a href="#pedir" class="m-float s-boton vino" id="mFloat">Quiero mi sesión</a>
+
 <script src="assets/egs.js"></script>
 <script>
 (function () {
+ var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+ // Quizás te reconocés: lo que se toca viaja al mensaje
+ var botones = Array.prototype.slice.call(document.querySelectorAll('#reconoce button'));
+ var nota = document.getElementById('reconoceNota'), marcadas = document.getElementById('marcadas');
+ function elegidas() { return botones.filter(function (b) { return b.getAttribute('aria-pressed') === 'true'; }).map(function (b) { return b.textContent.trim(); }); }
+ function pintarElegidas() {
+  var lista = elegidas();
+  nota.textContent = lista.length ? (lista.length === 1 ? 'Marcaste una. La vas a ver en tu mensaje.' : 'Marcaste ' + lista.length + '. Las vas a ver en tu mensaje.') : '';
+  marcadas.innerHTML = '';
+  lista.forEach(function (t) { var s = document.createElement('span'); s.textContent = t; marcadas.appendChild(s); });
+  marcadas.classList.toggle('hay', lista.length > 0);
+ }
+ botones.forEach(function (b) { b.addEventListener('click', function () { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); pintarElegidas(); }); });
+
+ // El formulario: se guarda en Supabase y avisa por correo (Netlify), con lo que se marcó arriba
  var form = document.getElementById('mentoriaForm');
  var btn = document.getElementById('mEnviar');
  form.addEventListener('submit', function () {
- var nombre = document.getElementById('mNombre').value.trim();
- var correo = document.getElementById('mCorreo').value.trim();
- if (!nombre || !correo || correo.indexOf('@') < 0) return;
- btn.disabled = true;
- var mensaje = document.getElementById('mMensaje').value.trim();
- var telefono = document.getElementById('mTelefono').value.trim();
- if (window.egsGuardar) {
- window.egsGuardar('mentoria', { nombre: nombre, correo: correo, telefono: telefono, mensaje: mensaje });
- }
- if (window.egsAvisarNetlify) {
- window.egsAvisarNetlify('mentoria', { nombre: nombre, correo: correo, telefono: telefono, mensaje: mensaje });
- }
- form.style.display = 'none';
- document.getElementById('mGracias').classList.add('visible');
+  var nombre = document.getElementById('mNombre').value.trim();
+  var correo = document.getElementById('mCorreo').value.trim();
+  if (!nombre || !correo || correo.indexOf('@') < 0) return;
+  btn.disabled = true;
+  var texto = document.getElementById('mMensaje').value.trim();
+  var lista = elegidas();
+  var mensaje = (lista.length ? 'Me reconocí en: ' + lista.join(' / ') + (texto ? '\n\n' : '') : '') + texto;
+  var telefono = document.getElementById('mTelefono').value.trim();
+  var datos = { nombre: nombre, correo: correo, telefono: telefono, mensaje: mensaje };
+  if (window.egsGuardar) window.egsGuardar('mentoria', datos);
+  if (window.egsAvisarNetlify) window.egsAvisarNetlify('mentoria', datos);
+  form.style.display = 'none';
+  document.getElementById('mGracias').classList.add('visible');
  });
-})();</script>
 
-<style>
-/* CTA del header */
-.m-header a.m-header-cta{display:inline-block;margin-top:2.4rem;font-family:var(--f-texto);font-weight:500;font-size:.98rem;letter-spacing:.02em;color:var(--c-vino);background:var(--c-hueso);padding:1rem 2.3rem;border-radius:40px;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s,color .2s;box-shadow:0 16px 44px -16px rgba(0,0,0,0.7)}
-.m-header a.m-header-cta:hover{background:#FFFFFF;color:var(--c-vino-hondo);transform:translateY(-1px)}
-.m-header-nota{font-family:var(--f-texto);font-size:.8rem;color:var(--c-niebla);letter-spacing:.03em;margin:1rem 0 0}
-/* Botón flotante: siempre a mano */
-.m-float{position:fixed;left:50%;transform:translateX(-50%) translateY(8px);bottom:1.3rem;z-index:60;font-family:var(--f-texto);font-weight:500;font-size:.92rem;color:#FAF8F5;background:#6B1A2B;padding:.9rem 1.9rem;border-radius:40px;text-decoration:none;box-shadow:0 10px 30px rgba(7,5,5,0.42);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease}
-.m-float.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-@media(min-width:760px){.m-float{left:auto;right:5.4rem;transform:translateY(8px)}.m-float.show{transform:translateY(0)}}
-/* Doble columna en las listas largas: baja el largo a la mitad */
-@media(min-width:720px){
- .m-prof{display:grid;grid-template-columns:1fr 1fr;gap:1.7rem 2.6rem}
- .m-prof p{margin:0;text-align:left}
- .m-llevas{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 2.6rem}
- .m-llevas p{text-align:left}
-}
-/* El botón de envío del formulario, también verde */
-#mentoriaForm button.m-enviar{background:#6B1A2B;border-color:#6B1A2B;color:#FAF8F5}
-#mentoriaForm button.m-enviar:hover{background:#3A0E18;border-color:#3A0E18}
-</style>
-<a href="#pedir" class="m-float" id="mFloat">Quiero una sesión con Adrián</a>
-<script>
-(function(){
- var f=document.getElementById('mFloat'); if(!f) return;
- var header=document.querySelector('.m-header');
- var form=document.getElementById('pedir');
- function upd(){
-  var pastHeader=window.scrollY>((header?header.offsetHeight:400)*0.8);
-  var fr=form?form.getBoundingClientRect():null;
-  var formNear=fr&&fr.top<window.innerHeight*0.9;
-  if(pastHeader&&!formNear)f.classList.add('show');else f.classList.remove('show');
+ // Entradas suaves y paradas que se encienden
+ if ('IntersectionObserver' in window && !reduce) {
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visto'); io.unobserve(e.target); } }); }, { threshold: 0.15 });
+  document.querySelectorAll('.aparece, #paradas').forEach(function (el) { io.observe(el); });
+ } else {
+  document.querySelectorAll('.aparece, #paradas').forEach(function (el) { el.classList.add('visto'); });
  }
- window.addEventListener('scroll',upd,{passive:true});
- window.addEventListener('resize',upd); upd();
-})();</script></body></html>
+
+ // El camino de Israel: se dibuja mientras se lee, con una luz que avanza hasta la tierra
+ var tierra = document.getElementById('tierra'), ruta = document.getElementById('mapaRuta'), luz = document.getElementById('mapaLuz');
+ var largo = ruta && ruta.getTotalLength ? ruta.getTotalLength() : 0;
+ function camino() {
+  if (!tierra || !ruta) return;
+  var r = tierra.getBoundingClientRect(), vh = window.innerHeight;
+  var p = reduce ? 1 : Math.max(0, Math.min(1, (vh * 0.7 - r.top) / Math.max(1, r.height * 0.85)));
+  ruta.style.setProperty('--ruta', (1 - p).toFixed(4));
+  if (largo && luz) { var pt = ruta.getPointAtLength(largo * p); luz.setAttribute('cx', pt.x.toFixed(1)); luz.setAttribute('cy', pt.y.toFixed(1)); }
+  tierra.classList.toggle('llego', p > 0.97);
+ }
+
+ // El botón que acompaña: aparece al dejar la entrada y se esconde cerca del formulario
+ var flota = document.getElementById('mFloat'), entrada = document.querySelector('.s-entrada'), pedir = document.getElementById('pedir');
+ function boton() {
+  if (!flota) return;
+  var paso = window.scrollY > ((entrada ? entrada.offsetHeight : 400) * 0.8);
+  var cerca = pedir && pedir.getBoundingClientRect().top < window.innerHeight * 0.9;
+  flota.classList.toggle('show', paso && !cerca);
+  document.body.classList.toggle('en-noche', window.scrollY < (entrada ? entrada.offsetHeight - 70 : 0));
+ }
+ var pedido = false;
+ function alScroll() { if (pedido) return; pedido = true; requestAnimationFrame(function () { pedido = false; camino(); boton(); }); }
+ window.addEventListener('scroll', alScroll, { passive: true });
+ window.addEventListener('resize', alScroll);
+ camino(); boton();
+})();</script>
+</body></html>
