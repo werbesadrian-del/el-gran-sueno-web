@@ -11,3 +11,4 @@ _LEEME-version-nueva.txt
 # Tarjetas sociales generadas por og-card.mjs (Netlify las regenera en cada deploy)
 prueba-*.png
 /assets/og/
+.impeccable/
