@@ -45,10 +45,14 @@ function iniciar() {
   document.body.classList.add('cine-on');
   peli.classList.add('peli-on');
   const siguiente = peli.nextElementSibling;
+  // Todo lo que viene después del relato queda oculto hasta el corte (si no, asoma por debajo de la película)
+  const despues = [];
+  for (let n = siguiente; n; n = n.nextElementSibling) if (n.matches('section, footer, .temas-marquee')) despues.push(n);
   const medir = () => {
     peli.style.height = ((ESC * LARGO + 2) * window.innerHeight) + 'px';
     // La sección que sigue sube por encima de la luz que inundó la pantalla: sin escenario vacío entre medio
-    if (siguiente) { siguiente.style.marginTop = (-window.innerHeight) + 'px'; siguiente.style.position = 'relative'; siguiente.style.zIndex = '7'; }
+    // Queda montada justo donde termina el relato, invisible; aparece de golpe al terminar (un corte, sin scroll de por medio)
+    if (siguiente) { Object.assign(siguiente.style, { marginTop: (-2 * window.innerHeight + 64) + 'px', position: 'relative', zIndex: '7', transition: 'opacity 0.35s ease' }); }
   };
   medir();
 
@@ -442,19 +446,23 @@ function iniciar() {
   const vMeta = new THREE.Vector3(), vSal = new THREE.Vector3();
   const vLugar = new THREE.Vector3(), vJer = new THREE.Vector3(), vRot = new THREE.Vector3(), vCam = new THREE.Vector3();
   const reloj = new THREE.Clock();
-  let lugarFijo = false, activo = true, fovPrevio = 35;
+  let lugarFijo = false, activo = true, fovPrevio = 35, mostrado = null;
   function cuadro() {
     requestAnimationFrame(cuadro);
     if (document.hidden) return;
     const y = window.scrollY, vh = window.innerHeight;
     const inicio = peli.offsetTop, fin = inicio + peli.offsetHeight - 2 * vh;
     const meta = y < inicio ? (y / Math.max(1, inicio)) / DUR : (1 + Math.min(1, (y - inicio) / Math.max(1, fin - inicio)) * ESC) / DUR;
-    // Al terminar el relato la luz cubre la pantalla y la sección siguiente sube por encima
+    // Al terminar el relato: corte a la sección siguiente, que ya estaba en su lugar
     const pasada = y - fin;
-    alba.style.visibility = pasada < vh ? 'visible' : 'hidden';
-    if (pasada > 0) alba.style.opacity = '1';                     // aunque se baje rápido, la luz cubre todo
-    escenario.style.visibility = pasada > 0 ? 'hidden' : 'visible';
-    const debe = pasada < 2;
+    const fuera = pasada >= 0;
+    alba.style.visibility = escenario.style.visibility = fuera ? 'hidden' : 'visible';
+    if (fuera !== mostrado) {
+      mostrado = fuera;
+      despues.forEach((el) => { el.style.transition = 'opacity 0.35s ease'; el.style.opacity = fuera ? '1' : '0'; el.style.pointerEvents = fuera ? '' : 'none'; });
+      if (fuera && siguiente) siguiente.querySelectorAll('[data-reveal]').forEach((el) => { el.style.transitionDuration = '0.5s'; el.classList.add('in-view'); });
+    }
+    const debe = !fuera;
     if (debe !== activo) {
       activo = debe;
       canvas.style.visibility = activo ? 'visible' : 'hidden';
