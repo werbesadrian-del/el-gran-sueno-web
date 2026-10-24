@@ -250,6 +250,55 @@
  background: #FAF8F5; box-shadow: 0 0 10px 2px rgba(250, 248, 245, 0.6);
  }
 
+ /* EL MUNDO EN LA MANO (assets/home-scroll.js): al entrar y en la pausa del mundo el planeta se arrastra.
+ En el celular se gira de costado y se baja como siempre. En la pausa, cada luz guarda una palabra. */
+ body.cine-on .st-hero-top, body.cine-on .peli-escenario { touch-action: pan-y; }
+ html.mundo-sobre, html.mundo-sobre body { cursor: grab; }
+ html.mundo-agarra, html.mundo-agarra * { cursor: grabbing !important; user-select: none; -webkit-user-select: none; }
+ body.cine-on .temas-marquee { display: none; }
+ .mundo-ui { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
+ .mundo-palabra {
+ position: absolute; left: 0; top: 0; opacity: 0; border: 0; padding: 0; background: none; cursor: pointer; pointer-events: none;
+ font: inherit; color: #FAF8F5;
+ }
+ .mundo-palabra-in {
+ display: block; transform: translate(-50%, calc(-100% - 16px)); white-space: nowrap;
+ font-family: var(--f-titulo); font-weight: 400; font-size: clamp(1.25rem, 3.4vw, 1.7rem); letter-spacing: -0.01em;
+ padding: 0.35em 0.8em 0.4em; border-radius: 999px;
+ background: rgba(13, 10, 11, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+ box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 8px 30px rgba(0, 0, 0, 0.45);
+ transition: box-shadow 0.3s ease, background 0.3s ease;
+ }
+ .mundo-palabra:hover .mundo-palabra-in, .mundo-palabra:focus-visible .mundo-palabra-in { background: rgba(13, 10, 11, 0.75); box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.8), 0 8px 30px rgba(0, 0, 0, 0.45); }
+ .mundo-palabra:focus-visible { outline: none; }
+ .mundo-palabra.nueva .mundo-palabra-in { animation: mundo-nueva 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+ @keyframes mundo-nueva { 0% { box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 0 0 0 rgba(116, 172, 223, 0.6); } 100% { box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 0 0 22px rgba(116, 172, 223, 0); } }
+ .mundo-guia {
+ position: absolute; left: 50%; bottom: max(1.6rem, env(safe-area-inset-bottom)); transform: translateX(-50%); opacity: 0;
+ display: flex; flex-direction: column; align-items: center; gap: 0.35rem; text-align: center; color: rgba(250, 248, 245, 0.9);
+ font-family: var(--f-texto); transition: opacity 0.3s ease;
+ }
+ .mundo-guia svg { width: 52px; height: 26px; overflow: visible; }
+ .mundo-guia svg path { fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; opacity: 0.7; }
+ .mundo-dedo { fill: #74ACDF; animation: mundo-dedo 1.8s ease-in-out infinite; }
+ @keyframes mundo-dedo { 0%, 100% { transform: translateX(-9px); } 50% { transform: translateX(9px); } }
+ .mundo-guia-txt { font-size: 0.98rem; font-weight: 500; letter-spacing: 0.01em; }
+ .mundo-guia-sub { font-family: var(--f-voz); font-style: italic; font-size: 1.02rem; color: rgba(250, 248, 245, 0.72); }
+ .mundo-guia.cuenta svg, .mundo-guia.cuenta .mundo-guia-sub { display: none; }
+ .mundo-guia.cuenta .mundo-guia-txt { font-size: 0.88rem; font-weight: 400; color: rgba(250, 248, 245, 0.75); }
+ .mundo-def {
+ position: absolute; left: 50%; bottom: max(1.2rem, env(safe-area-inset-bottom)); width: min(calc(100% - 2rem), 34rem);
+ transform: translate(-50%, 12px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+ background: #FAF8F5; color: #1A1510; border-radius: 18px; padding: 1.4rem 1.5rem 1.5rem; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+ }
+ .mundo-def.abierta { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+ .mundo-def-p { font-family: var(--f-titulo); font-weight: 400; font-size: 1.55rem; line-height: 1.15; margin: 0 2.2rem 0.6rem 0; color: #6B1A2B; }
+ .mundo-def-d { font-family: var(--f-texto); font-size: 1rem; line-height: 1.65; margin: 0; color: #4A4540; }
+ .mundo-def-cerrar { position: absolute; top: 0.9rem; right: 0.9rem; width: 36px; height: 36px; border: 0; border-radius: 50%; background: rgba(26, 21, 16, 0.06); color: #1A1510; cursor: pointer; display: grid; place-items: center; }
+ .mundo-def-cerrar svg { width: 16px; height: 16px; }
+ .mundo-def-cerrar:hover, .mundo-def-cerrar:focus-visible { background: rgba(26, 21, 16, 0.12); }
+ @media (max-width: 700px) { .mundo-def { bottom: calc(max(1.2rem, env(safe-area-inset-bottom)) + 4.4rem); } .mundo-def-p { font-size: 1.4rem; } .mundo-def-d { font-size: 0.96rem; } }
+
 </style>
  <link rel="canonical" href="https://elgransueno.org/">
  <meta property="og:site_name" content="El Gran Sueño">
@@ -608,14 +657,19 @@
 })();</script>
 <script src="assets/conceptos.js"></script>
 <script>
-// LÉXICO: arma la marquesina desde assets/conceptos.js y muestra el "globito"
+// LÉXICO: arma la marquesina desde content/conceptos.json (vía assets/conceptos.js) y muestra el "globito"
 // con la definición al pasar el mouse (desktop) o al tocar (celular).
 (function () {
  var track = document.getElementById('temasTrack');
  var marquee = document.getElementById('temasMarquee');
  var globito = document.getElementById('temaGlobito');
- var lista = window.EGS_CONCEPTOS || [];
- if (!track || !globito || !lista.length) return;
+ if (!track || !globito || !window.egsConceptos) return;
+ // Con el mundo 3D andando, las palabras se descubren girándolo: la marquesina queda solo de respaldo
+ window.egsConceptos().then(function (lista) {
+ if (!lista.length || document.body.classList.contains('cine-on')) return;
+ armar(lista);
+ });
+ function armar(lista) {
 
  // Construir la pista (duplicada = bucle continuo)
  var frag = '';
@@ -674,6 +728,7 @@
  });
  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') ocultar(); });
  window.addEventListener('scroll', function () { if (globito.classList.contains('visible') && !fijado) ocultar(); }, { passive: true });
+ }
 })();</script>
 <!-- Netlify Identity: solo cuando el enlace trae una invitación al panel o un cambio de clave.
      Procesa el token y, al entrar, lleva a /admin. Al resto de las visitas no se le carga nada. -->

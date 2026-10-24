@@ -80,3 +80,37 @@ collections:
               - { name: cuerpo, label: "Su historia (texto)", widget: markdown, hint: "Incluí una sección '## Lo que esta huella revela sobre Cristo'." }
               - { name: pregunta, label: "Pregunta final (opcional)", widget: string, required: false }
               - { name: destacado, label: "Destacar", widget: boolean, default: false, required: false }
+
+  - name: palabras
+    label: "Palabras"
+    description: "El repositorio de todas las palabras. En la home se descubren girando el mundo; cada una tiene su definición."
+    files:
+      - name: conceptos
+        label: "Palabras"
+        file: "content/conceptos.json"
+        format: json
+        fields:
+          - name: conceptos
+            label: "Palabras"
+            label_singular: "Palabra"
+            widget: list
+            summary: "{{fields.p}}"
+            fields:
+              - { name: p, label: "Palabra", widget: string }
+              - { name: d, label: "Definición", widget: text }
+              - name: lugar
+                label: "Lugar en el mapa (opcional)"
+                widget: select
+                required: false
+                hint: "Si la dejás vacía, la palabra se ubica sola en algún país."
+                options:
+                  - { label: "Jerusalén", value: "jerusalen" }
+                  - { label: "Río Jordán", value: "jordan" }
+                  - { label: "Galilea", value: "galilea" }
+                  - { label: "Egipto", value: "egipto" }
+                  - { label: "Sinaí", value: "sinai" }
+                  - { label: "Argentina", value: "argentina" }
+                  - { label: "Albania", value: "albania" }
+                  - { label: "Italia", value: "italia" }
+                  - { label: "España", value: "espana" }
+                  - { label: "China", value: "china" }

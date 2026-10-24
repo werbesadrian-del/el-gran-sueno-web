@@ -38,8 +38,12 @@ function iniciar() {
     return lista;
   });
 
-  // Línea de tiempo: de 0 a 1 la portada; cada escena dura 1 (la escena i empieza en i + 1); la final dura 2
-  const ESC = secciones.length + 1;
+  // Línea de tiempo: de 0 a 1 la portada; cada escena dura 1 (la escena i empieza en i + 1); la final dura 2.
+  // Antes del final hay una pausa: el mundo entero y encendido, para girarlo y descubrir las palabras.
+  // Todo lo que pasa desde T_MUNDO se corre PAUSA hacia adelante (P).
+  const T_MUNDO = 9.5, PAUSA = 1.6;
+  const P = (t) => (t >= T_MUNDO ? t + PAUSA : t);
+  const ESC = secciones.length + 1 + PAUSA;
   const DUR = 1 + ESC;
   const LARGO = 0.5;
   document.body.classList.add('cine-on');
@@ -88,8 +92,11 @@ function iniciar() {
     t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
     ok(t);
   }, undefined, () => ok(null)));
+  let avisarAgua;
+  const aguaLista = new Promise((ok) => { avisarAgua = ok; });
   Promise.all([textura(movil ? 'tierra-dia-2k.webp' : 'tierra-dia-4k.webp', true), textura('tierra-relieve.webp', false), textura('tierra-agua.webp', false)])
     .then(([dia, relieve, agua]) => {
+      avisarAgua(agua ? agua.image : null);
       if (!dia) return;
       uT.uDia.value = dia;
       if (relieve) uT.uRelieve.value = relieve;
@@ -378,9 +385,9 @@ function iniciar() {
       g.setAttribute('position', new THREE.BufferAttribute(p, 3));
       g.setAttribute('aT', new THREE.BufferAttribute(t2, 1));
       const m = new THREE.ShaderMaterial({
-        uniforms: { uProg: { value: 0 } },
+        uniforms: { uProg: { value: 0 }, uA: { value: 1 } },
         vertexShader: 'attribute float aT; varying float vT; void main(){ vT = aT; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.); }',
-        fragmentShader: 'uniform float uProg; varying float vT; void main(){ if (vT > uProg) discard; float a = 0.3 + 1.1*smoothstep(uProg-0.2, uProg, vT); gl_FragColor = vec4(vec3(0.78,0.9,1.0)*a, a); }',
+        fragmentShader: 'uniform float uProg, uA; varying float vT; void main(){ if (vT > uProg) discard; float a = (0.3 + 1.1*smoothstep(uProg-0.2, uProg, vT)) * uA; gl_FragColor = vec4(vec3(0.78,0.9,1.0)*a, a); }',
         blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
       });
       const linea = new THREE.Line(g, m);
@@ -389,7 +396,224 @@ function iniciar() {
     });
   }
 
-  const INICIO = { salto: 0, revela: 0, altura: 0.95, cielo: 0, rayos: movil ? 0.42 : 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
+  // ---------- El mundo en la mano: girarlo y descubrir las palabras ----------
+  // Al entrar (la portada) y en la pausa del mundo el planeta se arrastra; al seguir bajando vuelve solo a su
+  // lugar en el relato. En el celular se gira de costado y se baja como siempre (touch-action: pan-y).
+  // En la pausa cada luz guarda una palabra (content/conceptos.json): la que pasa por el centro aparece, al
+  // tocarla se lee su definición, y las que se van descubriendo se unen con hilos de luz.
+  const mano = { dR: 0, dI: 0, vR: 0, vI: 0, id: null, x: 0, y: 0, giro: false };
+  const disco = { x: 0, y: 0, r: 1 };
+  const enPausa = () => { const t = tl ? tl.time() : 0; return t > T_MUNDO + 0.2 && t < T_MUNDO + PAUSA - 0.25; };
+  const sePuede = () => (tl ? tl.time() < 0.12 : false) || enPausa();
+  const raiz = document.documentElement;
+  const sobreDisco = (e) => Math.hypot(e.clientX - disco.x, e.clientY - disco.y) < disco.r * 1.05;
+  window.addEventListener('pointerdown', (e) => {
+    if (e.button > 0 || !activo || !sePuede() || !sobreDisco(e)) return;
+    if (e.target.closest && e.target.closest('a, button, input, textarea, select, .mundo-def')) return;
+    mano.id = e.pointerId; mano.x = e.clientX; mano.y = e.clientY; mano.vR = mano.vI = 0;
+    if (e.pointerType === 'mouse') { e.preventDefault(); raiz.classList.add('mundo-agarra'); }
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (mano.id === null) {
+      if (e.pointerType === 'mouse') raiz.classList.toggle('mundo-sobre', activo && sePuede() && sobreDisco(e));
+      return;
+    }
+    if (e.pointerId !== mano.id) return;
+    const dx = (e.clientX - mano.x) / disco.r, dy = e.pointerType === 'mouse' ? (e.clientY - mano.y) / disco.r : 0;
+    mano.x = e.clientX; mano.y = e.clientY;
+    mano.dR += dx; mano.dI += dy;
+    mano.vR = Math.max(-0.07, Math.min(0.07, dx)); mano.vI = Math.max(-0.05, Math.min(0.05, dy));   // impulso al soltar, con tope
+    if (Math.abs(dx) > 0.01) mano.giro = true;
+  });
+  const soltar = (e) => {
+    if (e.pointerId !== mano.id) return;
+    mano.id = null;
+    if (e.type === 'pointercancel') mano.vR = mano.vI = 0;   // el navegador tomó el gesto para bajar
+    raiz.classList.remove('mundo-agarra');
+  };
+  window.addEventListener('pointerup', soltar);
+  window.addEventListener('pointercancel', soltar);
+
+  // Lugares con sentido para las palabras que lo piden (campo "lugar" en content/conceptos.json)
+  const LUGARES = {
+    jerusalen: [35.2, 31.8], jordan: [35.55, 31.85], galilea: [35.6, 32.8], egipto: [31.2, 30.0], sinai: [33.8, 28.6],
+    argentina: [-64.5, -33.5], albania: [20.0, 41.2], italia: [12.5, 42.3], espana: [-3.7, 40.4], china: [104, 34]
+  };
+  let palabras = [];
+  const descubiertas = [];
+  const gPal = new THREE.BufferGeometry();
+  const matPal = new THREE.ShaderMaterial({
+    uniforms: Object.assign({ uExp: { value: 0 } }, uComunes),
+    vertexShader: 'attribute float aEst; attribute float aSel; uniform float uExp, uPR, uTiempo; varying float vA; varying float vEst; void main(){ vec4 mv = modelViewMatrix*vec4(position,1.); vec3 vn = normalize(normalMatrix*position); vEst = aEst; vA = uExp * smoothstep(0.05, 0.35, vn.z) * (0.45 + 0.4*aEst + aSel*(0.55 + 0.35*sin(uTiempo*5.0))); gl_PointSize = (aSel > 0.5 ? 74.0 : 30.0 + aEst*12.0) * uPR / (-mv.z); gl_Position = projectionMatrix*mv; }',
+    fragmentShader: 'varying float vA; varying float vEst; void main(){ float d = length(gl_PointCoord-0.5); float a = (exp(-d*d*90.)*1.3 + exp(-d*d*14.)*0.25) * vA; gl_FragColor = vec4(mix(vec3(1.0,0.95,0.86), vec3(0.62,0.82,1.0), vEst)*a, a); }',
+    blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
+  });
+  tierra.add(new THREE.Points(gPal, matPal));
+  // Los hilos entre las palabras descubiertas: la constelación de cada uno
+  const matHilo = new THREE.ShaderMaterial({
+    uniforms: { uA: { value: 0 } },
+    vertexShader: 'void main(){ gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.); }',
+    fragmentShader: 'uniform float uA; void main(){ gl_FragColor = vec4(vec3(0.7,0.86,1.0)*uA, uA); }',
+    blending: THREE.AdditiveBlending, transparent: true, depthWrite: false
+  });
+  const hilos = new THREE.Group();
+  tierra.add(hilos);
+  function hilo(A, B) {
+    if (hilos.children.length >= 150) return;
+    const ang = A.angleTo(B), M = 48, p = new Float32Array(M * 3);
+    for (let k = 0; k < M; k++) {
+      const t = k / (M - 1);
+      const v = A.clone().lerp(B, t).normalize().multiplyScalar(1.007 + Math.sin(Math.PI * t) * (0.015 + ang * 0.09));
+      p.set([v.x, v.y, v.z], k * 3);
+    }
+    hilos.add(new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(p, 3)), matHilo));
+  }
+  function marcar(i, guardar) {
+    if (descubiertas.includes(i)) return;
+    const previa = descubiertas[descubiertas.length - 1];
+    descubiertas.push(i);
+    const aE = gPal.getAttribute('aEst'); aE.setX(i, 1); aE.needsUpdate = true;
+    if (previa !== undefined) hilo(palabras[previa].v, palabras[i].v);
+    if (guardar) { try { localStorage.setItem('egs-mundo', JSON.stringify(descubiertas.map((k) => palabras[k].p))); } catch (e) {} }
+  }
+  // Cada palabra tiene su lugar fijo: las que piden un lugar van ahí; el resto se reparte por tierra firme,
+  // lo más separadas posible (siempre igual, así nadie las encuentra en otro sitio la próxima vez)
+  function colocar(lista, img) {
+    let esTierra = () => true;
+    if (img) {
+      try {
+        const cv = document.createElement('canvas'); cv.width = 512; cv.height = 256;
+        const cx = cv.getContext('2d', { willReadFrequently: true }); cx.drawImage(img, 0, 0, 512, 256);
+        const px = cx.getImageData(0, 0, 512, 256).data;
+        esTierra = (lon, lat) => {
+          const f = Math.min(255, Math.max(0, Math.floor((90 - lat) / 180 * 256))), c = Math.min(511, Math.max(0, Math.floor((lon + 180) / 360 * 512)));
+          return px[(f * 512 + c) * 4] < 110;
+        };
+      } catch (e) { esTierra = () => true; }
+    }
+    const fijos = [], grupos = {};
+    lista.forEach((c) => { if (c.lugar && LUGARES[c.lugar]) (grupos[c.lugar] = grupos[c.lugar] || []).push(c); });
+    Object.keys(grupos).forEach((k) => {
+      const [lon, lat] = LUGARES[k], g = grupos[k];
+      g.forEach((c, j) => {
+        const a = j / g.length * Math.PI * 2, r = g.length > 1 ? 2.2 : 0;
+        c.v = aXYZ(lon + Math.cos(a) * r, lat + Math.sin(a) * r); fijos.push(c.v);
+      });
+    });
+    const cand = [], N = 5000, oro = Math.PI * (3 - Math.sqrt(5));
+    for (let i = 0; i < N; i++) {
+      const lat = Math.asin(1 - (i + 0.5) / N * 2) * 180 / Math.PI, lon = ((i * oro) % (Math.PI * 2)) * 180 / Math.PI - 180;
+      if (lat > -55 && lat < 66 && esTierra(lon, lat)) cand.push(aXYZ(lon, lat));
+    }
+    const cerca = cand.map((v) => fijos.reduce((m, f) => Math.max(m, v.dot(f)), -1));
+    lista.forEach((c) => {
+      if (c.v) return;
+      let mejor = 0;
+      for (let i = 1; i < cand.length; i++) if (cerca[i] < cerca[mejor]) mejor = i;
+      c.v = cand.length ? cand[mejor].clone() : aXYZ(0, 0);
+      cand.forEach((v, i) => { cerca[i] = Math.max(cerca[i], v.dot(c.v)); });
+    });
+    const pos = new Float32Array(lista.length * 3);
+    lista.forEach((c, i) => { const w = c.v.clone().multiplyScalar(1.008); pos.set([w.x, w.y, w.z], i * 3); });
+    gPal.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    gPal.setAttribute('aEst', new THREE.BufferAttribute(new Float32Array(lista.length), 1));
+    gPal.setAttribute('aSel', new THREE.BufferAttribute(new Float32Array(lista.length), 1));
+    palabras = lista;
+    // Lo que ya descubrió en otra visita (queda solo en su navegador)
+    let guardadas = [];
+    try { guardadas = JSON.parse(localStorage.getItem('egs-mundo') || '[]'); } catch (e) {}
+    if (Array.isArray(guardadas)) guardadas.forEach((p) => { const i = lista.findIndex((c) => c.p === p); if (i >= 0) marcar(i, false); });
+    contar();
+  }
+  const cargarPalabras = window.egsConceptos ? window.egsConceptos() : Promise.resolve([]);
+  Promise.all([cargarPalabras, aguaLista]).then(([lista, img]) => { if (lista.length) colocar(lista.map((c) => Object.assign({}, c)), img); });
+
+  // Lo que se ve encima del mundo: la palabra, la guía y la definición
+  const ui = document.createElement('div');
+  ui.className = 'mundo-ui';
+  ui.innerHTML = '<button type="button" class="mundo-palabra" tabindex="-1"><span class="mundo-palabra-in"></span></button>' +
+    '<div class="mundo-guia" aria-live="polite"><svg viewBox="0 0 52 26" aria-hidden="true"><path d="M8 13h36M13 8l-5 5 5 5M39 8l5 5-5 5"/><circle class="mundo-dedo" cx="26" cy="13" r="4.5"/></svg>' +
+    '<span class="mundo-guia-txt">Girá el mundo</span><span class="mundo-guia-sub">Cada luz guarda una palabra</span></div>' +
+    '<div class="mundo-def" role="dialog" aria-label="Definición"><button type="button" class="mundo-def-cerrar" aria-label="Cerrar">' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>' +
+    '<p class="mundo-def-p"></p><p class="mundo-def-d"></p></div>';
+  document.body.appendChild(ui);
+  const etiqueta = ui.querySelector('.mundo-palabra'), etiquetaIn = ui.querySelector('.mundo-palabra-in');
+  const guia = ui.querySelector('.mundo-guia'), guiaTxt = ui.querySelector('.mundo-guia-txt');
+  const def = ui.querySelector('.mundo-def');
+  let sel = -1, selDesde = 0, abierta = -1, contada = false;
+  function contar() {
+    if (!palabras.length || !mano.giro) return;
+    contada = true;
+    guia.classList.add('cuenta');
+    guiaTxt.textContent = descubiertas.length + ' de ' + palabras.length + ' palabras';
+  }
+  function abrir(i) {
+    if (i < 0) return;
+    abierta = i;
+    def.querySelector('.mundo-def-p').textContent = palabras[i].p;
+    def.querySelector('.mundo-def-d').textContent = palabras[i].d;
+    def.classList.add('abierta');
+  }
+  function cerrar() { abierta = -1; def.classList.remove('abierta'); }
+  etiqueta.addEventListener('click', () => { if (sel >= 0) { marcar(sel, true); contar(); abrir(sel); } });
+  def.querySelector('.mundo-def-cerrar').addEventListener('click', cerrar);
+  window.addEventListener('pointerdown', (e) => { if (abierta >= 0 && !e.target.closest('.mundo-def, .mundo-palabra')) cerrar(); });
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && abierta >= 0) cerrar(); });
+
+  // La palabra que mira hacia la cámara y pasa más cerca del centro del planeta
+  const vW = new THREE.Vector3(), vP = new THREE.Vector3(), vDir = new THREE.Vector3(), vDisco = new THREE.Vector3();
+  function elegir() {
+    if (!palabras.length || S.explora < 0.6) return -1;
+    vDir.copy(camara.position).sub(tierra.position).normalize();
+    let mejor = -1, mM = Infinity, mSel = Infinity;
+    for (let i = 0; i < palabras.length; i++) {
+      vW.copy(palabras[i].v).applyQuaternion(tierra.quaternion);
+      const f = vW.dot(vDir);
+      if (f < 0.35) continue;
+      vP.copy(tierra.position).addScaledVector(vW, 1.008).project(camara);
+      const m = Math.abs((vP.x + 1) / 2 * window.innerWidth - disco.x) + (1 - f) * disco.r * 0.35;
+      if (m < mM) { mM = m; mejor = i; }
+      if (i === sel) mSel = m;
+    }
+    if (sel >= 0 && mSel < disco.r * 0.34 && mSel < mM + 10) return sel;
+    return mM < disco.r * 0.3 ? mejor : -1;
+  }
+  function mundo(vh) {
+    // El disco del planeta en pantalla: dónde se puede agarrar
+    vDisco.copy(tierra.position).project(camara);
+    disco.x = (vDisco.x + 1) / 2 * window.innerWidth; disco.y = (1 - vDisco.y) / 2 * vh;
+    disco.r = (vh / 2) / (Math.tan(camara.fov * Math.PI / 360) * camara.position.distanceTo(tierra.position));
+    matPal.uniforms.uExp.value = S.explora;
+    matHilo.uniforms.uA.value = S.explora * 0.75;
+    const nueva = elegir();
+    if (nueva !== sel) {
+      const aS = gPal.getAttribute('aSel');
+      if (aS) { if (sel >= 0) aS.setX(sel, 0); if (nueva >= 0) aS.setX(nueva, 1); aS.needsUpdate = true; }
+      sel = nueva; selDesde = performance.now();
+      if (sel >= 0) etiquetaIn.textContent = palabras[sel].p;
+    }
+    // Se cuenta como descubierta si la persona ya giró el mundo y la palabra se quedó un momento a la vista
+    // (girando rápido, pasan sin contar)
+    if (sel >= 0 && mano.giro && !descubiertas.includes(sel) && performance.now() - selDesde > 380) {
+      marcar(sel, true); contar();
+      etiqueta.classList.remove('nueva'); void etiqueta.offsetWidth; etiqueta.classList.add('nueva');
+    }
+    if (mano.giro && !contada) contar();
+    const ver = sel >= 0 && S.explora > 0.5;
+    if (sel >= 0) {
+      vW.copy(palabras[sel].v).applyQuaternion(tierra.quaternion);
+      vP.copy(tierra.position).addScaledVector(vW, 1.008).project(camara);
+      etiqueta.style.transform = 'translate(' + ((vP.x + 1) / 2 * window.innerWidth).toFixed(1) + 'px,' + ((1 - vP.y) / 2 * vh).toFixed(1) + 'px)';
+    }
+    etiqueta.style.opacity = ver ? S.explora.toFixed(3) : '0';
+    etiqueta.style.pointerEvents = ver ? 'auto' : 'none';
+    etiqueta.tabIndex = ver ? 0 : -1;
+    guia.style.opacity = palabras.length && S.explora > 0.5 && abierta < 0 ? S.explora.toFixed(3) : '0';
+    if (S.explora < 0.3 && abierta >= 0) cerrar();
+  }
+
+  const INICIO = { explora: 0, salto: 0, revela: 0, altura: 0.95, cielo: 0, rayos: movil ? 0.42 : 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
   const S = {};
 
   let tl = null, avance = 0;
@@ -401,11 +625,23 @@ function iniciar() {
     // La cámara viaja: cada tramo empieza un poco antes de la escena y llega cuando la frase ya está
     for (let i = 1; i < K.length; i++) {
       const k = ajustar(K[i]);
-      tl.to(S, { cz: k.cz, cy: k.cy, ex: k.ex, ey: k.ey, rot: giros[i].rot, incl: giros[i].incl, fov: K[i].fov || 35, roll: K[i].roll || 0, duration: i === 1 ? 1.05 : 1.0, ease: 'sine.inOut' }, i === 1 ? 0 : i - 0.5);
+      tl.to(S, { cz: k.cz, cy: k.cy, ex: k.ex, ey: k.ey, rot: giros[i].rot, incl: giros[i].incl, fov: K[i].fov || 35, roll: K[i].roll || 0, duration: i === 1 ? 1.05 : 1.0, ease: 'sine.inOut' }, i === 1 ? 0 : P(i - 0.5));
     }
+    // La pausa del mundo: la cámara se acerca y el planeta queda entero, al centro y un poco hacia el norte
+    // (donde hay más tierra), listo para girarlo; las palabras aparecen y al final se apagan
+    // Empieza mirando la tierra de la Biblia (Israel, Egipto, el Jordán): el centro de la pantalla queda en
+    // la longitud 32 y la latitud que da la inclinación (0.3 rad, unos 17° norte)
+    let rotMundo = -Math.PI / 2 - 32 * Math.PI / 180;
+    while (rotMundo - giros[9].rot > Math.PI) rotMundo -= Math.PI * 2;
+    while (rotMundo - giros[9].rot < -Math.PI) rotMundo += Math.PI * 2;
+    // El planeta ocupa casi todo el ancho en el celular y un tercio largo del alto en pantallas grandes
+    const altoV = canvas.clientHeight || window.innerHeight, radioM = Math.min(window.innerWidth * 0.44, altoV * 0.36);
+    tl.to(S, { cz: (altoV / 2) / (MEDIO * radioM), cy: 0, ex: 0, ey: 0.04, incl: 0.3, rot: rotMundo, duration: 0.45, ease: 'sine.inOut' }, T_MUNDO);
+    tl.to(S, { explora: 1, duration: 0.35, ease: 'power1.out' }, T_MUNDO + 0.25);
+    tl.to(S, { explora: 0, duration: 0.3, ease: 'power1.in' }, T_MUNDO + PAUSA - 0.3);
     renglones.forEach((lista, i) => {
       if (!lista.length) return;
-      const t0 = i + 1;
+      const t0 = P(i + 1);
       tl.fromTo(lista, { yPercent: 115, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.32, stagger: 0.06, ease: 'power3.out' }, t0 + 0.04 - (i === 0 ? 0.3 : 0));
       if (i < secciones.length - 1) tl.to(lista, { yPercent: -110, opacity: 0, duration: 0.26, stagger: 0.04, ease: 'power2.in' }, t0 + 0.74);
     });
@@ -423,12 +659,12 @@ function iniciar() {
     // La red de luz entre las naciones
     tl.to(S, { arcos: 1, duration: 1.8, ease: 'none' }, 8.9);
     // El Gran Sueño: la luz queda en lo alto, sus rayos caen, el nombre baja y la luz inunda la pantalla
-    tl.set(S, { cielo: 1 }, 10.0);
-    tl.to(S, { rayos: movil ? 0.6 : 0.9, duration: 0.5, ease: 'power2.out' }, 10.05);
-    tl.fromTo(nombre, { y: () => -window.innerHeight * 0.42, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, 10.2);
-    tl.fromTo(nombre.querySelector('span'), { filter: 'blur(18px)', opacity: 0.1 }, { filter: 'blur(0px)', opacity: 1, duration: 0.4, ease: 'power2.out' }, 10.45);
+    tl.set(S, { cielo: 1 }, P(10.0));
+    tl.to(S, { rayos: movil ? 0.6 : 0.9, duration: 0.5, ease: 'power2.out' }, P(10.05));
+    tl.fromTo(nombre, { y: () => -window.innerHeight * 0.42, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, P(10.2));
+    tl.fromTo(nombre.querySelector('span'), { filter: 'blur(18px)', opacity: 0.1 }, { filter: 'blur(0px)', opacity: 1, duration: 0.4, ease: 'power2.out' }, P(10.45));
     const cta = climax.querySelector('.cine-cta');
-    if (cta) tl.fromTo(cta, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, 10.7);
+    if (cta) tl.fromTo(cta, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, P(10.7));
     // El salto final: la escena sale disparada hacia arriba con un destello y queda la página clara (chuf)
     tl.to(S, { salto: 1, duration: 0.4, ease: 'power3.in' }, DUR - 0.4);
     tl.to(S, { alba: 1, duration: 0.2, ease: 'power2.in' }, DUR - 0.2);
@@ -470,6 +706,8 @@ function iniciar() {
       activo = debe;
       canvas.style.visibility = activo ? 'visible' : 'hidden';
       rotulos.forEach((r) => { r.el.style.visibility = activo ? 'visible' : 'hidden'; });
+      ui.style.visibility = activo ? 'visible' : 'hidden';
+      if (!activo) raiz.classList.remove('mundo-sobre', 'mundo-agarra');
     }
     if (!activo) return;
     avance += (meta - avance) * 0.085;
@@ -477,8 +715,16 @@ function iniciar() {
     tl.progress(Math.min(1, avance));
 
     uComunes.uTiempo.value = reloj.getElapsedTime();
+    // La mano: inercia al soltar; fuera de los momentos de jugar, el planeta vuelve solo a su lugar en el relato
+    if (mano.id !== null && !sePuede()) { mano.id = null; raiz.classList.remove('mundo-agarra'); }
+    if (mano.id === null) { mano.dR += mano.vR; mano.dI += mano.vI; mano.vR *= 0.93; mano.vI *= 0.9; }
+    if (!sePuede() && mano.id === null) {
+      if (raiz.classList.contains('mundo-sobre')) raiz.classList.remove('mundo-sobre');
+      mano.dR = Math.atan2(Math.sin(mano.dR), Math.cos(mano.dR)) * 0.9; mano.dI *= 0.9; mano.vR = mano.vI = 0;
+    }
+    mano.dI = Math.max(-1.15 - S.incl, Math.min(1.15 - S.incl, mano.dI));
     tierra.position.set(S.ex, S.ey, 0);
-    tierra.rotation.set(S.incl, S.rot, 0);
+    tierra.rotation.set(S.incl + mano.dI, S.rot + mano.dR, 0);
     tierra.updateMatrixWorld();
     atmosfera.position.copy(tierra.position);
     camara.position.set(0, S.cy, S.cz);
@@ -529,7 +775,8 @@ function iniciar() {
 
     // La luz se multiplica: cada generación de arcos sale cuando la anterior llegó
     const G = (generaciones + 0.9) * S.arcos;
-    arcos.forEach((a) => { a.m.uniforms.uProg.value = Math.max(0, Math.min(1, G - a.gen)); });
+    // Mientras se buscan palabras, los arcos se corren a un costado para que se lean los hilos propios
+    arcos.forEach((a) => { a.m.uniforms.uProg.value = Math.max(0, Math.min(1, G - a.gen)); a.m.uniforms.uA.value = 1 - 0.7 * S.explora; });
     matCiudades.uniforms.uAvance.value = G;
 
     // Los nombres siguen a su lugar en pantalla y se apagan si el lugar queda del otro lado del mundo
@@ -543,6 +790,7 @@ function iniciar() {
       r.el.style.opacity = (a * Math.max(0, Math.min(1, (frente - 0.1) * 4))).toFixed(3);
     });
 
+    mundo(vh);
     alba.style.opacity = S.alba.toFixed(3);
     if (S.salto > 0.001) {
       canvas.style.transform = 'translateY(' + (-S.salto * 55).toFixed(2) + 'vh) scale(' + (1 + S.salto * 0.08).toFixed(3) + ')';
