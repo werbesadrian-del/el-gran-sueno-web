@@ -397,25 +397,25 @@ function iniciar() {
   }
 
   // ---------- El mundo en la mano: girarlo y descubrir las palabras ----------
-  // Al entrar (la portada) y en la pausa del mundo el planeta se arrastra; al seguir bajando vuelve solo a su
-  // lugar en el relato. En el celular se gira de costado y se baja como siempre (touch-action: pan-y).
-  // En la pausa cada luz guarda una palabra (content/conceptos.json): la que pasa por el centro aparece, al
-  // tocarla se lee su definición, y las que se van descubriendo se unen con hilos de luz.
+  // Durante todo el relato el planeta se arrastra; al seguir bajando vuelve de a poco a su lugar en la historia.
+  // En el celular se gira de costado y se baja como siempre (touch-action: pan-y). Cada luz guarda una palabra
+  // (content/conceptos.json): mientras se gira aparecen las que pasan por el centro, donde ya llegó la luz; al
+  // tocarlas se lee su definición, y las que se van descubriendo se unen con hilos de luz. Antes del final hay
+  // una pausa con el mundo entero para buscarlas con calma.
   const mano = { dR: 0, dI: 0, vR: 0, vI: 0, id: null, x: 0, y: 0, giro: false };
   const disco = { x: 0, y: 0, r: 1 };
   const enPausa = () => { const t = tl ? tl.time() : 0; return t > T_MUNDO + 0.2 && t < T_MUNDO + PAUSA - 0.25; };
-  const sePuede = () => (tl ? tl.time() < 0.12 : false) || enPausa();
   const raiz = document.documentElement;
   const sobreDisco = (e) => Math.hypot(e.clientX - disco.x, e.clientY - disco.y) < disco.r * 1.05;
   window.addEventListener('pointerdown', (e) => {
-    if (e.button > 0 || !activo || !sePuede() || !sobreDisco(e)) return;
+    if (e.button > 0 || !activo || !sobreDisco(e)) return;
     if (e.target.closest && e.target.closest('a, button, input, textarea, select, .mundo-def')) return;
     mano.id = e.pointerId; mano.x = e.clientX; mano.y = e.clientY; mano.vR = mano.vI = 0;
     if (e.pointerType === 'mouse') { e.preventDefault(); raiz.classList.add('mundo-agarra'); }
   });
   window.addEventListener('pointermove', (e) => {
     if (mano.id === null) {
-      if (e.pointerType === 'mouse') raiz.classList.toggle('mundo-sobre', activo && sePuede() && sobreDisco(e));
+      if (e.pointerType === 'mouse') raiz.classList.toggle('mundo-sobre', activo && sobreDisco(e));
       return;
     }
     if (e.pointerId !== mano.id) return;
@@ -528,20 +528,23 @@ function iniciar() {
   const cargarPalabras = window.egsConceptos ? window.egsConceptos() : Promise.resolve([]);
   Promise.all([cargarPalabras, aguaLista]).then(([lista, img]) => { if (lista.length) colocar(lista.map((c) => Object.assign({}, c)), img); });
 
-  // Lo que se ve encima del mundo: la palabra, la guía y la definición
+  // Lo que se ve encima del mundo: las palabras (hasta tres a la vez), la guía y la definición
+  const MAX_PAL = 3;
   const ui = document.createElement('div');
   ui.className = 'mundo-ui';
-  ui.innerHTML = '<button type="button" class="mundo-palabra" tabindex="-1"><span class="mundo-palabra-in"></span></button>' +
+  let carteles = '';
+  for (let k = 0; k < MAX_PAL; k++) carteles += '<button type="button" class="mundo-palabra" tabindex="-1"><span class="mundo-palabra-in"></span></button>';
+  ui.innerHTML = carteles +
     '<div class="mundo-guia" aria-live="polite"><svg viewBox="0 0 52 26" aria-hidden="true"><path d="M8 13h36M13 8l-5 5 5 5M39 8l5 5-5 5"/><circle class="mundo-dedo" cx="26" cy="13" r="4.5"/></svg>' +
     '<span class="mundo-guia-txt">Girá el mundo</span><span class="mundo-guia-sub">Cada luz guarda una palabra</span></div>' +
     '<div class="mundo-def" role="dialog" aria-label="Definición"><button type="button" class="mundo-def-cerrar" aria-label="Cerrar">' +
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>' +
     '<p class="mundo-def-p"></p><p class="mundo-def-d"></p></div>';
   document.body.appendChild(ui);
-  const etiqueta = ui.querySelector('.mundo-palabra'), etiquetaIn = ui.querySelector('.mundo-palabra-in');
+  const etiquetas = [...ui.querySelectorAll('.mundo-palabra')].map((el) => ({ el, txt: el.firstChild, i: -1, desde: 0 }));
   const guia = ui.querySelector('.mundo-guia'), guiaTxt = ui.querySelector('.mundo-guia-txt');
   const def = ui.querySelector('.mundo-def');
-  let sel = -1, selDesde = 0, abierta = -1, contada = false;
+  let abierta = -1, contada = false, visible = 0, interes = 0, ultimoGiro = -1e9;
   function contar() {
     if (!palabras.length || !mano.giro) return;
     contada = true;
@@ -556,61 +559,85 @@ function iniciar() {
     def.classList.add('abierta');
   }
   function cerrar() { abierta = -1; def.classList.remove('abierta'); }
-  etiqueta.addEventListener('click', () => { if (sel >= 0) { marcar(sel, true); contar(); abrir(sel); } });
+  etiquetas.forEach((e) => e.el.addEventListener('click', () => { if (e.i >= 0) { marcar(e.i, true); contar(); abrir(e.i); } }));
   def.querySelector('.mundo-def-cerrar').addEventListener('click', cerrar);
   window.addEventListener('pointerdown', (e) => { if (abierta >= 0 && !e.target.closest('.mundo-def, .mundo-palabra')) cerrar(); });
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && abierta >= 0) cerrar(); });
 
-  // La palabra que mira hacia la cámara y pasa más cerca del centro del planeta
-  const vW = new THREE.Vector3(), vP = new THREE.Vector3(), vDir = new THREE.Vector3(), vDisco = new THREE.Vector3();
-  function elegir() {
-    if (!palabras.length || S.explora < 0.6) return -1;
+  // Las palabras que miran hacia la cámara y quedan más cerca del centro de lo que se ve del planeta.
+  // Fuera de la pausa aparecen solo mientras la persona gira el mundo, y solo donde ya llegó la luz.
+  const vW = new THREE.Vector3(), vP = new THREE.Vector3(), vDir = new THREE.Vector3(), vDisco = new THREE.Vector3(), vJ = new THREE.Vector3();
+  const cand = [];
+  function elegir(vh, ancho) {
+    const elegidas = [];
+    if (!palabras.length || visible < 0.4) return elegidas;
     vDir.copy(camara.position).sub(tierra.position).normalize();
-    let mejor = -1, mM = Infinity, mSel = Infinity;
+    vJ.copy(JERUSALEN).applyQuaternion(tierra.quaternion).normalize();
+    // El centro de la búsqueda: el de la pantalla, o el punto del planeta más cercano a él si el planeta está corrido
+    let cx = ancho / 2, cy = vh / 2;
+    const dx0 = cx - disco.x, dy0 = cy - disco.y, d0 = Math.hypot(dx0, dy0), lim = disco.r * 0.8;
+    if (d0 > lim) { cx = disco.x + dx0 / d0 * lim; cy = disco.y + dy0 / d0 * lim; }
+    const zona = Math.min(disco.r * 0.62, Math.min(ancho, vh) * 0.42);
+    cand.length = 0;
     for (let i = 0; i < palabras.length; i++) {
       vW.copy(palabras[i].v).applyQuaternion(tierra.quaternion);
       const f = vW.dot(vDir);
-      if (f < 0.35) continue;
+      if (f < 0.2) continue;
+      if (S.explora < 0.5 && Math.acos(Math.max(-1, Math.min(1, vW.dot(vJ)))) > S.revela - 0.3) continue;   // todavía a oscuras
       vP.copy(tierra.position).addScaledVector(vW, 1.008).project(camara);
-      const m = Math.abs((vP.x + 1) / 2 * window.innerWidth - disco.x) + (1 - f) * disco.r * 0.35;
-      if (m < mM) { mM = m; mejor = i; }
-      if (i === sel) mSel = m;
+      const x = (vP.x + 1) / 2 * ancho, y = (1 - vP.y) / 2 * vh;
+      if (x < 40 || x > ancho - 40 || y < 110 || y > vh - 70) continue;
+      const ya = etiquetas.some((e) => e.i === i);
+      const m = Math.hypot(x - cx, (y - cy) * 0.6) - (ya ? 14 : 0);
+      if (m < zona * (ya ? 1.15 : 1)) cand.push({ i, x, y, m });
     }
-    if (sel >= 0 && mSel < disco.r * 0.34 && mSel < mM + 10) return sel;
-    return mM < disco.r * 0.3 ? mejor : -1;
+    cand.sort((a, b) => a.m - b.m);
+    for (const c of cand) {
+      if (elegidas.length >= MAX_PAL) break;
+      if (elegidas.some((e) => Math.abs(e.y - c.y) < 30 && Math.abs(e.x - c.x) < 120)) continue;   // que no se pisen
+      elegidas.push(c);
+    }
+    return elegidas;
   }
   function mundo(vh) {
+    const ancho = window.innerWidth, ahora = performance.now();
     // El disco del planeta en pantalla: dónde se puede agarrar
     vDisco.copy(tierra.position).project(camara);
-    disco.x = (vDisco.x + 1) / 2 * window.innerWidth; disco.y = (1 - vDisco.y) / 2 * vh;
+    disco.x = (vDisco.x + 1) / 2 * ancho; disco.y = (1 - vDisco.y) / 2 * vh;
     disco.r = (vh / 2) / (Math.tan(camara.fov * Math.PI / 360) * camara.position.distanceTo(tierra.position));
-    matPal.uniforms.uExp.value = S.explora;
-    matHilo.uniforms.uA.value = S.explora * 0.75;
-    const nueva = elegir();
-    if (nueva !== sel) {
-      const aS = gPal.getAttribute('aSel');
-      if (aS) { if (sel >= 0) aS.setX(sel, 0); if (nueva >= 0) aS.setX(nueva, 1); aS.needsUpdate = true; }
-      sel = nueva; selDesde = performance.now();
-      if (sel >= 0) etiquetaIn.textContent = palabras[sel].p;
-    }
-    // Se cuenta como descubierta si la persona ya giró el mundo y la palabra se quedó un momento a la vista
-    // (girando rápido, pasan sin contar)
-    if (sel >= 0 && mano.giro && !descubiertas.includes(sel) && performance.now() - selDesde > 380) {
-      marcar(sel, true); contar();
-      etiqueta.classList.remove('nueva'); void etiqueta.offsetWidth; etiqueta.classList.add('nueva');
-    }
+    // Mientras la persona gira el mundo (y un rato después) las palabras aparecen en cualquier momento del relato
+    if (mano.id !== null || Math.abs(mano.vR) > 0.003) ultimoGiro = ahora;
+    interes += ((ahora - ultimoGiro < 2200 ? 1 : 0) - interes) * 0.08;
+    visible = Math.max(S.explora, interes * (1 - S.cielo));
+    matPal.uniforms.uExp.value = visible;
+    matHilo.uniforms.uA.value = visible * 0.75;
+    const elegidas = elegir(vh, ancho);
+    const aS = gPal.getAttribute('aSel');
+    // Cada cartel sigue a su palabra; los que quedan libres toman las palabras nuevas
+    const libres = etiquetas.filter((e) => !elegidas.some((c) => c.i === e.i));
+    const nuevas = elegidas.filter((c) => !etiquetas.some((e) => e.i === c.i));
+    libres.forEach((e) => { if (e.i >= 0 && aS) { aS.setX(e.i, 0); aS.needsUpdate = true; } e.i = -1; });
+    nuevas.forEach((c, k) => {
+      const e = libres[k]; if (!e) return;
+      e.i = c.i; e.desde = ahora; e.txt.textContent = palabras[c.i].p;
+      if (aS) { aS.setX(c.i, 1); aS.needsUpdate = true; }
+    });
+    etiquetas.forEach((e) => {
+      const c = elegidas.find((q) => q.i === e.i), ver = !!c && visible > 0.4;
+      if (c) e.el.style.transform = 'translate(' + c.x.toFixed(1) + 'px,' + c.y.toFixed(1) + 'px)';
+      e.el.style.opacity = ver ? visible.toFixed(3) : '0';
+      e.el.style.pointerEvents = ver ? 'auto' : 'none';
+      e.el.tabIndex = ver ? 0 : -1;
+      // Descubierta si la persona ya giró el mundo y la palabra se quedó un momento a la vista
+      if (ver && mano.giro && !descubiertas.includes(e.i) && ahora - e.desde > 380) {
+        marcar(e.i, true); contar();
+        e.el.classList.remove('nueva'); void e.el.offsetWidth; e.el.classList.add('nueva');
+      }
+    });
     if (mano.giro && !contada) contar();
-    const ver = sel >= 0 && S.explora > 0.5;
-    if (sel >= 0) {
-      vW.copy(palabras[sel].v).applyQuaternion(tierra.quaternion);
-      vP.copy(tierra.position).addScaledVector(vW, 1.008).project(camara);
-      etiqueta.style.transform = 'translate(' + ((vP.x + 1) / 2 * window.innerWidth).toFixed(1) + 'px,' + ((1 - vP.y) / 2 * vh).toFixed(1) + 'px)';
-    }
-    etiqueta.style.opacity = ver ? S.explora.toFixed(3) : '0';
-    etiqueta.style.pointerEvents = ver ? 'auto' : 'none';
-    etiqueta.tabIndex = ver ? 0 : -1;
-    guia.style.opacity = palabras.length && S.explora > 0.5 && abierta < 0 ? S.explora.toFixed(3) : '0';
-    if (S.explora < 0.3 && abierta >= 0) cerrar();
+    const guiaVer = palabras.length && abierta < 0 && (S.explora > 0.5 || (contada && interes > 0.5 && S.cielo < 0.5));
+    guia.style.opacity = guiaVer ? Math.max(S.explora, interes).toFixed(3) : '0';
+    if (visible < 0.3 && abierta >= 0) cerrar();
   }
 
   const INICIO = { explora: 0, salto: 0, revela: 0, altura: 0.95, cielo: 0, rayos: movil ? 0.42 : 0.75, lugar: 0, sendero: 0, compania: 0, arcos: 0, alba: 0, jer: 0, arg: 0, fov: 35, roll: 0 };
@@ -684,7 +711,7 @@ function iniciar() {
   const vMeta = new THREE.Vector3(), vSal = new THREE.Vector3();
   const vLugar = new THREE.Vector3(), vJer = new THREE.Vector3(), vRot = new THREE.Vector3(), vCam = new THREE.Vector3();
   const reloj = new THREE.Clock();
-  let lugarFijo = false, activo = true, fovPrevio = 35, mostrado = null;
+  let lugarFijo = false, activo = true, fovPrevio = 35, mostrado = null, tPrevio = 0;
   function cuadro() {
     requestAnimationFrame(cuadro);
     if (document.hidden) return;
@@ -715,12 +742,14 @@ function iniciar() {
     tl.progress(Math.min(1, avance));
 
     uComunes.uTiempo.value = reloj.getElapsedTime();
-    // La mano: inercia al soltar; fuera de los momentos de jugar, el planeta vuelve solo a su lugar en el relato
-    if (mano.id !== null && !sePuede()) { mano.id = null; raiz.classList.remove('mundo-agarra'); }
+    // La mano: inercia al soltar; al seguir bajando, el planeta vuelve de a poco a su lugar en el relato
+    // (en la pausa del mundo queda donde lo dejaron)
+    const tAhora = tl.time(), dtRelato = Math.abs(tAhora - tPrevio);
+    tPrevio = tAhora;
     if (mano.id === null) { mano.dR += mano.vR; mano.dI += mano.vI; mano.vR *= 0.93; mano.vI *= 0.9; }
-    if (!sePuede() && mano.id === null) {
-      if (raiz.classList.contains('mundo-sobre')) raiz.classList.remove('mundo-sobre');
-      mano.dR = Math.atan2(Math.sin(mano.dR), Math.cos(mano.dR)) * 0.9; mano.dI *= 0.9; mano.vR = mano.vI = 0;
+    if (mano.id === null && dtRelato > 0 && !enPausa()) {
+      const f = Math.exp(-dtRelato * 5);
+      mano.dR = Math.atan2(Math.sin(mano.dR), Math.cos(mano.dR)) * f; mano.dI *= f;
     }
     mano.dI = Math.max(-1.15 - S.incl, Math.min(1.15 - S.incl, mano.dI));
     tierra.position.set(S.ex, S.ey, 0);

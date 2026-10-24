@@ -259,12 +259,12 @@
  .mundo-ui { position: fixed; inset: 0; z-index: 5; pointer-events: none; }
  .mundo-palabra {
  position: absolute; left: 0; top: 0; opacity: 0; border: 0; padding: 0; background: none; cursor: pointer; pointer-events: none;
- font: inherit; color: #FAF8F5;
+ font: inherit; color: #FAF8F5; transition: opacity 0.25s ease;
  }
  .mundo-palabra-in {
- display: block; transform: translate(-50%, calc(-100% - 16px)); white-space: nowrap;
- font-family: var(--f-titulo); font-weight: 400; font-size: clamp(1.25rem, 3.4vw, 1.7rem); letter-spacing: -0.01em;
- padding: 0.35em 0.8em 0.4em; border-radius: 999px;
+ display: block; transform: translate(-50%, calc(-100% - 9px)); white-space: nowrap;
+ font-family: var(--f-texto); font-weight: 500; font-size: clamp(0.78rem, 2.1vw, 0.9rem); letter-spacing: 0.01em;
+ padding: 0.3em 0.75em 0.34em; border-radius: 999px;
  background: rgba(13, 10, 11, 0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
  box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 8px 30px rgba(0, 0, 0, 0.45);
  transition: box-shadow 0.3s ease, background 0.3s ease;
@@ -272,7 +272,7 @@
  .mundo-palabra:hover .mundo-palabra-in, .mundo-palabra:focus-visible .mundo-palabra-in { background: rgba(13, 10, 11, 0.75); box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.8), 0 8px 30px rgba(0, 0, 0, 0.45); }
  .mundo-palabra:focus-visible { outline: none; }
  .mundo-palabra.nueva .mundo-palabra-in { animation: mundo-nueva 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
- @keyframes mundo-nueva { 0% { box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 0 0 0 rgba(116, 172, 223, 0.6); } 100% { box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 0 0 22px rgba(116, 172, 223, 0); } }
+ @keyframes mundo-nueva { 0% { box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 0 0 0 rgba(116, 172, 223, 0.6); } 100% { box-shadow: 0 0 0 1px rgba(116, 172, 223, 0.35), 0 0 0 14px rgba(116, 172, 223, 0); } }
  .mundo-guia {
  position: absolute; left: 50%; bottom: max(1.6rem, env(safe-area-inset-bottom)); transform: translateX(-50%); opacity: 0;
  display: flex; flex-direction: column; align-items: center; gap: 0.35rem; text-align: center; color: rgba(250, 248, 245, 0.9);
