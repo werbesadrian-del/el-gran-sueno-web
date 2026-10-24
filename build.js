@@ -189,7 +189,7 @@ huellas.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join('
 // ---- Regenerar sitemap.xml (páginas hechas a mano + generadas) ----
 // index.html no va: es la misma página que "/" y Google la contaría como duplicada.
 // Las páginas hechas a mano van sin lastmod: poner "hoy" en cada build le enseña a Google a ignorarlo.
-var EXCLUIR = new Set(['index.html','googled24ec9b747ece530.html','articulo.html','huella.html','gracias.html','en-camino.html','escuelas.html','escuela-individual.html','registrar-institucion.html']);
+var EXCLUIR = new Set(['index.html','404.html','googled24ec9b747ece530.html','articulo.html','huella.html','gracias.html','en-camino.html','escuelas.html','escuela-individual.html','registrar-institucion.html']);
 var raiz = fs.readdirSync('.').filter(function (f) { return f.endsWith('.html') && !EXCLUIR.has(f); });
 var urls = [{ loc: '/', prio: '1.0' }];
 raiz.forEach(function (f) { urls.push({ loc: '/' + f, prio: '0.7' }); });
