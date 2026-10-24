@@ -187,16 +187,56 @@ escritos.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join(
 huellas.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join('huella', p.slug + '.html'), paginaHuella(p)); urlsCms.push({ loc:'/huella/'+p.slug, fecha:p.fecha }); });
 
 // ---- Regenerar sitemap.xml (páginas hechas a mano + generadas) ----
-var EXCLUIR = new Set(['articulo.html','huella.html','gracias.html','en-camino.html','escuelas.html','escuela-individual.html','registrar-institucion.html']);
+// index.html no va: es la misma página que "/" y Google la contaría como duplicada.
+// Las páginas hechas a mano van sin lastmod: poner "hoy" en cada build le enseña a Google a ignorarlo.
+var EXCLUIR = new Set(['index.html','articulo.html','huella.html','gracias.html','en-camino.html','escuelas.html','escuela-individual.html','registrar-institucion.html']);
 var raiz = fs.readdirSync('.').filter(function (f) { return f.endsWith('.html') && !EXCLUIR.has(f); });
-var hoy = new Date().toISOString().slice(0, 10);
-var urls = raiz.map(function (f) { return { loc: '/' + f, fecha: hoy, prio: f === 'index.html' ? '1.0' : '0.7' }; });
-urls.push({ loc: '/', fecha: hoy, prio: '1.0' });
-urlsCms.forEach(function (u) { urls.push({ loc: u.loc, fecha: u.fecha || hoy, prio: '0.7' }); });
+var urls = [{ loc: '/', prio: '1.0' }];
+raiz.forEach(function (f) { urls.push({ loc: '/' + f, prio: '0.7' }); });
+urlsCms.forEach(function (u) { urls.push({ loc: u.loc, fecha: u.fecha, prio: '0.7' }); });
 
 var xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-  urls.map(function (u) { return '  <url><loc>' + SITE + (u.loc === '/' ? '/' : u.loc) + '</loc><lastmod>' + u.fecha + '</lastmod><priority>' + (u.prio || '0.7') + '</priority></url>'; }).join('\n') +
+  urls.map(function (u) { return '  <url><loc>' + SITE + u.loc + '</loc>' + (u.fecha ? '<lastmod>' + u.fecha + '</lastmod>' : '') + '<priority>' + u.prio + '</priority></url>'; }).join('\n') +
   '\n</urlset>\n';
 fs.writeFileSync('sitemap.xml', xml);
+
+// ---- Datos de cada página (título y descripción), leídos del HTML ya armado ----
+function archivoDe(loc) { return loc === '/' ? 'index.html' : (loc.slice(1).endsWith('.html') ? loc.slice(1) : loc.slice(1) + '.html'); }
+function datosPagina(loc) {
+  var h = ''; try { h = fs.readFileSync(archivoDe(loc), 'utf8'); } catch (e) {}
+  var t = (h.match(/<title>([^<]*)<\/title>/) || [])[1] || '';
+  var d = (h.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '';
+  return { loc: loc, titulo: t.replace(/ \| El Gran Sueño$/, '').trim(), desc: d.trim() };
+}
+var escritosTodos = urls.filter(function (u) { return /^\/(escrito-|blog\/)/.test(u.loc); }).map(function (u) { return datosPagina(u.loc); });
+var huellasTodas = urls.filter(function (u) { return /^\/(huella-|huella\/)/.test(u.loc); }).map(function (u) { return datosPagina(u.loc); });
+
+// ---- Índice fijo en blog.html y huellas-de-fe.html ----
+// Las tarjetas se arman con JavaScript; los rastreadores de IA (ChatGPT, Claude, Perplexity) y
+// algunos buscadores no lo corren y no veían ningún escrito. Este índice en <noscript> les deja
+// los enlaces impresos en el HTML. Se reescribe entero entre las dos marcas en cada build.
+function ponerIndice(archivo, items, titulo) {
+  var h = fs.readFileSync(archivo, 'utf8');
+  var bloque = '<!--indice-->\n<noscript><nav class="indice-fijo" aria-label="' + esc(titulo) + '"><h2>' + esc(titulo) + '</h2><ul>\n' +
+    items.map(function (i) { return '<li><a href="' + i.loc + '">' + esc(i.titulo) + '</a>' + (i.desc ? ' <span>' + esc(i.desc) + '</span>' : '') + '</li>'; }).join('\n') +
+    '\n</ul></nav></noscript>\n<!--/indice-->';
+  if (h.indexOf('<!--indice-->') >= 0) h = h.replace(/<!--indice-->[\s\S]*?<!--\/indice-->/, bloque);
+  else h = h.replace('</main>', bloque + '</main>');
+  fs.writeFileSync(archivo, h);
+}
+ponerIndice('blog.html', escritosTodos, 'Todos los escritos');
+ponerIndice('huellas-de-fe.html', huellasTodas, 'Todas las huellas de fe');
+
+// ---- llms.txt: la puerta para las IA (formato llmstxt.org) ----
+function lineas(items) { return items.map(function (i) { return '- [' + i.titulo + '](' + SITE + i.loc + ')' + (i.desc ? ': ' + i.desc : ''); }).join('\n'); }
+var principales = ['/', '/manifiesto.html', '/nosotros.html', '/mentoria.html', '/quiero-ser-parte.html', '/historias.html', '/colaborar.html'].map(datosPagina);
+var llms = '# El Gran Sueño\n\n' +
+  '> Comunidad cristiana en español fundada por Adrián (@adrianencamino). Escritos sobre identidad en Cristo, propósito, ' +
+  'descanso y la Gran Comisión: la vida nueva no es intentar alcanzar, es vivir desde lo que Cristo ya nos dio (Colosenses 3:4).\n\n' +
+  'Sitio: ' + SITE + '. Contacto: adrian@elgransueno.org. Videos: https://www.youtube.com/@adrianencamino. Instagram: https://instagram.com/adrianencamino.\n\n' +
+  '## Páginas principales\n\n' + lineas(principales) + '\n\n' +
+  '## Escritos\n\n' + lineas(escritosTodos) + '\n\n' +
+  '## Huellas de fe\n\n' + lineas(huellasTodas) + '\n';
+fs.writeFileSync('llms.txt', llms);
 
 console.log('BUILD OK - escritos:', escritos.length, '| huellas:', huellas.length, '| URLs en sitemap:', urls.length);

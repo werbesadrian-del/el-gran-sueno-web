@@ -1,4 +1,23 @@
+# El Gran Sueño. Todo el sitio está abierto a buscadores y a las IA que citan fuentes.
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /demo/
+
+# Buscadores con IA y asistentes: bienvenidos (ChatGPT, Claude, Perplexity, Gemini, Apple, Brave, Bing)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
 
 Sitemap: https://elgransueno.org/sitemap.xml
