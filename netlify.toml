@@ -22,6 +22,13 @@
   [headers.values]
     Cache-Control = "public, max-age=604800"
 
+# La Tierra (texturas NASA) no cambia entre publicaciones: el navegador la guarda un mes
+# y no vuelve a preguntar en cada visita. Si algún día se cambia una textura, cambiarle el nombre.
+[[headers]]
+  for = "/assets/tierra/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
 [[redirects]]
   from = "/blog-articulo.html"
   to   = "/escrito-identidad-dios-ya-dijo"
