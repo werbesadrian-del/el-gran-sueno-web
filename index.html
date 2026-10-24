@@ -633,26 +633,29 @@
  }
  function en(tramo, x) { return x >= tramo[0] && x <= tramo[1]; }
 
- var ultimoY = window.scrollY, quieto = null, pedido = false, mira = 1;
+ var ultimoY = window.scrollY, quieto = null, pedido = false, mira = 1, desplaza = 0;
+ var perfilSvg = tira.querySelector('.sendero-perfil');
  function poner(el, xv, W, H, mostrar, ang) {
   el.style.opacity = mostrar ? '1' : '0';
   if (!mostrar) return;
   var w = el.firstChild.getAttribute('width') * 1, h = el.firstChild.getAttribute('height') * 1;
-  var xp = xv / 1000 * W, yp = altoEn(xv) / 40 * H;
+  var xp = xv / 1000 * W - desplaza, yp = altoEn(xv) / 40 * H;
   el.style.transform = 'translate(' + (xp - w / 2).toFixed(1) + 'px,' + (yp - h).toFixed(1) + 'px) rotate(' + (ang || 0).toFixed(1) + 'deg) scaleX(' + mira + ')';
  }
  function pintar() {
   pedido = false;
   var y = window.scrollY, doc = document.documentElement;
   var max = Math.max(1, doc.scrollHeight - doc.clientHeight);
-  var W = tira.clientWidth || window.innerWidth, H = tira.clientHeight || 40;
+  var Wp = tira.clientWidth || window.innerWidth, H = tira.clientHeight || 40;
+  // En el celular el camino mide más que la pantalla (cada escena con su espacio) y se desliza con él
+  var W = Math.max(Wp, 1000);
   var avance = Math.min(1, Math.max(0, y / max));
   // Al empezar camina rápido hasta la piedrita (la toca al 15 % de la portada); el resto de la historia ocupa
   // hasta las tres cuartas partes de la página
   var y0 = (peli && document.body.classList.contains('cine-on')) ? peli.offsetTop * 0.15 : max * 0.04;
   var x = y < y0 ? 6 + 40 * (y / y0) : 46 + Math.min(1, (y - y0) / Math.max(1, max * 0.74 - y0)) * 948;
   tira.style.setProperty('--nav-b', (nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0) + 'px');
-  var finNoche = document.body.classList.contains('cine-on') && peli ? peli.offsetTop + peli.offsetHeight - window.innerHeight * 1.25 : (portada ? portada.offsetHeight * 0.75 : 0);
+  var finNoche = document.body.classList.contains('cine-on') && peli ? peli.offsetTop + peli.offsetHeight - window.innerHeight * 2.2 : (portada ? portada.offsetHeight * 0.75 : 0);
   document.body.classList.toggle('en-noche', y < finNoche);
   if (y !== ultimoY) {
    mira = y < ultimoY ? -1 : 1;
@@ -662,6 +665,8 @@
   }
   ultimoY = y;
   if (corte) corte.setAttribute('width', x.toFixed(1));
+  desplaza = W > Wp ? Math.max(0, Math.min(W - Wp, x / 1000 * W - Wp * 0.38)) : 0;
+  perfilSvg.style.width = W + 'px'; perfilSvg.style.transform = 'translateX(' + (-desplaza).toFixed(1) + 'px)';
 
   // Las escenas aparecen un poco antes de que él llegue y quedan atrás
   escenas.forEach(function (e) {
@@ -669,7 +674,7 @@
    var unido = (e.id === 'p1' && x >= SE_SUMA[0]) || (e.id === 'p2' && x >= SE_SUMA[1]);
    var w = e.el.firstChild.getAttribute('width') * 1, h = e.el.firstChild.getAttribute('height') * 1;
    e.el.style.opacity = unido ? '0' : (cerca * (x >= e.x ? 1 : 0.42)).toFixed(2);
-   e.el.style.transform = 'translate(' + (e.x / 1000 * W - w / 2).toFixed(1) + 'px,' + (altoEn(e.x) / 40 * H - h + (e.id === 'p1' ? 1 : 0)).toFixed(1) + 'px)';
+   e.el.style.transform = 'translate(' + (e.x / 1000 * W - desplaza - w / 2).toFixed(1) + 'px,' + (altoEn(e.x) / 40 * H - h + (e.id === 'p1' ? 1 : 0)).toFixed(1) + 'px)';
   });
   // El auto espera estacionado y después lleva a todos; el barco espera en la costa
   var enAuto = en(TRAMOS.auto, x), enBarco = en(TRAMOS.barco, x), nadando = en(TRAMOS.lago, x);
@@ -700,7 +705,7 @@
   farol.style.opacity = '0';
   // La piedrita de luz: desde acá sale la luz grande que baja a la Tierra (la escena 3D lee este punto)
   var nbH = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
-  window.__luzSendero = { x: LUZ_X / 1000 * W, y: nbH + altoEn(LUZ_X) / 40 * H - 5 };
+  window.__luzSendero = { x: LUZ_X / 1000 * W - desplaza, y: nbH + altoEn(LUZ_X) / 40 * H - 5 };
   poner(nadador, x, W, H + 3, nadando, 0);
   // Los compañeros caminan detrás; en el auto y el barco van adentro
   amigos.forEach(function (a, i) {

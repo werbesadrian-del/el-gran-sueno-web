@@ -44,7 +44,12 @@ function iniciar() {
   const LARGO = 0.5;
   document.body.classList.add('cine-on');
   peli.classList.add('peli-on');
-  const medir = () => { peli.style.height = ((ESC * LARGO + 1) * window.innerHeight) + 'px'; };
+  const siguiente = peli.nextElementSibling;
+  const medir = () => {
+    peli.style.height = ((ESC * LARGO + 2) * window.innerHeight) + 'px';
+    // La sección que sigue sube por encima de la luz que inundó la pantalla: sin escenario vacío entre medio
+    if (siguiente) { siguiente.style.marginTop = (-window.innerHeight) + 'px'; siguiente.style.position = 'relative'; siguiente.style.zIndex = '7'; }
+  };
   medir();
 
   // ---------- Render ----------
@@ -226,7 +231,7 @@ function iniciar() {
   const matHalo = puntoLuz(TAM_HALO);
   const halo = new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute([0, 0, 0], 3)), matHalo);
   escena.add(halo);
-  const compositor = new EffectComposer(renderer, { frameBufferType: THREE.HalfFloatType });
+  const compositor = new EffectComposer(renderer, { frameBufferType: THREE.HalfFloatType, multisampling: Math.min(movil ? 2 : 4, renderer.capabilities.maxSamples || 0) });   // bordes suaves
   compositor.addPass(new RenderPass(escena, camara));
   const rayos = new GodRaysEffect(camara, fuente, {
     density: 0.97, decay: 0.94, weight: 0.32, exposure: 0.42, samples: movil ? 48 : 72,
@@ -442,12 +447,13 @@ function iniciar() {
     requestAnimationFrame(cuadro);
     if (document.hidden) return;
     const y = window.scrollY, vh = window.innerHeight;
-    const inicio = peli.offsetTop, fin = inicio + peli.offsetHeight - vh;
+    const inicio = peli.offsetTop, fin = inicio + peli.offsetHeight - 2 * vh;
     const meta = y < inicio ? (y / Math.max(1, inicio)) / DUR : (1 + Math.min(1, (y - inicio) / Math.max(1, fin - inicio)) * ESC) / DUR;
-    // Al terminar el relato la Tierra se apaga y la luz que inundó la pantalla se disuelve en la página
+    // Al terminar el relato la luz cubre la pantalla y la sección siguiente sube por encima
     const pasada = y - fin;
-    alba.style.visibility = pasada < vh * 0.45 ? 'visible' : 'hidden';
-    if (pasada > 0) alba.style.opacity = Math.max(0, 1 - pasada / (vh * 0.4)).toFixed(3);
+    alba.style.visibility = pasada < vh ? 'visible' : 'hidden';
+    if (pasada > 0) alba.style.opacity = '1';                     // aunque se baje rápido, la luz cubre todo
+    escenario.style.visibility = pasada > 0 ? 'hidden' : 'visible';
     const debe = pasada < 2;
     if (debe !== activo) {
       activo = debe;
