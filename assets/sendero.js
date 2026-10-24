@@ -75,8 +75,9 @@
  function fondoOscuro(el) {
   for (; el && el !== document.documentElement; el = el.parentElement) {
    var cs = getComputedStyle(el), m, l;
-   if (cs.backgroundImage && cs.backgroundImage !== 'none' && (m = cs.backgroundImage.match(/rgba?\(([^)]+)\)/))) { l = luz(m[1]); if (l >= 0) return l < 0.4; }
+   // Primero el color de fondo (las estrellas de la noche son una imagen encima); si no tiene, el degradé
    if ((m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/))) { l = luz(m[1]); if (l >= 0) return l < 0.4; }
+   if (cs.backgroundImage && cs.backgroundImage !== 'none' && (m = cs.backgroundImage.match(/gradient\([^)]*?rgba?\(([^)]+)\)/))) { l = luz(m[1]); if (l >= 0) return l < 0.4; }
   }
   return false;
  }

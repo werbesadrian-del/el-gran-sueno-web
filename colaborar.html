@@ -514,11 +514,19 @@
  max-width: 560px;
  margin: 0 auto;
  }
- .col-cierre-txt em { color: var(--bordo); font-style: italic; }</style>
+ .col-cierre-txt em { color: var(--bordo); font-style: italic; }
+ /* Coherencia con el viaje (24 oct 2026): tarjetas redondas como en Encontrar mi lugar, sin barra al costado */
+ .col-forma { border-radius: 22px; background: #FAF8F5; border-color: rgba(26, 21, 16, 0.08); }
+ .col-forma::before { display: none; }
+ .col-forma-lista { border-top-color: rgba(26, 21, 16, 0.08); }
+ .col-form-inner { border-radius: 22px; }
+ .col-honestidad, .col-form-inner { background: #FAF8F5; }
+ .col-transp-nota, .col-nunca-item { border-radius: 16px; }
+ .col-forma-icono { display: block; width: 34px; height: 34px; fill: none; stroke: var(--bordo); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 1rem; }</style>
  <link rel="canonical" href="https://elgransueno.org/colaborar.html">
  <meta property="og:site_name" content="El Gran Sueño">
  <meta property="og:url" content="https://elgransueno.org/colaborar.html"></head>
-<body class="modo-limpio">
+<body class="modo-limpio pagina-viaje">
 
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 
@@ -564,6 +572,7 @@
  <div class="col-formas-grid">
 
  <div class="col-forma presencia" data-forma="presencia">
+ <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c2 3 4.5 4.6 4.5 8.4a4.5 4.5 0 0 1-9 0c0-2.2 1.2-3.4 2.2-4.4 0 1.6.9 2.4 2 2.5-.9-2.2-.8-4.4.3-6.5z"/><path d="M8 21h8"/></svg>
  <span class="col-forma-etiq">Con presencia</span>
  <h3 class="col-forma-titulo">Orar por procesos concretos</h3>
  <p class="col-forma-desc">La forma más antigua y más sostenida de acompañar a alguien. Nombres reales, historias reales, oración real.</p>
@@ -574,6 +583,7 @@
  <span class="col-forma-elegir">Sumarme a orar</span></div>
 
  <div class="col-forma tiempo" data-forma="tiempo">
+ <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
  <span class="col-forma-etiq">Con tiempo</span>
  <h3 class="col-forma-titulo">Poner horas al servicio</h3>
  <p class="col-forma-desc">Escribir, escuchar, conectar, editar, traducir, cuidar procesos. Todo lo que sucede acá sucede porque alguien decidió regalar su tiempo.</p>
@@ -584,6 +594,7 @@
  <span class="col-forma-elegir">Ofrecer mi tiempo</span></div>
 
  <div class="col-forma red" data-forma="red">
+ <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M8.3 7l7.3-.8M7.2 9.1l3.7 6.8M16.9 8.2l-3.8 7.7"/></svg>
  <span class="col-forma-etiq">Con red y recursos</span>
  <h3 class="col-forma-titulo">Conectar personas y abrir puertas</h3>
  <p class="col-forma-desc">A veces la mayor forma de sostener no es dar algo tuyo, sino abrir el acceso a algo que necesita otra persona. Un contacto. Un espacio. Una oportunidad.</p>
@@ -594,6 +605,7 @@
  <span class="col-forma-elegir">Compartir lo que tengo</span></div>
 
  <div class="col-forma aporte" data-forma="aporte">
+ <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-6.5-4-6.5-9.4A3.6 3.6 0 0 1 12 8.4a3.6 3.6 0 0 1 6.5 2.2C18.5 16 12 20 12 20z"/></svg>
  <span class="col-forma-etiq">Con aportes económicos</span>
  <h3 class="col-forma-titulo">Sostener lo que hace falta pagar</h3>
  <p class="col-forma-desc">Hay cosas que no se pueden regalar. Un servidor. Una herramienta. Un viaje. Un tiempo que alguien necesita dedicarle por completo al equipo.</p>
