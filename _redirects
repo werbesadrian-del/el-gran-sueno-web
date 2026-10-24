@@ -5,3 +5,12 @@
 /blog-articulo.html                /escrito-identidad-dios-ya-dijo   301
 /huella-individual.html            /huella-george-muller             301
 /huella-amy-carmichael-lapiz.html  /huella-amy-carmichael           301
+
+# En pausa (24 oct 2026): escuelas e instituciones vuelven más adelante. Las páginas siguen en la
+# carpeta; para reabrirlas, borrar estas líneas y volver a ponerlas en el menú (assets/egs.js).
+/escuelas.html                     /en-camino                       302!
+/escuelas                          /en-camino                       302!
+/escuela-individual.html           /en-camino                       302!
+/escuela-individual                /en-camino                       302!
+/registrar-institucion.html        /en-camino                       302!
+/registrar-institucion             /en-camino                       302!

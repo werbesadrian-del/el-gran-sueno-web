@@ -187,7 +187,7 @@ escritos.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join(
 huellas.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join('huella', p.slug + '.html'), paginaHuella(p)); urlsCms.push({ loc:'/huella/'+p.slug, fecha:p.fecha }); });
 
 // ---- Regenerar sitemap.xml (páginas hechas a mano + generadas) ----
-var EXCLUIR = new Set(['articulo.html','huella.html','gracias.html']);
+var EXCLUIR = new Set(['articulo.html','huella.html','gracias.html','en-camino.html','escuelas.html','escuela-individual.html','registrar-institucion.html']);
 var raiz = fs.readdirSync('.').filter(function (f) { return f.endsWith('.html') && !EXCLUIR.has(f); });
 var hoy = new Date().toISOString().slice(0, 10);
 var urls = raiz.map(function (f) { return { loc: '/' + f, fecha: hoy, prio: f === 'index.html' ? '1.0' : '0.7' }; });

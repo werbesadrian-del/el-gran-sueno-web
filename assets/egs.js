@@ -109,7 +109,6 @@ window.egsAvisarNetlify = function (formName, campos) {
         <span class="nav-col-eyebrow">Encontrar tu lugar</span>
         <ul>
           <li><a href="/quiero-ser-parte.html">Encontrar mi lugar</a></li>
-          <li><a href="/compartir-historia.html">Compartir mi historia</a></li>
           <li class="nav-featured"><a href="/mentoria.html"><span class="nav-featured-main">Una sesión con Adrián<i class="nav-featured-dot" aria-hidden="true"></i></span><span class="nav-featured-tag">Reservar una sesión</span></a></li>
           <li><a href="/quiero-acompanar.html">Ser acompañante</a></li>
           <li><a href="/colaborar.html">Sostener el sueño</a></li>
@@ -119,8 +118,7 @@ window.egsAvisarNetlify = function (formName, campos) {
         <span class="nav-col-eyebrow">Comunidad</span>
         <ul>
           <li><a href="/historias.html">Historias</a></li>
-          <li><a href="/escuelas.html">Escuelas</a></li>
-          <li><a href="/registrar-institucion.html">Registrar institución</a></li>
+          <li><a href="/compartir-historia.html">Compartir mi historia</a></li>
         </ul>
       </div>
       <div class="nav-col">
