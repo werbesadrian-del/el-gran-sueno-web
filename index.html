@@ -258,6 +258,52 @@
  background: #FAF8F5; box-shadow: 0 0 10px 2px rgba(250, 248, 245, 0.6);
  }
 
+ /* LAS PUERTAS DE LA PORTADA: todo lo importante a la vista desde que se entra (una sesión, encontrar tu lugar,
+ los escritos, las huellas). La historia sigue para quien baja. Se leen sobre la noche y sobre la Tierra. */
+ body.cine-on .st-hero-top { height: 100vh; height: 100svh; min-height: 560px; }
+ body.cine-on .st-hero-top .hero-marca { justify-content: flex-start; padding-top: max(22svh, 150px); }
+ .portada-puertas {
+ position: absolute; z-index: 3; left: 50%; bottom: calc(5.2rem + env(safe-area-inset-bottom)); transform: translateX(-50%);
+ width: min(calc(100% - 2rem), 60rem); display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem;
+ }
+ .puerta {
+ display: flex; align-items: center; gap: 0.8rem; min-height: 4.4rem; padding: 0.85rem 1rem; border-radius: 16px; text-decoration: none;
+ color: #FAF8F5; background: rgba(13, 10, 11, 0.5); border: 1px solid rgba(250, 248, 245, 0.18);
+ backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+ opacity: 0; transform: translateY(14px); animation: puerta-entra 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+ transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+ }
+ .puerta:nth-child(1) { animation-delay: 0.5s; } .puerta:nth-child(2) { animation-delay: 0.6s; }
+ .puerta:nth-child(3) { animation-delay: 0.7s; } .puerta:nth-child(4) { animation-delay: 0.8s; }
+ @keyframes puerta-entra { to { opacity: 1; transform: none; } }
+ .puerta:hover, .puerta:focus-visible { background: rgba(13, 10, 11, 0.7); border-color: rgba(116, 172, 223, 0.75); }
+ .puerta:focus-visible { outline: 2px solid #74ACDF; outline-offset: 2px; }
+ .puerta svg { flex-shrink: 0; width: 24px; height: 24px; fill: none; stroke: #74ACDF; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+ .puerta span { display: flex; flex-direction: column; gap: 0.12rem; min-width: 0; }
+ .puerta strong { font-family: var(--f-texto); font-weight: 600; font-size: 0.98rem; line-height: 1.2; }
+ .puerta small { font-family: var(--f-texto); font-size: 0.8rem; line-height: 1.3; color: rgba(250, 248, 245, 0.7); }
+ .puerta-destacada { background: #FAF8F5; color: #1A1510; border-color: #FAF8F5; }
+ .puerta-destacada svg { stroke: #6B1A2B; }
+ .puerta-destacada small { color: #4A4540; }
+ .puerta-destacada:hover, .puerta-destacada:focus-visible { background: #fff; border-color: #fff; }
+ .portada-bajar {
+ position: absolute; z-index: 3; left: 50%; bottom: calc(0.9rem + env(safe-area-inset-bottom)); transform: translateX(-50%); margin: 0;
+ display: flex; flex-direction: column; align-items: center; gap: 0.35rem; white-space: nowrap;
+ font-family: var(--f-voz); font-style: italic; font-size: 1rem; color: rgba(250, 248, 245, 0.72);
+ opacity: 0; animation: bajar-entra 0.8s ease 1.1s forwards;
+ }
+ @keyframes bajar-entra { to { opacity: 1; } }
+ .portada-bajar i { display: block; width: 1px; height: 22px; background: linear-gradient(rgba(250, 248, 245, 0.8), transparent); transform-origin: top; animation: bajar-linea 2s ease-in-out infinite; }
+ @keyframes bajar-linea { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+ @media (max-width: 760px) {
+ .portada-puertas { grid-template-columns: 1fr 1fr; gap: 0.55rem; bottom: calc(5rem + env(safe-area-inset-bottom)); }
+ .puerta { gap: 0.6rem; min-height: 4.1rem; padding: 0.75rem 0.8rem; border-radius: 14px; }
+ .puerta svg { width: 22px; height: 22px; }
+ .puerta strong { font-size: 0.92rem; }
+ .puerta small { font-size: 0.74rem; }
+ }
+ @media (prefers-reduced-motion: reduce) { .puerta, .portada-bajar { animation: none; opacity: 1; transform: none; } .portada-bajar { transform: translateX(-50%); } .portada-bajar i { animation: none; } }
+
  /* EL MUNDO EN LA MANO (assets/home-scroll.js): al entrar y en la pausa del mundo el planeta se arrastra.
  En el celular se gira de costado y se baja como siempre. En la pausa, cada luz guarda una palabra. */
  body.cine-on .st-hero-top, body.cine-on .peli-escenario { touch-action: pan-y; }
@@ -371,7 +417,23 @@
  <div class="hero-marca-velo" aria-hidden="true"></div>
  <div class="hero-marca">
  <h1 class="sr-only">El Gran Sueño, Propósito de vida, sentido e identidad, desde la Nueva Vida</h1>
- <p class="hero-frase">Viviendo desde la Nueva Vida.</p></div></section>
+ <p class="hero-frase">Viviendo desde la Nueva Vida.</p></div>
+ <!-- Las puertas: desde el primer momento se ve todo lo que hay en la web; la historia sigue bajando -->
+ <nav class="portada-puertas" aria-label="Lo que hay en El Gran Sueño">
+ <a class="puerta puerta-destacada" href="mentoria.html">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.6 2.2 2.6 3.4 2.6 6a2.6 2.6 0 0 1-5.2 0c0-1.2.5-2 1-2.7"/><path d="M5 20l14-3M5 17l14 3"/><path d="M12 13.5c-1.4 0-2.4-1-2.4-2.3"/></svg>
+ <span><strong>Una sesión con Adrián</strong><small>La primera es un regalo</small></span></a>
+ <a class="puerta" href="quiero-ser-parte.html">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+ <span><strong>Encontrar mi lugar</strong><small>Sumate al camino</small></span></a>
+ <a class="puerta" href="blog.html">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg>
+ <span><strong>Escritos</strong><small>Para leer con calma</small></span></a>
+ <a class="puerta" href="huellas-de-fe.html">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5c1.6 0 2.4 1.8 2.4 4.2S9.6 12 8 12s-2.4-1.9-2.4-4.3S6.4 3.5 8 3.5z"/><path d="M6.2 14.5h3.6l-.4 2.6a1.4 1.4 0 0 1-2.8 0z"/><path d="M16 8.5c1.6 0 2.4 1.8 2.4 4.2S17.6 17 16 17s-2.4-1.9-2.4-4.3.8-4.2 2.4-4.2z"/><path d="M14.2 19.5h3.6l-.4 1.4a1.4 1.4 0 0 1-2.8 0z"/></svg>
+ <span><strong>Huellas de Fe</strong><small>Vidas que caminaron antes</small></span></a>
+ </nav>
+ <p class="portada-bajar" aria-hidden="true"><span>O bajá y mirá la historia</span><i></i></p></section>
 
 <!-- PELÍCULA: el relato pasa en una pantalla fija, escena por escena, al ritmo del scroll
      (assets/home-scroll.js). Sin JS o con movimiento reducido, las secciones se leen una debajo de otra. -->
