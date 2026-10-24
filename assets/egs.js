@@ -583,3 +583,13 @@ window.egsAvisarNetlify = function (formName, campos) {
   antesDeAcciones('bid', 'historia');
   antesDeAcciones('b-contacto', 'acompanante');
 })();
+
+/* El sendero del mochilero en todas las páginas (assets/sendero.js) */
+(function () {
+  if (window.__egsSendero) return;
+  window.__egsSendero = true;
+  var s = document.createElement('script');
+  s.src = '/assets/sendero.js';
+  s.defer = true;
+  document.body.appendChild(s);
+})();
