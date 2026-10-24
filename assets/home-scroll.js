@@ -695,6 +695,36 @@ function iniciar() {
   }
   tamano(); trazarSendero(); trazarRed(); armar();
 
+  // Las puertas de la portada se abren al empezar a bajar: las de la izquierda giran sobre su borde izquierdo
+  // y salen hacia ese lado, las de la derecha al revés, como dos hojas; detrás queda la Tierra
+  const marcoPuertas = document.querySelector('.portada-puertas');
+  const puertas = marcoPuertas ? [...marcoPuertas.querySelectorAll('.puerta')] : [];
+  let ladosPuertas = [], kPuertas = -1;
+  const medirPuertas = () => {
+    if (!marcoPuertas) return;
+    ladosPuertas = puertas.map((p) => {
+      const lado = p.offsetLeft + p.offsetWidth / 2 < marcoPuertas.offsetWidth / 2 ? -1 : 1;
+      p.style.transformOrigin = lado < 0 ? 'left center' : 'right center';
+      return lado;
+    });
+    kPuertas = -1;
+  };
+  medirPuertas();
+  function abrirPuertas(y, vh) {
+    if (!marcoPuertas) return;
+    const k = Math.min(1, Math.max(0, y / (vh * 0.42)));
+    if (k === kPuertas) return;
+    kPuertas = k;
+    const e = k * k;
+    puertas.forEach((p, i) => {
+      const lado = ladosPuertas[i] || 1;
+      p.style.translate = (lado * e * window.innerWidth * 0.6).toFixed(1) + 'px 0';
+      p.style.rotate = 'y ' + (lado * e * 42).toFixed(1) + 'deg';
+    });
+    marcoPuertas.style.opacity = (1 - Math.max(0, (k - 0.35) / 0.65)).toFixed(3);
+    marcoPuertas.style.pointerEvents = k > 0.5 ? 'none' : '';
+  }
+
   // ---------- Cuadro a cuadro ----------
   const vMeta = new THREE.Vector3(), vSal = new THREE.Vector3();
   const vLugar = new THREE.Vector3(), vJer = new THREE.Vector3(), vRot = new THREE.Vector3(), vCam = new THREE.Vector3();
@@ -706,6 +736,7 @@ function iniciar() {
     const y = window.scrollY, vh = window.innerHeight;
     const inicio = peli.offsetTop, fin = inicio + peli.offsetHeight - 2 * vh;
     const meta = y < inicio ? (y / Math.max(1, inicio)) / DUR : (1 + Math.min(1, (y - inicio) / Math.max(1, fin - inicio)) * ESC) / DUR;
+    abrirPuertas(y, vh);
     // Al terminar el relato: corte a la sección siguiente, que ya estaba en su lugar
     const pasada = y - fin;
     const fuera = pasada >= 0;
@@ -819,7 +850,7 @@ function iniciar() {
 
   let anchoPrevio = window.innerWidth;
   window.addEventListener('resize', () => {
-    tamano();
+    tamano(); medirPuertas();
     if (window.innerWidth !== anchoPrevio) { anchoPrevio = window.innerWidth; medir(); armar(); }
   });
 }

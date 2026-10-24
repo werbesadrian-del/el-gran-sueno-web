@@ -265,6 +265,7 @@
  .portada-puertas {
  position: absolute; z-index: 3; left: 50%; bottom: calc(5.2rem + env(safe-area-inset-bottom)); transform: translateX(-50%);
  width: min(calc(100% - 2rem), 60rem); display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem;
+ perspective: 1100px;   /* al bajar, las puertas se abren como hojas (assets/home-scroll.js) */
  }
  .puerta {
  display: flex; align-items: center; gap: 0.8rem; min-height: 4.4rem; padding: 0.85rem 1rem; border-radius: 16px; text-decoration: none;
