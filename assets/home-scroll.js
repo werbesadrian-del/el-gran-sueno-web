@@ -468,13 +468,13 @@ function iniciar() {
     }
     hilos.add(new THREE.Line(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(p, 3)), matHilo));
   }
-  function marcar(i, guardar) {
+  // La constelación dura lo que dura la visita: no se guarda nada en el navegador (política de cookies)
+  function marcar(i) {
     if (descubiertas.includes(i)) return;
     const previa = descubiertas[descubiertas.length - 1];
     descubiertas.push(i);
     const aE = gPal.getAttribute('aEst'); aE.setX(i, 1); aE.needsUpdate = true;
     if (previa !== undefined) hilo(palabras[previa].v, palabras[i].v);
-    if (guardar) { try { localStorage.setItem('egs-mundo', JSON.stringify(descubiertas.map((k) => palabras[k].p))); } catch (e) {} }
   }
   // Cada palabra tiene su lugar fijo: las que piden un lugar van ahí; el resto se reparte por tierra firme,
   // lo más separadas posible (siempre igual, así nadie las encuentra en otro sitio la próxima vez)
@@ -519,10 +519,6 @@ function iniciar() {
     gPal.setAttribute('aEst', new THREE.BufferAttribute(new Float32Array(lista.length), 1));
     gPal.setAttribute('aSel', new THREE.BufferAttribute(new Float32Array(lista.length), 1));
     palabras = lista;
-    // Lo que ya descubrió en otra visita (queda solo en su navegador)
-    let guardadas = [];
-    try { guardadas = JSON.parse(localStorage.getItem('egs-mundo') || '[]'); } catch (e) {}
-    if (Array.isArray(guardadas)) guardadas.forEach((p) => { const i = lista.findIndex((c) => c.p === p); if (i >= 0) marcar(i, false); });
   }
   const cargarPalabras = window.egsConceptos ? window.egsConceptos() : Promise.resolve([]);
   Promise.all([cargarPalabras, aguaLista]).then(([lista, img]) => { if (lista.length) colocar(lista.map((c) => Object.assign({}, c)), img); });
@@ -552,7 +548,7 @@ function iniciar() {
     def.classList.add('abierta');
   }
   function cerrar() { abierta = -1; def.classList.remove('abierta'); }
-  etiquetas.forEach((e) => e.el.addEventListener('click', () => { if (e.i >= 0) { marcar(e.i, true); abrir(e.i); } }));
+  etiquetas.forEach((e) => e.el.addEventListener('click', () => { if (e.i >= 0) { marcar(e.i); abrir(e.i); } }));
   def.querySelector('.mundo-def-cerrar').addEventListener('click', cerrar);
   window.addEventListener('pointerdown', (e) => { if (abierta >= 0 && !e.target.closest('.mundo-def, .mundo-palabra')) cerrar(); });
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && abierta >= 0) cerrar(); });
@@ -623,7 +619,7 @@ function iniciar() {
       e.el.tabIndex = ver ? 0 : -1;
       // Descubierta si la persona ya giró el mundo y la palabra se quedó un momento a la vista
       if (ver && mano.giro && !descubiertas.includes(e.i) && ahora - e.desde > 380) {
-        marcar(e.i, true);
+        marcar(e.i);
         e.el.classList.remove('nueva'); void e.el.offsetWidth; e.el.classList.add('nueva');
       }
     });
