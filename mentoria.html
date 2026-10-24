@@ -63,17 +63,6 @@
  .s-datos strong { font-weight: 500; color: var(--s-hueso); }
 
  /* El fogón (el mismo de la home) */
- .fogon { position: relative; width: 64px; height: 58px; margin: 0 auto 1.9rem; }
- .fogon svg { display: block; overflow: visible; filter: drop-shadow(0 0 10px rgba(233, 135, 74, 0.5)); }
- .fogon .llama { transform-box: fill-box; transform-origin: 50% 100%; animation: llama 0.55s ease-in-out infinite alternate; }
- .fogon .llama-2 { animation-duration: 0.4s; }
- .fogon .chispa { position: absolute; left: 50%; bottom: 26px; width: 3px; height: 3px; border-radius: 50%; background: #FFD9B5; opacity: 0; animation: chispa 2.6s ease-out infinite; }
- .fogon .chispa:nth-child(2) { --dx: -14px; animation-delay: 0.4s; }
- .fogon .chispa:nth-child(3) { --dx: 9px; animation-delay: 1.1s; }
- .fogon .chispa:nth-child(4) { --dx: -5px; animation-delay: 1.7s; }
- .fogon .chispa:nth-child(5) { --dx: 16px; animation-delay: 2.2s; }
- @keyframes llama { from { transform: scaleY(0.86) skewX(-4deg); } to { transform: scaleY(1.08) skewX(4deg); } }
- @keyframes chispa { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, 6px), -74px); } }
 
  /* QUIZÁS TE RECONOCÉS: se tocan y viajan al mensaje */
  .reconoce { display: flex; flex-direction: column; gap: 0.7rem; margin: 2rem 0 0; }
@@ -194,7 +183,6 @@
  }
  @media (max-width: 640px) { .s-sec { padding: 10vh 1.4rem; } .s-entrada { min-height: 88vh; padding-top: 14vh; } }
  @media (prefers-reduced-motion: reduce) {
- .fogon *, .aparece { animation: none !important; transition: none !important; opacity: 1; transform: none; }
  .mapa-ruta { stroke-dashoffset: 0; }
  }
 </style>
@@ -215,7 +203,6 @@
 <!-- Entrada: de noche, junto al fogón -->
 <header class="s-entrada">
  <div class="s-entrada-in">
- <div class="fogon" aria-hidden="true"><svg viewBox="0 0 64 58" width="64" height="58"><path class="llama" d="M32 4c6 12 14 16 12 28-1 7-6 10-12 10s-12-4-12-11c0-7 7-10 6-19 3 4 5 2 6-8z" fill="#E9874A"/><path class="llama llama-2" d="M32 20c3 6 6 9 5 15-1 4-4 5-5 5-3 0-6-2-6-6 0-4 4-6 6-14z" fill="#FFE2C2"/><path d="M14 54l36-9M14 45l36 9" stroke="#FAF8F5" stroke-opacity="0.5" stroke-width="4" stroke-linecap="round"/></svg><span class="chispa"></span><span class="chispa"></span><span class="chispa"></span><span class="chispa"></span></div>
  <p class="s-quien">Una sesión con Adrián</p>
  <h1 class="s-h1">Lo que Dios te dio <span>ya es tuyo.</span></h1>
  <p class="s-sub">Lo que buscamos es mirar con sinceridad y aceptación, ponernos de acuerdo y alinearnos a los principios eternos: caminar en lo que ya está hecho, en lo que Dios ya nos dio, en lo que Cristo es en vos.</p>

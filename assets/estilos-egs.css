@@ -3336,6 +3336,8 @@ html.lenis, html.lenis body { height: auto; }
  .progress-bar { display: none; }
  .sendero-top {
  position: fixed; left: 0; right: 0; top: 0; height: 40px; z-index: 99; pointer-events: none;
+ /* aire entre el menú y la historia: el borde no cuenta en clientHeight, así el dibujo no cambia de escala */
+ border-top: 10px solid transparent;
  transform: translateY(var(--nav-b, 0px)); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.6s ease;
  color: rgba(107, 26, 43, 0.78);
  background: rgba(250, 248, 245, 0.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -3378,6 +3380,9 @@ html.lenis, html.lenis body { height: auto; }
  body.en-noche .nav-logo span, body.en-noche .nav-masthead span { color: #74ACDF; }
  body.en-noche .nav-menu-btn span { background: #FAF8F5; }
  body.en-noche nav.egs-nav .nav-cta { color: #FAF8F5; border-color: rgba(250, 248, 245, 0.45); background: transparent; }
+ /* Menú fijo (24 oct 2026): al bajar, de noche el menú y el sendero llevan un velo oscuro para que el texto
+ no se lea por detrás. En la home (cine-on) la noche es la escena 3D y queda transparente. */
+ body.en-noche.con-scroll:not(.cine-on) nav.egs-nav, body.en-noche.con-scroll:not(.cine-on) .sendero-top { background: rgba(13, 10, 11, 0.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
  nav.egs-nav, .nav-logo, .nav-masthead, .nav-menu-btn span, nav.egs-nav .nav-cta { transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease; }
 
 /* VOZ ÚNICA (24 oct 2026): toda la web habla como la home.

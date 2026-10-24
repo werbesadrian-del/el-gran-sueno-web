@@ -186,9 +186,7 @@ window.egsAvisarNetlify = function (formName, campos) {
 
   // ===== Nav estable =====
   const nav = document.getElementById('navbar');
-  let scrollTimer = null;
   let lastY = window.scrollY;
-  let scrollDownAcc = 0;
 
   // ===== Scroll hint =====
   const scrollHint = document.getElementById('scrollHint');
@@ -201,24 +199,12 @@ window.egsAvisarNetlify = function (formName, campos) {
 
   function onScroll() {
     const y = window.scrollY;
-    const dy = y - lastY;
 
+    // El menú ya no se esconde al bajar (24 oct 2026): en el celular la gente se quedaba sin el
+    // botón ni el nombre para volver, y el sendero subía hasta el borde de la pantalla.
+    // "con-scroll" le da fondo al menú y al sendero de noche, para que el texto no pase por detrás.
     if (nav) {
-      if (y < 40) {
-        nav.classList.remove('nav-hidden');
-        scrollDownAcc = 0;
-      } else if (dy > 0) {
-        scrollDownAcc += dy;
-        if (scrollDownAcc > 60) nav.classList.add('nav-hidden');
-      } else if (dy < -2) {
-        nav.classList.remove('nav-hidden');
-        scrollDownAcc = 0;
-      }
-      if (scrollTimer) clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        nav.classList.remove('nav-hidden');
-        scrollDownAcc = 0;
-      }, 600);
+      document.body.classList.toggle('con-scroll', y > 40);
     }
 
     lastY = y;

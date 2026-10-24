@@ -159,7 +159,7 @@
   farol.style.opacity = '0';
   // La piedrita de luz: desde acá sale la luz grande que baja a la Tierra (la escena 3D lee este punto)
   var nbH = nav ? Math.max(0, nav.getBoundingClientRect().bottom) : 0;
-  window.__luzSendero = { x: LUZ_X / 1000 * W - desplaza, y: nbH + altoEn(LUZ_X) / 40 * H - 5 };
+  window.__luzSendero = { x: LUZ_X / 1000 * W - desplaza, y: nbH + tira.clientTop + altoEn(LUZ_X) / 40 * H - 5 };
   poner(nadador, x, W, H + 3, nadando, 0);
   // Los compañeros caminan detrás; en el auto y el barco van adentro
   amigos.forEach(function (a, i) {
