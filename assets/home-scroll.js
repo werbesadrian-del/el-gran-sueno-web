@@ -523,7 +523,6 @@ function iniciar() {
     let guardadas = [];
     try { guardadas = JSON.parse(localStorage.getItem('egs-mundo') || '[]'); } catch (e) {}
     if (Array.isArray(guardadas)) guardadas.forEach((p) => { const i = lista.findIndex((c) => c.p === p); if (i >= 0) marcar(i, false); });
-    contar();
   }
   const cargarPalabras = window.egsConceptos ? window.egsConceptos() : Promise.resolve([]);
   Promise.all([cargarPalabras, aguaLista]).then(([lista, img]) => { if (lista.length) colocar(lista.map((c) => Object.assign({}, c)), img); });
@@ -542,15 +541,9 @@ function iniciar() {
     '<p class="mundo-def-p"></p><p class="mundo-def-d"></p></div>';
   document.body.appendChild(ui);
   const etiquetas = [...ui.querySelectorAll('.mundo-palabra')].map((el) => ({ el, txt: el.firstChild, i: -1, desde: 0 }));
-  const guia = ui.querySelector('.mundo-guia'), guiaTxt = ui.querySelector('.mundo-guia-txt');
+  const guia = ui.querySelector('.mundo-guia');
   const def = ui.querySelector('.mundo-def');
-  let abierta = -1, contada = false, visible = 0, interes = 0, ultimoGiro = -1e9;
-  function contar() {
-    if (!palabras.length || !mano.giro) return;
-    contada = true;
-    guia.classList.add('cuenta');
-    guiaTxt.textContent = descubiertas.length + ' de ' + palabras.length + ' palabras';
-  }
+  let abierta = -1, visible = 0, interes = 0, ultimoGiro = -1e9;
   function abrir(i) {
     if (i < 0) return;
     abierta = i;
@@ -559,7 +552,7 @@ function iniciar() {
     def.classList.add('abierta');
   }
   function cerrar() { abierta = -1; def.classList.remove('abierta'); }
-  etiquetas.forEach((e) => e.el.addEventListener('click', () => { if (e.i >= 0) { marcar(e.i, true); contar(); abrir(e.i); } }));
+  etiquetas.forEach((e) => e.el.addEventListener('click', () => { if (e.i >= 0) { marcar(e.i, true); abrir(e.i); } }));
   def.querySelector('.mundo-def-cerrar').addEventListener('click', cerrar);
   window.addEventListener('pointerdown', (e) => { if (abierta >= 0 && !e.target.closest('.mundo-def, .mundo-palabra')) cerrar(); });
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && abierta >= 0) cerrar(); });
@@ -630,13 +623,12 @@ function iniciar() {
       e.el.tabIndex = ver ? 0 : -1;
       // Descubierta si la persona ya giró el mundo y la palabra se quedó un momento a la vista
       if (ver && mano.giro && !descubiertas.includes(e.i) && ahora - e.desde > 380) {
-        marcar(e.i, true); contar();
+        marcar(e.i, true);
         e.el.classList.remove('nueva'); void e.el.offsetWidth; e.el.classList.add('nueva');
       }
     });
-    if (mano.giro && !contada) contar();
-    const guiaVer = palabras.length && abierta < 0 && (S.explora > 0.5 || (contada && interes > 0.5 && S.cielo < 0.5));
-    guia.style.opacity = guiaVer ? Math.max(S.explora, interes).toFixed(3) : '0';
+    // La invitación a girar se va apenas la persona empieza a mover el mundo
+    guia.style.opacity = palabras.length && abierta < 0 && S.explora > 0.5 && !mano.giro ? S.explora.toFixed(3) : '0';
     if (visible < 0.3 && abierta >= 0) cerrar();
   }
 
