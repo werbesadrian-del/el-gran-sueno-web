@@ -116,48 +116,6 @@
  .also-econ a { color: var(--enlace); text-decoration: underline; text-underline-offset: 3px; transition: color 0.3s; }
  .also-econ a:hover { color: var(--casa); }
 
- /* Atajo del hero: un triángulo grande hacia abajo, al pie del hero, que
- salta directo a "¿en qué lugar estás?". Se desvanece solo al scrollear
- (egs.js le pone .hidden). Movimiento amplio pero pausado (acorde a la página). */
- .hero-skip {
- position: absolute; left: 50%; bottom: 6vh; transform: translateX(-50%);
- z-index: 2;
- display: flex; flex-direction: column; align-items: center; gap: 1rem;
- text-decoration: none;
- color: rgba(250,248,245,0.8);
- opacity: 0;
- animation: hintFadeIn 1.6s ease 1.8s forwards;
- transition: color 0.4s ease, opacity 0.5s ease;
- }
- .hero-skip:hover, .hero-skip:focus-visible { color: var(--luz, #FAF8F5); }
- .hero-skip-label {
- font-family: var(--f-texto);
- font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
- }
- .hero-skip-tri {
- width: 0; height: 0;
- border-left: 13px solid transparent;
- border-right: 13px solid transparent;
- border-top: 18px solid currentColor;
- filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.35));
- animation: heroSkipBob 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
- }
- .hero-skip:hover .hero-skip-tri, .hero-skip:focus-visible .hero-skip-tri {
- animation-play-state: paused; transform: translateY(8px);
- transition: transform 0.35s ease;
- }
- @keyframes heroSkipBob {
- 0% { transform: translateY(0); opacity: 0.5; }
- 50% { transform: translateY(12px); opacity: 1; }
- 100% { transform: translateY(0); opacity: 0.5; }
- }
- .hero-skip.hidden { opacity: 0 !important; pointer-events: none; }
- @media (prefers-reduced-motion: reduce) { .hero-skip-tri { animation: none; } }
- @media (max-width: 600px) {
- .hero-skip { bottom: 5vh; gap: 0.8rem; }
- .hero-skip-label { font-size: 0.74rem; letter-spacing: 0.2em; }
- .hero-skip-tri { border-left-width: 11px; border-right-width: 11px; border-top-width: 15px; }
- }
 
 
  /* CINE (assets/home-scroll.js): una sola escena 3D desde la portada. La Tierra real (NASA)
@@ -267,6 +225,20 @@
  @media (prefers-reduced-motion: reduce) { .sendero-top .llama { animation: none; } }
  @media (prefers-reduced-motion: reduce) { .sendero-top.camina * { animation: none !important; } }
 
+ /* Botón del clímax: la primera acción, justo cuando la luz llega */
+ .st-climax .st-in { flex-direction: column; align-items: center; }
+ .st-climax .cine-cta {
+ display: inline-block; margin-top: 2.2rem; padding: 0.95rem 1.7rem; border-radius: 999px;
+ border: 1px solid rgba(250, 248, 245, 0.55); background: rgba(250, 248, 245, 0.06); color: #FAF8F5;
+ font-family: var(--f-texto); font-size: 0.98rem; letter-spacing: 0.02em; text-decoration: none;
+ backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); pointer-events: auto;
+ transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+ }
+ .st-climax .cine-cta:hover, .st-climax .cine-cta:focus-visible { background: rgba(250, 248, 245, 0.16); border-color: #FAF8F5; transform: translateY(-1px); }
+ .st-climax .cine-cta:focus-visible { outline: 2px solid #74ACDF; outline-offset: 3px; }
+ .pelicula.peli-on .st-climax .cine-cta { position: relative; z-index: 3; }
+ /* La pregunta llega con una frase que la abre */
+ .ask-lead { font-size: clamp(1.02rem, 1.6vw, 1.2rem); color: var(--ink-mid); margin: 0 0 1.1rem; }
  /* Nombres de los lugares del viaje (Jerusalén, Argentina): un guiño discreto pegado a su punto del mapa */
  .cine-rotulo {
  position: fixed; left: 0; top: 0; z-index: 2; pointer-events: none; opacity: 0;
@@ -361,11 +333,7 @@
  <div class="hero-marca-velo" aria-hidden="true"></div>
  <div class="hero-marca">
  <h1 class="sr-only">El Gran Sueño, Propósito de vida, sentido e identidad, desde la Nueva Vida</h1>
- <p class="hero-eyebrow" aria-hidden="true">El Gran Sueño</p>
- <p class="hero-frase">Viviendo desde la Nueva Vida.</p></div>
- <a href="#invitacion" class="hero-skip" id="scrollHint" data-hero-skip aria-label="Ir directo a encontrar tu lugar">
- <span class="hero-skip-label">Encontrá tu lugar</span>
- <span class="hero-skip-tri" aria-hidden="true"></span></a></section>
+ <p class="hero-frase">Viviendo desde la Nueva Vida.</p></div></section>
 
 <!-- PELÍCULA: el relato pasa en una pantalla fija, escena por escena, al ritmo del scroll
      (assets/home-scroll.js). Sin JS o con movimiento reducido, las secciones se leen una debajo de otra. -->
@@ -414,7 +382,8 @@
 <section class="st st-img st-climax mv-zoom-out">
  <img class="foto-img" src="assets/fotos/gransueno.webp" loading="lazy" decoding="async" alt="Mapa del mundo, el sueño que alcanza a todos los pueblos">
  <div class="st-in" data-reveal>
- <h2 class="name-reveal">El Gran <span>Sueño</span></h2></div></section>
+ <h2 class="name-reveal">El Gran <span>Sueño</span></h2>
+ <a href="#invitacion" class="cine-cta" data-ir-lugar>Encontrar mi lugar</a></div></section>
 </div></div>
 
 
@@ -423,15 +392,10 @@
  <h2 class="seo-claim">Propósito de vida, Sentido, Identidad</h2>
  <p class="seo-parrafo">Un espacio para despertar, afirmar y caminar juntos; aprendiendo a vivir desde quienes ya somos en Cristo, como participantes de Su Gran Sueño.</p></div></section>
 
-<section class="st st-white"><div class="st-in" data-reveal>
- <p class="st-small st-stagger"><span>Formación</span><span>, Encuentros</span><span>, Recursos</span><span>, Conexiones.</span></p>
- <p class="st-small st-sub">O simplemente alguien que te ayude a dar unos pasos más.</p></div></section>
-
-<section class="st st-white"><div class="st-in" data-reveal>
- <p class="st-small st-whisper">Todos respondemos desde un lugar distinto.</p></div></section>
 
 <section class="beat beat-invite" id="invitacion" data-map-tell-end>
  <div class="beat-inner" style="max-width: 620px;">
+ <p class="ask-lead">Todos respondemos desde un lugar distinto.</p>
  <span class="ask">¿En qué lugar te sentís hoy<br>dentro del Gran Sueño de Dios?</span></div>
  <div class="paths beat-inner">
  <!-- Coherencia: la tarjeta YA es la respuesta a "¿dónde estás hoy?".
@@ -462,6 +426,10 @@
 <div class="tema-globito" id="temaGlobito" role="tooltip" hidden>
  <span class="tema-globito-palabra"></span>
  <p class="tema-globito-def"></p></div>
+
+<section class="st st-white"><div class="st-in" data-reveal>
+ <p class="st-small st-stagger"><span>Formación</span><span>, Encuentros</span><span>, Recursos</span><span>, Conexiones.</span></p>
+ <p class="st-small st-sub">O simplemente alguien que te ayude a dar unos pasos más.</p></div></section>
 
 <!-- Invitación a la mentoría personal, panel oscuro que llama la atención -->
 <section class="invita-mentoria">
@@ -538,9 +506,9 @@
  requestAnimationFrame(raf);
 })();</script>
 <script>
- // Atajo del hero: llevar suave hasta la sección "¿en qué lugar estás?"
+ // Botón del clímax: llevar suave hasta la sección "¿en qué lugar estás?"
  (function () {
- var link = document.querySelector('[data-hero-skip]');
+ var link = document.querySelector('[data-ir-lugar]');
  var destino = document.getElementById('invitacion');
  if (!link || !destino) return;
  link.addEventListener('click', function (e) {

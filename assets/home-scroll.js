@@ -6,7 +6,7 @@
 //   4. Aventura: la cámara vuela bajo sobre el relieve y se dibuja un sendero, como alguien con mochila.
 //   5. Gran Comisión: desde el final del sendero salen arcos a las naciones y las ciudades se encienden una
 //      tras otra; aparece El Gran Sueño y la luz inunda la pantalla hasta volverse la página.
-// Three.js 0.160 + postprocessing 6.35 (God Rays) + GSAP 3.12; texturas NASA (dominio público).
+// Three.js 0.160 + postprocessing 6.35 (God Rays) + GSAP 3.12; texturas NASA (dominio público) en assets/tierra.
 // Sin WebGL, sin GSAP o con movimiento reducido no se activa nada: la página se ve como siempre.
 import * as THREE from 'three';
 import { EffectComposer, RenderPass, EffectPass, GodRaysEffect } from 'postprocessing';
@@ -70,7 +70,8 @@ function iniciar() {
     uDia: { value: vacia }, uRelieve: { value: vacia }, uAgua: { value: vacia },
     uSol: { value: uSol }, uRevela: { value: 0 }, uRevelaC: { value: uRevelaC }, uListo: { value: 0 }, uBump: { value: movil ? 1.6 : 2.2 }
   };
-  const IMG = 'https://cdn.jsdelivr.net/npm/three-globe@2.31.0/example/img/';
+  // Texturas NASA (dominio público, vía three-globe) comprimidas y guardadas en la web: 2k en el celular, 4k en computadora
+  const IMG = '/assets/tierra/';
   const cargador = new THREE.TextureLoader();
   cargador.setCrossOrigin('anonymous');
   const textura = (archivo, srgb) => new Promise((ok) => cargador.load(IMG + archivo, (t) => {
@@ -78,7 +79,7 @@ function iniciar() {
     t.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
     ok(t);
   }, undefined, () => ok(null)));
-  Promise.all([textura('earth-blue-marble.jpg', true), textura('earth-topology.png', false), textura('earth-water.png', false)])
+  Promise.all([textura(movil ? 'tierra-dia-2k.webp' : 'tierra-dia-4k.webp', true), textura('tierra-relieve.webp', false), textura('tierra-agua.webp', false)])
     .then(([dia, relieve, agua]) => {
       if (!dia) return;
       uT.uDia.value = dia;
@@ -417,7 +418,9 @@ function iniciar() {
     tl.to(S, { rayos: movil ? 0.6 : 0.9, duration: 0.5, ease: 'power2.out' }, 10.05);
     tl.fromTo(nombre, { y: () => -window.innerHeight * 0.42, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, 10.2);
     tl.fromTo(nombre.querySelector('span'), { filter: 'blur(18px)', opacity: 0.1 }, { filter: 'blur(0px)', opacity: 1, duration: 0.4, ease: 'power2.out' }, 10.45);
-    tl.to(S, { alba: 1, duration: 0.42, ease: 'power2.in' }, DUR - 0.45);
+    const cta = climax.querySelector('.cine-cta');
+    if (cta) tl.fromTo(cta, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, 10.7);
+    tl.to(S, { alba: 1, duration: 0.32, ease: 'power2.in' }, DUR - 0.32);
     tl.progress(avance);
   }
 
@@ -441,10 +444,14 @@ function iniciar() {
     const y = window.scrollY, vh = window.innerHeight;
     const inicio = peli.offsetTop, fin = inicio + peli.offsetHeight - vh;
     const meta = y < inicio ? (y / Math.max(1, inicio)) / DUR : (1 + Math.min(1, (y - inicio) / Math.max(1, fin - inicio)) * ESC) / DUR;
-    const debe = y < fin + vh * 0.05;
+    // Al terminar el relato la Tierra se apaga y la luz que inundó la pantalla se disuelve en la página
+    const pasada = y - fin;
+    alba.style.visibility = pasada < vh * 0.45 ? 'visible' : 'hidden';
+    if (pasada > 0) alba.style.opacity = Math.max(0, 1 - pasada / (vh * 0.4)).toFixed(3);
+    const debe = pasada < 2;
     if (debe !== activo) {
       activo = debe;
-      canvas.style.visibility = alba.style.visibility = activo ? 'visible' : 'hidden';
+      canvas.style.visibility = activo ? 'visible' : 'hidden';
       rotulos.forEach((r) => { r.el.style.visibility = activo ? 'visible' : 'hidden'; });
     }
     if (!activo) return;
