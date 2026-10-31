@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Una sesión con Adrián | Lo que Dios te dio ya es tuyo | El Gran Sueño</title>
-<meta name="description" content="Una sesión de 40 minutos por videollamada para mirar con sinceridad y aceptación, y alinearnos a los principios eternos: lo que Dios ya nos dio, lo que Cristo es en vos. La primera es un regalo, sin compromiso de continuar.">
+<meta name="description" content="Una sesión de 40 minutos por videollamada para mirar con sinceridad y aceptación, y alinearnos a los principios eternos: lo que Dios ya nos dio, lo que Cristo es en vos. Es un regalo, sin compromiso.">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Una sesión con Adrián | El Gran Sueño">
-<meta property="og:description" content="Lo que Dios te dio ya es tuyo. Una sesión para verlo con claridad. La primera es un regalo.">
+<meta property="og:description" content="Lo que Dios te dio ya es tuyo. Una sesión para verlo con claridad. Es un regalo.">
 <meta property="og:image" content="https://elgransueno.org/assets/og/pagina/mentoria.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -173,8 +173,7 @@
 
  @media (max-width: 900px) {
  .tierra { grid-template-columns: 1fr; gap: 2.4rem; }
- .tierra-mapa { position: sticky; top: 9vh; z-index: 2; background: var(--s-papel); padding: 0.4rem 0 0.8rem; }
- .tierra-mapa svg { max-height: 30vh; }
+ .tierra-mapa { position: static; }
  .ejes { grid-template-columns: 1fr; gap: 2.2rem; }
  .paradas { grid-template-columns: 1fr; gap: 2rem; max-width: 420px; }
  .paradas::before { left: 10px; right: auto; top: 12px; bottom: 12px; width: 2px; height: auto; background-size: 2px 8px; background-image: radial-gradient(circle, rgba(107, 26, 43, 0.5) 1px, transparent 1.4px); }
@@ -209,8 +208,8 @@
  <a href="#pedir" class="s-boton claro">Quiero mi sesión</a>
  <ul class="s-datos">
  <li><strong>40 minutos</strong> por videollamada</li>
- <li><strong>La primera es un regalo</strong></li>
- <li>Sin compromiso de continuar</li></ul></div></header>
+ <li><strong>Es un regalo</strong></li>
+ <li>Sin compromiso</li></ul></div></header>
 
 <!-- ¿Dónde estás hoy? Lo que se marca viaja al mensaje (y queda guardado para saber qué busca la gente) -->
 <section class="s-sec">
@@ -346,7 +345,7 @@
  <li class="parada"><h3>Coordinamos un horario</h3><p>Te escribo y buscamos un momento que nos sirva a los dos.</p></li>
  <li class="parada"><h3>Nos encontramos</h3><p>Una videollamada de cuarenta minutos, sin apuro y sin guion.</p></li></ol>
  <div class="regalo aparece">
- <p class="s-voz" style="margin-top:0;">La primera sesión es un regalo, sin compromiso de continuar.</p>
+ <p class="s-voz" style="margin-top:0;">La sesión es un regalo, sin compromiso.</p>
  <p class="s-prosa" style="margin-top:1rem;">Quiero conocerte y, sobre todo, escucharte. Si al terminar ambos sentimos que Dios nos invita a seguir caminando juntos, lo vemos con calma.</p></div></section>
 
 <!-- Qué traer y para quién es -->
@@ -363,7 +362,7 @@
  <div class="s-inner aparece">
  <h2 class="s-h2">Preguntas que suelen aparecer.</h2>
  <div class="preguntas">
- <details><summary>¿Tiene costo?</summary><p>La primera sesión es un regalo. Si después decidimos seguir caminando juntos, lo hablamos con calma.</p></details>
+ <details><summary>¿Tiene costo?</summary><p>No. En este tiempo las sesiones son un regalo.</p></details>
  <details><summary>¿Es una terapia?</summary><p>No. Es acompañamiento espiritual. No reemplaza una terapia psicológica ni una atención médica, y si hace falta, te voy a animar a buscarlas.</p></details>
  <details><summary>¿Qué pasa después de la sesión?</summary><p>Si ambos sentimos que Dios nos invita a seguir, lo vemos juntos. Si no, te llevás lo que vimos, sin ningún compromiso.</p></details>
  <details><summary>¿Lo que hablemos es confidencial?</summary><p>Sí. Lo que compartas queda entre nosotros.</p></details>
@@ -477,12 +476,15 @@
  }
 
  // El camino de Israel: se dibuja mientras se lee, con una luz que avanza hasta la tierra
- var tierra = document.getElementById('tierra'), ruta = document.getElementById('mapaRuta'), luz = document.getElementById('mapaLuz');
+ var tierra = document.getElementById('tierra'), mapa = document.querySelector('.tierra-mapa'), ruta = document.getElementById('mapaRuta'), luz = document.getElementById('mapaLuz');
  var largo = ruta && ruta.getTotalLength ? ruta.getTotalLength() : 0;
  function camino() {
   if (!tierra || !ruta) return;
   var r = tierra.getBoundingClientRect(), vh = window.innerHeight;
-  var p = reduce ? 1 : Math.max(0, Math.min(1, (vh * 0.7 - r.top) / Math.max(1, r.height * 0.85)));
+  // En el celular el mapa no queda fijo: el camino se dibuja mientras el mapa pasa por la pantalla
+  var p = (vh * 0.7 - r.top) / Math.max(1, r.height * 0.85);
+  if (window.innerWidth <= 900) { var m = mapa.getBoundingClientRect(); p = (vh * 0.85 - m.top) / Math.max(1, vh * 0.6); }
+  p = reduce ? 1 : Math.max(0, Math.min(1, p));
   ruta.style.setProperty('--ruta', (1 - p).toFixed(4));
   if (largo && luz) { var pt = ruta.getPointAtLength(largo * p); luz.setAttribute('cx', pt.x.toFixed(1)); luz.setAttribute('cy', pt.y.toFixed(1)); }
   tierra.classList.toggle('llego', p > 0.97);
