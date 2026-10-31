@@ -43,7 +43,8 @@ function iniciar() {
   // Todo lo que pasa desde T_MUNDO se corre PAUSA hacia adelante (P).
   const T_MUNDO = 9.5, PAUSA = 1.6;
   const P = (t) => (t >= T_MUNDO ? t + PAUSA : t);
-  const ESC = secciones.length + 1 + PAUSA;
+  // El final (el nombre) llega apenas termina la pausa y dura poco: un scrollcito y aparece
+  const ESC = secciones.length + 1 + PAUSA - 0.6;
   const DUR = 1 + ESC;
   const LARGO = 0.5;
   document.body.classList.add('cine-on');
@@ -674,12 +675,12 @@ function iniciar() {
     // La red de luz entre las naciones
     tl.to(S, { arcos: 1, duration: 1.8, ease: 'none' }, 8.9);
     // El Gran Sueño: la luz queda en lo alto, sus rayos caen, el nombre baja y la luz inunda la pantalla
-    tl.set(S, { cielo: 1 }, P(10.0));
-    tl.to(S, { rayos: movil ? 0.6 : 0.9, duration: 0.5, ease: 'power2.out' }, P(10.05));
-    tl.fromTo(nombre, { y: () => -window.innerHeight * 0.42, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, P(10.2));
-    tl.fromTo(nombre.querySelector('span'), { filter: 'blur(18px)', opacity: 0.1 }, { filter: 'blur(0px)', opacity: 1, duration: 0.4, ease: 'power2.out' }, P(10.45));
+    tl.set(S, { cielo: 1 }, P(9.6));
+    tl.to(S, { rayos: movil ? 0.6 : 0.9, duration: 0.4, ease: 'power2.out' }, P(9.62));
+    tl.fromTo(nombre, { y: () => -window.innerHeight * 0.42, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: 'power3.out' }, P(9.7));
+    tl.fromTo(nombre.querySelector('span'), { filter: 'blur(18px)', opacity: 0.1 }, { filter: 'blur(0px)', opacity: 1, duration: 0.35, ease: 'power2.out' }, P(9.85));
     const cta = climax.querySelector('.cine-cta');
-    if (cta) tl.fromTo(cta, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, P(10.7));
+    if (cta) tl.fromTo(cta, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, P(10.1));
     // El salto final: la escena sale disparada hacia arriba con un destello y queda la página clara (chuf)
     tl.to(S, { salto: 1, duration: 0.4, ease: 'power3.in' }, DUR - 0.4);
     tl.to(S, { alba: 1, duration: 0.2, ease: 'power2.in' }, DUR - 0.2);
