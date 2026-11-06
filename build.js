@@ -73,6 +73,12 @@ var FOOTER = `<footer class="egs-footer">
 
 function jsonLd(o) { return '<script type="application/ld+json">' + JSON.stringify(o) + '</script>'; }
 
+// Contador de lecturas (assets/vistas.js): suma una apertura con el mismo slug que usan
+// blog.html y huellas-de-fe.html para mostrar el número y ordenar por "Más leídos".
+function contadorLecturas(slug) {
+  return '<script src="/assets/vistas.js"></script><script>if (typeof egsTrackVista === "function") egsTrackVista(' + JSON.stringify(slug) + ');</script>';
+}
+
 // Imagen de previsualización para redes (Facebook, WhatsApp, X):
 //   1) la portada del post si la tiene   2) su tarjeta generada por og-card.mjs   3) la de marca.
 //   Las tarjetas se generan en el build (og-card.mjs) en assets/og/<tipo>/<slug>.png
@@ -141,7 +147,8 @@ ${p.imagen ? '<figure class="art-portada"><img src="' + esc(p.imagen) + '" alt="
 ${bloqueRaices(p.raices)}
 ${bloqueInvitacion()}
 </main>
-${FOOTER}</body></html>`;
+${FOOTER}
+${contadorLecturas(p.slug)}</body></html>`;
 }
 
 function paginaHuella(p) {
@@ -172,7 +179,8 @@ ${p.imagen ? '<figure class="art-portada"><img src="' + esc(p.imagen) + '" alt="
 </article>
 ${p.pregunta ? '<section class="art-cta-pregunta"><div class="art-cta-pregunta-inner"><span class="art-cta-eyebrow">Para pensar</span><p>' + esc(p.pregunta) + '</p></div></section>' : ''}
 </main>
-${FOOTER}</body></html>`;
+${FOOTER}
+${contadorLecturas(p.slug)}</body></html>`;
 }
 
 // ---- Generar ----

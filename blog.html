@@ -105,6 +105,10 @@
 <li><a href="/blog/todos-somos-llamados">¿Todos somos llamados por Dios? Qué significa tener un llamado</a> <span>¿Todos somos llamados por Dios? Sí. Y no es un llamado a hacer, sino a ser quien Él dijo que sos, viviendo desde la nueva vida de Cristo.</span></li>
 <li><a href="/blog/por-que-me-esfuerzo-tanto">¿Por qué me esfuerzo tanto y nada cambia? La obra de Dios que no es esfuerzo</a> <span>Oraste, serviste, te esforzaste toda la vida… y seguís luchando. ¿Y si la obra de Dios nunca fue algo que tenés que hacer, sino Cristo mismo viviendo en vo</span></li>
 <li><a href="/blog/cuando-se-cae-todo-lo-que-te-sostiene">Cuando se te cae todo lo que te sostiene</a> <span>No podés cambiar lo que te pasa, pero sí de qué fuente vivís. Cuando se cae todo lo que te sostenía, debajo aparece la única fuente que no se rompe: Cristo</span></li>
+<li><a href="/blog/y-si-no-sos-tan-libre-como-crees">¿Y si no sos tan libre como creés?</a> <span>Cristo ya te hizo libre, pero vivir esa libertad es otra cosa. Donde reina el miedo hay control, no libertad. Una mirada a la conciencia, la coherencia y l</span></li>
+<li><a href="/blog/cansado-de-hacer-todo-bien">¿Cansado de hacer todo bien? La vida espiritual no se gana con esfuerzo</a> <span>Orás, servís, sos disciplinado y aun así estás agotado. La vida espiritual no es algo que se fabrica: es Alguien, y ya estás unido a Él. Sobre la contamina</span></li>
+<li><a href="/blog/cuando-dios-te-quita-algo">Cuando Dios te quita algo: ¿sigue siendo suficiente?</a> <span>Un aeropuerto, un tiempo de transición y una pregunta que no se puede esquivar: ¿soy suficiente para vos? Sobre pelear con Dios, no escapar del proceso, el</span></li>
+<li><a href="/blog/por-que-siento-que-nada-tiene-sentido">¿Por qué siento que nada tiene sentido? Vivir despierto en Cristo</a> <span>La falta de sentido aparece cuando no estamos viendo. Sobre la diferencia entre creer y saber, la conciencia como vida continua, la muerte que no es el fin</span></li>
 </ul></nav></noscript>
 <!--/indice--></main>
 
@@ -155,7 +159,7 @@
  grid.innerHTML = items.map(e => {
  const v = blogEstado.vistas[e.slug];
  const vistasHtml = (v && v > 0)
- ? `<span class="blog-vistas" aria-label="${v} lecturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${v}</span>`
+ ? `<span class="blog-vistas" aria-label="${v} lecturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>${v} lecturas</span>`
  : '';
  return `
  <a href="${e.link || (e.slug + '.html')}" class="blog-card${e.destacado ? ' destacado' : ''}" data-pilar="${e.pilar}">
@@ -196,6 +200,8 @@
  // Render inicial + carga de vistas en background para tenerlas listas
  blogRender();
  (async () => {
+ // Esperar los escritos del panel (content/blog.json) para pedir también sus lecturas
+ if (window.EGS_BLOG_READY) { try { await window.EGS_BLOG_READY; } catch (e) {} }
  const slugs = (window.EGS_ESCRITOS || []).map(e => e.slug);
  blogEstado.vistas = await egsGetVistas(slugs);
  // Re-render solo si el usuario ya cambió a "vistas" o si queremos mostrar el número siempre

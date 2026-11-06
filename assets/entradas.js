@@ -24,6 +24,42 @@
 
 window.EGS_ESCRITOS = [
   {
+    slug: "por-que-siento-que-nada-tiene-sentido",
+    titulo: "¿Por qué siento que nada tiene sentido? Vivir despierto en Cristo",
+    pregunta: "¿Y si lo que te falta no es fuerza ni motivación, sino ver?",
+    pilar: "identidad",
+    pilarLabel: "Identidad",
+    excerpt: "La falta de sentido aparece cuando no estamos viendo. Sobre la diferencia entre creer y saber, la conciencia como vida continua, la muerte que no es el final y una intimidad que no entra y sale.",
+    lectura: "8 min",
+    fecha: "2026-11-02",
+    destacado: false,
+    link: "/blog/por-que-siento-que-nada-tiene-sentido"
+  },
+  {
+    slug: "cuando-dios-te-quita-algo",
+    titulo: "Cuando Dios te quita algo: ¿sigue siendo suficiente?",
+    pregunta: "Decimos que Dios es suficiente. ¿Lo sigue siendo cuando algo se va?",
+    pilar: "caracter",
+    pilarLabel: "Carácter",
+    excerpt: "Un aeropuerto, un tiempo de transición y una pregunta que no se puede esquivar: ¿soy suficiente para vos? Sobre pelear con Dios, no escapar del proceso, el Dios que desordena lo que ordenamos y la sinceridad que Jesús vio en Natanael.",
+    lectura: "9 min",
+    fecha: "2026-11-02",
+    destacado: false,
+    link: "/blog/cuando-dios-te-quita-algo"
+  },
+  {
+    slug: "cansado-de-hacer-todo-bien",
+    titulo: "¿Cansado de hacer todo bien? La vida espiritual no se gana con esfuerzo",
+    pregunta: "¿Y si el cansancio no viene de hacer poco, sino de vivir desde la fuente equivocada?",
+    pilar: "santificacion",
+    pilarLabel: "Santificación",
+    excerpt: "Orás, servís, sos disciplinado y aun así estás agotado. La vida espiritual no es algo que se fabrica: es Alguien, y ya estás unido a Él. Sobre la contaminación, las máscaras y por qué el sacrificio no es aguantar sino morir.",
+    lectura: "8 min",
+    fecha: "2026-11-02",
+    destacado: false,
+    link: "/blog/cansado-de-hacer-todo-bien"
+  },
+  {
     slug: "por-que-vivo-con-miedo-y-culpa",
     titulo: "¿Por qué vivís con miedo, culpa y esa sensación de que nunca alcanza?",
     pregunta: "¿Desde cuál de los dos sistemas estás mirando tu vida hoy?",

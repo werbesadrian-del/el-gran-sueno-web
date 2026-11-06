@@ -17,8 +17,13 @@ function egsCargarColeccion(archivo, mapear, destino, renderFns) {
   return fetch(archivo, { cache: 'no-store' })
     .then(function (r) { return r.ok ? r.json() : { posts: [] }; })
     .then(function (data) {
-      var items = (data && data.posts ? data.posts : []).map(mapear);
-      window[destino] = (window[destino] || []).concat(items);
+      var previos = window[destino] || [];
+      // Si un post ya está cargado a mano (entradas.js), no se suma de nuevo: sin repetidos.
+      var yaEstan = {};
+      previos.forEach(function (e) { if (e && e.slug) yaEstan[e.slug] = true; });
+      var items = (data && data.posts ? data.posts : []).map(mapear)
+        .filter(function (e) { return e.slug && !yaEstan[e.slug]; });
+      window[destino] = previos.concat(items);
       renderFns.forEach(function (fn) {
         if (typeof window[fn] === 'function') { try { window[fn](); } catch (e) {} }
       });

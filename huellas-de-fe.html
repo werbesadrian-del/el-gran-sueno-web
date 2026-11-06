@@ -144,6 +144,8 @@
 
  huellasRender();
  (async () => {
+ // Esperar las huellas del panel (content/huellas.json) para pedir también sus lecturas
+ if (window.EGS_HUELLAS_READY) { try { await window.EGS_HUELLAS_READY; } catch (e) {} }
  const slugs = (window.EGS_HUELLAS || []).map(h => h.slug);
  huellasEstado.vistas = await egsGetVistas(slugs);
  huellasRender();

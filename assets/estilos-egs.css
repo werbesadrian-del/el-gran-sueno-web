@@ -2485,11 +2485,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 .huella-hero-cont { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.8rem 2rem 2rem; }
 
-/* Ocultar el contador de lecturas visible (se sigue contando por detrás;
-   el orden "Más leídos" sigue funcionando con ese dato). Coherente con la marca:
-   no mostramos rankings ni "más leídas". Para volver a mostrarlo: quitar esta regla. */
-.blog-vistas { display: none !important; }
-
 /* Cartel "próximamente" bajo las redes sociales (aún no activas) */
 .footer-social-nota {
   font-family: var(--f-texto); font-size: 0.74rem;
