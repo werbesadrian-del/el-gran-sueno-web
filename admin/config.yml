@@ -54,6 +54,11 @@ collections:
               - { name: imagen, label: "Foto de portada (opcional)", widget: image, required: false, hint: "Se muestra arriba del texto. También podés insertar fotos dentro del texto con el botón de imagen." }
               - { name: cuerpo, label: "Texto del escrito", widget: markdown }
               - { name: destacado, label: "Destacar", widget: boolean, default: false, required: false }
+              - { name: actualizado, label: "Fecha de la última actualización (opcional)", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false, hint: "Si reescribís un escrito viejo. No cambia su lugar en la lista: el orden sigue la fecha del video." }
+              - { name: video, label: "Video de YouTube (ID, opcional)", widget: string, required: false, hint: "Lo que va después de watch?v= o youtu.be/. Ej: 6_jaKtNXrXI" }
+              - { name: videoTitulo, label: "Título del video", widget: string, required: false }
+              - { name: videoFecha, label: "Fecha en que sale el video", widget: string, required: false, hint: "AAAA-MM-DD. Ordena los escritos; si es futura, el video se muestra recién ese día." }
+              - { name: videoDuracion, label: "Duración del video", widget: string, required: false, hint: "Formato de YouTube, ej. PT20M55S" }
 
   - name: huellas
     label: "Huellas de Fe"

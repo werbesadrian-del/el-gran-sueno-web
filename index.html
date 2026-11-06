@@ -664,12 +664,11 @@
  return meses[parseInt(parts[1], 10) - 1] + ' ' + parts[0];
  }
 
+ // Escritos: los últimos según la fecha del video del que nacieron (o la del escrito)
+ function fechaEscrito(e) { return e.videoFecha || e.fecha || ''; }
  var escritos = (window.EGS_ESCRITOS || [])
  .slice()
- .sort(function (a, b) {
- if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
- return b.fecha.localeCompare(a.fecha);
- })
+ .sort(function (a, b) { return fechaEscrito(b).localeCompare(fechaEscrito(a)); })
  .slice(0, 3);
 
  var huellas = (window.EGS_HUELLAS || [])
@@ -684,7 +683,7 @@
  if (elE) {
  elE.innerHTML = escritos.map(function (e) {
  return '<a href="' + (e.link || (e.slug + '.html')) + '" class="idx-item">' +
- '<div class="idx-item-top"><span class="idx-item-pilar">' + e.pilarLabel + '</span><span class="idx-item-fecha">' + fmtFecha(e.fecha) + '</span></div>' +
+ '<div class="idx-item-top"><span class="idx-item-pilar">' + e.pilarLabel + '</span><span class="idx-item-fecha">' + fmtFecha(fechaEscrito(e)) + '</span></div>' +
  '<p class="idx-item-titulo">' + e.titulo + '</p>' +
  '</a>';
  }).join('');

@@ -107,6 +107,57 @@ ${r.cierre ? '<p class="art-raices-cierre">' + inline(r.cierre) + '</p>' : ''}
 </div></section>`;
 }
 
+// ---- Video de YouTube del escrito ----
+// Se muestra la portada del video; el reproductor (youtube-nocookie) se carga recién al tocar play,
+// así la página no le habla a YouTube mientras se lee. Si el video todavía no es público
+// (programado), el bloque queda oculto y se muestra solo a partir de su fecha.
+function videoFuturo(p) { return !!(p.videoFecha && new Date(p.videoFecha) > new Date()); }
+function durTexto(iso) {
+  var m = String(iso || '').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/); if (!m) return '';
+  var h = +(m[1] || 0), min = +(m[2] || 0) + (+(m[3] || 0) >= 30 ? 1 : 0);
+  if (min === 60) { h++; min = 0; }
+  return h ? h + ' h' + (min ? ' ' + min + ' min' : '') : min + ' min';
+}
+// Va el texto primero y el video al final (lo mira quien ya leyó y quiere más). Arriba, en la
+// cabecera, solo un aviso chico que baja al video para quien prefiere escuchar.
+function ocultoHasta(p) { return videoFuturo(p) ? ' hidden data-desde="' + esc(p.videoFecha) + '"' : ''; }
+function avisoVideo(p) {
+  if (!p.video) return '';
+  var dur = durTexto(p.videoDuracion);
+  var id = esc(p.video), reloj = durReloj(p.videoDuracion);
+  return '<a class="art-video-aviso" href="#video"' + ocultoHasta(p) + (dur ? ' aria-label="¿Preferís escucharlo? Mirá la charla en video, ' + dur + '"' : '') + '>' +
+    '<span class="art-video-aviso-mini"><img src="https://i.ytimg.com/vi/' + id + '/mqdefault.jpg" alt="" width="320" height="180">' +
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>' +
+    (reloj ? '<span class="art-video-aviso-dur" aria-hidden="true">' + reloj + '</span>' : '') + '</span>' +
+    '<span class="art-video-aviso-txt"><span>¿Preferís escucharlo?</span><span>Mirá la charla en video</span></span></a>';
+}
+function durReloj(iso) {
+  var m = String(iso || '').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/); if (!m) return '';
+  var h = +(m[1] || 0), min = +(m[2] || 0), s = +(m[3] || 0), dos = function (n) { return (n < 10 ? '0' : '') + n; };
+  return h ? h + ':' + dos(min) + ':' + dos(s) : min + ':' + dos(s);
+}
+function bloqueVideo(p) {
+  if (!p.video) return '';
+  var id = esc(p.video), dur = durTexto(p.videoDuracion);
+  return `<section class="art-video" id="video"${ocultoHasta(p)} aria-label="Video de la charla">
+<p class="art-video-titulo">La charla de la que nació este escrito</p>
+<button class="art-video-play" type="button" data-video="${id}" aria-label="Ver el video${p.videoTitulo ? ': ' + esc(p.videoTitulo) : ''}">
+<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="" loading="lazy" width="1280" height="720" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg'">
+<span class="art-video-boton" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span>
+</button>
+<p class="art-video-pie"><span>Mirá la charla completa</span>${dur ? '<span>' + dur + '</span>' : ''}</p>
+</section>
+<script>(function(){var s=document.querySelector('.art-video');if(!s)return;document.querySelectorAll('.art-video[data-desde], .art-video-aviso[data-desde]').forEach(function(el){if(new Date(el.getAttribute('data-desde'))<=new Date())el.hidden=false;});var b=s.querySelector('.art-video-play');b.addEventListener('click',function(){var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.getAttribute('data-video')+'?autoplay=1&rel=0&playsinline=1';f.title=b.getAttribute('aria-label');f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.referrerPolicy='strict-origin-when-cross-origin';f.className='art-video-marco';b.replaceWith(f);});})();</script>`;
+}
+function videoLd(p, desc) {
+  if (!p.video || videoFuturo(p)) return undefined;
+  var id = p.video;
+  return { '@type':'VideoObject', name:p.videoTitulo || p.titulo, description:desc,
+    thumbnailUrl:['https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg', 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'],
+    uploadDate:p.videoFecha, duration:p.videoDuracion || undefined,
+    embedUrl:'https://www.youtube.com/embed/' + id, contentUrl:'https://www.youtube.com/watch?v=' + id };
+}
+
 function bloqueInvitacion() {
   return `<section class="art-cta-invita"><div class="art-cta-invita-inner">
 <span class="invita-titulo">¿Algo de esto te resonó?</span>
@@ -120,8 +171,8 @@ function paginaEscrito(p) {
   var pilarLabel = p.pilarLabel || PILAR[p.pilar] || p.pilar || '';
   var desc = textoPlano(p.resumen || p.cuerpo).slice(0, 155);
   var ld = jsonLd({ '@context':'https://schema.org', '@type':'Article', headline:p.titulo, description:desc,
-    datePublished:p.fecha, author:{'@type':'Person',name:'Adrián'}, publisher:{'@type':'Organization',name:'El Gran Sueño'},
-    mainEntityOfPage:url, articleSection:pilarLabel, inLanguage:'es' });
+    datePublished:p.fecha, dateModified:p.actualizado || p.fecha, author:{'@type':'Person',name:'Adrián'}, publisher:{'@type':'Organization',name:'El Gran Sueño'},
+    mainEntityOfPage:url, articleSection:pilarLabel, inLanguage:'es', video:videoLd(p, desc) });
   var meta = [];
   if (p.lectura) meta.push('<span>' + esc(p.lectura) + '</span>');
   if (p.fecha) meta.push('<span>' + fmtFecha(p.fecha) + '</span>');
@@ -138,12 +189,14 @@ ${nav('/blog', 'Escritos')}
   <div class="art-meta">${pilarLabel ? '<span class="art-pilar">' + esc(pilarLabel) + '</span>' : ''}<div class="art-meta-datos">${meta.join('')}</div></div>
   <h1>${esc(p.titulo)}</h1>
   ${p.pregunta ? '<p class="art-pregunta">' + esc(p.pregunta) + '</p>' : ''}
+  ${avisoVideo(p)}
 </header>
 ${p.imagen ? '<figure class="art-portada"><img src="' + esc(p.imagen) + '" alt="" loading="lazy"></figure>' : ''}
 <article class="long-prose">
   ${p.resumen ? '<p class="lead">' + esc(p.resumen) + '</p>' : ''}
   ${md(p.cuerpo)}
 </article>
+${bloqueVideo(p)}
 ${bloqueRaices(p.raices)}
 ${bloqueInvitacion()}
 </main>
@@ -191,7 +244,7 @@ var huellas = leerJSON('content/huellas.json');
 asegurarDir('blog'); asegurarDir('huella');
 
 var urlsCms = [];
-escritos.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join('blog', p.slug + '.html'), paginaEscrito(p)); urlsCms.push({ loc:'/blog/'+p.slug, fecha:p.fecha }); });
+escritos.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join('blog', p.slug + '.html'), paginaEscrito(p)); urlsCms.push({ loc:'/blog/'+p.slug, fecha:p.actualizado || p.fecha }); });
 huellas.forEach(function (p) { if (!p.slug) return; fs.writeFileSync(path.join('huella', p.slug + '.html'), paginaHuella(p)); urlsCms.push({ loc:'/huella/'+p.slug, fecha:p.fecha }); });
 
 // ---- Regenerar sitemap.xml (páginas hechas a mano + generadas) ----
@@ -216,7 +269,8 @@ function datosPagina(loc) {
   var d = (h.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '';
   return { loc: loc, titulo: t.replace(/ \| El Gran Sueño$/, '').trim(), desc: d.trim() };
 }
-var escritosTodos = urls.filter(function (u) { return /^\/(escrito-|blog\/)/.test(u.loc); }).map(function (u) { return datosPagina(u.loc); });
+var videoDe = {}; escritos.forEach(function (p) { if (p.video && !videoFuturo(p)) videoDe['/blog/' + p.slug] = p.video; });
+var escritosTodos = urls.filter(function (u) { return /^\/(escrito-|blog\/)/.test(u.loc); }).map(function (u) { var d = datosPagina(u.loc); d.video = videoDe[u.loc]; return d; });
 var huellasTodas = urls.filter(function (u) { return /^\/(huella-|huella\/)/.test(u.loc); }).map(function (u) { return datosPagina(u.loc); });
 
 // ---- Índice fijo en blog.html y huellas-de-fe.html ----
@@ -236,7 +290,7 @@ ponerIndice('blog.html', escritosTodos, 'Todos los escritos');
 ponerIndice('huellas-de-fe.html', huellasTodas, 'Todas las huellas de fe');
 
 // ---- llms.txt: la puerta para las IA (formato llmstxt.org) ----
-function lineas(items) { return items.map(function (i) { return '- [' + i.titulo + '](' + SITE + i.loc + ')' + (i.desc ? ': ' + i.desc : ''); }).join('\n'); }
+function lineas(items) { return items.map(function (i) { return '- [' + i.titulo + '](' + SITE + i.loc + ')' + (i.desc ? ': ' + i.desc : '') + (i.video ? ' Video: https://www.youtube.com/watch?v=' + i.video : ''); }).join('\n'); }
 var principales = ['/', '/manifiesto.html', '/nosotros.html', '/mentoria.html', '/quiero-ser-parte.html', '/historias.html', '/colaborar.html'].map(datosPagina);
 var llms = '# El Gran Sueño\n\n' +
   '> Comunidad cristiana en español fundada por Adrián (@adrianencamino). Escritos sobre identidad en Cristo, propósito, ' +

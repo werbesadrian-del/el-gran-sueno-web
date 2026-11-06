@@ -134,18 +134,17 @@
  items = items.filter(e => e.pilar === blogEstado.pilar);
  }
 
- // Ordenar
+ // Ordenar: por la fecha del video del que nació el escrito (o la del escrito si no tiene),
+ // así se leen en el orden del camino aunque un escrito se haya actualizado después.
+ const fechaDe = e => e.videoFecha || e.fecha || '';
  if (blogEstado.orden === 'fecha') {
- items.sort((a, b) => {
- if (a.destacado !== b.destacado) return a.destacado ? -1 : 1;
- return b.fecha.localeCompare(a.fecha);
- });
+ items.sort((a, b) => fechaDe(b).localeCompare(fechaDe(a)));
  } else {
  items.sort((a, b) => {
  const va = blogEstado.vistas[a.slug] || 0;
  const vb = blogEstado.vistas[b.slug] || 0;
  if (vb !== va) return vb - va;
- return b.fecha.localeCompare(a.fecha);
+ return fechaDe(b).localeCompare(fechaDe(a));
  });
  }
 
@@ -169,7 +168,7 @@
  <p class="blog-excerpt">${e.excerpt}</p>
  <div class="blog-meta">
  <span class="blog-meta-lectura">${e.lectura}</span>
- <span class="blog-meta-fecha">${blogFmtFecha(e.fecha)}</span>
+ <span class="blog-meta-fecha">${blogFmtFecha(fechaDe(e))}</span>
  ${vistasHtml}</div></a>
  `;
  }).join('');

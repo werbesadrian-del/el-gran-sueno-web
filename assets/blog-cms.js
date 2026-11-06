@@ -18,11 +18,16 @@ function egsCargarColeccion(archivo, mapear, destino, renderFns) {
     .then(function (r) { return r.ok ? r.json() : { posts: [] }; })
     .then(function (data) {
       var previos = window[destino] || [];
-      // Si un post ya está cargado a mano (entradas.js), no se suma de nuevo: sin repetidos.
+      // Si un post ya está cargado a mano (entradas.js), no se suma de nuevo (sin repetidos):
+      // solo se le completan los datos que le falten, como el video y su fecha.
       var yaEstan = {};
-      previos.forEach(function (e) { if (e && e.slug) yaEstan[e.slug] = true; });
+      previos.forEach(function (e) { if (e && e.slug) yaEstan[e.slug] = e; });
       var items = (data && data.posts ? data.posts : []).map(mapear)
-        .filter(function (e) { return e.slug && !yaEstan[e.slug]; });
+        .filter(function (e) {
+          var previo = e.slug && yaEstan[e.slug];
+          if (previo) { Object.keys(e).forEach(function (k) { if (previo[k] === undefined && e[k] !== undefined) previo[k] = e[k]; }); }
+          return e.slug && !previo;
+        });
       window[destino] = previos.concat(items);
       renderFns.forEach(function (fn) {
         if (typeof window[fn] === 'function') { try { window[fn](); } catch (e) {} }
@@ -40,6 +45,7 @@ window.EGS_BLOG_READY = egsCargarColeccion('content/blog.json', function (p) {
     pilarLabel: p.pilarLabel || window.EGS_PILAR_LABELS[p.pilar] || p.pilar || '',
     fecha: p.fecha, lectura: p.lectura || '', pregunta: p.pregunta || '',
     excerpt: p.resumen || '', destacado: !!p.destacado, esBlog: true,
+    video: p.video || undefined, videoFecha: p.videoFecha || undefined,
     link: 'blog/' + p.slug + '.html'
   };
 }, 'EGS_ESCRITOS', ['blogRender', 'egsRenderHomeIndex']);
