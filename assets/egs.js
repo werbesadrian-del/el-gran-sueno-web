@@ -568,6 +568,36 @@ window.egsAvisarNetlify = function (formName, campos) {
   antesDeAcciones('b-contacto', 'acompanante');
 })();
 
+/* ============================================================================
+   MEDICIÓN DE VISITAS, sin cookies (solo en elgransueno.org, nunca en local)
+   - Cloudflare Web Analytics: cuántos entran, a qué páginas, de dónde llegan.
+   - Microsoft Clarity: mapas de calor (dónde tocan, hasta dónde leen) y grabaciones
+     anónimas. Va en modo sin consentimiento para todos: no guarda cookies y cada
+     página cuenta como una visita aparte. Los formularios salen tapados.
+   Se nombran en cookies.html y privacidad.html. Para apagar uno, dejar su código vacío.
+   ============================================================================ */
+(function () {
+  var CLOUDFLARE_TOKEN = 'b62fcf0ee5db420bb7a55289da044bd3';   // data-cf-beacon (Cloudflare > Web Analytics > elgransueno.org)
+  var CLARITY_ID = 'z9lr0rp9bh';   // proyecto El Gran Sueño (clarity.microsoft.com/projects/view/z9lr0rp9bh)
+  if (window.__egsMedicion || location.hostname !== 'elgransueno.org') return;
+  window.__egsMedicion = true;
+  if (CLOUDFLARE_TOKEN) {
+    var cf = document.createElement('script');
+    cf.type = 'module';
+    cf.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+    cf.setAttribute('data-cf-beacon', JSON.stringify({ token: CLOUDFLARE_TOKEN }));
+    document.head.appendChild(cf);
+  }
+  if (CLARITY_ID) {
+    window.clarity = window.clarity || function () { (window.clarity.q = window.clarity.q || []).push(arguments); };
+    window.clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'denied' });
+    var cl = document.createElement('script');
+    cl.async = true;
+    cl.src = 'https://www.clarity.ms/tag/' + encodeURIComponent(CLARITY_ID);
+    document.head.appendChild(cl);
+  }
+})();
+
 /* El sendero del mochilero en todas las páginas (assets/sendero.js) */
 (function () {
   if (window.__egsSendero) return;
