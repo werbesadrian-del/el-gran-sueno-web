@@ -526,6 +526,36 @@ window.egsAvisarNetlify = function (formName, campos) {
 })();
 
 /* ============================================================================
+   PRIVACIDAD DEBAJO DE CADA FORMULARIO: solo la palabra, chiquita, con el enlace.
+   Lo que se hace con los datos está explicado entero en /privacidad.html.
+   ============================================================================ */
+(function () {
+  function enlace() {
+    var p = document.createElement('p');
+    p.className = 'form-privacidad';
+    p.innerHTML = '<a href="/privacidad.html">Privacidad</a>';
+    return p;
+  }
+  function despues(el) {
+    if (el && !(el.nextElementSibling && el.nextElementSibling.classList.contains('form-privacidad'))) {
+      el.insertAdjacentElement('afterend', enlace());
+    }
+  }
+  function antesDeAcciones(idBoton) {
+    var b = document.getElementById(idBoton);
+    var acciones = b && b.closest('.acciones');
+    if (acciones) acciones.insertAdjacentElement('beforebegin', enlace());
+  }
+  despues(document.getElementById('footerForm'));
+  despues(document.getElementById('mentoriaForm'));
+  despues(document.getElementById('col-submit'));
+  despues(document.getElementById('reg-submit'));
+  despues(document.querySelector('.sug-form'));
+  antesDeAcciones('bid');
+  antesDeAcciones('b-contacto');
+})();
+
+/* ============================================================================
    MEDICIÓN DE VISITAS, sin cookies (solo en elgransueno.org, nunca en local)
    - Cloudflare Web Analytics: cuántos entran, a qué páginas, de dónde llegan.
    - Microsoft Clarity: mapas de calor (dónde tocan, hasta dónde leen) y grabaciones

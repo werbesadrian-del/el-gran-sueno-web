@@ -3200,6 +3200,17 @@ html.lenis, html.lenis body { height: auto; }
 }
 .consentimiento small { display: block; margin-top: 0.3rem; font-size: 0.75rem; color: var(--ink-light); }
 
+/* La palabra Privacidad debajo de cada formulario (la agrega egs.js): chiquita pero legible */
+.form-privacidad {
+  font-family: var(--f-texto); font-size: 0.74rem; letter-spacing: 0.03em;
+  text-align: center; margin: 0.9rem auto 0;
+}
+.form-privacidad a { color: var(--ink-light); text-decoration: underline; text-decoration-color: rgba(26, 21, 16, 0.25); text-underline-offset: 3px; }
+.form-privacidad a:hover { color: var(--casa); text-decoration-color: currentColor; }
+.egs-footer .form-privacidad { margin: -1.4rem auto 2.2rem; }
+.egs-footer .form-privacidad a { color: rgba(250, 248, 245, 0.62); text-decoration-color: rgba(250, 248, 245, 0.3); }
+.egs-footer .form-privacidad a:hover { color: var(--c-hueso); }
+
 /* Enlaces legales del pie: chiquitos */
 .egs-footer .footer-legal {
   display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem 1.3rem;
