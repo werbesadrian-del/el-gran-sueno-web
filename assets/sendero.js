@@ -32,7 +32,7 @@
   luz: '<svg viewBox="0 0 10 10" width="10" height="10"><circle cx="5" cy="5" r="2.4" fill="currentColor"/></svg>',
   agachado: '<svg viewBox="0 0 17 23" width="17" height="23" fill="currentColor"><circle cx="12" cy="9.4" r="2.2"/><rect x="3" y="9" width="4.6" height="7" rx="1.6"/><path d="M7.4 10.6h3.4l2 4.4-1.4 0.7-1.6-3H7.4z"/><path d="M7.4 15.4h4.6l0.8 6.8h-1.9l-0.6-4.8H7.4z"/><rect x="5" y="16" width="1.9" height="6.2" rx="0.9"/></svg>',
   caido: '<svg viewBox="0 0 24 10" width="24" height="10" fill="currentColor"><circle cx="21" cy="7" r="2.2"/><rect x="4" y="5.2" width="15" height="3.4" rx="1.7"/><rect x="7" y="1.4" width="7" height="4.2" rx="1.5"/><rect x="0" y="7" width="5" height="1.8" rx="0.9"/></svg>',
-  fuego: '<svg viewBox="0 0 16 17" width="16" height="17"><path class="llama" d="M8 1C10 5 12 6 11 10c-0.5 2.5-2 3-3 3-1.5 0-3-1-3-3 0-2 2-3 1.5-5.5C7.5 5.5 8 4 8 1z" fill="#E9874A"/><path class="llama llama-2" d="M8 6c1 2 2 3 1.5 5-0.5 1.3-2.5 1.3-2.9 0C6.3 9.6 7.6 9 8 6z" fill="#FFE2C2"/><path d="M2 16L14 14M2 14L14 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',  auto: '<svg viewBox="0 0 34 14" width="34" height="14" fill="currentColor"><path d="M2 10V7.5C2 6.4 2.8 5.6 3.9 5.4L8 4.6 11.5 1.2C12 0.7 12.7 0.4 13.4 0.4H22c0.8 0 1.5 0.4 2 1L27 4.6 31 5.4C32 5.6 32.8 6.5 32.8 7.5V10z"/><circle class="rueda" cx="9" cy="11" r="2.6"/><circle class="rueda" cx="26" cy="11" r="2.6"/></svg>',
+  auto: '<svg viewBox="0 0 34 14" width="34" height="14" fill="currentColor"><path d="M2 10V7.5C2 6.4 2.8 5.6 3.9 5.4L8 4.6 11.5 1.2C12 0.7 12.7 0.4 13.4 0.4H22c0.8 0 1.5 0.4 2 1L27 4.6 31 5.4C32 5.6 32.8 6.5 32.8 7.5V10z"/><circle class="rueda" cx="9" cy="11" r="2.6"/><circle class="rueda" cx="26" cy="11" r="2.6"/></svg>',
   barco: '<svg viewBox="0 0 30 22" width="30" height="22" fill="currentColor"><path d="M2 15h26l-3.4 5.2H5.4z"/><path d="M15 1v13H6z"/><path d="M16.4 3v11h7.6z" opacity="0.75"/></svg>',
   pino: '<svg viewBox="0 0 12 18" width="12" height="18" fill="currentColor"><path d="M6 0l5 7H8.4l3.6 6H7v5H5v-5H0l3.6-6H1z"/></svg>',
   casa: '<svg viewBox="0 0 12 11" width="12" height="11" fill="currentColor"><path d="M0 11V5L6 0l6 5v6z"/></svg>',
@@ -40,7 +40,7 @@
  };
  // La historia sobre el sendero (x de 0 a 1000)
  var ESCENAS = [
-  ['carpa', 22], ['fuego', 318],
+  ['carpa', 22],
   ['pino', 262], ['pino', 274], ['pino', 286], ['pino', 297], ['pino', 307],
   ['acostado', 462, 'p1'],
   ['casa', 512], ['casa', 527], ['casa', 545], ['casa', 560], ['sentado', 584, 'p2'], ['casa', 600],

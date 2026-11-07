@@ -526,49 +526,6 @@ window.egsAvisarNetlify = function (formName, campos) {
 })();
 
 /* ============================================================================
-   AVISO DE PRIVACIDAD DE CADA FORMULARIO (la letra chica, en un solo lugar)
-   Quién recibe los datos, para qué y cómo pedir que se borren, en una línea
-   chiquita debajo de cada formulario. La explicación completa está en
-   /privacidad.html. Para cambiar el texto, se cambia acá y vale para todo el sitio.
-   ============================================================================ */
-(function () {
-  var PARA = {
-    newsletter:  'mandarte estas novedades',
-    mentoria:    'coordinar la sesión con vos',
-    colaborar:   'responderte sobre cómo querés sumarte',
-    institucion: 'conocer a tu institución y escribirte',
-    sugerencia:  'leer tu idea y, si dejás tu correo, responderte',
-    historia:    'leer tu historia y, si dejás tu correo, escribirte',
-    acompanante: 'conocerte y escribirte sobre el acompañamiento'
-  };
-  function aviso(tipo) {
-    var p = document.createElement('p');
-    p.className = 'form-aviso';
-    p.innerHTML = 'Tus datos los recibe Adrián Werbes, de El Gran Sueño, solo para ' + PARA[tipo] +
-      '. No se venden ni se comparten, salvo con los servicios que hacen funcionar la web. ' +
-      'Podés pedir verlos, corregirlos o borrarlos cuando quieras. <a href="/privacidad.html">Privacidad</a>';
-    return p;
-  }
-  function despues(el, tipo) {
-    if (el && !(el.nextElementSibling && el.nextElementSibling.classList.contains('form-aviso'))) {
-      el.insertAdjacentElement('afterend', aviso(tipo));
-    }
-  }
-  function antesDeAcciones(idBoton, tipo) {
-    var b = document.getElementById(idBoton);
-    var acciones = b && b.closest('.acciones');
-    if (acciones) acciones.insertAdjacentElement('beforebegin', aviso(tipo));
-  }
-  despues(document.getElementById('footerForm'), 'newsletter');
-  despues(document.getElementById('mentoriaForm'), 'mentoria');
-  despues(document.getElementById('col-submit'), 'colaborar');
-  despues(document.getElementById('reg-submit'), 'institucion');
-  despues(document.querySelector('.sug-form'), 'sugerencia');
-  antesDeAcciones('bid', 'historia');
-  antesDeAcciones('b-contacto', 'acompanante');
-})();
-
-/* ============================================================================
    MEDICIÓN DE VISITAS, sin cookies (solo en elgransueno.org, nunca en local)
    - Cloudflare Web Analytics: cuántos entran, a qué páginas, de dónde llegan.
    - Microsoft Clarity: mapas de calor (dónde tocan, hasta dónde leen) y grabaciones

@@ -2695,7 +2695,7 @@ html.lenis, html.lenis body { height: auto; }
   .page-section.on-bordo, .dir-hero, .h-cab, .h-hero, .col-hero, .reg-hero, .ei-hero,
   .acomp-hero, .historia-header, .m-header, .page-header, .page-header--foto, .gr-wrap,
   .cabecera, .transicion-beat, .st-hero-top, .st-mirador, .st-horizonte, .st-duo,
-  .st-climax, .invita-mentoria, .temas-marquee, .tema-globito, .art-cta-pregunta,
+  .st-climax, .invita-mentoria, .art-cta-pregunta,
   .art-raices-inner, .m-noche, .descubrimiento, .col-transp, .col-nunca, .reg-criterios,
   .comunidad-section, .perfil-section, .transparencia-section, .multiplicacion-section, .cierre-esp,
   .tarjeta-sugerida) {
@@ -2819,34 +2819,6 @@ html.lenis, html.lenis body { height: auto; }
   .modo-limpio .st-hero-top::before { animation: none; }
 }
 
-/* --- Marquesina de temas: movimiento lento e hipnótico (vida sin ruido) --- */
-.modo-limpio .temas-marquee {
-  background: var(--noche); overflow: hidden;
-  padding: 1.5rem 0; white-space: nowrap;
-}
-.modo-limpio .temas-track {
-  display: inline-block; will-change: transform;
-  animation: temas-desfile 48s linear infinite;
-}
-/* palabra = botón clickeable/hover, con aspecto de texto */
-.modo-limpio .temas-track .tema-palabra {
-  font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-variation-settings: var(--f-voz-var, normal); font-style: italic;
-  font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--gris-texto);
-  padding: 0.2rem 1.5rem; letter-spacing: 0.01em;
-  background: none; border: 0; cursor: pointer;
-  transition: color 0.35s ease;
-}
-.modo-limpio .temas-track .tema-palabra:hover,
-.modo-limpio .temas-track .tema-palabra:focus-visible { color: var(--ember); outline: none; }
-.modo-limpio .temas-track i {
-  font-style: normal; color: var(--ember); font-size: 0.74rem;
-  vertical-align: middle; opacity: 0.7;
-}
-@keyframes temas-desfile { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.modo-limpio .temas-marquee:hover .temas-track,
-.modo-limpio .temas-marquee.pausado .temas-track { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .modo-limpio .temas-track { animation: none; } }
-
 /* Invitación a la mentoría (home): panel oscuro atmosférico + CTA ember prominente */
 .modo-limpio .invita-mentoria {
   position: relative; overflow: hidden; text-align: center;
@@ -2895,35 +2867,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .modo-limpio .invita-mentoria::before { animation: none; } }
 @media (max-width: 640px) { .modo-limpio .invita-mentoria { padding: 12vh 1.6rem; } }
-
-/* El "globito" con la definición del concepto */
-.modo-limpio .tema-globito {
-  position: absolute; z-index: 200; max-width: min(340px, 88vw);
-  background: linear-gradient(180deg, var(--noche-2, #1C1A1A), var(--carbon, #070505));
-  border: 1px solid rgba(200,48,63,0.168);
-  border-radius: 10px; padding: 1.1rem 1.25rem;
-  box-shadow: 0 24px 60px -24px rgba(0,0,0,0.75);
-  opacity: 0; transform: translateY(-6px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-}
-.modo-limpio .tema-globito.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.modo-limpio .tema-globito::before {
-  content: ""; position: absolute; top: -7px; left: var(--flecha-x, 50%);
-  transform: translateX(-50%) rotate(45deg);
-  width: 12px; height: 12px;
-  background: var(--noche-2, #1C1A1A);
-  border-left: 1px solid rgba(200,48,63,0.168);
-  border-top: 1px solid rgba(200,48,63,0.168);
-}
-.modo-limpio .tema-globito-palabra {
-  display: block; font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal);
-  color: var(--c-hueso); font-size: 1.05rem; margin-bottom: 0.5rem;
-}
-.modo-limpio .tema-globito-def {
-  font-family: var(--f-texto); font-weight: 400;
-  color: rgba(250,248,245,0.86); font-size: 0.9rem; line-height: 1.6; margin: 0;
-}
 
 /* --- Capítulos: base de LUZ para leer; la noche, para los momentos
        profundos. Ritmo: luz → noche → luz → petróleo → noche. --- */
@@ -3244,16 +3187,6 @@ html.lenis, html.lenis body { height: auto; }
    Letra chica, chat y páginas legales (septiembre 2026)
    ============================================================ */
 
-/* Aviso de privacidad debajo de cada formulario (lo agrega egs.js) */
-.form-aviso {
-  font-family: var(--f-texto); font-size: 0.7rem; line-height: 1.55;
-  color: var(--ink-light); max-width: 34rem; margin: 1rem auto 0;
-  text-align: center; text-wrap: pretty;
-}
-.form-aviso a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-.form-aviso a:hover { color: var(--casa); }
-.egs-footer .form-aviso { color: rgba(250, 248, 245, 0.5); margin: -1.4rem auto 2.2rem; }
-.egs-footer .form-aviso a:hover { color: var(--c-hueso); }
 
 /* Casilla para publicar una historia: sin marcar, no se publica */
 .consentimiento {
@@ -3363,11 +3296,6 @@ html.lenis, html.lenis body { height: auto; }
  /* La luz adentro: color pleno y un brillo suave alrededor */
  .sendero-top .con-luz svg { filter: drop-shadow(0 0 1.5px var(--brillo)) drop-shadow(0 0 5px var(--brillo)); transition: filter 0.6s ease; }
  .sendero-top .recien svg { filter: drop-shadow(0 0 3px var(--brillo)) drop-shadow(0 0 10px var(--brillo)) drop-shadow(0 0 16px var(--brillo)); }
- .sendero-top .s-fuego svg { filter: drop-shadow(0 0 5px rgba(233, 135, 74, 0.7)); }
- .sendero-top .llama { transform-box: fill-box; transform-origin: 50% 100%; animation: llama 0.5s ease-in-out infinite alternate; }
- .sendero-top .llama-2 { animation-duration: 0.37s; }
- @keyframes llama { from { transform: scaleY(0.86) skewX(-4deg); } to { transform: scaleY(1.08) skewX(4deg); } }
- @media (prefers-reduced-motion: reduce) { .sendero-top .llama { animation: none; } }
  @media (prefers-reduced-motion: reduce) { .sendero-top.camina * { animation: none !important; } }
 
  /* El menú se funde con la noche y vuelve a ser claro cuando la luz inunda la página */
@@ -3465,20 +3393,6 @@ html.lenis, html.lenis body { height: auto; }
 .modo-limpio.pagina-viaje main .blog-excerpt { font-size: 1rem; line-height: 1.65; }
 .modo-limpio.pagina-viaje main .huellas-intro p { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; }
 .modo-limpio :is(.h-listado-nota, .h-vacio) { border-radius: 16px; }
-
-/* El fogón (el mismo de la home, la sesión y Encontrar mi lugar), para usar en cualquier página */
-.fogon { position: relative; width: 64px; height: 58px; margin: 0 auto 1.9rem; }
-.fogon svg { display: block; overflow: visible; filter: drop-shadow(0 0 10px rgba(233, 135, 74, 0.5)); }
-.fogon .llama { transform-box: fill-box; transform-origin: 50% 100%; animation: llama 0.55s ease-in-out infinite alternate; }
-.fogon .llama-2 { animation-duration: 0.4s; }
-.fogon .chispa { position: absolute; left: 50%; bottom: 26px; width: 3px; height: 3px; border-radius: 50%; background: #FFD9B5; opacity: 0; animation: chispa 2.6s ease-out infinite; }
-.fogon .chispa:nth-child(2) { --dx: -14px; animation-delay: 0.4s; }
-.fogon .chispa:nth-child(3) { --dx: 9px; animation-delay: 1.1s; }
-.fogon .chispa:nth-child(4) { --dx: -5px; animation-delay: 1.7s; }
-.fogon .chispa:nth-child(5) { --dx: 16px; animation-delay: 2.2s; }
-@keyframes llama { from { transform: scaleY(0.86) skewX(-4deg); } to { transform: scaleY(1.08) skewX(4deg); } }
-@keyframes chispa { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx, 6px), -74px); } }
-@media (prefers-reduced-motion: reduce) { .fogon * { animation: none !important; } }
 
 /* Las conversaciones (compartir mi historia, la solicitud para acompañar): la bienvenida es de noche,
    junto al fuego, como la sesión con Adrián; después cada pregunta sigue en la luz del día */
