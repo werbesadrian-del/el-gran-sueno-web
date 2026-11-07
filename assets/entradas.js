@@ -24,6 +24,18 @@
 
 window.EGS_ESCRITOS = [
   {
+    slug: "cuando-uno-esta-viviendo-un-invierno",
+    titulo: "Cuando uno está viviendo un invierno: cómo atravesar las temporadas difíciles con Dios",
+    pregunta: "¿Y si este invierno no es el final, sino el lugar donde la vida baja a la raíz?",
+    pilar: "santificacion",
+    pilarLabel: "Santificación",
+    excerpt: "Hay temporadas en las que todo se enfría y uno quiere escapar. Sobre los inviernos del alma, la poda que hace el Padre y la vida que no depende del ánimo.",
+    lectura: "8 min",
+    fecha: "2026-11-07",
+    destacado: false,
+    link: "/blog/cuando-uno-esta-viviendo-un-invierno"
+  },
+  {
     slug: "por-que-siento-que-nada-tiene-sentido",
     titulo: "¿Por qué siento que nada tiene sentido? Vivir despierto en Cristo",
     pregunta: "¿Y si lo que te falta no es fuerza ni motivación, sino ver?",
