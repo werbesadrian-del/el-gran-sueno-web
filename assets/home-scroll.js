@@ -42,7 +42,7 @@ function iniciar() {
   // El final (el nombre) llega apenas se va la última frase y dura poco: un scrollcito y aparece
   const ESC = secciones.length + 1 - 0.2;
   const DUR = 1 + ESC;
-  const LARGO = 0.5;
+  const LARGO = 0.3;   // propuesta minimalista: el relato pide menos scroll (antes 0.5)
   document.body.classList.add('cine-on');
   peli.classList.add('peli-on');
   const siguiente = peli.nextElementSibling;

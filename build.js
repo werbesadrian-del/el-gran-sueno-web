@@ -24,16 +24,24 @@ function inline(s) {
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
     .replace(/\n/g, '<br>');
 }
-function md(t) {
+// ancla de un apartado: «¿Quién entenderá sus propios errores?» -> quien-entendera-sus-propios-errores
+function slugTitulo(s) { return String(s).replace(/\*/g, '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9ñ]+/g, '-').replace(/^-+|-+$/g, ''); }
+function md(t, conIds) {
   return String(t || '').split(/\n\s*\n/).map(function (b) {
     b = b.trim(); if (!b) return '';
     if (b.indexOf('### ') === 0) return '<h3>' + inline(b.slice(4)) + '</h3>';
-    if (b.indexOf('## ') === 0)  return '<h2>' + inline(b.slice(3)) + '</h2>';
+    if (b.indexOf('## ') === 0)  return '<h2' + (conIds ? ' id="' + slugTitulo(b.slice(3)) + '"' : '') + '>' + inline(b.slice(3)) + '</h2>';
     if (b.indexOf('> ') === 0)   return '<blockquote>' + inline(b.replace(/^> ?/gm, '')) + '</blockquote>';
     return '<p>' + inline(b) + '</p>';
   }).join('\n');
 }
 function textoPlano(t) { return String(t || '').replace(/[#>*!\[\]()]/g, '').replace(/\s+/g, ' ').trim(); }
+// Descripción para Google (21-nov-2026): se corta en la última palabra entera y no a la mitad («y la libertad de»).
+function recortar(s, n) {
+  s = String(s || ''); if (s.length <= n) return s;
+  var c = s.slice(0, n - 1), i = c.lastIndexOf(' ');
+  return (i > n * 0.6 ? c.slice(0, i) : c).replace(/[\s,;:.]+$/, '') + '…';
+}
 function fmtFecha(iso) { if (!iso) return ''; var m=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']; var p=iso.split('-'); return m[parseInt(p[1],10)-1]+' '+p[0]; }
 
 var HEAD_COMUN = `
@@ -166,13 +174,50 @@ function bloqueInvitacion() {
 </div></section>`;
 }
 
+// Índice del escrito (21-nov-2026, idea aprobada por Adrián): un enlace a cada apartado, para que cada uno vaya a la
+// parte que le toca y para que reels y carruseles lleven directo a la suya (/blog/<slug>#<apartado>). Va solo en los
+// escritos desde el 21-nov (o con "indice": true / false para forzarlo); los anteriores quedan como estaban.
+function conIndice(p) { return p.indice != null ? !!p.indice : String(p.fecha || '') >= '2026-11-21'; }
+function bloqueIndice(p) {
+  if (!conIndice(p)) return '';
+  var tit = String(p.cuerpo || '').split(/\n\s*\n/).map(function (b) { return b.trim(); })
+    .filter(function (b) { return b.indexOf('## ') === 0; }).map(function (b) { return b.slice(3).replace(/\*/g, ''); });
+  if (tit.length < 3) return '';
+  return '<nav class="art-indice" aria-label="En este escrito"><p class="art-indice-titulo">En este escrito</p><ol>' +
+    tit.map(function (t) { return '<li><a href="#' + slugTitulo(t) + '">' + esc(t) + '</a></li>'; }).join('') + '</ol></nav>';
+}
+
+// Seguir leyendo (21-nov-2026): tres escritos más, primero los del mismo pilar y después los más nuevos. Los enlaces
+// entre escritos le muestran a Google que el sitio responde un tema a fondo, y al que lee le dan dónde seguir.
+function bloqueRelacionados(p) {
+  var otros = escritos.filter(function (o) { return o.slug && o.slug !== p.slug; });
+  otros.sort(function (a, b) {
+    var pa = a.pilar === p.pilar ? 0 : 1, pb = b.pilar === p.pilar ? 0 : 1;
+    return pa !== pb ? pa - pb : String(b.videoFecha || b.fecha || '').localeCompare(String(a.videoFecha || a.fecha || ''));
+  });
+  var elegidos = otros.slice(0, 3);
+  if (!elegidos.length) return '';
+  return '<nav class="art-relacionados" aria-label="Seguir leyendo"><p class="art-relacionados-titulo">Seguir leyendo</p><ul>' +
+    elegidos.map(function (o) {
+      return '<li><a href="/blog/' + o.slug + '"><span class="art-relacionados-t">' + esc(o.titulo) + '</span>' +
+        (o.pregunta ? '<span class="art-relacionados-p">' + esc(o.pregunta) + '</span>' : '') + '</a></li>';
+    }).join('') + '</ul></nav>';
+}
+
 function paginaEscrito(p) {
   var url = SITE + '/blog/' + p.slug;
   var pilarLabel = p.pilarLabel || PILAR[p.pilar] || p.pilar || '';
-  var desc = textoPlano(p.resumen || p.cuerpo).slice(0, 155);
-  var ld = jsonLd({ '@context':'https://schema.org', '@type':'Article', headline:p.titulo, description:desc,
-    datePublished:p.fecha, dateModified:p.actualizado || p.fecha, author:{'@type':'Person',name:'Adrián'}, publisher:{'@type':'Organization',name:'El Gran Sueño'},
-    mainEntityOfPage:url, articleSection:pilarLabel, inLanguage:'es', video:videoLd(p, desc) });
+  var desc = recortar(textoPlano(p.resumen || p.cuerpo), 155);
+  // 21-nov-2026: con imagen, autor con página y logo, como lo pide Google para mostrar el artículo con foto;
+  // y la miga de pan (Inicio > Escritos > escrito) para que el resultado muestre de qué sección es.
+  var ld = jsonLd({ '@context':'https://schema.org', '@type':'Article', headline:p.titulo, description:desc, image:[ogImagen(p, 'blog')],
+    datePublished:p.fecha, dateModified:p.actualizado || p.fecha, author:{'@type':'Person',name:'Adrián',url:SITE + '/nosotros.html'},
+    publisher:{'@type':'Organization',name:'El Gran Sueño',url:SITE + '/',logo:{'@type':'ImageObject',url:SITE + '/assets/icon-512.png'}},
+    mainEntityOfPage:url, articleSection:pilarLabel, inLanguage:'es', video:videoLd(p, desc) }) +
+    jsonLd({ '@context':'https://schema.org', '@type':'BreadcrumbList', itemListElement:[
+      { '@type':'ListItem', position:1, name:'Inicio', item:SITE + '/' },
+      { '@type':'ListItem', position:2, name:'Escritos', item:SITE + '/blog' },
+      { '@type':'ListItem', position:3, name:p.titulo, item:url }] });
   var meta = [];
   if (p.lectura) meta.push('<span>' + esc(p.lectura) + '</span>');
   if (p.fecha) meta.push('<span>' + fmtFecha(p.fecha) + '</span>');
@@ -194,11 +239,13 @@ ${nav('/blog', 'Escritos')}
 ${p.imagen ? '<figure class="art-portada"><img src="' + esc(p.imagen) + '" alt="" loading="lazy"></figure>' : ''}
 <article class="long-prose">
   ${p.resumen ? '<p class="lead">' + esc(p.resumen) + '</p>' : ''}
-  ${md(p.cuerpo)}
+  ${bloqueIndice(p)}
+  ${md(p.cuerpo, conIndice(p))}
 </article>
 ${bloqueVideo(p)}
 ${bloqueRaices(p.raices)}
 ${bloqueInvitacion()}
+${bloqueRelacionados(p)}
 </main>
 ${FOOTER}
 ${contadorLecturas(p.slug)}</body></html>`;
@@ -206,7 +253,7 @@ ${contadorLecturas(p.slug)}</body></html>`;
 
 function paginaHuella(p) {
   var url = SITE + '/huella/' + p.slug;
-  var desc = textoPlano(p.resumen || p.frase || p.cuerpo).slice(0, 155);
+  var desc = recortar(textoPlano(p.resumen || p.frase || p.cuerpo), 155);
   var ld = jsonLd({ '@context':'https://schema.org', '@type':'Article', headline:p.nombre, description:desc,
     datePublished:p.fecha, author:{'@type':'Person',name:'Adrián'}, publisher:{'@type':'Organization',name:'El Gran Sueño'},
     mainEntityOfPage:url, articleSection:'Huellas de Fe', inLanguage:'es' });

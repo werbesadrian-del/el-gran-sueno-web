@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sostener el sueño | El Gran Sueño</title>
-<meta name="description" content="Hay personas caminando hoy porque otras eligieron sostener este espacio. Podés ser parte de que puedan seguir.">
+<title>Sostener | El Gran Sueño</title>
+<meta name="description" content="Un fondo para dar una mano a quien está caminando. Un café, una comida, acompañar, un empujón para quien vive su llamado.">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Sostener el sueño | El Gran Sueño">
-<meta property="og:description" content="Hay personas caminando hoy porque otras eligieron sostener este espacio.">
+<meta property="og:title" content="Sostener | El Gran Sueño">
+<meta property="og:description" content="Un fondo para dar una mano a quien está caminando.">
 <meta property="og:image" content="https://elgransueno.org/assets/og/pagina/colaborar.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="https://elgransueno.org/assets/og/pagina/colaborar.jpg">
 <meta property="og:locale" content="es_ES">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Sostener el sueño | El Gran Sueño">
+<meta name="twitter:title" content="Sostener | El Gran Sueño">
 <meta name="theme-color" content="#6B1A2B">
 
 <link rel="icon" type="image/png" href="/assets/favicon.png">
@@ -522,7 +522,103 @@
  .col-form-inner { border-radius: 22px; }
  .col-honestidad, .col-form-inner { background: #FAF8F5; }
  .col-transp-nota, .col-nunca-item { border-radius: 16px; }
- .col-forma-icono { display: block; width: 34px; height: 34px; fill: none; stroke: var(--bordo); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 1rem; }</style>
+ .col-forma-icono { display: block; width: 34px; height: 34px; fill: none; stroke: var(--bordo); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 1rem; }
+ /* SOSTENER SIMPLE (propuesta 24-nov-2026): qué es, a dónde va, quién está detrás, aportar en un paso,
+ orar y escribirnos. De buena fe, sin lista de movimientos, cifras inventadas ni equipos que todavía no existen. */
+ .sv-sec { padding: 6.5rem 1.6rem; }
+ .sv-sec.blanco { background: #fff; }
+ .sv-sec.papel { background: var(--cream); }
+ .sv-in { max-width: 980px; margin: 0 auto; }
+ .sv-angosto { max-width: 660px; margin: 0 auto; }
+ .sv-ceja { display: block; font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: 1.12rem; color: var(--bordo); margin: 0 0 0.7rem; }
+ .sv-h2 { font-family: var(--f-titulo); font-weight: 400; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.16; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 1.1rem; text-wrap: balance; }
+ .sv-h2 em { font-style: italic; color: var(--bordo); }
+ .modo-limpio.pagina-viaje main .sv-texto, .sv-texto { font-family: var(--f-texto); font-size: clamp(1.03rem, 1.6vw, 1.12rem); line-height: 1.72; color: var(--ink-mid); margin: 0 0 1rem; }
+ .sv-centro { text-align: center; }
+ .sv-boton { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; font-family: var(--f-texto); font-weight: 500; font-size: 1rem; text-decoration: none; border-radius: 999px; padding: 0.95rem 2rem; border: none; cursor: pointer; transition: transform 0.25s ease, background 0.25s ease; }
+ .sv-boton.vino { background: var(--v-vino); color: var(--v-hueso); }
+ .sv-boton.vino:hover { background: var(--v-vino-hondo); transform: translateY(-2px); }
+ .sv-boton.linea { background: transparent; color: var(--bordo); border: 1px solid rgba(107, 26, 43, 0.35); }
+ .sv-boton.linea:hover { border-color: var(--bordo); }
+ .sv-boton:focus-visible { outline: 2px solid var(--v-celeste); outline-offset: 3px; }
+
+ /* 1. Portada */
+ .sv-portada { background: var(--cream); padding: 10.5rem 1.6rem 6rem; text-align: center; }
+ .sv-portada h1 { font-family: var(--f-titulo); font-weight: 400; font-size: clamp(2.2rem, 5.4vw, 3.7rem); line-height: 1.1; letter-spacing: -0.015em; color: var(--ink); margin: 0 auto 1.3rem; max-width: 46rem; text-wrap: balance; }
+ .sv-portada h1 em { font-style: italic; color: var(--bordo); }
+ .modo-limpio.pagina-viaje main .sv-portada-sub, .sv-portada-sub { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: clamp(1.15rem, 2.1vw, 1.38rem); line-height: 1.6; color: var(--ink-mid); max-width: 36rem; margin: 0 auto; }
+ .sv-portada-botones { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2.2rem; }
+
+ /* 2. A dónde va */
+ .sv-destinos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-top: 2.4rem; }
+ .sv-destino { background: #fff; border: 1px solid var(--cream-dark); border-radius: 18px; padding: 1.6rem 1.4rem; }
+ .sv-destino svg { width: 34px; height: 34px; fill: none; stroke: var(--bordo); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block; margin-bottom: 1rem; }
+ .sv-destino h3 { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-weight: 500; font-size: 1.3rem; line-height: 1.25; color: var(--ink); margin: 0 0 0.5rem; }
+ .modo-limpio.pagina-viaje main .sv-destino p, .sv-destino p { font-family: var(--f-texto); font-size: 0.96rem; line-height: 1.6; color: var(--ink-mid); margin: 0; }
+
+ /* 3. Quién está detrás */
+ .sv-quien { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 3.5rem; align-items: center; }
+ .sv-firma { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: 1.15rem; color: var(--ink); margin: 1.4rem 0 0; }
+ .sv-ver { display: flex; flex-direction: column; gap: 0.7rem; }
+ .sv-ver a { display: flex; align-items: center; gap: 0.9rem; text-decoration: none; color: var(--ink); background: var(--cream); border: 1px solid var(--cream-dark); border-radius: 16px; padding: 1rem 1.1rem; transition: border-color 0.25s ease; }
+ .sv-ver a:hover { border-color: var(--bordo); }
+ .sv-ver svg { flex: 0 0 26px; width: 26px; height: 26px; fill: none; stroke: var(--bordo); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+ .sv-ver strong { display: block; font-family: var(--f-texto); font-weight: 600; font-size: 0.98rem; }
+ .sv-ver small { display: block; font-family: var(--f-texto); font-size: 0.86rem; color: var(--ink-mid); margin-top: 0.15rem; }
+
+ /* 4. Aportar: una tarjeta de noche, un paso */
+ .sv-aportar { background-color: var(--v-noche); color: var(--v-hueso); border-radius: 26px; padding: 3rem 2.4rem; max-width: 640px; margin: 0 auto; text-align: center;
+ background-image: radial-gradient(1px 1px at 12% 18%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 78% 12%, #FAF8F5, transparent 60%), radial-gradient(1.2px 1.2px at 64% 34%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 30% 62%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 88% 58%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 6% 80%, #FAF8F5, transparent 60%);
+ background-size: 340px 340px; }
+ .sv-aportar .sv-ceja { color: var(--v-celeste); }
+ .sv-aportar .sv-h2 { color: var(--v-hueso); }
+ .sv-frecuencia { display: inline-flex; background: rgba(250, 248, 245, 0.08); border-radius: 999px; padding: 4px; margin: 0.6rem 0 1.4rem; }
+ .sv-frecuencia button { border: none; background: transparent; color: rgba(250, 248, 245, 0.75); font-family: var(--f-texto); font-size: 0.95rem; padding: 0.6rem 1.3rem; border-radius: 999px; cursor: pointer; }
+ .sv-frecuencia button[aria-checked="true"] { background: var(--v-hueso); color: var(--v-vino-hondo); font-weight: 500; }
+ .sv-montos { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; }
+ .sv-montos button, .sv-otro input { font-family: var(--f-texto); font-size: 1.05rem; font-weight: 500; color: var(--v-hueso); background: rgba(250, 248, 245, 0.06); border: 1px solid rgba(250, 248, 245, 0.25); border-radius: 14px; padding: 0.9rem 0.4rem; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease; }
+ .sv-montos button:hover { border-color: rgba(250, 248, 245, 0.6); }
+ .sv-montos button[aria-checked="true"] { background: var(--v-hueso); border-color: var(--v-hueso); color: var(--v-vino-hondo); }
+ .sv-otro { margin-top: 0.7rem; }
+ .sv-otro input { width: 100%; box-sizing: border-box; cursor: text; text-align: center; }
+ .sv-otro input::placeholder { color: rgba(250, 248, 245, 0.45); }
+ .sv-otro input:focus { outline: none; border-color: rgba(250, 248, 245, 0.7); }
+ .modo-limpio.pagina-viaje main .sv-alcanza, .sv-alcanza { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: 1.12rem; line-height: 1.5; color: rgba(250, 248, 245, 0.85); min-height: 1.7em; margin: 1.2rem 0 1.4rem; }
+ .sv-aportar .sv-boton.claro { background: var(--v-hueso); color: var(--v-vino-hondo); min-width: 15rem; }
+ .sv-aportar .sv-boton.claro:hover { background: #fff; transform: translateY(-2px); }
+ .sv-aportar .sv-boton.claro:disabled { background: rgba(250, 248, 245, 0.15); color: rgba(250, 248, 245, 0.5); cursor: not-allowed; transform: none; }
+ .sv-datos { text-align: left; margin-top: 1.6rem; }
+ .modo-limpio.pagina-viaje main .sv-datos-nota, .sv-datos-nota { font-family: var(--f-texto); font-size: 0.95rem; line-height: 1.55; color: rgba(250, 248, 245, 0.8); text-align: center; margin: 0 0 1rem; }
+ .sv-datos-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+ .sv-datos input { width: 100%; box-sizing: border-box; font-family: var(--f-texto); font-size: 1rem; color: var(--v-hueso); background: rgba(250, 248, 245, 0.07); border: 1px solid rgba(250, 248, 245, 0.22); border-radius: 12px; padding: 0.85rem 1rem; }
+ .sv-datos input::placeholder { color: rgba(250, 248, 245, 0.45); }
+ .sv-datos input:focus { outline: none; border-color: rgba(250, 248, 245, 0.65); }
+ .sv-datos .sv-boton { display: flex; margin: 1rem auto 0; }
+ .modo-limpio.pagina-viaje main .sv-legal, .sv-legal { font-family: var(--f-texto); font-size: 0.84rem; line-height: 1.55; color: rgba(250, 248, 245, 0.6); margin: 1.6rem 0 0; }
+ .modo-limpio.pagina-viaje main .sv-gracias, .sv-gracias { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: 1.2rem; line-height: 1.6; color: var(--v-hueso); margin: 1.4rem 0 0; }
+ [hidden] { display: none !important; }
+
+ .modo-limpio.pagina-viaje main .sv-historias, .sv-historias { margin: 2.6rem auto 0; max-width: 40rem; }
+ .sv-historias a { color: var(--bordo); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+
+ /* 6. Orar por el proyecto: el bloque de oración de las historias */
+ .sv-orar .participar { padding: 0; border-top: none; }
+
+ @media (max-width: 860px) {
+ .sv-destinos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+ .sv-quien { grid-template-columns: 1fr; gap: 2.2rem; }
+ }
+ @media (max-width: 560px) {
+ .sv-sec { padding: 4.8rem 1.15rem; }
+ .sv-portada { padding: 8.5rem 1.15rem 4.5rem; }
+ .sv-destinos { grid-template-columns: 1fr; gap: 0.7rem; }
+ .sv-destino { display: grid; grid-template-columns: 34px 1fr; column-gap: 1rem; padding: 1.2rem 1.15rem; }
+ .sv-destino svg { margin: 0.15rem 0 0; grid-row: span 2; width: 30px; height: 30px; }
+ .sv-aportar { padding: 2.2rem 1.2rem; border-radius: 20px; }
+ .sv-montos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+ .sv-datos-campos { grid-template-columns: 1fr; }
+ }
+</style>
  <link rel="canonical" href="https://elgransueno.org/colaborar.html">
  <meta property="og:site_name" content="El Gran Sueño">
  <meta property="og:url" content="https://elgransueno.org/colaborar.html"></head>
@@ -541,174 +637,122 @@
 
 <main>
 
-<!-- HERO -->
-<section class="col-hero">
- <div class="col-hero-linea" aria-hidden="true"></div>
- <span class="col-hero-eyebrow">Sostener el sueño</span>
- <h1 class="col-hero-title">Hay personas caminando hoy porque otras eligieron <em>sostener este espacio.</em></h1>
- <p class="col-hero-sub">
- Este ecosistema no vive de publicidad, patrocinios ni fondos externos con condiciones.
- Vive del cuidado real de personas que creen en lo que aquí se está construyendo.</p>
- <div class="col-hero-linea" aria-hidden="true"></div></section>
+<!-- 1. Qué es: un fondo, recién empieza -->
+<section class="sv-portada">
+ <h1>Un fondo para dar una mano a quien está <em>caminando.</em></h1>
+ <p class="sv-portada-sub">Lo que aportes sostiene este sueño y a las personas que vamos encontrando en el camino. Un café, una comida, acompañar a alguien, un empujón para quien está caminando su llamado.</p>
+ <div class="sv-portada-botones">
+ <a class="sv-boton vino" href="#aportar">Aportar al fondo</a>
+ <a class="sv-boton linea" href="#destino">A dónde va</a></div></section>
 
-<!-- HONESTIDAD -->
-<section class="col-honestidad">
- <div class="col-honestidad-inner">
- <p>Podríamos escribir esta página como una campaña. Podríamos ponerle metas visibles, contadores de urgencia, testimonios diseñados para conmover. No lo vamos a hacer.</p>
- <p>Porque este proyecto <em>no crece cuando alguien da desde la presión.</em> Crece cuando alguien reconoce que ya es parte, y decide sostenerlo desde ahí.</p>
- <div class="destacado">
- Sostener El Gran Sueño no es dar dinero.<br>
- Es reconocer que este espacio también es tuyo.</div>
- <p>Existen personas y familias que dedican tiempo, mentores que ofrecen horas sin cobrar, un equipo que trabaja para que cada historia sea escuchada. Todo eso, sumado, se sostiene con aportes libres, no con fórmulas de marketing.</p>
- <p>Si estás acá, es porque algo de esto tocó algo dentro tuyo. Lo que sigue no es una lista de cosas para comprar. Es una lista de <em>maneras</em> de estar cerca.</p></div></section>
+<!-- 2. A dónde va: cosas concretas -->
+<section class="sv-sec blanco" id="destino">
+ <div class="sv-in">
+ <div class="sv-angosto sv-centro">
+ <span class="sv-ceja">A dónde va el fondo</span>
+ <h2 class="sv-h2">Lo que haga falta para caminar <em>con las personas.</em></h2>
+ <p class="sv-texto">La idea es simple. Que cualquier persona, en cualquier lugar del mundo, pueda sentirse parte y ayudar a quien se cruza en su camino.</p></div>
+ <div class="sv-destinos">
+ <div class="sv-destino">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h13v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H16.5"/><path d="M8 3.5c0 1.5 1.5 1.5 1.5 3M12 3.5c0 1.5 1.5 1.5 1.5 3"/></svg>
+ <h3>Un café, una comida</h3>
+ <p>Sentarse con alguien que lo necesita, donde sea que estemos. Muchas veces todo empieza ahí.</p></div>
+ <div class="sv-destino">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 2-5 5-5s5 2 5 5M13 20c0-2 2-4 4-4s4 2 4 4"/></svg>
+ <h3>Acompañar</h3>
+ <p>Tiempo, presencia y conversación con las personas que vamos encontrando en el camino.</p></div>
+ <div class="sv-destino">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17l10-10"/><path d="M9 7h8v8"/><circle cx="6" cy="18" r="1.6"/></svg>
+ <h3>Un empujón a quien camina</h3>
+ <p>Personas que están viviendo su llamado y dedican su vida a servir. Muchas veces lo difícil no es solo sostenerse, sino tener con qué ayudar a otros.</p></div>
+ <div class="sv-destino">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+ <h3>Que este espacio siga</h3>
+ <p>Lo que hace falta para que El Gran Sueño siga caminando y llegue a más personas.</p></div></div>
+ <p class="sv-texto sv-centro sv-historias">Lo que va pasando lo vas a ir conociendo en las historias de las personas. <a href="historias.html">Ver historias</a></p></div></section>
 
-<!-- LAS CUATRO FORMAS -->
-<section class="col-formas">
- <div class="col-formas-inner">
- <div class="col-formas-intro">
- <span class="col-formas-eyebrow">Cuatro formas de sostener</span>
- <h2 class="col-formas-title">Ninguna vale más que otra.</h2>
- <p class="col-formas-sub">Cada persona sostiene con lo que tiene. La oración, el tiempo, la red, el dinero, todas construyen el mismo ecosistema.</p></div>
- <div class="col-formas-grid">
-
- <div class="col-forma presencia" data-forma="presencia">
- <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c2 3 4.5 4.6 4.5 8.4a4.5 4.5 0 0 1-9 0c0-2.2 1.2-3.4 2.2-4.4 0 1.6.9 2.4 2 2.5-.9-2.2-.8-4.4.3-6.5z"/><path d="M8 21h8"/></svg>
- <span class="col-forma-etiq">Con presencia</span>
- <h3 class="col-forma-titulo">Orar por procesos concretos</h3>
- <p class="col-forma-desc">La forma más antigua y más sostenida de acompañar a alguien. Nombres reales, historias reales, oración real.</p>
- <ul class="col-forma-lista">
- <li>Recibís, con reserva, procesos que necesitan oración</li>
- <li>Podés orar por una historia por el tiempo que sientas</li>
- <li>Sin plazos, sin publicaciones, sin exposición</li></ul>
- <span class="col-forma-elegir">Sumarme a orar</span></div>
-
- <div class="col-forma tiempo" data-forma="tiempo">
- <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
- <span class="col-forma-etiq">Con tiempo</span>
- <h3 class="col-forma-titulo">Poner horas al servicio</h3>
- <p class="col-forma-desc">Escribir, escuchar, conectar, editar, traducir, cuidar procesos. Todo lo que sucede acá sucede porque alguien decidió regalar su tiempo.</p>
- <ul class="col-forma-lista">
- <li>Contás con qué talento o disponibilidad tenés</li>
- <li>Alguien del equipo se contacta para conversar</li>
- <li>No es voluntariado obligatorio ni con cupos, es acompañamiento mutuo</li></ul>
- <span class="col-forma-elegir">Ofrecer mi tiempo</span></div>
-
- <div class="col-forma red" data-forma="red">
- <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M8.3 7l7.3-.8M7.2 9.1l3.7 6.8M16.9 8.2l-3.8 7.7"/></svg>
- <span class="col-forma-etiq">Con red y recursos</span>
- <h3 class="col-forma-titulo">Conectar personas y abrir puertas</h3>
- <p class="col-forma-desc">A veces la mayor forma de sostener no es dar algo tuyo, sino abrir el acceso a algo que necesita otra persona. Un contacto. Un espacio. Una oportunidad.</p>
- <ul class="col-forma-lista">
- <li>Compartís qué red, espacios o recursos tenés</li>
- <li>El equipo discierne cuándo y cómo activarlos</li>
- <li>Nada se comercializa. Todo se cuida</li></ul>
- <span class="col-forma-elegir">Compartir lo que tengo</span></div>
-
- <div class="col-forma aporte" data-forma="aporte">
- <svg class="col-forma-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-6.5-4-6.5-9.4A3.6 3.6 0 0 1 12 8.4a3.6 3.6 0 0 1 6.5 2.2C18.5 16 12 20 12 20z"/></svg>
- <span class="col-forma-etiq">Con aportes económicos</span>
- <h3 class="col-forma-titulo">Sostener lo que hace falta pagar</h3>
- <p class="col-forma-desc">Hay cosas que no se pueden regalar. Un servidor. Una herramienta. Un viaje. Un tiempo que alguien necesita dedicarle por completo al equipo.</p>
- <ul class="col-forma-lista">
- <li>Aporte único o mensual, sin comprometerte para siempre</li>
- <li>Sin metas visibles, sin urgencia inventada</li>
- <li>Recibís, si lo pedís, un resumen honesto de a dónde fue</li></ul>
- <span class="col-forma-elegir">Aportar económicamente</span></div></div></div></section>
-
-<!-- TRANSPARENCIA -->
-<section class="col-transp">
- <div class="col-transp-inner">
- <span class="col-transp-eyebrow">Transparencia</span>
- <h2 class="col-transp-title">A dónde va, honestamente, <em>cada aporte.</em></h2>
- <p class="col-transp-sub">
- No queremos cajas negras. Estos son los cuatro destinos donde se aplica cada aporte económico. Los porcentajes son aproximados y se revisan trimestralmente con el equipo.</p>
- <div class="col-destinos">
- <div class="col-destino">
- <span class="col-destino-label">Acompañamiento</span>
- <p class="col-destino-desc">Sostiene al equipo humano que lee las historias, cuida las conexiones y acompaña personalmente cada proceso activo.</p>
- <span class="col-destino-share">40%</span></div>
- <div class="col-destino">
- <span class="col-destino-label">Formación</span>
- <p class="col-destino-desc">Producción de escritos, entrevistas, recursos y espacios de formación abiertos y sin costo para quien los necesite.</p>
- <span class="col-destino-share">25%</span></div>
- <div class="col-destino">
- <span class="col-destino-label">Encuentros</span>
- <p class="col-destino-desc">Encuentros presenciales, viajes de acompañamiento en países donde caminan procesos reales, retiros breves.</p>
- <span class="col-destino-share">20%</span></div>
- <div class="col-destino">
- <span class="col-destino-label">Infraestructura</span>
- <p class="col-destino-desc">Servidores, dominios, herramientas, protección de datos. Lo mínimo indispensable para que esto pueda existir.</p>
- <span class="col-destino-share">15%</span></div></div>
- <div class="col-transp-nota">
- Si aportás económicamente y pedís conocer con detalle a qué se aplicó tu contribución en particular, alguien del equipo puede escribirte con la respuesta honesta. Sin métricas infladas, sin lenguaje de marketing.</div></div></section>
-
-<!-- HACIA DÓNDE VAMOS -->
-<section class="col-visio">
- <div class="col-visio-inner">
- <span class="col-visio-eyebrow">Hacia dónde vamos</span>
- <h2 class="col-visio-title">Lo que soñamos construir, <em>sin apuro.</em></h2>
- <p class="col-visio-intro">No es una meta para alcanzar rápido. Es un camino largo, para toda la vida, de estar involucrados en la Gran Comisión y en el gran sueño de Dios. Para eso nacimos.</p>
- <ul class="col-visio-lista">
- <li class="col-visio-item">
- <span class="col-visio-dot" aria-hidden="true"></span>
+<!-- 3. Quién está detrás: una persona, real, y lo que viene -->
+<section class="sv-sec papel">
+ <div class="sv-in sv-quien">
  <div>
- <h3>Un ecosistema que se sostenga solo</h3>
- <p>Un sistema vivo, de ida y vuelta, donde cada persona que se forma ayuda a formar a otra. Recibir y dar como un mismo movimiento. Porque la necesidad de vivir con propósito, sirviendo y a la vez madurando, nos atraviesa a todos.</p></div></li>
- <li class="col-visio-item">
- <span class="col-visio-dot" aria-hidden="true"></span>
+ <span class="sv-ceja">Quién está detrás</span>
+ <h2 class="sv-h2">Hoy lo empieza una persona. La idea es que <em>no quede en una.</em></h2>
+ <p class="sv-texto">Soy Adrián Werbes. Hace más de 8 años que dedico mi vida completa a servir a otros, a ir por otros, en diferentes culturas y naciones, en situaciones de emergencia, en liderazgo y en salud holística.</p>
+ <p class="sv-texto">En ese camino vi, y lo viví yo también, que una de las dificultades más grandes de quien sirve no es solo cómo sostenerse, sino cómo tener con qué ayudar a otros. El Gran Sueño quiere ser un espacio donde cada uno pueda ser parte. Acompañarme, acompañar a otros y a cada persona que necesite seguir caminando.</p>
+ <div class="sv-firma">Adrián</div></div>
  <div>
- <h3>Un fondo que crezca para sostener historias</h3>
- <p>Estamos proyectando un fondo que vaya creciendo. No solo para acompañar, sino para poder estar presentes en situaciones concretas de necesidad y de emergencia. Historias que, cuando pasen, también vamos a querer compartir.</p></div></li>
- <li class="col-visio-item">
- <span class="col-visio-dot" aria-hidden="true"></span>
- <div>
- <h3>Una base sólida que le dé orden</h3>
- <p>Estamos trabajando la estructura legal que le dé forma y agilidad a todo esto, para hacerlo bien, con cuidado y transparencia.</p></div></li></ul></div></section>
+ <div class="sv-ver">
+ <a href="https://www.youtube.com/@adrianencamino" target="_blank" rel="noopener">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg>
+ <span><strong>YouTube</strong><small>Charlas y viajes, en video</small></span></a>
+ <a href="https://instagram.com/adrianencamino" target="_blank" rel="noopener">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+ <span><strong>@adrianencamino</strong><small>Lo que vamos viviendo, día a día</small></span></a></div>
+</div></div></section>
 
-<!-- FORMULARIO -->
+<!-- 4. Aportar: rápido, en un paso -->
+<section class="sv-sec blanco" id="aportar">
+ <div class="sv-aportar">
+ <span class="sv-ceja">Aportar al fondo</span>
+ <h2 class="sv-h2">Rápido y simple.</h2>
+ <div class="sv-frecuencia" role="radiogroup" aria-label="Frecuencia">
+ <button type="button" role="radio" aria-checked="true" data-frec="unico">Una vez</button>
+ <button type="button" role="radio" aria-checked="false" data-frec="mensual">Cada mes</button></div>
+ <div class="sv-montos" role="radiogroup" aria-label="Monto">
+ <button type="button" role="radio" aria-checked="false" data-monto="5">5 €</button>
+ <button type="button" role="radio" aria-checked="true" data-monto="15">15 €</button>
+ <button type="button" role="radio" aria-checked="false" data-monto="30">30 €</button>
+ <button type="button" role="radio" aria-checked="false" data-monto="50">50 €</button>
+ <button type="button" role="radio" aria-checked="false" data-monto="otro">Otro</button></div>
+ <div class="sv-otro" hidden><input type="number" inputmode="numeric" min="1" step="1" id="sv-otro" placeholder="¿Cuánto? en euros" aria-label="Otro monto en euros"></div>
+ <div class="sv-alcanza" aria-live="polite"></div>
+ <button type="button" class="sv-boton claro" id="sv-aportar-btn">Aportar 15 €</button>
+ <div class="sv-datos" hidden>
+ <p class="sv-datos-nota">Todavía no tenemos una forma de pago en línea. Dejanos tu nombre y tu correo y te escribo con los datos para hacerlo.</p>
+ <div class="sv-datos-campos">
+ <input type="text" id="sv-nombre" placeholder="Tu nombre" autocomplete="name" aria-label="Tu nombre">
+ <input type="email" id="sv-correo" placeholder="tu@correo.com" autocomplete="email" aria-label="Tu correo"></div>
+ <button type="button" class="sv-boton claro" id="sv-enviar" disabled>Quiero aportar</button></div>
+ <div class="sv-gracias" hidden aria-live="polite"></div>
+ <p class="sv-legal">Todavía no somos una fundación registrada, así que por ahora el aporte no tiene beneficio fiscal.</p></div></section>
+
+<!-- 6. Orar: lo que más necesita algo que recién empieza -->
+<section class="sv-sec blanco sv-orar">
+ <div class="sv-angosto">
+ <div class="sv-centro">
+ <span class="sv-ceja">Orar</span>
+ <h2 class="sv-h2">También necesitamos <em>tus oraciones.</em></h2>
+ <p class="sv-texto">Para caminar en coherencia y que esto se haga realidad.</p></div>
+ <section class="participar" data-historia="el-gran-sueno" data-nombre="El Gran Sueño" data-oran="0" data-por="este sueño" data-a="este sueño" data-voz="vos" data-solo-orar data-motivo="Que crezca en coherencia y llegue a ser lo que Dios puso en el corazón.">
+ <div class="participar-arma"></div></section></div></section>
+
+<!-- 7. Sumarse de otra forma -->
 <section class="col-form" id="empezar">
  <div class="col-form-inner">
  <div id="form-vivo">
- <span class="col-form-eyebrow">Empezar a sostener</span>
- <h2 class="col-form-title">Contanos <em>desde dónde</em> te gustaría estar cerca.</h2>
-
+ <span class="col-form-eyebrow">Escribinos</span>
+ <h2 class="col-form-title">¿Querés ayudar de otra forma, o tenés <em>una pregunta?</em></h2>
  <div class="col-form-grupo">
- <label class="col-form-etiq">Quiero sostener con…</label>
- <div class="col-form-opts" id="chips-formas" role="group" aria-label="Formas de sostener">
- <button type="button" class="col-form-chip" data-val="presencia">Presencia y oración</button>
- <button type="button" class="col-form-chip" data-val="tiempo">Tiempo y talentos</button>
- <button type="button" class="col-form-chip" data-val="red">Red y recursos</button>
- <button type="button" class="col-form-chip" data-val="aporte">Aporte económico</button></div>
- <p class="col-form-nota">Podés elegir más de una. También podés no elegir ninguna todavía y solo escribirnos.</p></div>
-
+ <label class="col-form-etiq">Elegí lo que va</label>
+ <div class="col-form-opts" id="chips-formas" role="group" aria-label="Formas de sumarse">
+ <button type="button" class="col-form-chip" data-val="especifico">Tengo algo específico para ofrecer</button>
+ <button type="button" class="col-form-chip" data-val="voluntario">Ser voluntario</button>
+ <button type="button" class="col-form-chip" data-val="pregunta">Tengo una pregunta</button>
+ <button type="button" class="col-form-chip" data-val="otra">Otra cosa</button></div></div>
  <div class="col-form-grupo">
- <label class="col-form-etiq" for="col-mensaje">Si querés, contanos algo sobre vos</label>
- <textarea id="col-mensaje" class="col-form-textarea" placeholder="Quién sos, desde dónde escribís, qué te movió a llegar hasta acá. Todo es opcional."></textarea></div>
-
+ <label class="col-form-etiq" for="col-mensaje">Contanos</label>
+ <textarea id="col-mensaje" class="col-form-textarea" placeholder="Lo que te gustaría ofrecer, o lo que quieras preguntar…"></textarea></div>
  <div class="col-form-grupo">
  <label class="col-form-etiq" for="col-nombre">Nombre</label>
- <input id="col-nombre" type="text" class="col-form-input" placeholder="Tu nombre" oninput="colValidar()"></div>
-
+ <input id="col-nombre" type="text" class="col-form-input" placeholder="Tu nombre" autocomplete="name" oninput="colValidar()"></div>
  <div class="col-form-grupo">
  <label class="col-form-etiq" for="col-email">Correo electrónico</label>
- <input id="col-email" type="email" class="col-form-input" placeholder="tu@correo.com" oninput="colValidar()">
- <p class="col-form-nota">Solo lo usamos para responderte. No sumamos a nadie a listas automáticas.</p></div>
-
+ <input id="col-email" type="email" class="col-form-input" placeholder="tu@correo.com" autocomplete="email" oninput="colValidar()">
+ <p class="col-form-nota">Solo lo usamos para responderte.</p></div>
  <button id="col-submit" class="col-form-submit" onclick="colEnviar()" disabled>Enviar</button></div>
-
  <div id="form-gracias" class="col-form-gracias" aria-live="polite">
- <div class="col-form-gracias-icon" aria-hidden="true">
- <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
- <path d="M12 2v20M2 12h20M4.5 4.5l15 15M4.5 19.5l15-15"/></svg></div>
- <p class="col-form-gracias-title">Gracias por confiar esto.</p>
- <p class="col-form-gracias-txt">Alguien del equipo va a leer lo que escribiste y te va a escribir personalmente. No es una respuesta automática. Es una conversación que empieza.</p></div></div></section>
-
-<!-- CIERRE -->
-<section class="col-cierre">
- <div class="col-cierre-div"></div>
- <p class="col-cierre-txt">
- Este espacio no crece por la cantidad de personas que lo sostienen.<br>
- Crece por la <em>profundidad</em> con la que lo hacen.</p></section></main>
+ <p class="col-form-gracias-title">Gracias por escribir.</p>
+ <p class="col-form-gracias-txt">Te respondo personalmente. No es una respuesta automática.</p></div></div></section></main>
 
 <footer class="egs-footer">
  <div class="footer-divider" aria-hidden="true"></div>
@@ -733,45 +777,79 @@
 </form>
 
 <script>
- // Chips de formas (multi-selección)
- document.querySelectorAll('#chips-formas .col-form-chip').forEach(chip => {
- chip.addEventListener('click', () => {
- chip.classList.toggle('selected');
+ // Sumarse de otra forma: chips y envío (igual que antes, con las opciones nuevas)
+ document.querySelectorAll('#chips-formas .col-form-chip').forEach(function (chip) {
+ chip.addEventListener('click', function () { chip.classList.toggle('selected'); });
  });
- });
-
- // Click en las tarjetas de forma scroll al formulario y auto-selección
- document.querySelectorAll('.col-forma[data-forma]').forEach(card => {
- card.addEventListener('click', () => {
- const val = card.dataset.forma;
- const chip = document.querySelector(`#chips-formas .col-form-chip[data-val="${val}"]`);
- if (chip && !chip.classList.contains('selected')) chip.classList.add('selected');
- const target = document.getElementById('empezar');
- if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
- });
- });
-
- // Validación del formulario
  function colValidar() {
- const n = (document.getElementById('col-nombre').value || '').trim();
- const e = (document.getElementById('col-email').value || '').trim();
- const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
- document.getElementById('col-submit').disabled = !(n.length > 1 && emailOk);
+ var n = (document.getElementById('col-nombre').value || '').trim();
+ var e = (document.getElementById('col-email').value || '').trim();
+ document.getElementById('col-submit').disabled = !(n.length > 1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e));
  }
-
- // Envío del formulario (localStorage por ahora; después se enchufa a un backend real)
  function colEnviar() {
- const nombre = document.getElementById('col-nombre').value.trim();
- const email = document.getElementById('col-email').value.trim();
- const mensaje = document.getElementById('col-mensaje').value.trim();
- const formas = Array.from(document.querySelectorAll('#chips-formas .col-form-chip.selected')).map(c => c.dataset.val);
- const payload = { nombre, email, mensaje, formas, ts: new Date().toISOString() };
- window.egsGuardar('colaborar', payload);
- if (window.egsAvisarNetlify) {
- window.egsAvisarNetlify('colaborar', { nombre: nombre, email: email, mensaje: mensaje, formas: formas.join(', ') });
- }
+ var nombre = document.getElementById('col-nombre').value.trim();
+ var email = document.getElementById('col-email').value.trim();
+ var mensaje = document.getElementById('col-mensaje').value.trim();
+ var formas = Array.from(document.querySelectorAll('#chips-formas .col-form-chip.selected')).map(function (c) { return c.dataset.val; });
+ window.egsGuardar('colaborar', { nombre: nombre, email: email, mensaje: mensaje, formas: formas, ts: new Date().toISOString() });
+ if (window.egsAvisarNetlify) window.egsAvisarNetlify('colaborar', { nombre: nombre, email: email, mensaje: mensaje, formas: formas.join(', ') });
  document.getElementById('form-vivo').style.display = 'none';
  document.getElementById('form-gracias').classList.add('visible');
- document.getElementById('form-gracias').scrollIntoView({ behavior: 'smooth', block: 'center' });
- }</script>
-<script src="assets/egs.js"></script></body></html>
+ }
+
+ // Aportar: frecuencia, monto y un solo botón
+ (function () {
+ var F = window.EGS_FONDO || {};
+ var frec = 'unico', monto = 15;
+ var ALCANZA = {};
+ var btn = document.getElementById('sv-aportar-btn');
+ var alcanza = document.querySelector('.sv-alcanza');
+ var otroCaja = document.querySelector('.sv-otro'), otro = document.getElementById('sv-otro');
+ var datos = document.querySelector('.sv-datos'), gracias = document.querySelector('.sv-gracias');
+ var nombre = document.getElementById('sv-nombre'), correo = document.getElementById('sv-correo'), enviar = document.getElementById('sv-enviar');
+ function texto() {
+ var m = monto ? monto + ' €' : '';
+ btn.textContent = monto ? 'Aportar ' + m + (frec === 'mensual' ? ' cada mes' : '') : 'Elegí un monto';
+ btn.disabled = !monto;
+ alcanza.textContent = monto ? 'Todo suma. Elegí el monto que quieras, una vez o cada mes.' : 'Escribí el monto que quieras.';
+ }
+ function grupo(sel, alElegir) {
+ var bs = [].slice.call(document.querySelectorAll(sel + ' button'));
+ bs.forEach(function (b) {
+ b.addEventListener('click', function () {
+ bs.forEach(function (o) { o.setAttribute('aria-checked', o === b ? 'true' : 'false'); });
+ alElegir(b);
+ });
+ });
+ }
+ grupo('.sv-frecuencia', function (b) { frec = b.dataset.frec; texto(); });
+ grupo('.sv-montos', function (b) {
+ if (b.dataset.monto === 'otro') { otroCaja.hidden = false; monto = parseInt(otro.value, 10) || 0; otro.focus(); }
+ else { otroCaja.hidden = true; monto = parseInt(b.dataset.monto, 10); }
+ texto();
+ });
+ otro.addEventListener('input', function () { monto = Math.max(0, parseInt(otro.value, 10) || 0); texto(); });
+ btn.addEventListener('click', function () {
+ if (!monto) return;
+ var enlace = frec === 'mensual' ? F.pagoMensual : F.pagoUnico;
+ if (enlace) { window.open(enlace.replace('{monto}', monto), '_blank', 'noopener'); return; }
+ datos.hidden = false; btn.hidden = true;
+ setTimeout(function () { nombre.focus(); }, 50);
+ });
+ function revisar() { enviar.disabled = !(nombre.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.value.trim())); }
+ nombre.addEventListener('input', revisar); correo.addEventListener('input', revisar);
+ enviar.addEventListener('click', function () {
+ var que = monto + ' € ' + (frec === 'mensual' ? 'cada mes' : 'una vez');
+ window.egsGuardar('aporte', { nombre: nombre.value.trim(), correo: correo.value.trim(), monto: monto, frecuencia: frec, ts: new Date().toISOString() });
+ if (window.egsAvisarNetlify) window.egsAvisarNetlify('colaborar', { nombre: nombre.value.trim(), email: correo.value.trim(), mensaje: 'Quiere aportar ' + que + ' al fondo', formas: 'aporte' });
+ datos.hidden = true;
+ gracias.hidden = false;
+ gracias.textContent = 'Gracias, ' + nombre.value.trim().split(' ')[0] + '. Te escribo con los datos para aportar ' + que + '.';
+ });
+ texto();
+ })();
+
+</script>
+<script src="assets/fondo.js"></script>
+<script src="assets/egs.js"></script>
+<script src="assets/participar.js"></script></body></html>

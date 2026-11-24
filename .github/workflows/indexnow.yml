@@ -1,0 +1,44 @@
+name: Avisar a los buscadores
+
+# 21-nov-2026: cada vez que se publica o se actualiza un escrito, avisa por IndexNow (Bing, que alimenta
+# ChatGPT, Copilot y DuckDuckGo; Yandex, Seznam y Naver) que esas páginas cambiaron, así las leen ya.
+# Espera a que Netlify termine el deploy (que el sitemap en vivo ya tenga las líneas nuevas) y avisa solo
+# las URLs nuevas o actualizadas. Google no usa IndexNow: lee el sitemap que tiene en Search Console.
+
+on:
+  push:
+    branches: [main]
+    paths: ['content/**', 'sitemap.xml']
+  workflow_dispatch:
+
+jobs:
+  avisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Páginas nuevas o actualizadas
+        run: |
+          git diff HEAD~1 HEAD -U0 -- sitemap.xml | grep '^+ *<url>' | sed 's/^+//' | tr -d '\r' > nuevas.txt || true
+          echo "Cambiaron $(wc -l < nuevas.txt) páginas:"; cat nuevas.txt
+
+      - name: Esperar que el deploy esté en vivo (hasta 12 min)
+        run: |
+          [ -s nuevas.txt ] || { echo "Nada nuevo en el sitemap."; exit 0; }
+          for i in $(seq 1 48); do
+            curl -sf https://elgransueno.org/sitemap.xml | tr -d '\r' > vivo.txt || true
+            if [ "$(grep -cFxf nuevas.txt vivo.txt || true)" -ge "$(wc -l < nuevas.txt)" ]; then echo "En vivo."; exit 0; fi
+            sleep 15
+          done
+          echo "El deploy no apareció en 12 min: aviso igual."
+
+      - name: Avisar por IndexNow
+        run: |
+          [ -s nuevas.txt ] || exit 0
+          node indexnow.mjs $(grep -o '<loc>[^<]*' nuevas.txt | sed 's/<loc>//')

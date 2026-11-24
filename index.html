@@ -292,13 +292,61 @@
  }
  @media (prefers-reduced-motion: reduce) { .puerta, .portada-bajar { animation: none; opacity: 1; transform: none; } .portada-bajar { transform: translateX(-50%); } }
 
+
+ /* PROPUESTA MINIMALISTA (24-nov-2026): qué es apenas se entra, una puerta principal, letra más grande
+ y oscura, un solo clima claro después del relato, tarjetas blancas redondas y caminos apilados en el celular. */
+ .hero-bajada { margin: 1.3rem auto 0; max-width: 33rem; padding: 0 1.2rem; font-family: var(--f-texto); font-size: clamp(1.05rem, 1.5vw, 1.2rem); line-height: 1.6; color: rgba(250, 248, 245, 0.9); text-align: center; text-shadow: 0 2px 22px rgba(6, 7, 10, 0.85); }
+ .portada-puertas { grid-template-columns: 1.1fr 1fr; width: min(calc(100% - 2rem), 34rem); }
+ .puerta { min-height: 4.8rem; }
+ .puerta strong { font-size: 1.06rem; }
+ .puerta small { font-size: 0.86rem; }
+ @media (max-width: 760px) {
+ .portada-puertas { grid-template-columns: 1fr; width: min(calc(100% - 2.4rem), 23rem); }
+ .puerta { min-height: 3.9rem; }
+ .puerta strong { font-size: 1rem; }
+ .puerta small { font-size: 0.82rem; }
+ }
+ /* un solo clima: todo hueso después del relato; el vino queda para un único bloque (la sesión) */
+ .modo-limpio .st-white, .modo-limpio .beat-invite, .idx-ultimos { background: var(--cream) !important; }
+ .beat-invite + .st-white { padding-top: 1rem !important; padding-bottom: 8vh !important; }
+ /* letra para leer: más grande y más oscura */
+ .ask-lead { color: var(--ink); font-size: clamp(1.1rem, 1.6vw, 1.25rem); }
+ .path-label { font-size: 0.8rem; }
+ .path-said { font-size: 1.42rem; }
+ .path-detail { font-size: 1.06rem; line-height: 1.6; color: var(--ink); }
+ .path-goto { font-size: 0.98rem; }
+ .also-econ { font-size: 1.04rem; color: var(--ink); }
+ .idx-col-sub, .idx-col-mas { font-size: 1.1rem; }
+ .idx-item-top { font-size: 0.78rem; }
+ .idx-item-fecha { font-size: 0.9rem; }
+ .idx-item-titulo { font-size: 1.22rem; }
+ /* tarjetas: blancas, redondas, todas iguales; el color queda solo en el rótulo y el ícono */
+ .path-card, .path-card.accent-gold, .path-card.accent-light { background: #fff; border: 1px solid var(--cream-dark); border-radius: 18px; color: var(--ink); }
+ .path-card.accent-light { --accent: var(--bordo); }
+ .path-card.accent-light .path-said, .path-card.accent-light .path-detail { color: var(--ink); }
+ .path-card.accent-light .path-goto, .path-card.accent-light .path-icono { color: var(--bordo); }
+ .path-card:hover, .path-card.accent-light:hover { border-color: var(--bordo); }
+ .idx-item { background: #fff; border: 1px solid var(--cream-dark); border-radius: 14px; }
+ /* celular: los caminos uno debajo del otro, sin carrusel */
+ @media (max-width: 760px) {
+ .paths { display: grid; grid-template-columns: 1fr; overflow: visible; width: auto; margin: 2rem 0 0; padding: 0; gap: 0.9rem; }
+ .path-card { flex: none; padding: 1.6rem 1.4rem; }
+ .paths-puntos { display: none !important; }
+ }
+
+ /* ENTRADA SIN DESTELLO (24-nov-2026): mientras carga el 3D se veía la portada vieja (degradé con luz vino,
+ 92vh con el hueso debajo) y el logo doble en la barra. Desde el primer cuadro ya es la noche de la Tierra. */
+ .modo-limpio .st-hero-top { background: #06070A; height: 100vh; height: 100svh; min-height: 560px; }
+ .modo-limpio .st-hero-top::before, .modo-limpio .st-hero-top::after { display: none; }
+ .modo-limpio .st-hero-top .hero-marca { justify-content: flex-start; padding-top: max(22svh, 150px); }
+ .nav-logo { opacity: 0; }
 </style>
  <link rel="canonical" href="https://elgransueno.org/">
  <meta property="og:site_name" content="El Gran Sueño">
  <meta property="og:url" content="https://elgransueno.org/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://elgransueno.org/#org", "name": "El Gran Sueño", "url": "https://elgransueno.org/", "logo": "https://elgransueno.org/assets/icon-512.png", "email": "adrian@elgransueno.org", "description": "Comunidad cristiana en español para descubrir tu propósito, tu identidad y tu sentido, y vivir desde la nueva vida que ya recibiste en Cristo.", "founder": {"@id": "https://elgransueno.org/#adrian"}, "sameAs": ["https://instagram.com/adrianencamino", "https://www.youtube.com/@adrianencamino", "https://www.facebook.com/profile.php?id=100070784831956"]}, {"@type": "Person", "@id": "https://elgransueno.org/#adrian", "name": "Adrián", "alternateName": "@adrianencamino", "url": "https://elgransueno.org/nosotros.html", "sameAs": ["https://instagram.com/adrianencamino", "https://www.youtube.com/@adrianencamino"]}, {"@type": "WebSite", "@id": "https://elgransueno.org/#web", "name": "El Gran Sueño", "url": "https://elgransueno.org/", "inLanguage": "es", "publisher": {"@id": "https://elgransueno.org/#org"}}]}</script>
 </head>
-<body class="modo-limpio">
+<body class="modo-limpio en-noche">
 
 <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
 <!-- Mapa de fondo -->
@@ -360,21 +408,16 @@
  <div class="hero-marca-velo" aria-hidden="true"></div>
  <div class="hero-marca">
  <h1 class="sr-only">El Gran Sueño, Propósito de vida, sentido e identidad, desde la Nueva Vida</h1>
- <p class="hero-frase">Viviendo desde la Nueva Vida.</p></div>
+ <p class="hero-frase">Viviendo desde la Nueva Vida.</p>
+ <p class="hero-bajada">Personas de distintos lugares, historias y llamados, descubriendo juntas el Gran Sueño de Dios.</p></div>
  <!-- Las puertas: desde el primer momento se ve todo lo que hay en la web; la historia sigue bajando -->
- <nav class="portada-puertas" aria-label="Lo que hay en El Gran Sueño">
- <a class="puerta puerta-destacada" href="mentoria.html">
- <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.6 2.2 2.6 3.4 2.6 6a2.6 2.6 0 0 1-5.2 0c0-1.2.5-2 1-2.7"/><path d="M5 20l14-3M5 17l14 3"/><path d="M12 13.5c-1.4 0-2.4-1-2.4-2.3"/></svg>
- <span><strong>Una sesión con Adrián</strong><small>Es un regalo</small></span></a>
- <a class="puerta" href="quiero-ser-parte.html">
+ <nav class="portada-puertas" aria-label="Por dónde empezar">
+ <a class="puerta puerta-destacada" href="quiero-ser-parte.html">
  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
  <span><strong>Encontrar mi lugar</strong><small>Sumate al camino</small></span></a>
- <a class="puerta" href="blog.html">
- <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10 5 7.5 4.5 4 4.5v13c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2v-13c-3.5 0-6 .5-8 2z"/><path d="M12 6.5v13"/></svg>
- <span><strong>Escritos</strong><small>Para leer con calma</small></span></a>
- <a class="puerta" href="huellas-de-fe.html">
- <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3.5c1.6 0 2.4 1.8 2.4 4.2S9.6 12 8 12s-2.4-1.9-2.4-4.3S6.4 3.5 8 3.5z"/><path d="M6.2 14.5h3.6l-.4 2.6a1.4 1.4 0 0 1-2.8 0z"/><path d="M16 8.5c1.6 0 2.4 1.8 2.4 4.2S17.6 17 16 17s-2.4-1.9-2.4-4.3.8-4.2 2.4-4.2z"/><path d="M14.2 19.5h3.6l-.4 1.4a1.4 1.4 0 0 1-2.8 0z"/></svg>
- <span><strong>Huellas de Fe</strong><small>Vidas que caminaron antes</small></span></a>
+ <a class="puerta" href="mentoria.html">
+ <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8z"/></svg>
+ <span><strong>Una sesión con Adrián</strong><small>Es un regalo</small></span></a>
  </nav>
  <p class="portada-bajar" aria-hidden="true"><span>Deslizá para leer tu historia</span></p></section>
 
@@ -585,8 +628,9 @@
  })();</script>
 <script src="assets/entradas.js"></script>
 <script>
- // Renderizar "Últimos escritos" y "Últimas huellas" en la home
- (function () {
+ // Renderizar "Últimos escritos" y "Últimas huellas" en la home. Se vuelve a llamar cuando blog-cms.js trae
+ // los escritos y huellas del panel (content/*.json): así cada escrito nuevo aparece solo en el inicio (24-nov-2026).
+ window.egsRenderHomeIndex = function () {
  function fmtFecha(iso) {
  var meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
  var parts = iso.split('-');
@@ -627,7 +671,9 @@
  '</a>';
  }).join('');
  }
- })();</script>
+ };
+ window.egsRenderHomeIndex();</script>
+<script src="assets/blog-cms.js"></script>
 <!-- Formulario oculto: Netlify lo detecta para avisar por email de cada suscripción al newsletter. -->
 <form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden aria-hidden="true">
  <input type="email" name="email"><input type="text" name="bot-field">

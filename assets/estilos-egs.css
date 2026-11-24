@@ -3508,3 +3508,156 @@ html.lenis, html.lenis body { height: auto; }
   .art-video-boton { width: 64px; height: 64px; }
   .art-video-boton svg { width: 26px; height: 26px; }
 }
+
+/* Índice de los escritos (21-nov-2026): un enlace a cada apartado. Lo arma build.js (bloqueIndice). */
+.art-indice {
+  margin: 2rem 0 2.6rem; padding: 1.25rem 1.5rem 1.1rem; border-radius: 14px;
+  border: 1px solid rgba(26, 21, 16, 0.12); background: rgba(26, 21, 16, 0.025);
+}
+.art-indice-titulo { margin: 0 0 0.75rem; font-family: var(--f-texto); font-size: 0.85rem; color: var(--ink-light); }
+.art-indice ol { margin: 0; padding: 0; list-style: none; counter-reset: ind; columns: 2; column-gap: 2.2rem; }
+.art-indice li {
+  counter-increment: ind; break-inside: avoid; display: flex; gap: 0.6rem; margin: 0 0 0.55rem;
+  font-family: var(--f-texto); font-size: 0.97rem; line-height: 1.38;
+}
+.art-indice li::before { content: counter(ind); flex: none; min-width: 1.1rem; font-size: 0.82rem; font-weight: 600; line-height: 1.68; color: var(--bordo, #6B1A2B); }
+.modo-limpio .long-prose .art-indice a, .art-indice a { color: var(--ink); text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 0 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.3s ease; }
+.modo-limpio .long-prose .art-indice a:hover, .art-indice a:hover, .art-indice a:focus-visible { color: var(--ink); background-size: 100% 1px; }
+.long-prose h2[id] { scroll-margin-top: 110px; }
+
+/* Seguir leyendo (21-nov-2026): tres escritos más al pie. Lo arma build.js (bloqueRelacionados). */
+.art-relacionados { max-width: 640px; margin: 0 auto 5rem; padding: 0 2rem; }
+.art-relacionados-titulo { margin: 0 0 1rem; font-family: var(--f-texto); font-size: 0.85rem; color: var(--ink-light); }
+.art-relacionados ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.art-relacionados a {
+  display: block; padding: 1rem 1.2rem; border-radius: 14px; text-decoration: none;
+  border: 1px solid rgba(26, 21, 16, 0.12); background: rgba(26, 21, 16, 0.025); transition: border-color 0.3s ease;
+}
+.art-relacionados a:hover, .art-relacionados a:focus-visible { border-color: var(--bordo, #6B1A2B); }
+.art-relacionados-t { display: block; font-family: var(--f-titulo); font-variation-settings: var(--f-titulo-var, normal); font-size: 1.12rem; line-height: 1.3; color: var(--ink); }
+.art-relacionados-p { display: block; margin-top: 0.35rem; font-family: var(--f-voz); font-style: italic; font-size: 1rem; line-height: 1.45; color: var(--ink-light); }
+@media (max-width: 640px) { .art-relacionados { padding: 0 16px; margin-bottom: 3.5rem; } }
+@media (max-width: 640px) {
+  .art-indice { padding: 1.1rem 1.15rem 0.95rem; }
+  .art-indice ol { columns: 1; }
+}
+
+/* ============================================================
+   CONVERSACIONES CORTAS (propuesta 24-nov-2026): compartir mi historia en 3 pasos (antes 9) y la
+   solicitud para acompañar en 2 (antes 8). La bienvenida de noche queda como tarjeta arriba del
+   primer paso; las preguntas van juntas y se responde solo lo que se quiere.
+   ============================================================ */
+.corta.conversacion { align-items: flex-start; padding-top: 8.5rem; padding-bottom: 6rem; }
+.corta .pantalla { max-width: 660px; }
+.corta .pantalla-inner { gap: 1.1rem; }
+.paso-num { font-family: var(--f-texto); font-size: 0.85rem; letter-spacing: 0.02em; color: var(--ink-light); margin: 0; }
+.bienvenida { background-color: var(--v-noche); border-radius: 22px; padding: 2.6rem 2rem; text-align: center; margin-bottom: 0.8rem;
+  background-image: radial-gradient(1px 1px at 12% 18%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 78% 12%, #FAF8F5, transparent 60%), radial-gradient(1.2px 1.2px at 64% 34%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 30% 62%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 88% 58%, #FAF8F5, transparent 60%), radial-gradient(1.2px 1.2px at 45% 9%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 6% 80%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 94% 86%, #FAF8F5, transparent 60%);
+  background-size: 340px 340px; }
+.bienvenida .t-grande { color: var(--v-hueso); margin: 0; text-wrap: balance; }
+.bienvenida .t-grande em { color: var(--v-celeste); }
+.bienvenida .t-medio { color: rgba(250, 248, 245, 0.8); margin: 1.1rem auto 0; max-width: 31rem; }
+.corta .bienvenida .t-nota { color: rgba(250, 248, 245, 0.6); margin: 1.1rem 0 0; }
+.paso-pregunta { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-size: clamp(1.25rem, 2.6vw, 1.5rem); font-weight: 500; line-height: 1.35; color: var(--ink); margin: 0.4rem 0 0; }
+.paso-pregunta em, .pregunta em { font-style: italic; color: var(--bordo); }
+.corta .t-pequeño { margin: 0; font-size: 0.95rem; color: var(--ink-mid); }
+.corta .t-nota { font-size: 0.85rem; letter-spacing: 0; line-height: 1.55; margin: 0; }
+.chips { flex-direction: row !important; flex-wrap: wrap; gap: 0.55rem !important; margin-top: 0.2rem; }
+.chips :is(.opcion, .radio-opcion) { width: auto; padding: 0.7rem 1.15rem; border-radius: 999px; background: #fff; border: 1px solid var(--cream-dark); font: inherit; cursor: pointer; gap: 0; text-align: left; }
+.chips :is(.opcion-txt, .radio-txt) { font-family: var(--f-texto); font-size: 0.98rem; line-height: 1.3; color: var(--ink); }
+.chips :is(.opcion, .radio-opcion):hover { border-color: var(--bordo); }
+.chips :is(.opcion, .radio-opcion).selected { background: var(--v-vino); border-color: var(--v-vino); }
+.chips :is(.opcion, .radio-opcion).selected :is(.opcion-txt, .radio-txt) { color: var(--v-hueso); }
+.chips :is(.opcion, .radio-opcion):focus-visible { outline: 2px solid var(--v-celeste); outline-offset: 2px; }
+.preguntas-juntas { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 0.5rem; }
+.pregunta { display: flex; flex-direction: column; gap: 0.6rem; }
+.pregunta > label, .pregunta-txt { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-size: clamp(1.12rem, 2.2vw, 1.28rem); font-weight: 500; line-height: 1.4; color: var(--ink); margin: 0; }
+.campo.corto { min-height: 0; padding: 0.9rem 1.1rem; font-size: 1.08rem; border-radius: 14px; resize: none; overflow: hidden; }
+.opcional { font-family: var(--f-texto); font-style: italic; font-weight: 400; font-size: 0.85rem; color: var(--ink-light); margin-left: 0.3rem; text-transform: none; letter-spacing: 0; }
+.corta .acciones { margin-top: 0.8rem; }
+.corta .acciones.al-final { justify-content: flex-end; }
+.corta .campo-grupo { gap: 0.4rem; margin-top: 0.4rem; }
+.corta .consentimiento { margin-top: 0.6rem; }
+@media (max-width: 560px) {
+  .corta.conversacion { padding: 7.5rem 1.1rem 7.5rem; }
+  .bienvenida { padding: 2rem 1.3rem; border-radius: 18px; }
+  .chips :is(.opcion, .radio-opcion) { padding: 0.62rem 0.95rem; }
+  .chips :is(.opcion-txt, .radio-txt) { font-size: 0.93rem; }
+}
+
+/* ============================================================
+   PARTICIPAR EN UNA HISTORIA (propuesta 24-nov-2026): voy a orar (de noche, cada persona que ora
+   queda como una figura), tengo algo para ofrecer y quiero acompañar, que se abren en el lugar.
+   ============================================================ */
+.participar [hidden] { display: none !important; }
+.participar-arma { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 1.6rem; }
+.part-orar { background-color: var(--v-noche); color: var(--v-hueso); border-radius: 22px; padding: 2.2rem 1.9rem; text-align: center;
+  background-image: radial-gradient(1px 1px at 12% 18%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 78% 12%, #FAF8F5, transparent 60%), radial-gradient(1.2px 1.2px at 64% 34%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 30% 62%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 88% 58%, #FAF8F5, transparent 60%), radial-gradient(1px 1px at 6% 80%, #FAF8F5, transparent 60%);
+  background-size: 340px 340px; }
+.orar-titulo { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-size: clamp(1.45rem, 3vw, 1.8rem); font-weight: 500; line-height: 1.2; color: var(--v-hueso); margin: 0; }
+.modo-limpio.pagina-viaje main .orar-motivo, .orar-motivo { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: 1.08rem; line-height: 1.55; color: rgba(250, 248, 245, 0.78); margin: 0.6rem auto 0; max-width: 28rem; }
+.orantes { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 0.2rem; max-width: 30rem; margin: 1.5rem auto 0; }
+.orante { display: inline-flex; width: 32px; height: 32px; color: rgba(250, 248, 245, 0.55); }
+.orante svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.orante svg circle { fill: currentColor; stroke: none; }
+.orante.tuyo { color: var(--v-celeste); filter: drop-shadow(0 0 6px rgba(116, 172, 223, 0.7)); }
+.orante.nuevo { animation: orante-llega 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes orante-llega { from { opacity: 0; transform: translateY(8px) scale(0.6); } to { opacity: 1; transform: none; } }
+.orantes-mas { align-self: center; font-family: var(--f-texto); font-size: 0.85rem; color: rgba(250, 248, 245, 0.7); margin-left: 0.3rem; }
+.modo-limpio.pagina-viaje main .orantes-cuenta, .orantes-cuenta { font-family: var(--f-texto); font-size: 0.95rem; color: rgba(250, 248, 245, 0.75); margin: 0.8rem 0 0; }
+.orantes-cuenta strong { color: var(--v-hueso); font-weight: 600; }
+.orar-btn { margin-top: 1.4rem; padding: 0.95rem 2rem; border: none; border-radius: 999px; background: var(--v-hueso); color: var(--v-vino-hondo); font-family: var(--f-texto); font-weight: 500; font-size: 1rem; cursor: pointer; transition: transform 0.25s ease, background 0.25s ease; }
+.orar-btn:hover:not(:disabled) { background: #fff; transform: translateY(-2px); }
+.orar-btn.hecho { background: transparent; color: var(--v-celeste); border: 1px solid rgba(116, 172, 223, 0.5); cursor: default; }
+.orar-btn:focus-visible, .part-cab:focus-visible, .part-enviar:focus-visible, .part-chips button:focus-visible { outline: 2px solid var(--v-celeste); outline-offset: 3px; }
+.orar-anotar { max-width: 26rem; margin: 1.6rem auto 0; text-align: left; }
+.modo-limpio.pagina-viaje main .orar-gracias, .orar-gracias { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: 1.12rem; color: var(--v-hueso); margin: 0; text-align: center; }
+.modo-limpio.pagina-viaje main .orar-nota, .orar-nota { font-family: var(--f-texto); font-size: 0.9rem; line-height: 1.55; color: rgba(250, 248, 245, 0.7); margin: 0.5rem 0 0; text-align: center; }
+.part-orar .part-campo span { color: rgba(250, 248, 245, 0.75); }
+.part-orar .part-campo input { background: rgba(250, 248, 245, 0.07); border-color: rgba(250, 248, 245, 0.22); color: var(--v-hueso); }
+.part-orar .part-campo input::placeholder { color: rgba(250, 248, 245, 0.45); }
+.part-orar .part-campo input:focus { border-color: rgba(250, 248, 245, 0.65); }
+.part-orar .part-enviar { background: var(--v-hueso); color: var(--v-vino-hondo); }
+.part-orar .part-enviar:disabled { background: rgba(250, 248, 245, 0.15); color: rgba(250, 248, 245, 0.5); }
+.part-item { background: #fff; border: 1px solid var(--cream-dark); border-radius: 18px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.part-item:hover, .part-item.abierto { border-color: rgba(107, 26, 43, 0.35); }
+.part-item.abierto { box-shadow: 0 14px 34px rgba(26, 21, 16, 0.06); }
+.part-cab { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 38px 1fr 18px; gap: 1rem; align-items: center; padding: 1.3rem 1.4rem; cursor: pointer; border-radius: 18px; }
+.part-icono svg { width: 32px; height: 32px; fill: none; stroke: var(--bordo); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block; }
+.part-textos { display: flex; flex-direction: column; gap: 0.25rem; }
+.part-titulo { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-size: 1.25rem; font-weight: 500; line-height: 1.25; color: var(--ink); }
+.part-desc { font-family: var(--f-texto); font-size: 0.92rem; line-height: 1.5; color: var(--ink-mid); }
+.part-mas { width: 14px; height: 14px; justify-self: end; color: var(--bordo); transition: transform 0.3s ease;
+  background: linear-gradient(currentColor, currentColor) center / 14px 1.5px no-repeat, linear-gradient(currentColor, currentColor) center / 1.5px 14px no-repeat; }
+.part-item.abierto .part-mas { transform: rotate(45deg); }
+.part-cuerpo { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1); }
+.part-cuerpo > div { overflow: hidden; padding: 0 1.4rem; }
+.part-item.abierto .part-cuerpo { grid-template-rows: 1fr; }
+.part-item.abierto .part-cuerpo > div { padding-bottom: 1.5rem; }
+.part-pregunta { display: block; font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-size: 1.1rem; font-weight: 500; line-height: 1.4; color: var(--ink); margin: 0.4rem 0 0.55rem; }
+.part-pregunta em, .part-campo em { font-family: var(--f-texto); font-style: italic; font-weight: 400; font-size: 0.82rem; color: var(--ink-light); margin-left: 0.25rem; }
+.part-cuerpo textarea { width: 100%; box-sizing: border-box; padding: 0.85rem 1rem; border: 1px solid var(--cream-dark); border-radius: 14px; background: var(--cream); font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-size: 1.05rem; line-height: 1.55; color: var(--ink); resize: vertical; }
+.part-cuerpo textarea:focus, .part-campo input:focus { outline: none; border-color: var(--bordo); }
+.part-cuerpo textarea::placeholder, .part-campo input::placeholder { color: var(--ink-light); font-style: italic; }
+.part-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.part-chips button { padding: 0.6rem 1rem; border-radius: 999px; border: 1px solid var(--cream-dark); background: #fff; font-family: var(--f-texto); font-size: 0.92rem; color: var(--ink); cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease; }
+.part-chips button:hover { border-color: var(--bordo); }
+.part-chips button[aria-checked="true"] { background: var(--v-vino); border-color: var(--v-vino); color: var(--v-hueso); }
+.part-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.1rem; }
+.part-campo { display: flex; flex-direction: column; gap: 0.35rem; }
+.part-campo span { font-family: var(--f-texto); font-size: 0.88rem; font-weight: 500; color: var(--ink-mid); }
+.part-campo input { width: 100%; box-sizing: border-box; padding: 0.8rem 1rem; border: 1px solid var(--cream-dark); border-radius: 12px; background: var(--cream); font-family: var(--f-texto); font-size: 1rem; color: var(--ink); }
+.part-enviar { margin-top: 1.1rem; padding: 0.85rem 1.9rem; border: none; border-radius: 999px; background: var(--v-vino); color: var(--v-hueso); font-family: var(--f-texto); font-weight: 500; font-size: 0.98rem; cursor: pointer; transition: background 0.25s ease; }
+.part-enviar:hover:not(:disabled) { background: var(--v-vino-hondo); }
+.part-enviar:disabled { background: var(--cream-dark); color: var(--ink-light); cursor: not-allowed; }
+.part-orar .part-enviar { display: block; margin-left: auto; margin-right: auto; }
+.modo-limpio.pagina-viaje main .part-listo, .part-listo { font-family: var(--f-voz); font-size-adjust: var(--f-voz-ajuste, none); font-style: italic; font-size: 1.1rem; line-height: 1.6; color: var(--bordo); margin: 0.6rem 0 0; }
+@media (max-width: 560px) {
+  .part-orar { padding: 1.9rem 1.2rem; border-radius: 18px; }
+  .orante { width: 27px; height: 27px; }
+  .part-cab { grid-template-columns: 30px 1fr 16px; gap: 0.8rem; padding: 1.1rem 1.1rem; }
+  .part-icono svg { width: 28px; height: 28px; }
+  .part-titulo { font-size: 1.15rem; }
+  .part-cuerpo > div { padding: 0 1.1rem; }
+  .part-campos { grid-template-columns: 1fr; }
+}

@@ -46,7 +46,7 @@ window.EGS_BLOG_READY = egsCargarColeccion('content/blog.json', function (p) {
     fecha: p.fecha, lectura: p.lectura || '', pregunta: p.pregunta || '',
     excerpt: p.resumen || '', destacado: !!p.destacado, esBlog: true,
     video: p.video || undefined, videoFecha: p.videoFecha || undefined,
-    link: 'blog/' + p.slug + '.html'
+    link: '/blog/' + p.slug   // la dirección oficial (canonical), igual que entradas.js
   };
 }, 'EGS_ESCRITOS', ['blogRender', 'egsRenderHomeIndex']);
 

@@ -50,143 +50,74 @@
 
 <div id="egs-nav-mount"></div>
 
-<div class="conversacion">
+<div class="conversacion corta">
 
- <!-- P0: BIENVENIDA -->
- <div class="pantalla activa" id="p0">
- <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2rem;align-items:center;">
- <h1 class="t-grande" style="text-align:center;">
- Este es un lugar seguro.<br>
- Puedes llegar <em>exactamente</em><br>como estás hoy.</h1>
- <p class="t-medio" style="text-align:center;">
- No hace falta tener todo ordenado.<br>
- No hace falta tener respuestas.<br>
- Solo trae lo que tienes.</p>
- <div class="linea-oro"></div>
- <button class="btn-inicio" onclick="ir('p1')">Quiero dar un paso</button>
- <p class="t-nota" style="text-align:center;">No es un formulario. Es una conversación.</p></div></div>
-
- <!-- P1: ANTES DE EMPEZAR + VALOR -->
- <div class="pantalla" id="p1">
- <div style="text-align:center;max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:2.25rem;align-items:center;">
- <div class="punto-oro"></div>
- <p class="t-grande" style="text-align:center;">Antes de empezar…</p>
- <p class="t-medio" style="text-align:center;">
- No hace falta escribir mucho.<br>
- No hace falta haber llegado a ninguna conclusión.<br><br>
- Empieza simplemente desde donde estás.</p>
- <div class="valor-card" style="width:100%;">
- <div class="valor-linea"></div>
- <p class="t-medio" style="text-align:center;">
- Creemos que tu valor no depende de lo que lograste, de lo que perdiste ni del lugar donde te encuentras hoy.<br><br>
- Por eso queremos escucharte.</p>
- <div class="valor-linea"></div></div>
- <div class="punto-oro"></div>
- <button class="btn-inicio" onclick="ir('p3')">Continuar</button></div></div>
-
- <!-- P3: RECONOCIMIENTO -->
- <div class="pantalla" id="p3">
+ <!-- PASO 1: llegar y reconocerse en una sola pantalla (antes: bienvenida, antes de empezar y frases) -->
+ <div class="pantalla activa" id="paso1">
  <div class="pantalla-inner">
- <div class="progreso"></div>
- <p class="t-grande">
- Quizás alguna de estas frases<br>describe un poco <em>dónde estás hoy.</em></p>
- <p class="t-nota">Puedes elegir una, varias o ninguna.</p>
- <div class="opciones">
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Estoy cansado.</span></div>
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Me siento solo.</span></div>
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Tengo muchas preguntas.</span></div>
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Sé que necesito un cambio.</span></div>
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Siento que estoy estancado.</span></div>
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Tengo un sueño que todavía no sé explicar.</span></div>
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">No sé hacia dónde seguir.</span></div>
- <div class="opcion" onclick="toggleOp(this)"><div class="opcion-dot"></div><span class="opcion-txt">Siento que algo dentro mío quiere despertar.</span></div></div>
- <div class="campo-grupo" style="margin-top:0.5rem;">
- <label class="campo-etiq" for="propio">
- ¿Hay algo que describa mejor cómo te sientes hoy?
- <span style="font-style:italic;letter-spacing:0;text-transform:none;margin-left:0.3rem;">opcional</span></label>
- <input id="propio" type="text" class="campo-linea" placeholder="Si ninguna de estas frases expresa lo que estás viviendo, puedes escribir la tuya…"></div>
+ <p class="paso-num">Paso 1 de 3</p>
+ <div class="bienvenida">
+ <h1 class="t-grande">Este es un lugar seguro.<br>Puedes llegar <em>exactamente</em> como estás hoy.</h1>
+ <p class="t-medio">Creemos que tu valor no depende de lo que lograste, de lo que perdiste ni del lugar donde te encuentras hoy. Por eso queremos escucharte.</p>
+ <p class="t-nota">No es un formulario. Es una conversación.</p></div>
+ <p class="paso-pregunta">Quizás alguna de estas frases describe un poco <em>dónde estás hoy.</em></p>
+ <p class="t-pequeño">Puedes elegir una, varias o ninguna.</p>
+ <div class="opciones chips">
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">Estoy cansado</span></button>
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">Me siento solo</span></button>
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">Tengo muchas preguntas</span></button>
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">Sé que necesito un cambio</span></button>
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">Siento que estoy estancado</span></button>
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">Tengo un sueño que todavía no sé explicar</span></button>
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">No sé hacia dónde seguir</span></button>
+ <button type="button" class="opcion" aria-pressed="false" onclick="toggleOp(this)"><span class="opcion-txt">Siento que algo dentro mío quiere despertar</span></button></div>
+ <div class="acciones al-final">
+ <button class="btn-sig" onclick="ir('paso2')">Continuar</button></div></div></div>
+
+ <!-- PASO 2: las cuatro preguntas juntas; se responde solo lo que se quiere -->
+ <div class="pantalla" id="paso2">
+ <div class="pantalla-inner">
+ <p class="paso-num">Paso 2 de 3</p>
+ <p class="t-grande">Cuéntanos un poco <em>más.</em></p>
+ <p class="t-pequeño">Responde solo lo que quieras, con una alcanza. No hace falta escribir mucho ni haber llegado a ninguna conclusión.</p>
+ <div class="preguntas-juntas">
+ <div class="pregunta"><label for="q1">¿Dónde sientes que <em>estás hoy?</em></label>
+ <textarea id="q1" class="campo corto" rows="2" placeholder="Una sensación, una situación, una pregunta…" oninput="habBtn('b-escrito')"></textarea></div>
+ <div class="pregunta"><label for="q2">¿Qué es lo que más <em>anhelas</em> en este momento?</label>
+ <textarea id="q2" class="campo corto" rows="2" placeholder="Algo concreto, o algo que todavía no sabes cómo nombrar…" oninput="habBtn('b-escrito')"></textarea></div>
+ <div class="pregunta"><label for="q3">¿Qué sientes que hoy te está <em>impidiendo avanzar?</em></label>
+ <textarea id="q3" class="campo corto" rows="2" placeholder="Miedo, una herida, falta de claridad, soledad, recursos…" oninput="habBtn('b-escrito')"></textarea></div>
+ <div class="pregunta"><label for="q4">¿Qué crees que hoy podría <em>ayudarte a dar un paso?</em></label>
+ <textarea id="q4" class="campo corto" rows="2" placeholder="Lo que venga a tu mente ya es suficiente…" oninput="habBtn('b-escrito')"></textarea></div></div>
  <div class="acciones">
- <button class="btn-ant" onclick="ir('p1')">Volver</button>
- <button class="btn-sig" onclick="ir('p4')">Continuar</button></div></div></div>
+ <button class="btn-ant" onclick="ir('paso1')">Volver</button>
+ <button id="b-escrito" class="btn-sig" onclick="ir('paso3')" disabled>Continuar</button></div></div></div>
 
- <!-- P4: PREGUNTA 1 -->
- <div class="pantalla" id="p4">
+ <!-- PASO 3: el nombre y compartir; la pregunta de cierre va acá, opcional, y el botón ya envía -->
+ <div class="pantalla" id="paso3">
  <div class="pantalla-inner">
- <div class="progreso"></div>
- <label for="q1" class="t-grande">¿Dónde sientes que <em>estás hoy?</em></label>
- <p class="t-pequeño">No busques la respuesta perfecta. Escribe lo que tienes, puede ser una sensación, una situación, una pregunta.</p>
- <textarea id="q1" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq1')"></textarea>
- <div class="acciones">
- <button class="btn-ant" onclick="ir('p3')">Volver</button>
- <button id="bq1" class="btn-sig" onclick="ir('p5')" disabled>Continuar</button></div></div></div>
-
- <!-- P5: PREGUNTA 2 -->
- <div class="pantalla" id="p5">
- <div class="pantalla-inner">
- <div class="progreso"></div>
- <label for="q2" class="t-grande">¿Qué es lo que más <em>anhelas</em> en este momento?</label>
- <p class="t-pequeño">Puede ser algo concreto o algo que todavía no sabes cómo nombrar.</p>
- <textarea id="q2" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq2')"></textarea>
- <div class="acciones">
- <button class="btn-ant" onclick="ir('p4')">Volver</button>
- <button id="bq2" class="btn-sig" onclick="ir('p6')" disabled>Continuar</button></div></div></div>
-
- <!-- P6: PREGUNTA 3 -->
- <div class="pantalla" id="p6">
- <div class="pantalla-inner">
- <div class="progreso"></div>
- <label for="q3" class="t-grande">¿Qué sientes que hoy te está <em>impidiendo avanzar?</em></label>
- <p class="t-pequeño">Puede ser miedo, una herida, falta de claridad, soledad, recursos o simplemente no saber por dónde empezar.</p>
- <textarea id="q3" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq3')"></textarea>
- <div class="acciones">
- <button class="btn-ant" onclick="ir('p5')">Volver</button>
- <button id="bq3" class="btn-sig" onclick="ir('p7')" disabled>Continuar</button></div></div></div>
-
- <!-- P7: PREGUNTA 4 -->
- <div class="pantalla" id="p7">
- <div class="pantalla-inner">
- <div class="progreso"></div>
- <label for="q4" class="t-grande">¿Qué crees que hoy podría <em>ayudarte a dar un paso?</em></label>
- <p class="t-pequeño">No hace falta tener una respuesta clara. Lo que venga a tu mente ya es suficiente.</p>
- <textarea id="q4" class="campo" placeholder="Escribe aquí…" oninput="habBtn('bq4')"></textarea>
- <div class="acciones">
- <button class="btn-ant" onclick="ir('p6')">Volver</button>
- <button id="bq4" class="btn-sig" onclick="ir('p8')" disabled>Continuar</button></div></div></div>
-
- <!-- P8: IDENTIDAD Y CONTACTO -->
- <div class="pantalla" id="p8">
- <div class="pantalla-inner">
- <div class="progreso"></div>
- <p class="t-grande">Ya casi terminamos.<br><em>Una última cosa.</em></p>
- <p class="t-pequeño">Tu historia merece un nombre. No importa si es el tuyo o uno que eliges para este camino.</p>
+ <p class="paso-num">Paso 3 de 3</p>
+ <p class="t-grande">Ya casi <em>terminamos.</em></p>
+ <div class="pregunta">
+ <p class="pregunta-txt">Después de escribir todo esto, ¿sientes que ves un poco más claro dónde estás? <span class="opcional">opcional</span></p>
+ <div class="radio-grupo chips" id="autoeval">
+ <button type="button" class="radio-opcion" aria-pressed="false" onclick="selRadio(this,'autoeval')"><span class="radio-txt">Sí, un poco</span></button>
+ <button type="button" class="radio-opcion" aria-pressed="false" onclick="selRadio(this,'autoeval')"><span class="radio-txt">Todavía no</span></button>
+ <button type="button" class="radio-opcion" aria-pressed="false" onclick="selRadio(this,'autoeval')"><span class="radio-txt">No estoy seguro</span></button></div></div>
  <div class="campo-grupo">
  <label class="campo-etiq" for="nombre">¿Cómo te gustaría que te llamemos?</label>
- <input id="nombre" type="text" class="campo-linea" placeholder="Tu nombre o apodo…" oninput="habBtn('bid')"></div>
- <div class="campo-grupo" style="margin-top:0.25rem;">
- <label class="campo-etiq" for="correo">
- Correo electrónico
- <span style="font-style:italic;letter-spacing:0;text-transform:none;margin-left:0.3rem;">opcional</span></label>
- <input id="correo" type="email" class="campo-linea" placeholder="tu@correo.com">
- <p class="t-nota" style="margin-top:0.4rem;">
- Si quieres que podamos escribirte cuando haya novedades sobre tu historia o cuando encontremos personas, recursos u oportunidades que puedan ayudarte, déjanos un correo. No es un requisito.</p></div>
+ <input id="nombre" type="text" class="campo-linea" placeholder="Tu nombre o apodo…" autocomplete="given-name" oninput="listoEnvio()">
+ <p class="t-nota">Tu historia merece un nombre. No importa si es el tuyo o uno que eliges para este camino.</p></div>
+ <div class="campo-grupo">
+ <label class="campo-etiq" for="correo">Correo electrónico <span class="opcional">opcional</span></label>
+ <input id="correo" type="email" class="campo-linea" placeholder="tu@correo.com" autocomplete="email">
+ <p class="t-nota">Si quieres que podamos escribirte cuando haya novedades sobre tu historia o cuando encontremos personas, recursos u oportunidades que puedan ayudarte, déjanos un correo. No es un requisito.</p></div>
  <label class="consentimiento" for="publicar">
  <input id="publicar" type="checkbox">
  <span>Quiero que mi historia se publique en la sección Historias, con el nombre que elegí. <small>Tu correo nunca se muestra. Si no lo marcas, tu historia solo la leemos nosotros. Puedes pedir que la bajemos cuando quieras.</small></span></label>
  <div class="acciones">
- <button class="btn-ant" onclick="ir('p7')">Volver</button>
- <button id="bid" class="btn-sig" onclick="ir('p9')" disabled>Compartir mi historia</button></div></div></div>
-
- <!-- P9: AUTOEVALUACIÓN -->
- <div class="pantalla" id="p9">
- <div class="pantalla-inner">
- <p class="t-grande">Después de escribir todo esto…</p>
- <p class="t-medio">¿Sientes que ahora ves un poco más claro <em>dónde estás?</em></p>
- <div class="radio-grupo" id="autoeval">
- <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">Sí, un poco.</span></div>
- <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">Todavía no.</span></div>
- <div class="radio-opcion" onclick="selRadio(this,'autoeval','beval')"><div class="radio-circulo"></div><span class="radio-txt">No estoy seguro.</span></div></div>
- <div class="acciones" style="justify-content:flex-end;">
- <button id="beval" class="btn-sig" onclick="recopilarRespuestas()" disabled>Terminar</button></div></div></div>
+ <button class="btn-ant" onclick="ir('paso2')">Volver</button>
+ <button id="b-enviar" class="btn-sig" onclick="recopilarRespuestas()" disabled>Compartir mi historia</button></div></div></div>
 
  <!-- P10: CIERRE -->
  <div class="pantalla" id="p10">
@@ -236,4 +167,25 @@
  <input type="text" name="nombre"><input type="email" name="email"><textarea name="mensaje"></textarea>
  <input type="text" name="bot-field">
 </form>
-<script src="assets/egs.js"></script></body></html>
+<script src="assets/egs.js"></script>
+<script>
+(function () {
+ // los cuadros de texto crecen con lo que se escribe
+ document.querySelectorAll('.campo.corto').forEach(function (t) {
+ t.addEventListener('input', function () { t.style.height = 'auto'; t.style.height = (t.scrollHeight + 2) + 'px'; });
+ });
+ // las frases y opciones dicen si están elegidas
+ document.querySelectorAll('.chips').forEach(function (g) {
+ g.addEventListener('click', function () {
+ g.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', b.classList.contains('selected') ? 'true' : 'false'); });
+ });
+ });
+})();
+window.listoEnvio = function () {
+ var n = document.getElementById('nombre'), c = document.getElementById('correo'), b = document.getElementById('b-enviar');
+ var pideCorreo = c && c.hasAttribute('required');
+ var correoBien = !pideCorreo || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c.value.trim());
+ b.disabled = !(n.value.trim() && correoBien);
+};
+</script>
+</body></html>
